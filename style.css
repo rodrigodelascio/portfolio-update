@@ -1,22 +1,62 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
 
 :root {
   scroll-behavior: smooth;
 
-  /* Colour Pallet */
+  /* ********** Colour Pallet ********** */
   --clr-white: hsl(0, 0%, 99%);
   --clr-black: hsl(0, 0%, 5%);
-  --clr-lightgray: hsl(0, 0%, 96%);
+
+  /* ********** Font Sizes ********** */
+  --fs-hero: 5rem;
+  --fs-sectionHeading: 3.5rem;
+  --fs-subHeading: 2.8rem;
+
+  --fs-body: 1.6rem;
+  --fs-description: 1.4rem;
+
+  --fs-primaryButton: 1.6rem;
+  --fs-secondaryButton: 1.4rem;
+
+  --fs-navMenu: 1.6rem;
+
+  --fs-formLabel: 1.4rem;
+  --fs-formText: 1.4rem;
+
+  --fs-footerText: 1.2rem;
+
+  /* ********** Font Weights ********** */
+  --fw-hero: 700;
+  --fw-sectionHeading: 600;
+  --fw-subHeading: 500;
+
+  --fw-body: 400;
+  --fw-description: 300;
+
+  --fw-primaryButton: 600;
+  --fw-secondaryButton: 500;
+
+  --fw-navMenu: 500;
+
+  --fw-formLabel: 400;
+  --fw-formText: 300;
+
+  --fw-footerText: 300;
+
+  /* ********** Spacing ********** */
+  --sp-maxWidth: 1440px;
 }
 
 html {
   font-size: 62.5%;
+  font-family: "Poppins", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
 }
 
 *,
 *::before,
 *::after {
-  font-family: "Poppins", sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: inherit;
@@ -26,6 +66,20 @@ body {
   background: var(--clr-white);
   color: var(--clr-black);
   box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Raleway", sans-serif;
+}
+
+button,
+nav {
+  font-family: "Poppins", sans-serif;
 }
 
 ol,
@@ -53,4 +107,65 @@ textarea {
   resize: none;
 }
 
-// Full body and background settings
+/* ********** Full body and background settings ********** */
+.background-container {
+  width: 100%;
+  background: var(--clr-white);
+}
+
+.page-container {
+  max-width: var(--sp-maxWidth);
+  margin: 0 auto;
+  padding: 8rem 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 0 6vw;
+  box-sizing: content-box;
+  display: flex;
+  gap: 8rem;
+  background: aqua;
+}
+
+/* ********** Navbar ********** */
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 64px;
+  width: 100%;
+  background: yellow;
+}
+
+.nav-logo {
+  width: 50px;
+}
+
+.nav-links-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 50px;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 50px;
+  font-size: var(--fs-navMenu);
+  font-weight: var(--fw-navMenu);
+}
+
+.nav-button {
+  padding: 8px 16px;
+  border: 1px solid var(--clr-black);
+  border-radius: 16px;
+  background: none;
+  color: var(--clr-black);
+  font-size: var(--fs-primaryButton);
+  font-weight: var(--fw-primaryButton);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
