@@ -4,8 +4,13 @@
   scroll-behavior: smooth;
 
   /* ********** Colour Pallet ********** */
-  --clr-white: hsl(0, 0%, 99%);
-  --clr-black: hsl(0, 0%, 5%);
+  --clr-white: #fcfcfc;
+  --clr-black: #0d0d0d;
+  --clr-tasman: #cad2c5;
+  --clr-bayLeaf: #84a98c;
+  --clr-cuttySark: #53796f;
+  --clr-limedSpruce: #354f52;
+  --clr-seaDeep: #2f3e46;
 
   /* ********** Font Sizes ********** */
   --fs-hero: 5rem;
@@ -110,20 +115,12 @@ textarea {
 /* ********** Full body and background settings ********** */
 .background-container {
   width: 100%;
-  background: var(--clr-white);
+  background: var(--clr-tasman);
 }
 
 .page-container {
   max-width: var(--sp-maxWidth);
   margin: 0 auto;
-  padding: 8rem 0;
-  border-color: transparent;
-  border-style: solid;
-  border-width: 0 6vw;
-  box-sizing: content-box;
-  display: flex;
-  gap: 8rem;
-  background: aqua;
 }
 
 /* ********** Navbar ********** */
@@ -132,13 +129,12 @@ textarea {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 64px;
+  padding: 48px 64px;
   width: 100%;
-  background: yellow;
 }
 
 .nav-logo {
-  width: 50px;
+  width: 60px;
 }
 
 .nav-links-container {
@@ -146,7 +142,13 @@ textarea {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  gap: 50px;
+  border: 1px solid transparent;
+  padding: 10px 24px;
+  border-radius: 24px;
+  background: var(--clr-white);
+  -webkit-box-shadow: -3px 3px 3px -1px rgba(0, 0, 0, 0.45);
+  -moz-box-shadow: -3px 3px 3px -1px rgba(0, 0, 0, 0.45);
+  box-shadow: -3px 3px 3px -1px rgba(0, 0, 0, 0.45);
 }
 
 .nav-links {
@@ -156,16 +158,20 @@ textarea {
   gap: 50px;
   font-size: var(--fs-navMenu);
   font-weight: var(--fw-navMenu);
+  color: var(--clr-black);
 }
 
 .nav-button {
-  padding: 8px 16px;
-  border: 1px solid var(--clr-black);
-  border-radius: 16px;
-  background: none;
+  padding: 10px 24px;
+  border: 1px solid transparent;
+  border-radius: 24px;
+  background: var(--clr-white);
   color: var(--clr-black);
   font-size: var(--fs-primaryButton);
   font-weight: var(--fw-primaryButton);
+  -webkit-box-shadow: -3px 3px 3px -1px rgba(0, 0, 0, 0.45);
+  -moz-box-shadow: -3px 3px 3px -1px rgba(0, 0, 0, 0.45);
+  box-shadow: -3px 3px 3px -1px rgba(0, 0, 0, 0.45);
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 }
