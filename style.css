@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 :root {
   scroll-behavior: smooth;
@@ -6,11 +7,10 @@
   /* ********** Colour Pallet ********** */
   --clr-white: #fcfcfc;
   --clr-black: #0d0d0d;
-  --clr-tasman: #cad2c5;
-  --clr-bayLeaf: #84a98c;
-  --clr-cuttySark: #53796f;
-  --clr-limedSpruce: #354f52;
-  --clr-seaDeep: #2f3e46;
+  --clr-bg-yellow: #fee440;
+  --clr-bg-blue: #00bbf9;
+  --clr-bg-pink: #f15bb5;
+  --clr-bg-purple: #9b5de5;
 
   /* ********** Font Sizes ********** */
   --fs-hero: 5rem;
@@ -114,27 +114,115 @@ textarea {
 
 /* ********** Full body and background settings ********** */
 .background-container {
-  width: 100%;
-  background: var(--clr-tasman);
+  width: 100vw;
+  height: 100vh;
+  background: pink;
 }
 
 .page-container {
-  max-width: var(--sp-maxWidth);
-  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* ********** Landing page sections ********** */
+.landing-section {
+  width: 50%;
+  height: 50%;
+  overflow: hidden;
+  position: relative;
+}
+
+.landing-bg-title {
+  font-family: "Kanit", serif;
+  font-weight: 900;
+  font-size: 10vw;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.landing-bg-text {
+  position: relative;
+  opacity: 50%;
+  line-height: 70%;
+}
+
+.top-left {
+  border-right: 3px solid var(--clr-white);
+  border-bottom: 3px solid var(--clr-white);
+  background: var(--clr-bg-yellow);
+}
+
+.top-right {
+  border-left: 3px solid var(--clr-white);
+  border-bottom: 3px solid var(--clr-white);
+  background: var(--clr-bg-blue);
+}
+
+.bottom-left {
+  border-right: 3px solid var(--clr-white);
+  border-top: 3px solid var(--clr-white);
+  background: var(--clr-bg-pink);
+}
+
+.bottom-right {
+  border-left: 3px solid var(--clr-white);
+  border-top: 3px solid var(--clr-white);
+  background: var(--clr-bg-purple);
+}
+
+.top-left .landing-bg-text {
+  color: #be9800;
+}
+
+.top-right .landing-bg-text {
+  color: #007fbe;
+}
+
+.bottom-left .landing-bg-text {
+  color: #be006f;
+}
+
+.bottom-right .landing-bg-text {
+  color: #8200be;
+}
+
+.landing-about-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.landing-about-text p {
+  font-size: 2.5rem;
+  text-align: center;
 }
 
 /* ********** Navbar ********** */
-.navbar {
+/* .navbar {
+  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: 48px 64px;
   width: 100%;
+  z-index: 2;
 }
 
 .nav-logo {
   width: 60px;
+  transition: all 0.3s ease-in-out;
+}
+
+.nav-logo:hover {
+  transform: scale(1.1);
+  opacity: 75%;
 }
 
 .nav-links-container {
@@ -146,9 +234,9 @@ textarea {
   padding: 10px 24px;
   border-radius: 24px;
   background: var(--clr-white);
-  -webkit-box-shadow: -3px 3px 3px -1px rgba(0, 0, 0, 0.45);
-  -moz-box-shadow: -3px 3px 3px -1px rgba(0, 0, 0, 0.45);
-  box-shadow: -3px 3px 3px -1px rgba(0, 0, 0, 0.45);
+  -webkit-box-shadow: -3px 3px 3px -1px var(--clr-cuttySark);
+  -moz-box-shadow: -3px 3px 3px -1px var(--clr-cuttySark);
+  box-shadow: -3px 3px 3px -1px var(--clr-cuttySark);
 }
 
 .nav-links {
@@ -169,9 +257,19 @@ textarea {
   color: var(--clr-black);
   font-size: var(--fs-primaryButton);
   font-weight: var(--fw-primaryButton);
-  -webkit-box-shadow: -3px 3px 3px -1px rgba(0, 0, 0, 0.45);
-  -moz-box-shadow: -3px 3px 3px -1px rgba(0, 0, 0, 0.45);
-  box-shadow: -3px 3px 3px -1px rgba(0, 0, 0, 0.45);
+  -webkit-box-shadow: -3px 3px 3px -1px var(--clr-cuttySark);
+  -moz-box-shadow: -3px 3px 3px -1px var(--clr-cuttySark);
+  box-shadow: -3px 3px 3px -1px var(--clr-cuttySark);
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out; 
+}
+*/
+
+/* ********** MEDIA QUERIES ********** */
+
+/* ********** Hero Section Queries ********** */
+@media screen and (max-width: 1025px) {
+}
+
+@media screen and (max-width: 769px) {
 }
