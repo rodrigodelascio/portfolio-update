@@ -132,17 +132,21 @@ textarea {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   cursor: url("./assets/images/circle-small.svg"), auto;
+  cursor: url("./assets/images/circle-small.svg") 15 15, move;
 }
 
 .nav-logo {
   width: 60px;
   transition: all 0.3s ease-in-out;
+  cursor: url("./assets/images/circle-medium.svg"), auto;
+  cursor: url("./assets/images/circle-medium.svg") 15 15, move;
 }
 
 .nav-logo:hover {
   transform: scale(1.1);
   opacity: 75%;
   cursor: url("./assets/images/circle-medium.svg"), auto;
+  cursor: url("./assets/images/circle-medium.svg") 15 15, move;
 }
 
 .nav-links-container {
@@ -154,6 +158,8 @@ textarea {
   padding: 10px 24px;
   border-radius: 24px;
   background: var(--clr-white);
+  cursor: url("./assets/images/circle-medium.svg"), auto;
+  cursor: url("./assets/images/circle-medium.svg") 15 15, move;
 }
 
 .nav-links-container:hover,
@@ -161,6 +167,7 @@ textarea {
 .nav-links:hover,
 .nav-links:focus {
   cursor: url("./assets/images/circle-medium.svg"), auto;
+  cursor: url("./assets/images/circle-medium.svg") 15 15, move;
 }
 
 .nav-links {
@@ -172,6 +179,8 @@ textarea {
   font-size: var(--fs-navMenu);
   font-weight: var(--fw-navMenu);
   color: var(--clr-black);
+  cursor: url("./assets/images/circle-medium.svg"), auto;
+  cursor: url("./assets/images/circle-medium.svg") 15 15, move;
 }
 
 .nav-button {
@@ -184,6 +193,8 @@ textarea {
   font-size: var(--fs-primaryButton);
   font-weight: var(--fw-primaryButton);
   transition: all 0.3s ease-in-out;
+  cursor: url("./assets/images/circle-medium.svg"), auto;
+  cursor: url("./assets/images/circle-medium.svg") 15 15, move;
 }
 
 .nav-button:hover,
@@ -191,6 +202,7 @@ textarea {
   transform: scale(1.1);
   opacity: 75%;
   cursor: url("./assets/images/circle-medium.svg"), auto;
+  cursor: url("./assets/images/circle-medium.svg") 15 15, move;
 }
 
 /* ********** Landing Hero ********** */
@@ -200,6 +212,7 @@ textarea {
   width: 100%;
   min-height: 95vh;
   cursor: url("./assets/images/circle-small.svg"), auto;
+  cursor: url("./assets/images/circle-small.svg") 15 15, move;
 }
 
 .title-container {
