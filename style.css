@@ -7,8 +7,8 @@
   /* ********** Colour Pallet ********** */
   --clr-white: #fcfcfc;
   --clr-black: #0d0d0d;
-  --clr-pink: #e984d0;
-  --clr-purple: #503bca;
+  --clr-pink: #d569a7;
+  --clr-purple: #7556cc;
 
   /* ********** Font Sizes ********** */
   --fs-hero: 5rem;
@@ -94,7 +94,6 @@ ul {
 a {
   color: var(--clr-black);
   text-decoration: none;
-  cursor: pointer;
 }
 
 img {
@@ -122,16 +121,17 @@ textarea {
 /* ********** Navbar ********** */
 .navbar {
   position: fixed;
+  z-index: 1;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: 48px 64px;
   width: 100%;
-  z-index: 2;
   background: transparent;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  cursor: url("./assets/images/circle-small.svg"), auto;
 }
 
 .nav-logo {
@@ -142,6 +142,7 @@ textarea {
 .nav-logo:hover {
   transform: scale(1.1);
   opacity: 75%;
+  cursor: url("./assets/images/circle-medium.svg"), auto;
 }
 
 .nav-links-container {
@@ -153,6 +154,13 @@ textarea {
   padding: 10px 24px;
   border-radius: 24px;
   background: var(--clr-white);
+}
+
+.nav-links-container:hover,
+.nav-links-container:focus,
+.nav-links:hover,
+.nav-links:focus {
+  cursor: url("./assets/images/circle-medium.svg"), auto;
 }
 
 .nav-links {
@@ -175,22 +183,30 @@ textarea {
   font-family: "Poppins", sans-serif;
   font-size: var(--fs-primaryButton);
   font-weight: var(--fw-primaryButton);
-  cursor: pointer;
   transition: all 0.3s ease-in-out;
+}
+
+.nav-button:hover,
+.nav-button:focus {
+  transform: scale(1.1);
+  opacity: 75%;
+  cursor: url("./assets/images/circle-medium.svg"), auto;
 }
 
 /* ********** Landing Hero ********** */
 
-.landing-section {
+.landing-hero-section {
   position: relative;
   width: 100%;
-  height: 95vh;
+  min-height: 95vh;
+  cursor: url("./assets/images/circle-small.svg"), auto;
 }
 
 .title-container {
+  position: relative;
   color: var(--clr-white);
-  height: 100%;
   width: 100%;
+  height: 95vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -209,7 +225,7 @@ textarea {
   font-weight: 800;
   letter-spacing: 0.5rem;
   background: linear-gradient(
-    90deg,
+    to right,
     var(--clr-purple) 0%,
     var(--clr-pink) 100%
   );
@@ -222,8 +238,7 @@ textarea {
 
 .about-section {
   background: var(--clr-purple);
-  width: 95%;
-  height: 100rem;
+  width: 92.5%;
   margin: auto;
   border-radius: 50px;
 }
