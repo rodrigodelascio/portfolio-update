@@ -7,10 +7,8 @@
   /* ********** Colour Pallet ********** */
   --clr-white: #fcfcfc;
   --clr-black: #0d0d0d;
-  --clr-bg-yellow: #fee440;
-  --clr-bg-blue: #00bbf9;
-  --clr-bg-pink: #f15bb5;
-  --clr-bg-purple: #9b5de5;
+  --clr-pink: #e984d0;
+  --clr-purple: #503bca;
 
   /* ********** Font Sizes ********** */
   --fs-hero: 5rem;
@@ -114,98 +112,16 @@ textarea {
 
 /* ********** Full body and background settings ********** */
 .background-container {
-  width: 100vw;
-  height: 100vh;
-  background: pink;
+  background: var(--clr-black);
 }
 
 .page-container {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-/* ********** Landing page sections ********** */
-.landing-section {
-  width: 50%;
-  height: 50%;
-  overflow: hidden;
-  position: relative;
-}
-
-.landing-bg-title {
-  font-family: "Kanit", serif;
-  font-weight: 900;
-  font-size: 10vw;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-}
-
-.landing-bg-text {
-  position: relative;
-  opacity: 50%;
-  line-height: 70%;
-}
-
-.top-left {
-  border-right: 3px solid var(--clr-white);
-  border-bottom: 3px solid var(--clr-white);
-  background: var(--clr-bg-yellow);
-}
-
-.top-right {
-  border-left: 3px solid var(--clr-white);
-  border-bottom: 3px solid var(--clr-white);
-  background: var(--clr-bg-blue);
-}
-
-.bottom-left {
-  border-right: 3px solid var(--clr-white);
-  border-top: 3px solid var(--clr-white);
-  background: var(--clr-bg-pink);
-}
-
-.bottom-right {
-  border-left: 3px solid var(--clr-white);
-  border-top: 3px solid var(--clr-white);
-  background: var(--clr-bg-purple);
-}
-
-.top-left .landing-bg-text {
-  color: #be9800;
-}
-
-.top-right .landing-bg-text {
-  color: #007fbe;
-}
-
-.bottom-left .landing-bg-text {
-  color: #be006f;
-}
-
-.bottom-right .landing-bg-text {
-  color: #8200be;
-}
-
-.landing-about-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.landing-about-text p {
-  font-size: 2.5rem;
-  text-align: center;
+  margin: auto;
 }
 
 /* ********** Navbar ********** */
-/* .navbar {
-  position: relative;
+.navbar {
+  position: fixed;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -213,6 +129,9 @@ textarea {
   padding: 48px 64px;
   width: 100%;
   z-index: 2;
+  background: transparent;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .nav-logo {
@@ -234,9 +153,6 @@ textarea {
   padding: 10px 24px;
   border-radius: 24px;
   background: var(--clr-white);
-  -webkit-box-shadow: -3px 3px 3px -1px var(--clr-cuttySark);
-  -moz-box-shadow: -3px 3px 3px -1px var(--clr-cuttySark);
-  box-shadow: -3px 3px 3px -1px var(--clr-cuttySark);
 }
 
 .nav-links {
@@ -244,6 +160,7 @@ textarea {
   justify-content: space-between;
   align-items: center;
   gap: 50px;
+  font-family: "Poppins", sans-serif;
   font-size: var(--fs-navMenu);
   font-weight: var(--fw-navMenu);
   color: var(--clr-black);
@@ -255,15 +172,61 @@ textarea {
   border-radius: 24px;
   background: var(--clr-white);
   color: var(--clr-black);
+  font-family: "Poppins", sans-serif;
   font-size: var(--fs-primaryButton);
   font-weight: var(--fw-primaryButton);
-  -webkit-box-shadow: -3px 3px 3px -1px var(--clr-cuttySark);
-  -moz-box-shadow: -3px 3px 3px -1px var(--clr-cuttySark);
-  box-shadow: -3px 3px 3px -1px var(--clr-cuttySark);
   cursor: pointer;
-  transition: all 0.3s ease-in-out; 
+  transition: all 0.3s ease-in-out;
 }
-*/
+
+/* ********** Landing Hero ********** */
+
+.landing-section {
+  position: relative;
+  width: 100%;
+  height: 95vh;
+}
+
+.title-container {
+  color: var(--clr-white);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title-thinner {
+  font-size: 2vw;
+  font-weight: 200;
+  letter-spacing: 0.2rem;
+  display: flex;
+}
+
+.title-bold {
+  font-size: 6vw;
+  font-weight: 800;
+  letter-spacing: 0.5rem;
+  background: linear-gradient(
+    90deg,
+    var(--clr-purple) 0%,
+    var(--clr-pink) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ********** Landing About Section ********** */
+
+.about-section {
+  background: var(--clr-purple);
+  width: 95%;
+  height: 100rem;
+  margin: auto;
+  border-radius: 50px;
+}
 
 /* ********** MEDIA QUERIES ********** */
 
