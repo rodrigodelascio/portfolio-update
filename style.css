@@ -1,5 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
 :root {
   scroll-behavior: smooth;
@@ -7,8 +6,11 @@
   /* ********** Colour Pallet ********** */
   --clr-white: #fcfcfc;
   --clr-black: #0d0d0d;
-  --clr-pink: #d569a7;
-  --clr-purple: #7556cc;
+  --clr-pink: #f72585;
+  --clr-purple: #7209b7;
+  --clr-purpleBlue: #3a0ca3;
+  --clr-blue: #4361ee;
+  --clr-lightBlue: #4cc9f0;
 
   /* ********** Font Sizes ********** */
   --fs-hero: 5rem;
@@ -52,7 +54,7 @@
 
 html {
   font-size: 62.5%;
-  font-family: "Poppins", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
 }
@@ -77,12 +79,12 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Raleway", sans-serif;
+  font-family: "Kanit", sans-serif;
 }
 
 button,
 nav {
-  font-family: "Poppins", sans-serif;
+  font-family: "Kanit", sans-serif;
 }
 
 ol,
@@ -112,6 +114,8 @@ textarea {
 /* ********** Full body and background settings ********** */
 .background-container {
   background: var(--clr-black);
+  cursor: url("./assets/images/circle-small.svg"), auto;
+  cursor: url("./assets/images/circle-small.svg") 15 15, move;
 }
 
 .page-container {
@@ -135,18 +139,22 @@ textarea {
   cursor: url("./assets/images/circle-small.svg") 15 15, move;
 }
 
+.nav-logo,
+.nav-links-container,
+.nav-links,
+.nav-button {
+  cursor: url("./assets/images/circle-medium.svg"), auto;
+  cursor: url("./assets/images/circle-medium.svg") 15 15, move;
+}
+
 .nav-logo {
   width: 60px;
   transition: all 0.3s ease-in-out;
-  cursor: url("./assets/images/circle-medium.svg"), auto;
-  cursor: url("./assets/images/circle-medium.svg") 15 15, move;
 }
 
 .nav-logo:hover {
   transform: scale(1.1);
   opacity: 75%;
-  cursor: url("./assets/images/circle-medium.svg"), auto;
-  cursor: url("./assets/images/circle-medium.svg") 15 15, move;
 }
 
 .nav-links-container {
@@ -158,16 +166,6 @@ textarea {
   padding: 10px 24px;
   border-radius: 24px;
   background: var(--clr-white);
-  cursor: url("./assets/images/circle-medium.svg"), auto;
-  cursor: url("./assets/images/circle-medium.svg") 15 15, move;
-}
-
-.nav-links-container:hover,
-.nav-links-container:focus,
-.nav-links:hover,
-.nav-links:focus {
-  cursor: url("./assets/images/circle-medium.svg"), auto;
-  cursor: url("./assets/images/circle-medium.svg") 15 15, move;
 }
 
 .nav-links {
@@ -175,12 +173,10 @@ textarea {
   justify-content: space-between;
   align-items: center;
   gap: 50px;
-  font-family: "Poppins", sans-serif;
   font-size: var(--fs-navMenu);
   font-weight: var(--fw-navMenu);
   color: var(--clr-black);
-  cursor: url("./assets/images/circle-medium.svg"), auto;
-  cursor: url("./assets/images/circle-medium.svg") 15 15, move;
+  text-transform: uppercase;
 }
 
 .nav-button {
@@ -189,18 +185,25 @@ textarea {
   border-radius: 24px;
   background: var(--clr-white);
   color: var(--clr-black);
-  font-family: "Poppins", sans-serif;
   font-size: var(--fs-primaryButton);
   font-weight: var(--fw-primaryButton);
   transition: all 0.3s ease-in-out;
-  cursor: url("./assets/images/circle-medium.svg"), auto;
-  cursor: url("./assets/images/circle-medium.svg") 15 15, move;
+  text-transform: uppercase;
 }
 
 .nav-button:hover,
 .nav-button:focus {
   transform: scale(1.1);
-  opacity: 75%;
+}
+
+.nav-logo:hover,
+.nav-logo:focus,
+.nav-links-container:hover,
+.nav-links-container:focus,
+.nav-links:hover,
+.nav-links:focus,
+.nav-button:hover,
+.nav-button:focus {
   cursor: url("./assets/images/circle-medium.svg"), auto;
   cursor: url("./assets/images/circle-medium.svg") 15 15, move;
 }
@@ -217,7 +220,6 @@ textarea {
 
 .title-container {
   position: relative;
-  color: var(--clr-white);
   width: 100%;
   height: 95vh;
   display: flex;
@@ -227,33 +229,87 @@ textarea {
 }
 
 .title-thinner {
-  font-size: 2vw;
+  font-size: 2.5vw;
   font-weight: 200;
   letter-spacing: 0.2rem;
-  display: flex;
+  line-height: 0.25;
+  color: var(--clr-white);
 }
 
 .title-bold {
-  font-size: 6vw;
+  font-size: 6.5vw;
   font-weight: 800;
   letter-spacing: 0.5rem;
   background: linear-gradient(
     to right,
     var(--clr-purple) 0%,
-    var(--clr-pink) 100%
+    var(--clr-pink) 150%
   );
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* ********** Landing About Section ********** */
+.location-container {
+  position: absolute;
+  right: 7.5%;
+  bottom: 10%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 
-.about-section {
-  background: var(--clr-purple);
+.location-text {
+  color: var(--clr-white);
+  font-size: 1.15vw;
+  font-weight: 500;
+  line-height: 1.25;
+  padding-left: 1vw;
+}
+
+.sub-location {
+  font-size: 1vw;
+  font-weight: 300;
+}
+
+.fa-location-dot {
+  color: var(--clr-white);
+  font-size: 2vw;
+}
+
+/* ********** Landing Blog Section ********** */
+
+.blog-section {
+  position: relative;
+  background: var(--clr-purpleBlue);
+  backdrop-filter: opacity(10px);
   width: 92.5%;
   margin: auto;
   border-radius: 50px;
+  padding: 48px 64px;
+  cursor: url("./assets/images/circle-medium-pink.svg"), auto;
+  cursor: url("./assets/images/circle-medium-pink.svg") 15 15, move;
+  overflow: hidden;
+}
+
+.section-title {
+  color: var(--clr-white);
+  font-size: var(--fs-sectionHeading);
+  font-weight: var(--fw-sectionHeading);
+}
+
+.section-subtitle {
+  color: var(--clr-white);
+  font-size: var(--fs-subHeading);
+  font-weight: var(--fw-subheading);
+}
+
+.fa-up-right-from-square {
+  color: var(--clr-white);
+  font-size: 4rem;
+  position: absolute;
+  top: 48px;
+  right: 64px;
 }
 
 /* ********** MEDIA QUERIES ********** */
