@@ -280,7 +280,7 @@ textarea {
   font-size: min(3.5rem, 5vw);
 }
 
-/* ********** Landing Blog Section ********** */
+/* ********** Landing Blog & About Section ********** */
 
 .blog-and-about-section-container {
   width: 100%;
@@ -298,11 +298,11 @@ textarea {
 .about-section {
   position: relative;
   width: calc((100% - 64px) / 2);
-  min-width: 40rem;
+  min-width: min(42.5rem, 100%);
   height: min(50vh, 65rem);
   margin: auto;
   border-radius: 50px;
-  padding: min(3.5vw, 48px) min(5vw, 64px);
+  padding: min(36px, 8vw);
   cursor: url("./assets/images/circle-medium-pink.svg"), auto;
   cursor: url("./assets/images/circle-medium-pink.svg") 15 15, move;
   overflow: hidden;
@@ -319,30 +319,28 @@ textarea {
 
 .section-title-container {
   position: relative;
-  z-index: 1;
 }
 
 .section-title {
   color: var(--clr-white);
   font-weight: var(--fw-sectionHeading);
-  font-size: 2.75vw;
+  font-size: min(3.5rem, 4vw);
   letter-spacing: 0.1rem;
 }
 
 .section-subtitle {
   color: var(--clr-white);
   font-weight: var(--fw-subheading);
-  font-size: 1.75vw;
+  font-size: min(2rem, 3vw);
 }
 
 .fa-up-right-from-square {
   color: var(--clr-white);
-  font-size: 3rem;
+  font-size: min(3rem, 4.25vw);
   position: absolute;
-  top: min(3.5vw, 48px);
-  right: min(5vw, 64px);
+  top: min(36px, 8vw);
+  right: min(36px, 8vw);
   transition: all 0.3s ease-in-out;
-  z-index: 2;
 }
 
 .profile-pic,
@@ -379,7 +377,7 @@ textarea {
 .about-section:hover .profile-pic,
 .blog-section:hover .blog-pic {
   scale: 1.1;
-  transform: translate(45%, -3%);
+  transform: translate(45%, 0);
 }
 
 .about-section:hover .fa-up-right-from-square,
