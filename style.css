@@ -232,7 +232,7 @@ textarea {
 }
 
 .title-thinner {
-  font-size: min(2.5vw);
+  font-size: min(3vw, 4rem);
   font-weight: 200;
   letter-spacing: 0.2rem;
   line-height: 0.25;
@@ -264,20 +264,20 @@ textarea {
 
 .location-text {
   color: var(--clr-white);
-  font-size: min(1.15vw, var(--fs-subHeading));
+  font-size: min(2.5rem, 3vw);
   font-weight: 500;
-  line-height: 1.25;
+  line-height: 1;
   padding-left: 1vw;
 }
 
 .sub-location {
-  font-size: min(1vw, 2rem);
+  font-size: min(1.75rem, 2.5vw);
   font-weight: 300;
 }
 
 .fa-location-dot {
   color: var(--clr-white);
-  font-size: 2vw;
+  font-size: min(3.5rem, 5vw);
 }
 
 /* ********** Landing Blog Section ********** */
