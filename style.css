@@ -126,7 +126,7 @@ textarea {
 /* ********** Navbar ********** */
 .navbar {
   position: fixed;
-  z-index: 1;
+  z-index: 10;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -216,7 +216,7 @@ textarea {
 .landing-hero-section {
   position: relative;
   width: 100%;
-  min-height: 100vh;
+  min-height: 95vh;
   cursor: url("./assets/images/circle-small.svg"), auto;
   cursor: url("./assets/images/circle-small.svg") 15 15, move;
 }
@@ -224,7 +224,7 @@ textarea {
 .title-container {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 95vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -264,14 +264,14 @@ textarea {
 
 .location-text {
   color: var(--clr-white);
-  font-size: min(2.5rem, 3vw);
+  font-size: min(2rem, 3vw);
   font-weight: 500;
   line-height: 1;
   padding-left: 1vw;
 }
 
 .sub-location {
-  font-size: min(1.75rem, 2.5vw);
+  font-size: min(1.5rem, 2.5vw);
   font-weight: 300;
 }
 
@@ -289,7 +289,6 @@ textarea {
   justify-content: space-between;
   flex-wrap: wrap;
   align-items: center;
-  padding: 0 3.25%;
   gap: min(3.5%, 36px);
   padding: min(3.5vw, 48px) min(5vw, 64px);
 }
@@ -298,11 +297,10 @@ textarea {
 .about-section {
   position: relative;
   width: calc((100% - 64px) / 2);
-  min-width: min(42.5rem, 100%);
   height: min(50vh, 65rem);
   margin: auto;
   border-radius: 50px;
-  padding: min(36px, 8vw);
+  padding: min(24px, 8vw) min(36px, 8vw);
   cursor: url("./assets/images/circle-medium-pink.svg"), auto;
   cursor: url("./assets/images/circle-medium-pink.svg") 15 15, move;
   overflow: hidden;
@@ -319,6 +317,7 @@ textarea {
 
 .section-title-container {
   position: relative;
+  width: 80%;
 }
 
 .section-title {
@@ -326,12 +325,14 @@ textarea {
   font-weight: var(--fw-sectionHeading);
   font-size: min(3.5rem, 4vw);
   letter-spacing: 0.1rem;
+  line-height: 1.2;
 }
 
 .section-subtitle {
   color: var(--clr-white);
   font-weight: var(--fw-subheading);
   font-size: min(2rem, 3vw);
+  margin-top: 8px;
 }
 
 .fa-up-right-from-square {
@@ -397,16 +398,104 @@ textarea {
   margin: 7.5vh auto 0 auto;
 }
 
+.project-container,
+.projects-title-container {
+  cursor: url("./assets/images/circle-medium.svg"), auto;
+  cursor: url("./assets/images/circle-medium.svg") 15 15, move;
+}
+
 .project-container {
   position: relative;
-  background: var(--clr-lightBlue);
   width: 100%;
   height: min(50vh, 65rem);
   border-radius: 50px;
-  padding: min(3.5vw, 48px) min(5vw, 64px);
-  cursor: url("./assets/images/circle-medium-pink.svg"), auto;
-  cursor: url("./assets/images/circle-medium-pink.svg") 15 15, move;
+  padding: min(24px, 8vw) min(36px, 8vw);
   overflow: hidden;
+  margin-top: min(4.5%, 48px);
+  transition: all 0.3s ease-in-out;
+}
+
+.work-1 {
+  background: var(--clr-lightBlue);
+}
+
+.work-2 {
+  background: var(--clr-pink);
+}
+
+.projects-title-container {
+  padding: 0 min(36px, 8vw);
+}
+
+.project-info-container {
+  width: 50%;
+  z-index: 1;
+  position: relative;
+}
+
+.project-description {
+  color: var(--clr-white);
+  font-size: min(1.75rem, 3vw);
+  font-weight: 300;
+  line-height: 1.25;
+  margin-top: 12px;
+}
+
+.project-pic {
+  position: absolute;
+  object-fit: cover;
+  z-index: 0;
+  transition: all 0.5s ease-in-out;
+}
+
+.work-pic-1 {
+  min-height: 100%;
+  min-width: 100%;
+  right: 0;
+  bottom: 0;
+}
+
+.work-pic-2 {
+  min-height: 100%;
+  min-width: 100%;
+  right: 0;
+  top: 0;
+}
+
+.project-tags {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  bottom: min(36px, 10vw);
+  gap: 12px;
+  z-index: 1;
+}
+
+.tag {
+  color: var(--clr-black);
+  font-size: min(1.2rem, 2.5vw);
+  font-weight: 400;
+  padding: 6px 12px;
+  border-radius: 24px;
+  background: var(--clr-white);
+}
+
+.work-2-title,
+.work-2-description,
+.fa-work-2 {
+  color: var(--clr-black);
+}
+
+.project-container:hover .project-pic {
+  scale: 1.1;
+}
+
+.project-container:hover .fa-up-right-from-square {
+  animation: bounce 0.7s ease-in-out infinite;
+}
+
+.project-container:hover {
+  filter: brightness(1.1);
 }
 
 /* ********** MEDIA QUERIES ********** */
@@ -416,4 +505,8 @@ textarea {
 }
 
 @media screen and (max-width: 769px) {
+  .blog-section,
+  .about-section {
+    width: 100%;
+  }
 }
