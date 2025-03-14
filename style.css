@@ -161,19 +161,28 @@ textarea {
 .nav-logo:hover,
 .nav-logo:focus {
   transform: scale(1.1);
+  filter: brightness(1.25);
 }
 
 .nav-button:hover,
 .nav-button:focus {
   background: var(--clr-darkPurple);
-  color: var(--clr-white);
+  background-image: linear-gradient(
+    90deg,
+    var(--clr-brightBlue) 0%,
+    var(--clr-purple) 100%
+  );
   box-shadow: 0 0 5px 0 var(--clr-white);
+  box-shadow: -40px 0 100px #4ccaf080, 40px 0 100px #f7258580;
+  filter: brightness(1.25);
 }
 
 .nav-socials a:hover,
 .nav-socials a:focus {
-  color: var(--clr-darkPurple);
+  color: var(--clr-brightBlue);
   transform: scale(1.5);
+  text-shadow: 0 0 100px #4ccaf080;
+  filter: brightness(1.25);
 }
 
 .nav-socials,
@@ -241,7 +250,7 @@ textarea {
 
 .nav-button {
   padding: 8px 12px;
-  border: 1px solid transparent;
+  border: none;
   border-radius: 24px;
   background: var(--clr-white);
   color: var(--clr-black);
@@ -254,7 +263,7 @@ textarea {
 
 .landing-hero-section {
   width: 100%;
-  min-height: 95vh;
+  min-height: 85vh;
   cursor: url("./assets/images/circle-small.svg"), auto;
   cursor: url("./assets/images/circle-small.svg") 15 15, move;
 }
@@ -262,7 +271,7 @@ textarea {
 .title-container {
   position: relative;
   width: 100%;
-  height: 75vh;
+  height: 85vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -293,23 +302,29 @@ textarea {
 }
 
 .cta-button {
+  position: relative;
   padding: 8px 12px;
-  border: 1px solid transparent;
+  border: none;
   border-radius: 24px;
-  background: var(--clr-white);
+  background: var(--clr-gray);
   color: var(--clr-black);
   font-size: min(var(--fs-primaryButton), 2vw);
   font-weight: var(--fw-se--fs-primaryButton);
   transition: all 0.5s ease-in-out;
-  transform-origin: left;
   cursor: url("./assets/images/circle-medium-pink.svg"), auto;
   cursor: url("./assets/images/circle-medium-pink.svg") 15 15, move;
 }
 
 .cta-button:hover {
   background: var(--clr-darkPurple);
-  color: var(--clr-white);
+  background-image: linear-gradient(
+    90deg,
+    var(--clr-brightBlue) 0%,
+    var(--clr-purple) 100%
+  );
   box-shadow: 0 0 5px 0 var(--clr-white);
+  box-shadow: -40px 0 100px #4ccaf080, 40px 0 100px #f7258580;
+  filter: brightness(1.25);
 }
 
 .banner-container {
@@ -317,7 +332,7 @@ textarea {
   height: 4rem;
   position: absolute;
   left: 0;
-  bottom: 30vh;
+  bottom: 25vh;
   background: linear-gradient(
     to right,
     var(--clr-brightBlue) 0%,
@@ -386,7 +401,7 @@ textarea {
 }
 
 .blog-section {
-  background: var(--clr-purpleBlue);
+  background: var(--clr-violet);
 }
 
 .about-section {
