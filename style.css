@@ -159,21 +159,21 @@ textarea {
 }
 
 .nav-logo:hover,
-.nav-logo:focus,
-.nav-socials a:hover,
-.nav-socials a:focus {
+.nav-logo:focus {
   transform: scale(1.1);
 }
 
 .nav-button:hover,
 .nav-button:focus {
-  background: var(--clr-purple);
+  background: var(--clr-darkPurple);
   color: var(--clr-white);
+  box-shadow: 0 0 5px 0 var(--clr-white);
 }
 
 .nav-socials a:hover,
 .nav-socials a:focus {
-  color: var(--clr-purple);
+  color: var(--clr-darkPurple);
+  transform: scale(1.5);
 }
 
 .nav-socials,
@@ -307,8 +307,9 @@ textarea {
 }
 
 .cta-button:hover {
-  background: var(--clr-purple);
+  background: var(--clr-darkPurple);
   color: var(--clr-white);
+  box-shadow: 0 0 5px 0 var(--clr-white);
 }
 
 .banner-container {
