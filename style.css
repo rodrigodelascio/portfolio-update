@@ -4,13 +4,20 @@
   scroll-behavior: smooth;
 
   /* ********** Colour Pallet ********** */
-  --clr-white: #fcfcfc;
-  --clr-black: #0d0d0d;
-  --clr-pink: #f72585;
-  --clr-purple: #7209b7;
-  --clr-purpleBlue: #3a0ca3;
-  --clr-blue: #4361ee;
-  --clr-lightBlue: #4cc9f0;
+  --clr-white: #fafafa;
+  --clr-black: #050505;
+  --clr-gray: #ebeaeb;
+  --clr-brightPink: #f72585;
+  --clr-pink: #b5179e;
+  --clr-violet: #7209b7;
+  --clr-darkPurple: #3a0ca3;
+  --clr-purple: #3f37c9;
+  --clr-blue: #4895ef;
+  --clr-brightBlue: #4cc9f0;
+  --clr-lightBlue: #a1e3f7;
+  --clr-brightGreen: #16db93;
+  --clr-green: #83e377;
+  --clr-yellow: #ffde01;
 
   /* ********** Font Sizes ********** */
   --fs-hero: 5rem;
@@ -145,76 +152,107 @@ textarea {
 .nav-logo,
 .nav-links-container,
 .nav-links,
-.nav-button {
-  cursor: url("./assets/images/circle-medium.svg"), auto;
-  cursor: url("./assets/images/circle-medium.svg") 15 15, move;
-}
-
-.nav-logo {
-  width: 60px;
-  transition: all 0.3s ease-in-out;
-}
-
-.nav-logo:hover {
-  transform: scale(1.1);
-  opacity: 75%;
-}
-
-.nav-links-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  border: 1px solid transparent;
-  padding: 10px 24px;
-  border-radius: 24px;
-  background: var(--clr-white);
-}
-
-.nav-links {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 50px;
-  font-size: var(--fs-navMenu);
-  font-weight: var(--fw-navMenu);
-  color: var(--clr-black);
-  text-transform: uppercase;
-}
-
-.nav-button {
-  padding: 10px 24px;
-  border: 1px solid transparent;
-  border-radius: 24px;
-  background: var(--clr-white);
-  color: var(--clr-black);
-  font-size: var(--fs-primaryButton);
-  font-weight: var(--fw-primaryButton);
-  transition: all 0.3s ease-in-out;
-  text-transform: uppercase;
-}
-
-.nav-button:hover,
-.nav-button:focus {
-  transform: scale(1.1);
+.nav-button,
+.nav-socials {
+  cursor: url("./assets/images/circle-medium-pink.svg"), auto;
+  cursor: url("./assets/images/circle-medium-pink.svg") 15 15, move;
 }
 
 .nav-logo:hover,
 .nav-logo:focus,
-.nav-links-container:hover,
-.nav-links-container:focus,
-.nav-links:hover,
-.nav-links:focus,
+.nav-socials a:hover,
+.nav-socials a:focus {
+  transform: scale(1.1);
+}
+
 .nav-button:hover,
 .nav-button:focus {
-  cursor: url("./assets/images/circle-medium.svg"), auto;
-  cursor: url("./assets/images/circle-medium.svg") 15 15, move;
+  background: var(--clr-purple);
+  color: var(--clr-white);
+}
+
+.nav-socials a:hover,
+.nav-socials a:focus {
+  color: var(--clr-purple);
+}
+
+.nav-socials,
+.nav-logo,
+.nav-links-container {
+  width: 33.333%;
+}
+
+.nav-socials {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.nav-socials a {
+  color: var(--clr-white);
+  font-size: 3rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.nav-logo {
+  position: relative;
+  width: 15rem;
+  transition: all 0.5s ease-in-out;
+}
+
+.nav-logo::before {
+  content: "";
+  position: absolute;
+  top: 112.5%;
+  left: 13.5%;
+  width: 0;
+  height: 100%;
+  rotate: -20deg;
+  background: url("./assets/images/brushStroke.png") no-repeat;
+  background-size: contain;
+  transform-origin: left;
+  transition: linear 0.5s;
+  opacity: 0;
+}
+
+.nav-logo:hover::before {
+  width: 100%;
+  opacity: 0.85;
+}
+
+.nav-links-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  font-size: var(--fs-navMenu);
+  font-weight: var(--fw-navMenu);
+}
+
+.nav-links a {
+  color: var(--clr-white);
+}
+
+.nav-button {
+  padding: 8px 12px;
+  border: 1px solid transparent;
+  border-radius: 24px;
+  background: var(--clr-white);
+  color: var(--clr-black);
+  font-size: var(--fs-secondaryButton);
+  font-weight: var(--fw-se--fs-secondaryButton);
+  transition: all 0.3s ease-in-out;
 }
 
 /* ********** Landing Hero ********** */
 
 .landing-hero-section {
-  position: relative;
   width: 100%;
   min-height: 95vh;
   cursor: url("./assets/images/circle-small.svg"), auto;
@@ -224,7 +262,7 @@ textarea {
 .title-container {
   position: relative;
   width: 100%;
-  height: 95vh;
+  height: 75vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -245,39 +283,78 @@ textarea {
   letter-spacing: 0.5rem;
   background: linear-gradient(
     to right,
-    var(--clr-purple) 0%,
-    var(--clr-pink) 150%
+    var(--clr-brightBlue) 0%,
+    var(--clr-purple) 50%,
+    var(--clr-brightPink) 100%
   );
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.location-container {
+.cta-button {
+  padding: 8px 12px;
+  border: 1px solid transparent;
+  border-radius: 24px;
+  background: var(--clr-white);
+  color: var(--clr-black);
+  font-size: min(var(--fs-primaryButton), 2vw);
+  font-weight: var(--fw-se--fs-primaryButton);
+  transition: all 0.5s ease-in-out;
+  transform-origin: left;
+  cursor: url("./assets/images/circle-medium-pink.svg"), auto;
+  cursor: url("./assets/images/circle-medium-pink.svg") 15 15, move;
+}
+
+.cta-button:hover {
+  background: var(--clr-purple);
+  color: var(--clr-white);
+}
+
+.banner-container {
+  width: 100%;
+  height: 4rem;
   position: absolute;
-  right: 7.5%;
-  bottom: 10%;
+  left: 0;
+  bottom: 30vh;
+  background: linear-gradient(
+    to right,
+    var(--clr-brightBlue) 0%,
+    var(--clr-darkPurple) 100%
+  );
+  overflow: hidden;
   display: flex;
-  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
+  gap: 2.5rem;
 }
 
-.location-text {
+.scroll {
+  min-width: max-content;
+  display: flex;
+  flex-shrink: 0;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2.5rem;
+  user-select: none;
+
+  animation: loop 30s linear infinite;
+}
+
+.banner-container:hover .scroll {
+  animation-play-state: paused;
+}
+
+.banner-text {
   color: var(--clr-white);
-  font-size: min(2rem, 3vw);
+  font-size: 1.4rem;
   font-weight: 500;
-  line-height: 1;
-  padding-left: 1vw;
 }
 
-.sub-location {
-  font-size: min(1.5rem, 2.5vw);
-  font-weight: 300;
-}
-
-.fa-location-dot {
-  color: var(--clr-white);
-  font-size: min(3.5rem, 5vw);
+@keyframes loop {
+  to {
+    transform: translateX(calc(-100% - 2.5rem));
+  }
 }
 
 /* ********** Landing Blog & About Section ********** */
