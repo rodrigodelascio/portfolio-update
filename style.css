@@ -393,7 +393,6 @@ textarea {
 .work-section-title {
   position: relative;
   text-align: center;
-  font-family: Kanit, sans-serif;
   font-size: min(12.5rem, 17.5vw);
   font-weight: 700;
   line-height: 100%;
@@ -409,7 +408,7 @@ textarea {
 
 .two-in-line-wrapper {
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-between;
   gap: min(3.5%, 36px);
 }
@@ -433,7 +432,7 @@ textarea {
 .work-container-3 {
   position: relative;
   width: calc((100% - 64px) / 2);
-  height: 60rem;
+  height: 65rem;
   border-radius: 14px;
   padding: min(24px, 8vw);
   margin-top: min(4.5%, 24px);
@@ -460,7 +459,7 @@ textarea {
 }
 
 .work-description {
-  color: var(--clr-white);
+  color: var(--clr-gray);
   font-size: min(1.8rem, 3vw);
   font-weight: 300;
   line-height: 1.25;
@@ -497,7 +496,7 @@ textarea {
 }
 
 .fa-up-right-from-square {
-  color: var(--clr-white);
+  color: var(--clr-gray);
   font-size: min(3rem, 4.25vw);
   position: absolute;
   top: min(36px, 8vw);
@@ -579,6 +578,36 @@ textarea {
     rgba(247, 37, 133, 0.2) 100%
   );
   filter: blur(250px);
+}
+
+/* ********** Quote ********** */
+.quote-container {
+  margin: 15rem 0;
+}
+
+.quote-wrapper {
+  padding: 0 min(5vw, 64px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.quote-text {
+  font-size: min(6vw, 5rem);
+  text-align: center;
+  font-family: "Kanit", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%;
+  background: linear-gradient(
+    to right,
+    var(--clr-brightBlue) 0%,
+    var(--clr-purple) 50%,
+    var(--clr-brightPink) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 /* ********** Landing Blog & About Section ********** */
@@ -750,11 +779,13 @@ textarea {
     width: 100%;
   }
 
-  .work-container-2 {
+  .work-container-2,
+  .work-container-3 {
     width: 100%;
   }
 
-  .work-pic-2 {
+  .work-pic-2,
+  .work-pic-3 {
     right: 5%;
   }
 }
