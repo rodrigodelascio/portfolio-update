@@ -164,14 +164,12 @@ textarea {
   cursor: url("./assets/images/circle-medium-pink.svg") 15 15, move;
 }
 
-.nav-logo:hover,
-.nav-logo:focus {
+.nav-logo:hover {
   transform: scale(1.1);
   filter: brightness(1.25);
 }
 
-.nav-button:hover,
-.nav-button:focus {
+.nav-button:hover {
   background: var(--clr-darkPurple);
   background-image: linear-gradient(
     90deg,
@@ -183,16 +181,14 @@ textarea {
   filter: brightness(1.25);
 }
 
-.nav-socials a:hover,
-.nav-socials a:focus {
+.nav-socials a:hover {
   color: var(--clr-brightBlue);
   transform: scale(1.5);
   text-shadow: 0 0 100px #4ccaf080;
   filter: brightness(1.25);
 }
 
-.nav-links a:hover,
-.nav-links a:focus {
+.nav-links a:hover {
   color: var(--clr-brightBlue);
   transform: scale(1.1);
   filter: brightness(1.25);
@@ -681,7 +677,6 @@ textarea {
 }
 
 .blog-pic {
-  min-width: 100%;
   max-height: 75%;
   object-fit: cover;
 }
@@ -737,14 +732,17 @@ textarea {
 .footer-socials a,
 .footer-links a,
 .footer-mail a,
+.footer-back-to-top a,
+.footer-back-to-top a span,
 .superman-icon,
-.footer-back-to-top a {
+.back-to-top-text {
   cursor: url("./assets/images/circle-medium-pink.svg"), auto;
   cursor: url("./assets/images/circle-medium-pink.svg") 15 15, move;
 }
 
 .footer-logo {
   width: 10rem;
+  transition: all 0.5s ease-in-out;
 }
 
 .footer-links-container {
@@ -767,9 +765,14 @@ textarea {
   color: var(--clr-white);
 }
 
+.footer-socials a i {
+  transition: all 0.3s ease-in-out;
+}
+
 .footer-links {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 36px;
 }
 
@@ -779,6 +782,7 @@ textarea {
   font-weight: 500;
   font-size: 1.6rem;
   color: var(--clr-white);
+  transition: all 0.3s ease-in-out;
 }
 
 .footer-mail {
@@ -805,15 +809,33 @@ textarea {
   justify-content: center;
   align-items: center;
   margin-top: 36px;
+  transition: all 0.5s ease-in-out;
 }
 
 .superman-icon {
   height: 5rem;
+  margin: auto;
+  transition: all 0.5s ease-in-out;
 }
 
 .back-to-top-text {
   color: var(--clr-white);
   font-size: 1.2rem;
+  transition: all 0.5s ease-in-out;
+}
+
+.footer-logo:hover,
+.footer-links a:hover,
+.footer-mail a:hover,
+.footer-back-to-top:hover {
+  transform: scale(1.1);
+  filter: brightness(1.25);
+  opacity: 0.5;
+}
+
+.footer-socials a i:hover {
+  transform: scale(1.5);
+  opacity: 0.5;
 }
 
 /* ********** MEDIA QUERIES ********** */
