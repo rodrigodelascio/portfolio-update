@@ -470,7 +470,7 @@ textarea {
 
 .work-description {
   color: var(--clr-gray);
-  font-size: min(1.8rem, 3vw);
+  font-size: min(1.6rem, 3vw);
   font-weight: 300;
   line-height: 1.25;
   margin-top: 12px;
@@ -525,7 +525,7 @@ textarea {
 .work-pic-1 {
   right: 5%;
   bottom: min(15%, 10rem);
-  max-height: 65%;
+  max-height: 55%;
 }
 
 .work-pic-2 {
@@ -535,9 +535,9 @@ textarea {
 }
 
 .work-pic-3 {
-  right: -10%;
-  bottom: min(20%, 12.5rem);
-  max-height: 55%;
+  right: -5%;
+  bottom: min(25%, 15rem);
+  max-height: 50%;
 }
 
 @keyframes bounce {
@@ -716,7 +716,7 @@ textarea {
   margin-top: 15rem;
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0.15) 0%,
+    rgba(5, 5, 5, 0.51) 0%,
     rgba(63, 55, 201, 0.51) 66%,
     rgba(76, 201, 240, 0.51) 100%
   );
@@ -820,6 +820,14 @@ textarea {
 
 /* ********** Hero Section Queries ********** */
 @media screen and (max-width: 1025px) {
+  .work-tags-1 {
+    bottom: 11.5%;
+  }
+
+  .work-tags-1 p,
+  .work-tags-2 p {
+    font-size: 1rem;
+  }
 }
 
 @media screen and (max-width: 769px) {
@@ -828,9 +836,21 @@ textarea {
     width: 100%;
   }
 
+  .about-section {
+    margin-top: 24px;
+  }
+
   .work-container-2,
   .work-container-3 {
     width: 100%;
+  }
+
+  .work-description {
+    width: 75%;
+  }
+
+  .work-pic-1 {
+    right: 0;
   }
 
   .work-pic-2,
