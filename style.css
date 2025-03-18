@@ -164,10 +164,18 @@ textarea {
   color: var(--clr-white);
   font-size: 4em;
   font-weight: 500;
+  transition: all 0.3s ease-in-out;
+  cursor: url("./assets/images/circle-medium-pink.svg"), auto;
+  cursor: url("./assets/images/circle-medium-pink.svg") 15 15, move;
 }
 
 .off-screen-menu.active {
   right: 0;
+}
+
+.off-screen-menu a:hover {
+  color: var(--clr-brightBlue);
+  filter: brightness(1.25);
 }
 
 .nav-container {
@@ -932,8 +940,8 @@ textarea {
 
   .hamburger-menu {
     display: block;
-    height: 50px;
-    width: 40px;
+    height: 35px;
+    width: 30px;
     margin-left: auto;
     position: relative;
     cursor: url("./assets/images/circle-medium-pink.svg"), auto;
@@ -941,7 +949,7 @@ textarea {
   }
 
   .hamburger-menu span {
-    height: 5px;
+    height: 4px;
     width: 100%;
     background-color: var(--clr-white);
     border-radius: 25px;
@@ -950,6 +958,10 @@ textarea {
     top: 50%;
     transform: translate(-50%, -50%);
     transition: all 0.5s ease;
+  }
+
+  .hamburger-menu:hover span {
+    background-color: var(--clr-brightBlue);
   }
 
   .hamburger-menu span:nth-child(1) {
@@ -961,7 +973,11 @@ textarea {
   }
 
   .hamburger-menu.active span {
-    background-color: white;
+    background-color: var(--clr-white);
+  }
+
+  .hamburger-menu.active:hover span {
+    background-color: var(--clr-brightBlue);
   }
 
   .hamburger-menu.active span:nth-child(1) {
