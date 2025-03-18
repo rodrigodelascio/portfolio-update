@@ -259,15 +259,20 @@ textarea {
   transition: all 0.5s ease-in-out;
 }
 
+.logo-wrapper {
+  position: relative;
+  width: min(15rem, 15vw);
+}
+
 .nav-logo img {
   width: min(15rem, 15vw);
 }
 
-.nav-logo::before {
+.logo-wrapper::before {
   content: "";
   position: absolute;
   top: 112.5%;
-  left: 30%;
+  left: 13.5%;
   width: 0;
   height: 100%;
   rotate: -20deg;
@@ -278,9 +283,9 @@ textarea {
   opacity: 0;
 }
 
-.nav-logo:hover::before {
-  width: 50%;
-  left: 30%;
+.logo-wrapper:hover::before {
+  width: 110%;
+  left: 7.5%;
   opacity: 0.85;
 }
 
@@ -975,6 +980,10 @@ textarea {
 }
 
 @media screen and (max-width: 769px) {
+  .nav-logo img {
+    width: 20rem;
+  }
+
   .blog-section,
   .about-section {
     width: 100%;
