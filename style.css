@@ -399,7 +399,7 @@ textarea {
 .work-section-title {
   position: relative;
   text-align: center;
-  font-size: min(12.5rem, 17.5vw);
+  font-size: min(10rem, 15vw);
   font-weight: 700;
   line-height: 100%;
   background: linear-gradient(
@@ -636,7 +636,7 @@ textarea {
   position: relative;
   background: rgba(16, 16, 20, 0.6);
   width: calc((100% - 64px) / 2);
-  height: 65rem;
+  height: 60rem;
   margin: auto;
   border-radius: 14px;
   padding: min(24px, 8vw) min(36px, 8vw);
@@ -842,6 +842,23 @@ textarea {
 
 /* ********** Hero Section Queries ********** */
 @media screen and (max-width: 1025px) {
+  .nav-socials {
+    gap: 12px;
+  }
+
+  .nav-socials a {
+    font-size: 2rem;
+  }
+
+  .nav-logo {
+    width: min(12.5rem, 15vw);
+  }
+
+  .nav-links a,
+  .nav-button {
+    font-size: min(1.2rem, 1.75vw);
+  }
+
   .work-tags-1 {
     bottom: 11.5%;
   }
@@ -850,6 +867,9 @@ textarea {
   .work-tags-2 p {
     font-size: 1rem;
   }
+}
+
+@media screen and (max-width: 900px) {
 }
 
 @media screen and (max-width: 769px) {
@@ -879,4 +899,7 @@ textarea {
   .work-pic-3 {
     right: 5%;
   }
+}
+
+@media screen and (max-width: 481px) {
 }
