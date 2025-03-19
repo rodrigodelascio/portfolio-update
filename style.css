@@ -898,7 +898,6 @@ textarea {
 
 /* ********** MEDIA QUERIES ********** */
 
-/* ********** Hero Section Queries ********** */
 @media screen and (max-width: 1025px) {
   .nav-socials {
     gap: 12px;
@@ -1023,42 +1022,34 @@ textarea {
   .about-section {
     margin-top: 24px;
   }
+
+  .work-tags-1 {
+    bottom: min(78px, 17.5vw);
+  }
+
+  .tag {
+    font-size: min(1.2rem, 2vw);
+  }
 }
 
 @media screen and (max-width: 481px) {
-  .work-container-1 {
+  .work-container-1,
+  .work-container-2,
+  .work-container-3 {
     height: 50rem;
   }
-
-  /* .work-container-2,
-.work-container-3 {
-  position: relative;
-  width: calc((100% - 64px) / 2);
-  height: 65rem;
-  border-radius: 14px;
-  padding: min(24px, 8vw);
-  margin-top: min(4.5%, 24px);
-  background: rgba(16, 16, 20, 0.6);
-  transition: all 0.3s ease-in-out;
-  cursor: url("./assets/images/circle-medium-pink.svg"), auto;
-  cursor: url("./assets/images/circle-medium-pink.svg") 15 15, move;
-} 
-*/
 
   .work-pic-1 {
     max-height: 50%;
     bottom: 17.5%;
   }
 
-  /* .work-pic-2 {
-  right: -10%;
-  bottom: 0;
-  max-height: 60%;
-}
+  .work-pic-3 {
+    right: 50%;
+    transform: translate(50%, 0);
+  }
 
-.work-pic-3 {
-  right: -5%;
-  bottom: min(25%, 15rem);
-  max-height: 50%;
-} */
+  .work-tags-1 {
+    bottom: min(78px, 20vw);
+  }
 }
