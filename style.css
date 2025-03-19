@@ -137,7 +137,7 @@ textarea {
 }
 
 .off-screen-menu {
-  background-color: var(--clr-darkGray);
+  background-color: #101014fc;
   height: 100vh;
   width: 100vw;
   position: fixed;
@@ -917,13 +917,23 @@ textarea {
     font-size: min(1.2rem, 1.75vw);
   }
 
-  .work-tags-1 {
-    bottom: 11.5%;
+  .work-container-2,
+  .work-container-3 {
+    width: 100%;
   }
 
-  .work-tags-1 p,
-  .work-tags-2 p {
-    font-size: 1rem;
+  .work-description {
+    width: 75%;
+  }
+
+  .work-pic-2 {
+    right: 50%;
+    transform: translate(50%, 0);
+    max-height: 70%;
+  }
+
+  .work-pic-3 {
+    right: 15%;
   }
 }
 
@@ -993,6 +1003,11 @@ textarea {
     top: 50%;
     transform: translate(-50%, -50%) rotate(-45deg);
   }
+
+  .work-pic-1 {
+    right: 50%;
+    transform: translate(50%, 0);
+  }
 }
 
 @media screen and (max-width: 769px) {
@@ -1008,25 +1023,42 @@ textarea {
   .about-section {
     margin-top: 24px;
   }
-
-  .work-container-2,
-  .work-container-3 {
-    width: 100%;
-  }
-
-  .work-description {
-    width: 75%;
-  }
-
-  .work-pic-1 {
-    right: 0;
-  }
-
-  .work-pic-2,
-  .work-pic-3 {
-    right: 5%;
-  }
 }
 
 @media screen and (max-width: 481px) {
+  .work-container-1 {
+    height: 50rem;
+  }
+
+  /* .work-container-2,
+.work-container-3 {
+  position: relative;
+  width: calc((100% - 64px) / 2);
+  height: 65rem;
+  border-radius: 14px;
+  padding: min(24px, 8vw);
+  margin-top: min(4.5%, 24px);
+  background: rgba(16, 16, 20, 0.6);
+  transition: all 0.3s ease-in-out;
+  cursor: url("./assets/images/circle-medium-pink.svg"), auto;
+  cursor: url("./assets/images/circle-medium-pink.svg") 15 15, move;
+} 
+*/
+
+  .work-pic-1 {
+    max-height: 50%;
+    bottom: 17.5%;
+  }
+
+  /* .work-pic-2 {
+  right: -10%;
+  bottom: 0;
+  max-height: 60%;
+}
+
+.work-pic-3 {
+  right: -5%;
+  bottom: min(25%, 15rem);
+  max-height: 50%;
+} */
 }
