@@ -736,6 +736,7 @@ textarea {
 
 .blog-pic {
   max-height: 75%;
+  min-width: 70%;
   object-fit: cover;
 }
 
@@ -934,6 +935,15 @@ textarea {
   .work-pic-3 {
     right: 15%;
   }
+
+  .blog-section,
+  .about-section {
+    width: 100%;
+  }
+
+  .about-section {
+    margin-top: 24px;
+  }
 }
 
 @media screen and (max-width: 900px) {
@@ -1007,20 +1017,15 @@ textarea {
     right: 50%;
     transform: translate(50%, 0);
   }
+
+  .blog-pic {
+    min-width: 85%;
+  }
 }
 
 @media screen and (max-width: 769px) {
   .nav-logo img {
     width: 20rem;
-  }
-
-  .blog-section,
-  .about-section {
-    width: 100%;
-  }
-
-  .about-section {
-    margin-top: 24px;
   }
 
   .work-tags-1 {
@@ -1030,12 +1035,19 @@ textarea {
   .tag {
     font-size: min(1.2rem, 2vw);
   }
+
+  .blog-pic {
+    max-height: 75%;
+    min-width: 100%;
+  }
 }
 
 @media screen and (max-width: 481px) {
   .work-container-1,
   .work-container-2,
-  .work-container-3 {
+  .work-container-3,
+  .blog-section,
+  .about-section {
     height: 50rem;
   }
 
