@@ -1,6 +1,12 @@
 const hamburgerMenu = document.querySelector(".hamburger-menu");
-
 const offScreenMenu = document.querySelector(".off-screen-menu");
+const activePage = window.location.pathname;
+
+const navLinks = document.querySelectorAll(".nav-links a").forEach((link) => {
+  if (link.href === window.location.href) {
+    link.classList.add("nav-active");
+  }
+});
 
 hamburgerMenu.addEventListener("click", () => {
   hamburgerMenu.classList.toggle("active");

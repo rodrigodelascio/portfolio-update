@@ -330,6 +330,12 @@ textarea {
   transition: all 0.3s ease-in-out;
 }
 
+.nav-active {
+  text-decoration: underline solid 5px var(--clr-blue);
+  text-underline-offset: 7.5px;
+  pointer-events: none;
+}
+
 /* ********** Landing Hero ********** */
 
 .landing-hero-section {
@@ -379,6 +385,7 @@ textarea {
   border-radius: 24px;
   background: var(--clr-gray);
   color: var(--clr-black);
+  font-family: "Kanit", sans-serif;
   font-size: min(var(--fs-primaryButton), 2vw);
   font-weight: var(--fw-se--fs-primaryButton);
   transition: all 0.5s ease-in-out;
