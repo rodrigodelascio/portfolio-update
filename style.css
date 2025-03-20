@@ -936,6 +936,10 @@ textarea {
     right: 15%;
   }
 
+  .work-container-2:hover .work-pic-2 {
+    transform: translate(50%, -2.75%);
+  }
+
   .blog-section,
   .about-section {
     width: 100%;
@@ -1040,6 +1044,14 @@ textarea {
     max-height: 75%;
     min-width: 100%;
   }
+
+  .footer-socials {
+    display: none;
+  }
+
+  .footer-links {
+    justify-content: space-around;
+  }
 }
 
 @media screen and (max-width: 481px) {
@@ -1063,5 +1075,14 @@ textarea {
 
   .work-tags-1 {
     bottom: min(78px, 20vw);
+  }
+
+  .footer-links {
+    gap: 12px;
+  }
+
+  .footer-links a,
+  .footer-mail a {
+    font-size: 1.2rem;
   }
 }
