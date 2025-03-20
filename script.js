@@ -6,3 +6,10 @@ hamburgerMenu.addEventListener("click", () => {
   hamburgerMenu.classList.toggle("active");
   offScreenMenu.classList.toggle("active");
 });
+
+window.addEventListener("resize", (e) => {
+  if (window.matchMedia(`(min-width: 900px)`).matches) {
+    hamburgerMenu.classList.remove("active");
+    offScreenMenu.classList.remove("active");
+  }
+});
