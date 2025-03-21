@@ -378,7 +378,7 @@ textarea {
 .projects-title-container p {
   padding: 1rem min(5vw, 64px);
   text-align: center;
-  font-size: min(1.6rem, 2.5vw);
+  font-size: min(2.4rem, 2.5vw);
   max-width: 70%;
   margin: 0 auto;
   color: var(--clr-gray);
@@ -440,7 +440,7 @@ textarea {
   margin-bottom: 0.5rem;
   color: var(--clr-white);
   font-weight: 600;
-  font-size: min(2rem, 3vw);
+  font-size: min(2.4rem, 3vw);
 }
 
 .project-description {
@@ -786,6 +786,13 @@ textarea {
   .hamburger-menu.active span:nth-child(3) {
     top: 50%;
     transform: translate(-50%, -50%) rotate(-45deg);
+  }
+
+  .project-links-tags-wrapper {
+    flex-direction: column;
+    align-items: unset;
+    justify-content: unset;
+    gap: 2rem;
   }
 }
 
