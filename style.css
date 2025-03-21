@@ -7,7 +7,7 @@
   --clr-white: #fafafa;
   --clr-black: #050505;
   --clr-darkGray: #101014;
-  --clr-gray: #ebeaeb;
+  --clr-gray: #a3a3a3;
   --clr-brightPink: #f72585;
   --clr-pink: #b5179e;
   --clr-violet: #7209b7;
@@ -195,7 +195,7 @@ textarea {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 48px 64px;
+  padding: 48px min(5vw, 64px);
   width: min(100%, var(--sp-maxWidth));
   cursor: url("./assets/images/circle-small.svg"), auto;
   cursor: url("./assets/images/circle-small.svg") 15 15, move;
@@ -228,14 +228,14 @@ textarea {
 }
 
 .nav-socials a:hover {
-  color: var(--clr-brightBlue);
+  color: var(--clr-blue);
   transform: scale(1.5);
   text-shadow: 0 0 100px #4ccaf080;
   filter: brightness(1.25);
 }
 
 .nav-links a:hover {
-  color: var(--clr-brightBlue);
+  color: var(--clr-blue);
   transform: scale(1.1);
   filter: brightness(1.25);
   box-shadow: -40px 0 100px #4ccaf080, 40px 0 100px #f7258580;
@@ -336,6 +336,10 @@ textarea {
   pointer-events: none;
 }
 
+.nav-links a.nav-active {
+  color: var(--clr-blue);
+}
+
 /* ********** Landing Hero ********** */
 
 .landing-hero-section {
@@ -360,7 +364,7 @@ textarea {
   font-weight: 200;
   letter-spacing: 0.2rem;
   line-height: 0.25;
-  color: var(--clr-white);
+  color: var(--clr-gray);
 }
 
 .title-bold {
@@ -383,7 +387,7 @@ textarea {
   padding: 8px 12px;
   border: none;
   border-radius: 24px;
-  background: var(--clr-gray);
+  background: var(--clr-white);
   color: var(--clr-black);
   font-family: "Kanit", sans-serif;
   font-size: min(var(--fs-primaryButton), 2vw);
