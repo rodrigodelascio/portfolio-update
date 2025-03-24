@@ -344,7 +344,7 @@ textarea {
 
 .about-hero-section {
   width: 100%;
-  min-height: 90vh;
+  min-height: 75vh;
   cursor: url("./assets/images/circle-small.svg"), auto;
   cursor: url("./assets/images/circle-small.svg") 15 15, move;
 }
@@ -352,10 +352,10 @@ textarea {
 .about-title-container {
   position: relative;
   width: 100%;
-  height: 90vh;
+  height: 75vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   padding: 0 min(5vw, 64px);
 }
@@ -429,152 +429,48 @@ textarea {
   font-weight: 500;
 }
 
-/* ********** Projects Section ********** */
+/* ********** Journey Section ********** */
 
-.work-section {
-  padding: 0 min(5vw, 64px);
+.about-journey-section {
+  padding: min(5vw, 64px);
 }
 
-.work-section-container {
+.about-journey-section-container {
   position: relative;
 }
 
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+.journey-section {
+  display: flex;
   gap: 2rem;
-  padding: 0 3rem 4rem;
+  margin-bottom: 4rem;
 }
 
-.project-card {
-  background: rgba(16, 16, 20, 0.75);
+.journey-card {
+  flex: 1;
+  background-color: rgba(16, 16, 20, 0.6);
+  padding: min(36px, 8vw);
   border-radius: 14px;
-  overflow: hidden;
-  transition: transform 0.3s ease;
   position: relative;
 }
 
-.project-card:hover {
-  transform: translateY(-10px);
-  filter: brightness(1.05);
+.journey-icon {
+  font-size: min(2rem, 3vw);
+  margin-bottom: 1rem;
+  color: var(--clr-white);
 }
 
-.project-image {
-  width: 100%;
-  height: 300px;
-  overflow: hidden;
-}
-
-.project-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.project-card:hover .project-image img {
-  transform: scale(1.05);
-}
-
-.project-details {
-  padding: min(36px, 8vw);
-}
-
-.project-title {
-  margin-bottom: 0.5rem;
+.journey-card h3 {
   color: var(--clr-white);
   font-weight: 600;
   font-size: min(2.4rem, 3vw);
+  margin-bottom: 1rem;
 }
 
-.project-description {
+.journey-card p {
   color: var(--clr-gray);
   font-size: min(1.4rem, 2.75vw);
-  margin-bottom: 1rem;
-  max-width: 65%;
-}
-
-.project-description-2 {
-  color: var(--clr-gray);
-  font-size: min(1.4rem, 2.75vw);
-  margin-bottom: 1rem;
-  max-width: 100%;
-}
-
-.project-links-tags-wrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.project-links-tags-wrapper-2 {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.project-tags {
-  display: flex;
-  justify-content: flex-end;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-}
-
-.project-tag {
-  color: var(--clr-white);
-  font-size: min(1.2rem, 2.5vw);
-  font-weight: 300;
-  padding: 3px 8px;
-  border-radius: 24px;
-  background: transparent;
-  border: 1px solid var(--clr-white);
-}
-
-.project-links {
-  display: flex;
-  gap: 16px;
-}
-
-.project-link {
-  color: var(--clr-white);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: min(1.4rem, 2.75vw);
-  font-weight: 500;
-  transition: all 0.3s ease-in-out;
-  cursor: url("./assets/images/circle-medium-pink.svg"), auto;
-  cursor: url("./assets/images/circle-medium-pink.svg") 15 15, move;
-}
-
-.project-link:hover {
-  transform: scale(1.05);
-  color: var(--clr-brightBlue);
-  filter: brightness(1.25);
-}
-
-.project-highlight {
-  grid-column: span 2;
-}
-
-.project-highlight .project-image {
-  height: 400px;
-}
-
-.featured-badge {
-  position: absolute;
-  top: min(24px, 8vw);
-  right: min(24px, 8vw);
-  background: linear-gradient(
-    90deg,
-    var(--clr-brightBlue) 0%,
-    var(--clr-purple) 100%
-  );
-  font-size: min(1.2rem, 2.5vw);
-  font-weight: 600;
-  padding: 3px 8px;
-  color: var(--clr-white);
-  border-radius: 14px;
+  font-weight: 400;
+  line-height: 1.5;
 }
 
 .gradient-background {
