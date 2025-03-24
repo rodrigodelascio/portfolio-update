@@ -355,7 +355,7 @@ textarea {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 40rem min(5vw, 64px);
+  padding: 40rem min(5vw, 64px) 25rem;
 }
 
 .title-thinner {
@@ -414,7 +414,7 @@ textarea {
   height: 4rem;
   position: absolute;
   left: 0;
-  top: 75rem;
+  top: 70rem;
   background: linear-gradient(
     to right,
     var(--clr-brightBlue) 0%,
