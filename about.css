@@ -355,7 +355,7 @@ textarea {
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  padding: 35rem min(5vw, 64px) 0;
+  padding: 30rem min(5vw, 64px) 0;
 }
 
 .about-title-bold {
