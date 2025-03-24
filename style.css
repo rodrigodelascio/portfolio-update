@@ -344,7 +344,6 @@ textarea {
 
 .landing-hero-section {
   width: 100%;
-  min-height: 80vh;
   cursor: url("./assets/images/circle-small.svg"), auto;
   cursor: url("./assets/images/circle-small.svg") 15 15, move;
 }
@@ -352,11 +351,11 @@ textarea {
 .title-container {
   position: relative;
   width: 100%;
-  height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 40rem min(5vw, 64px);
 }
 
 .title-thinner {
@@ -368,7 +367,8 @@ textarea {
 }
 
 .title-bold {
-  font-size: min(6vw, 11rem);
+  text-align: center;
+  font-size: min(5.5vw, 10rem);
   font-weight: 800;
   letter-spacing: 0.5rem;
   background: linear-gradient(
@@ -384,7 +384,7 @@ textarea {
 
 .cta-button {
   position: relative;
-  padding: 8px 12px;
+  padding: 8px 24px;
   border: none;
   border-radius: 24px;
   background: var(--clr-white);
@@ -414,7 +414,7 @@ textarea {
   height: 4rem;
   position: absolute;
   left: 0;
-  bottom: 30vh;
+  top: 75rem;
   background: linear-gradient(
     to right,
     var(--clr-brightBlue) 0%,
@@ -926,6 +926,14 @@ textarea {
   .nav-links a,
   .nav-button {
     font-size: min(1.2rem, 1.75vw);
+  }
+
+  .title-container {
+    padding: 25rem min(5vw, 64px);
+  }
+
+  .banner-container {
+    top: 45rem;
   }
 
   .work-container-2,
