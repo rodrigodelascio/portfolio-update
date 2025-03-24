@@ -433,6 +433,7 @@ textarea {
 
 .about-journey-section {
   padding: min(5vw, 64px);
+  padding-bottom: 0;
 }
 
 .about-journey-section-container {
@@ -471,6 +472,66 @@ textarea {
   font-size: min(1.4rem, 2.75vw);
   font-weight: 400;
   line-height: 1.5;
+}
+
+/* Skills section */
+.skills-section {
+  padding: min(5vw, 64px);
+  padding-bottom: 0;
+}
+
+.skills-section h2 {
+  color: var(--clr-white);
+  font-size: min(4rem, 4vw);
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(
+    to right,
+    var(--clr-brightBlue) 0%,
+    var(--clr-purple) 50%,
+    var(--clr-brightPink) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
+
+.skills-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.skill-category {
+  background-color: rgba(16, 16, 20, 0.6);
+  padding: min(36px, 8vw);
+  border-radius: 14px;
+}
+
+.skill-category h3 {
+  color: var(--clr-white);
+  font-weight: 600;
+  font-size: min(2.4rem, 3vw);
+  margin-bottom: 2rem;
+}
+
+.skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.skill-item {
+  color: var(--clr-gray);
+  font-size: min(1.4rem, 2.5vw);
+  font-weight: 400;
+  padding: 5px 8px;
+  border-radius: 24px;
+  background: transparent;
+  border: 2px solid var(--clr-gray);
 }
 
 .gradient-background {
