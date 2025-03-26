@@ -64,6 +64,7 @@ async function renderPost() {
         <div class="post">
           <img src="${post.coverImage.url}" alt="${post.title}">
           <h1>${post.title}</h1>
+          <div class="post-details-container">
           <p><strong>Published on:</strong> ${new Date(
             post.publishedDate
           ).toLocaleDateString()}</p>
@@ -78,13 +79,14 @@ async function renderPost() {
             author
               ? `
                 <div class="author">
-                  <img src="${author.picture?.url}" alt="${author.name}">
                   <p><strong>Author:</strong> ${author.name}</p>
+                  <img src="${author.picture?.url}" alt="${author.name}">
                 </div>
               `
               : "<p><strong>Author:</strong> Unknown</p>"
-          }
-          <p><strong>Excerpt:</strong> ${post.excerpt}</p>
+          }       
+                    </div>
+          <div class="post-content">${post.content.html}</div>
           ${
             post.category?.length
               ? `<p><strong>Categories:</strong> ${post.category
@@ -92,7 +94,6 @@ async function renderPost() {
                   .join(", ")}</p>`
               : ""
           }
-          <div class="post-content">${post.content.html}</div>
         </div>
       `;
   } else {
