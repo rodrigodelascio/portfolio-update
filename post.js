@@ -89,9 +89,11 @@ async function renderPost() {
           <div class="post-content">${post.content.html}</div>
           ${
             post.category?.length
-              ? `<p><strong>Categories:</strong> ${post.category
-                  .map((cat) => cat.name)
-                  .join(", ")}</p>`
+              ? `<div class="categories-container">
+                    <p><strong>Categories:</strong> ${post.category
+                      .map((cat) => cat.name)
+                      .join(", ")}</p>
+                 </div>`
               : ""
           }
         </div>
