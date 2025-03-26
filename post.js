@@ -56,6 +56,8 @@ async function renderPost() {
   const post = await fetchPostBySlug(slug);
 
   if (post) {
+    document.title = `${post.title} | Rodrigo De Lascio | Full-Stack Developer`;
+
     const author = post.author?.[0];
 
     document.querySelector(".post-container").innerHTML = `
