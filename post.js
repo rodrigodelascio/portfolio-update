@@ -65,6 +65,7 @@ async function renderPost() {
           <img src="${post.coverImage.url}" alt="${post.title}">
           <h1>${post.title}</h1>
           <div class="post-details-container">
+          <div class="post-published-updated-wrapper">
           <p><strong>Published on:</strong> ${new Date(
             post.publishedDate
           ).toLocaleDateString()}</p>
@@ -75,6 +76,7 @@ async function renderPost() {
                 ).toLocaleDateString()}</p>`
               : ""
           }
+          </div>
           ${
             author
               ? `
