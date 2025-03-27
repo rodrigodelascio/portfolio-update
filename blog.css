@@ -459,6 +459,8 @@ textarea {
   font-weight: 600;
   text-decoration: none;
   transition: all 0.3s ease;
+  cursor: url("./assets/images/circle-medium-pink.svg"), auto;
+  cursor: url("./assets/images/circle-medium-pink.svg") 15 15, move;
 }
 
 .featured-post a:hover {
@@ -529,6 +531,8 @@ textarea {
   text-decoration: none;
   transition: all 0.3s ease;
   align-self: flex-start;
+  cursor: url("./assets/images/circle-medium-pink.svg"), auto;
+  cursor: url("./assets/images/circle-medium-pink.svg") 15 15, move;
 }
 
 .grid-post a:hover {
@@ -555,6 +559,8 @@ textarea {
   cursor: pointer;
   transition: all 0.3s ease;
   font-family: "Kanit", sans-serif;
+  cursor: url("./assets/images/circle-medium-pink.svg"), auto;
+  cursor: url("./assets/images/circle-medium-pink.svg") 15 15, move;
 }
 
 .pagination-container button:hover:not(:disabled) {
@@ -568,7 +574,8 @@ textarea {
 
 .pagination-container button:disabled {
   opacity: 0.5;
-  cursor: not-allowed;
+  cursor: url("./assets/images/circle-small.svg"), auto;
+  cursor: url("./assets/images/circle-small.svg") 15 15, move;
 }
 
 /* Loading State */
