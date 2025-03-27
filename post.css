@@ -365,7 +365,7 @@ textarea {
 
 .post h1 {
   font-size: min(4rem, 6vw);
-  margin: 3rem 3rem;
+  margin: 3rem 0;
   color: var(--clr-white);
   font-weight: 700;
   line-height: 1.2;
@@ -375,7 +375,6 @@ textarea {
   font-size: 1.6rem;
   line-height: 1.7;
   color: var(--clr-gray);
-  margin: 0 3rem;
 }
 
 .post p strong {
@@ -386,24 +385,28 @@ textarea {
 .post-details-container {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
   background-color: rgba(255, 255, 255, 0.05);
   border-radius: 14px;
   padding: 1.5rem;
-  margin: 0 3rem;
+}
+
+.post-published-updated-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
 .post-details-container p {
   font-size: 1.2rem;
   color: var(--clr-gray);
-  margin: 0;
 }
 
 .categories-container {
   background-color: rgba(255, 255, 255, 0.05);
   border-radius: 14px;
   padding: 1.5rem;
-  margin: 0 3rem;
+  margin: 0 0 3rem;
   width: fit-content;
 }
 
@@ -414,16 +417,10 @@ textarea {
   margin: auto 0;
 }
 
-/* Author Section */
 .author {
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  /* margin: 0 3rem 2rem;
-  padding: 1.5rem;
-  background-color: rgba(255, 255, 255, 0.05); */
-  /* border-radius: 14px; */
-  /* width: fit-content; */
 }
 
 .author img {
@@ -437,9 +434,8 @@ textarea {
   margin: 0;
 }
 
-/* Post Content */
 .post-content {
-  padding: 3rem 3rem;
+  padding: 3rem 0;
   color: var(--clr-gray);
   font-size: 1.6rem;
   line-height: 1.8;
@@ -553,7 +549,6 @@ textarea {
   background-color: rgba(255, 255, 255, 0.02);
 }
 
-/* Back to Blog Link */
 .back-to-blog {
   display: inline-flex;
   align-items: center;
@@ -569,18 +564,18 @@ textarea {
   border-radius: 3rem;
   font-size: 1.6rem;
   font-weight: 600;
-  margin: 3rem 0 0 calc(10% + 3rem);
+  margin: 3rem 0 0 10%;
   transition: all 0.5s ease-in-out;
   cursor: url("./assets/images/circle-medium-pink.svg"), auto;
   cursor: url("./assets/images/circle-medium-pink.svg") 15 15, move;
 }
 
 .back-to-blog:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(76, 201, 240, 0.2);
+  box-shadow: 0 0 5px 0 var(--clr-white);
+  box-shadow: -40px 0 50px #4ccaf080, 40px 0 50px #f7258580;
+  filter: brightness(1.1);
 }
 
-/* Post Not Found State */
 .post-not-found {
   text-align: center;
   background-color: rgba(255, 255, 255, 0.05);
@@ -602,7 +597,6 @@ textarea {
   margin: 0 auto 2rem;
 }
 
-/* Loading State */
 .loading {
   text-align: center;
   font-size: 2rem;
@@ -859,17 +853,17 @@ textarea {
 
   .post h1 {
     font-size: 3rem;
-    margin: 2rem 2rem 1.5rem;
+    margin: 2rem 0 1.5rem;
   }
 
   .post p,
   .post-content p {
     font-size: 1.5rem;
-    margin: 0 2rem 1.5rem;
+    margin: 0 0 1.5rem;
   }
 
   .post-content {
-    padding: 0 2rem 2rem;
+    padding: 0 0 2rem;
   }
 
   .post-content h2 {
@@ -880,12 +874,24 @@ textarea {
     font-size: 2rem;
   }
 
-  .author {
-    margin: 0 2rem 1.5rem;
+  .categories-container {
+    padding: 1.5rem;
+    margin: 0 0 3rem;
   }
 
-  .back-to-blog {
-    margin: 3rem 0 0 calc(10% + 2rem);
+  .categories-container p {
+    font-size: 1.2rem;
+    line-height: 100%;
+    margin: auto 0;
+  }
+
+  .post-details-container {
+    margin-bottom: 2rem;
+  }
+
+  .post-details-container p {
+    font-size: 1.2rem;
+    margin: 0;
   }
 }
 
@@ -901,6 +907,23 @@ textarea {
   .footer-links {
     justify-content: space-around;
   }
+
+  .post-published-updated-wrapper p {
+    font-size: 1rem;
+  }
+
+  .author {
+    gap: 0.5rem;
+  }
+
+  .author img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .author p {
+    font-size: 1rem;
+  }
 }
 
 @media screen and (max-width: 481px) {
@@ -915,17 +938,17 @@ textarea {
 
   .post h1 {
     font-size: 2.4rem;
-    margin: 1.5rem 1.5rem 1rem;
+    margin: 1.5rem 0 1rem;
   }
 
   .post p,
   .post-content p {
     font-size: 1.4rem;
-    margin: 0 1.5rem 1.5rem;
+    margin: 0 0 1.5rem;
   }
 
   .post-content {
-    padding: 0 1.5rem 1.5rem;
+    padding: 0 0 1.5rem;
   }
 
   .post-content h2 {
@@ -936,19 +959,39 @@ textarea {
     font-size: 1.8rem;
   }
 
-  .author {
-    flex-direction: column;
-    text-align: center;
-    margin: 0 1.5rem 1.5rem;
+  .categories-container {
+    padding: 1.5rem;
+    margin: 0 0 3rem;
+  }
+
+  .categories-container p {
+    font-size: 1.2rem;
+    line-height: 100%;
+    margin: auto 0;
+  }
+
+  .post-details-container {
+    margin-bottom: 1.5rem;
+  }
+
+  .post-details-container p {
+    font-size: 1.2rem;
+    margin: 0;
+  }
+
+  .post-published-updated-wrapper p {
+    font-size: 1rem;
+    margin: 0;
+    padding: 0;
   }
 
   .author img {
-    margin: 0 auto;
+    display: none;
   }
 
-  .back-to-blog {
-    font-size: 1.4rem;
-    padding: 0.8rem 1.6rem;
-    margin: 3rem 0 0 calc(10% + 1.5rem);
+  .author p {
+    font-size: 1rem;
+    margin: 0;
+    padding: 0;
   }
 }
