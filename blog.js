@@ -45,12 +45,14 @@ async function renderPosts(page = 1) {
     const featuredPost = posts.find((post) => post.featured);
     if (featuredPost) {
       blogContainer.innerHTML += `
+          <a href="post.html?slug=${featuredPost.slug}" class="post-link">
           <div class="featured-post">
             <img src="${featuredPost.coverImage.url}" alt="${featuredPost.title}">
             <h2>${featuredPost.title}</h2>
             <p>${featuredPost.excerpt}</p>
-            <a href="post.html?slug=${featuredPost.slug}">Read More</a>
+            <i class="fa-solid fa-up-right-from-square"></i>
           </div>
+          </a>
         `;
     }
 
@@ -59,12 +61,14 @@ async function renderPosts(page = 1) {
       const gridHTML = gridPosts
         .map(
           (post) => `
+          <a href="post.html?slug=${post.slug}" class="post-link">
             <div class="grid-post">
               <img src="${post.coverImage.url}" alt="${post.title}">
               <h3>${post.title}</h3>
               <p>${post.excerpt}</p>
-              <a href="post.html?slug=${post.slug}">Read More</a>
+              <i class="fa-solid fa-up-right-from-square"></i>
             </div>
+          </a>
           `
         )
         .join("");
