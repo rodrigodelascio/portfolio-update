@@ -420,6 +420,32 @@ textarea {
   }
 }
 
+.back-to-work-button {
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  background: linear-gradient(
+    90deg,
+    var(--clr-brightBlue) 0%,
+    var(--clr-purple) 100%
+  );
+  color: var(--clr-white);
+  text-decoration: none;
+  border-radius: 3rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin: 3rem 0;
+  transition: all 0.5s ease-in-out;
+  cursor: url("./assets/images/circle-medium-pink.svg"), auto;
+  cursor: url("./assets/images/circle-medium-pink.svg") 15 15, move;
+}
+
+.back-to-work-button:hover {
+  box-shadow: 0 0 5px 0 var(--clr-white);
+  box-shadow: -40px 0 50px #4ccaf080, 40px 0 50px #f7258580;
+  filter: brightness(1.1);
+}
+
 /* ********** Footer Section ********** */
 
 .footer-section {
