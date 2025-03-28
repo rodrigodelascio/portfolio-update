@@ -851,6 +851,10 @@ textarea {
     transform: translate(-50%, -50%) rotate(-45deg);
   }
 
+  .post-container {
+    max-width: 90%;
+  }
+
   .post h1 {
     font-size: 3rem;
     margin: 2rem 0 1.5rem;
@@ -906,6 +910,10 @@ textarea {
 
   .footer-links {
     justify-content: space-around;
+  }
+
+  .post-container {
+    max-width: 95%;
   }
 
   .post-published-updated-wrapper p {
