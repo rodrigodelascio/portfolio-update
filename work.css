@@ -411,6 +411,8 @@ textarea {
 
 .project-card:hover {
   transform: translateY(-10px);
+  box-shadow: 0 0 5px 0 var(--clr-white);
+  box-shadow: -40px 0 150px #4ccaf080, 40px 0 150px #f7258580;
   filter: brightness(1.05);
 }
 
