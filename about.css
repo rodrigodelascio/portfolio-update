@@ -445,7 +445,7 @@ textarea {
 
 .journey-card {
   flex: 1;
-  background-color: rgba(16, 16, 20, 0.6);
+  background-color: rgb(40, 40, 40);
   padding: min(36px, 8vw);
   border-radius: 14px;
   position: relative;
@@ -503,7 +503,7 @@ textarea {
 }
 
 .skill-category {
-  background-color: rgba(16, 16, 20, 0.6);
+  background-color: rgb(40, 40, 40);
   padding: min(36px, 8vw);
   border-radius: 14px;
 }
@@ -538,7 +538,7 @@ textarea {
 }
 
 .fun-facts {
-  background-color: rgba(16, 16, 20, 0.6);
+  background-color: rgb(40, 40, 40);
   padding: min(36px, 8vw);
   border-radius: 14px;
 }
@@ -656,7 +656,7 @@ textarea {
 }
 
 .cta-secondary {
-  background-color: rgba(16, 16, 20, 0.6);
+  background-color: rgb(40, 40, 40);
   color: var(--clr-white);
   border: 1px solid var(--clr-gray);
 }

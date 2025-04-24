@@ -496,7 +496,7 @@ textarea {
   padding: min(36px, 8vw);
   overflow: hidden;
   margin-top: min(4.5%, 24px);
-  background: rgba(16, 16, 20, 0.6);
+  background-color: rgb(40, 40, 40);
   z-index: 1;
   transition: all 0.3s ease-in-out;
   cursor: url("./assets/images/circle-medium-pink.svg"), auto;
@@ -511,7 +511,7 @@ textarea {
   border-radius: 14px;
   padding: min(24px, 8vw);
   margin-top: min(4.5%, 24px);
-  background: rgba(16, 16, 20, 0.6);
+  background-color: rgb(40, 40, 40);
   transition: all 0.3s ease-in-out;
   cursor: url("./assets/images/circle-medium-pink.svg"), auto;
   cursor: url("./assets/images/circle-medium-pink.svg") 15 15, move;
@@ -636,7 +636,7 @@ textarea {
 }
 
 .work-container-2:hover .work-pic-2 {
-  transform: translate(0, -5%);
+  transform: translate(0, -2.5%);
 }
 
 .gradient-background {
@@ -703,7 +703,7 @@ textarea {
 .blog-section,
 .about-section {
   position: relative;
-  background: rgba(16, 16, 20, 0.6);
+  background-color: rgb(40, 40, 40);
   width: calc((100% - 64px) / 2);
   height: 60rem;
   margin: auto;

@@ -402,7 +402,7 @@ textarea {
 }
 
 .project-card {
-  background: rgba(16, 16, 20, 0.75);
+  background-color: rgb(40, 40, 40);
   border-radius: 14px;
   overflow: hidden;
   transition: transform 0.3s ease;

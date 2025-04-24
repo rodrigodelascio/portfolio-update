@@ -399,7 +399,7 @@ textarea {
 
 .featured-post {
   position: relative;
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgb(40, 40, 40);
   border-radius: 1rem;
   overflow: hidden;
   margin-bottom: 4rem;
@@ -446,7 +446,7 @@ textarea {
 
 .grid-post {
   position: relative;
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgb(40, 40, 40);
   border-radius: 1rem;
   overflow: hidden;
   height: 100%;
