@@ -2,8 +2,13 @@ const API_URL =
   "https://eu-west-2.cdn.hygraph.com/content/cm7f4o97y012007waqcbs2n5z/master";
 const POSTS_PER_PAGE = 5;
 
+function getPostsPerPage(page) {
+  return page === 1 ? 5 : 6;
+}
+
 async function fetchPosts(page = 1) {
-  const offset = (page - 1) * POSTS_PER_PAGE;
+  const postsPerPage = getPostsPerPage(page);
+  const offset = page === 1 ? 0 : 5 + (page - 2) * 6;
   const query = `
     query GetPosts($first: Int, $skip: Int) {
       posts(first: $first, skip: $skip, orderBy: publishedDate_DESC) {
@@ -20,7 +25,7 @@ async function fetchPosts(page = 1) {
   `;
 
   const variables = {
-    first: POSTS_PER_PAGE,
+    first: postsPerPage,
     skip: offset,
   };
 
@@ -42,23 +47,41 @@ async function renderPosts(page = 1) {
   blogContainer.innerHTML = "";
 
   if (posts.length > 0) {
-    const featuredPost = posts.find((post) => post.featured);
-    if (featuredPost) {
-      blogContainer.innerHTML += `
-          <a href="post.html?slug=${featuredPost.slug}" class="post-link">
-          <div class="featured-post">
-            <img src="${featuredPost.coverImage.url}" alt="${featuredPost.title}">
-            <h2>${featuredPost.title}</h2>
-            <p>${featuredPost.excerpt}</p>
-            <i class="fa-solid fa-up-right-from-square"></i>
-          </div>
-          </a>
-        `;
-    }
-
-    const gridPosts = posts.filter((post) => !post.featured);
-    if (gridPosts.length > 0) {
-      const gridHTML = gridPosts
+    if (page === 1) {
+      const featuredPost = posts.find((post) => post.featured);
+      if (featuredPost) {
+        blogContainer.innerHTML += `
+            <a href="post.html?slug=${featuredPost.slug}" class="post-link">
+            <div class="featured-post">
+              <img src="${featuredPost.coverImage.url}" alt="${featuredPost.title}">
+              <h2>${featuredPost.title}</h2>
+              <p>${featuredPost.excerpt}</p>
+              <i class="fa-solid fa-up-right-from-square"></i>
+            </div>
+            </a>
+          `;
+      }
+      const gridPosts = posts.filter((post) => !post.featured);
+      if (gridPosts.length > 0) {
+        const gridHTML = gridPosts
+          .map(
+            (post) => `
+            <a href="post.html?slug=${post.slug}" class="post-link">
+              <div class="grid-post">
+                <img src="${post.coverImage.url}" alt="${post.title}">
+                <h3>${post.title}</h3>
+                <p>${post.excerpt}</p>
+                <i class="fa-solid fa-up-right-from-square"></i>
+              </div>
+            </a>
+            `
+          )
+          .join("");
+        blogContainer.innerHTML += `<div class="grid-container">${gridHTML}</div>`;
+      }
+    } else {
+      // No featured post on other pages
+      const gridHTML = posts
         .map(
           (post) => `
           <a href="post.html?slug=${post.slug}" class="post-link">
@@ -76,12 +99,13 @@ async function renderPosts(page = 1) {
     }
   }
 
-  renderPagination(page, posts.length);
+  renderPagination(page);
 }
 
 async function renderPagination(currentPage) {
-  const totalPosts = await fetchTotalPosts(); // Fetch the total number of posts
-  const totalPages = Math.ceil(totalPosts / POSTS_PER_PAGE);
+  const totalPosts = await fetchTotalPosts();
+  // First page: 5 posts, subsequent pages: 6 posts each
+  const totalPages = totalPosts <= 5 ? 1 : 1 + Math.ceil((totalPosts - 5) / 6);
 
   const paginationContainer = document.querySelector(".pagination-container");
   paginationContainer.innerHTML = `
