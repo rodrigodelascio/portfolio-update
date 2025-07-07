@@ -284,7 +284,7 @@ textarea {
   width: 0;
   height: 100%;
   rotate: -20deg;
-  background: url("./assets/images/brushStroke.png") no-repeat;
+  background: url("./assets/images/brushStroke.webp") no-repeat;
   background-size: contain;
   transform-origin: left;
   transition: linear 0.5s;
