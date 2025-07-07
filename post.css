@@ -897,6 +897,10 @@ textarea {
     font-size: 1.2rem;
     margin: 0;
   }
+
+  .back-to-blog {
+    margin: 3rem 0 0 5%;
+  }
 }
 
 @media screen and (max-width: 769px) {
@@ -931,6 +935,10 @@ textarea {
 
   .author p {
     font-size: 1rem;
+  }
+
+  .back-to-blog {
+    margin: 3rem 0 0 2.5%;
   }
 }
 
