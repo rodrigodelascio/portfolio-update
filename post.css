@@ -152,7 +152,7 @@ textarea {
   z-index: 8;
 }
 
-.off-screen-menu ul {
+.off-screen-menu-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
