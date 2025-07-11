@@ -414,7 +414,7 @@ textarea {
 
 .content-section p {
   color: var(--clr-gray);
-  font-size: min(1.4rem, 2.75vw);
+  font-size: min(1.6rem, 3vw);
   font-weight: 400;
   line-height: 1.5;
 }
