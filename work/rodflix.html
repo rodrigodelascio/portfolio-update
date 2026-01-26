@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../assets/images/faviconRod.png" />
+    <link rel="stylesheet" href="./rodflix.css" />
+    <script defer src="../script.js"></script>
+    <script defer src="./rodflix.js"></script>
+    <script
+      src="https://kit.fontawesome.com/057d435fa0.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <title>RodFlix | Work | Rodrigo De Lascio | Full-Stack Developer</title>
+    <meta
+      name="description"
+      content="Explore 'RodFlix', a TV series catalogue web app with search, series details, seasons and episodes, and an admin area for content management. Built with PHP, MySQL, and modern web fundamentals."
+    />
+  </head>
+
+  <body>
+    <a name="top"></a>
+    <div class="background-container">
+      <div class="page-container">
+        <div class="off-screen-menu">
+          <div class="off-screen-menu-wrapper">
+            <a href="/"> Home </a>
+            <a href="../work.html"> Work </a>
+            <a href="../blog.html"> Blog </a>
+            <a href="../about.html"> About </a>
+          </div>
+        </div>
+
+        <nav class="nav-container">
+          <div class="navbar">
+            <div class="nav-socials">
+              <a
+                href="https://github.com/rodrigodelascio/"
+                aria-label="Follow this link to open Rodrigo's GitHub on a new tab"
+                target="_blank"
+              >
+                <i class="fa-brands fa-github"></i>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/rodrigo-de-lascio/"
+                aria-label="Follow this link to open Rodrigo's LinkedIn on a new tab"
+                target="_blank"
+              >
+                <i class="fa-brands fa-linkedin"></i>
+              </a>
+            </div>
+            <div class="nav-logo">
+              <a href="/">
+                <div class="logo-wrapper">
+                  <img
+                    src="../assets/images/logoWhite2.webp"
+                    alt="Rodrigo De Lascio logo"
+                  />
+                </div>
+              </a>
+            </div>
+
+            <div class="nav-links-container">
+              <div class="nav-links">
+                <a href="../work.html"> Work </a>
+                <a href="../blog.html"> Blog </a>
+                <a href="../about.html"> About </a>
+                <div></div>
+              </div>
+              <a
+                href="mailto:rodrigodelascio@gmail.com?subject=Let's%20Create%20Something%20Together%20%7C%20Developer%20Opportunity&body=Hi%20Rodrigo%2C%0A%0AI%20came%20across%20your%20portfolio%20and%20was%20impressed%20by%20your%20skills%20and%20transition%20into%20full-stack%20development.%20%0A%0AI'd%20like%20to%20discuss%20a%20potential%20opportunity%20with%20you.%20Here's%20a%20bit%20about%20what%20we're%20looking%20for%3A%0A%0A%5BFill%20in%20details%20here%5D%0A%0AWould%20you%20be%20available%20for%20a%20chat%20in%20the%20coming%20days%3F%0A%0ALooking%20forward%20to%20hearing%20from%20you!%0A%0A%5BName%5D%0A%5BContact%20details%5D"
+                class="nav-button"
+              >
+                Get in Touch
+              </a>
+            </div>
+            <div class="hamburger-menu">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+        </nav>
+
+        <section class="projects-hero-section">
+          <div class="projects-title-container">
+            <h1 class="projects-title-bold">RODFLIX</h1>
+            <p>
+              A TV series catalogue app that lets you browse shows, dive into
+              seasons and episodes, and click your way down rabbit holes you did
+              not plan to enter. RodFlix was built as a full-stack university
+              project, where I learned that databases are fun, until they start
+              judging you for forgetting a foreign key.
+            </p>
+            <img
+              src="../assets/images/rodflixLaptopMockup.webp"
+              alt="RodFlix TV series catalogue web app"
+              class="project-image"
+            />
+          </div>
+        </section>
+
+        <section class="content-section">
+          <h2>The Brief (And My Brief Existential Crisis)</h2>
+          <p class="brief-description">
+            The goal was to build a TV series catalogue application with a real
+            database behind it, clear navigation between shows, seasons and
+            episodes, and a working admin area for managing content. In theory,
+            this sounded lovely. In practice, it meant carefully designing a
+            schema, wiring up CRUD features, keeping the UI readable, and
+            preventing the whole thing from collapsing the moment a user typed
+            something creative into a search box. RodFlix is the result, a
+            full-stack web app that demonstrates server side logic, database
+            interaction, and a clean, structured interface. It is built to feel
+            simple for the user, even when the back end is quietly doing a lot
+            of heavy lifting.
+          </p>
+        </section>
+
+        <section class="content-section">
+          <h2>Tech Stack</h2>
+          <p>
+            I kept it pragmatic and focused on fundamentals, server-side
+            rendering, database design, and clean UI patterns. The project was
+            built using:
+          </p>
+          <div class="tech-stack">
+            <span class="tech-tag">PHP</span>
+            <span class="tech-tag">SQL</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">TVmaze API</span>
+            <span class="tech-tag">HTML</span>
+            <span class="tech-tag">CSS</span>
+          </div>
+        </section>
+
+        <section class="content-section">
+          <h2>Key Features</h2>
+          <div class="features-grid">
+            <div class="feature-card">
+              <h3>Series Catalogue & Search</h3>
+              <p>
+                Browse a growing list of shows, search by title, and get to the
+                right series quickly, even when you only remember half the name
+                and the vibe.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>Show Details, Seasons & Episodes</h3>
+              <p>
+                A clear navigation flow from series to seasons to episodes,
+                designed to keep exploration intuitive and reduce “where am I
+                now?” moments.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>Admin Area (Because Chaos Needs Structure)</h3>
+              <p>
+                An admin section for managing content, supporting create, edit
+                and delete workflows, because someone has to keep the catalogue
+                under control.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>Database-Driven Architecture</h3>
+              <p>
+                A relational design focused on consistency and maintainability,
+                so data stays organised and the app does not turn into a
+                spreadsheet with feelings.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="content-section paragraph-spacing">
+          <h2>Challenges & Solutions</h2>
+          <p>
+            <strong>Challenge:</strong> Designing a database that supports
+            series, seasons, episodes, and related information without turning
+            every query into a small tragedy.
+          </p>
+          <p>
+            <strong>Solution:</strong> Built a clear relational structure and
+            kept responsibilities separated, so the app can grow without
+            breaking everything that already works.
+          </p>
+
+          <p>
+            <strong>Challenge:</strong> Making the UI feel simple while the app
+            is doing data fetching, filtering, and rendering dynamically.
+          </p>
+          <p>
+            <strong>Solution:</strong> Kept screens predictable and consistent,
+            used reusable UI patterns, and made sure users can always navigate
+            back up a level without getting lost.
+          </p>
+        </section>
+
+        <section class="content-section paragraph-spacing">
+          <h2>What I Learned</h2>
+          <p>
+            This project made server-side development feel real. Not
+            theoretical, not tutorial-based, real. The kind of real where small
+            mistakes have consequences, and those consequences appear
+            immediately on screen.
+          </p>
+          <p>
+            I improved my understanding of relational databases, SQL querying,
+            and how to structure an application so that the back end and front
+            end stay readable. I also learned that input validation is not a
+            “nice-to-have”, it is self-defence.
+          </p>
+          <p>
+            Most importantly, I came out of it more confident about building a
+            full-stack application end to end, from data modelling to UI flow,
+            and everything in between.
+          </p>
+        </section>
+
+        <section class="content-section">
+          <h2>Project Gallery</h2>
+
+          <div class="gallery-container">
+            <div class="gallery-track js-gallery">
+              <div class="gallery-group">
+                <div class="gallery-item">
+                  <img
+                    src="../assets/images/rodflixLandingMockup2.webp"
+                    alt="RodFlix homepage"
+                  />
+                  <div class="gallery-caption">
+                    Landing Page - The main catalogue page
+                  </div>
+                </div>
+                <div class="gallery-item">
+                  <img
+                    src="../assets/images/rodflixSeriesMockup2.webp"
+                    alt="RodFlix series page"
+                  />
+                  <div class="gallery-caption">
+                    Series Page - Browse seasons, episodes, and poeple
+                  </div>
+                </div>
+                <div class="gallery-item">
+                  <img
+                    src="../assets/images/rodflixSeasonMockup.webp"
+                    alt="RodFlix series details page"
+                  />
+                  <div class="gallery-caption">
+                    Series Details - The rabbit hole begins here
+                  </div>
+                </div>
+                <div class="gallery-item">
+                  <img
+                    src="../assets/images/rodflixManageSeries2.webp"
+                    alt="RodFlix Admin Area - Managing series content"
+                  />
+                  <div class="gallery-caption">
+                    Admin Area - Managing series content
+                  </div>
+                </div>
+                <div class="gallery-item">
+                  <img
+                    src="../assets/images/rodflixImportSeriesMockup.webp"
+                    alt="RodFlix Admin Area - Importing series from TVmaze"
+                  />
+                  <div class="gallery-caption">
+                    Admin Area - Importing series
+                  </div>
+                </div>
+              </div>
+              <!-- Duplicate Content for seamless loop -->
+              <div class="gallery-group" aria-hidden="true">
+                <div class="gallery-item">
+                  <img
+                    src="../assets/images/rodflixLandingMockup2.webp"
+                    alt="RodFlix homepage"
+                  />
+                  <div class="gallery-caption">
+                    Landing Page - The main catalogue page
+                  </div>
+                </div>
+                <div class="gallery-item">
+                  <img
+                    src="../assets/images/rodflixSeriesMockup2.webp"
+                    alt="RodFlix series page"
+                  />
+                  <div class="gallery-caption">
+                    Series Page - Browse seasons, episodes, and poeple
+                  </div>
+                </div>
+                <div class="gallery-item">
+                  <img
+                    src="../assets/images/rodflixSeasonMockup.webp"
+                    alt="RodFlix series details page"
+                  />
+                  <div class="gallery-caption">
+                    Series Details - The rabbit hole begins here
+                  </div>
+                </div>
+                <div class="gallery-item">
+                  <img
+                    src="../assets/images/rodflixManageSeries2.webp"
+                    alt="RodFlix Admin Area - Managing series content"
+                  />
+                  <div class="gallery-caption">
+                    Admin Area - Managing series content
+                  </div>
+                </div>
+                <div class="gallery-item">
+                  <img
+                    src="../assets/images/rodflixImportSeriesMockup.webp"
+                    alt="RodFlix Admin Area - Importing series from TVmaze"
+                  />
+                  <div class="gallery-caption">
+                    Admin Area - Importing series
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="project-links">
+          <a
+            href="https://rodflix.infinityfreeapp.com/index.php"
+            target="_blank"
+            class="project-btn primary"
+            >View Live</a
+          >
+          <a
+            href="https://github.com/rodrigodelascio/rodflix-app"
+            target="_blank"
+            class="project-btn secondary"
+            >View Code</a
+          >
+        </div>
+
+        <a href="../work.html" class="back-button">← Back to Projects</a>
+      </div>
+
+      <footer class="footer-section">
+        <div class="footer-container">
+          <div class="footer-logo">
+            <a href="/">
+              <img
+                src="../assets/images/logoWhite2.webp"
+                alt="Rodrigo De Lascio logo"
+              />
+            </a>
+          </div>
+
+          <div class="footer-links-container">
+            <div class="footer-socials">
+              <a
+                href="https://github.com/rodrigodelascio/"
+                aria-label="Follow this link to open Rodrigo's GitHub on a new tab"
+                target="_blank"
+              >
+                <i class="fa-brands fa-github"></i>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/rodrigo-de-lascio/"
+                aria-label="Follow this link to open Rodrigo's LinkedIn on a new tab"
+                target="_blank"
+              >
+                <i class="fa-brands fa-linkedin"></i>
+              </a>
+            </div>
+
+            <div class="footer-links">
+              <a href="../work.html"> Work </a>
+              <a href="../blog.html"> Blog </a>
+              <a href="../about.html"> About </a>
+            </div>
+
+            <div class="footer-mail">
+              <a
+                href="mailto:rodrigodelascio@gmail.com?subject=Let's%20Create%20Something%20Together%20%7C%20Developer%20Opportunity&body=Hi%20Rodrigo%2C%0A%0AI%20came%20across%20your%20portfolio%20and%20was%20impressed%20by%20your%20skills%20and%20transition%20into%20full-stack%20development.%20%0A%0AI'd%20like%20to%20discuss%20a%20potential%20opportunity%20with%20you.%20Here's%20a%20bit%20about%20what%20we're%20looking%20for%3A%0A%0A%5BFill%20in%20details%20here%5D%0A%0AWould%20you%20be%20available%20for%20a%20chat%20in%20the%20coming%20days%3F%0A%0ALooking%20forward%20to%20hearing%20from%20you!%0A%0A%5BName%5D%0A%5BContact%20details%5D"
+              >
+                rodrigodelascio@gmail.com
+              </a>
+            </div>
+          </div>
+
+          <div class="footer-copyright-container">
+            <p class="footer-copyright-text">
+              ©
+              <script>
+                document.write(new Date().getFullYear());
+              </script>
+              Rodrigo De Lascio. All rights reserved.
+            </p>
+          </div>
+
+          <div class="footer-back-to-top">
+            <a href="#top"
+              ><img
+                src="../assets/images/supermanIcon.webp"
+                alt="icon of superman"
+                class="superman-icon"
+              /><span class="back-to-top-text">Back to the top</span></a
+            >
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
