@@ -23,19 +23,28 @@
     const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
     gsap.set(title.chars, { yPercent: 115, opacity: 0 });
     gsap.set(".hero-portrait-shell", { xPercent: -50, y: 40, opacity: 0 });
+    gsap.set(".hero-title-outline", { opacity: 0 });
     tl.to(title.chars, { yPercent: 0, opacity: 1, duration: 1.25, stagger: .018 })
       .to(".hero-portrait-shell", { y: 0, opacity: 1, duration: 1.25 }, "-=.9")
+      .to(".hero-title-outline", { opacity: 1, duration: .55 }, "-=.7")
       .from(".hero-kicker, .hero-bottom", { y: 24, opacity: 0, duration: .8, stagger: .15 }, "-=.65");
   }
 
   function heroMotion() {
     if (reduceMotion) return;
     const tl = gsap.timeline({
-      scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: .7 }
+      scrollTrigger: {
+        trigger: ".hero",
+        start: "top top",
+        end: "bottom top",
+        scrub: 1
+      }
     });
     tl.to(".hero-line-one", { xPercent: -12, opacity: .1, ease: "none" }, 0)
       .to(".hero-line-two", { xPercent: 12, opacity: .12, ease: "none" }, 0)
-      .to(".hero-portrait-shell", { yPercent: 10, opacity: .15, ease: "none" }, 0)
+      .to(".hero-portrait-shell", { y: "-14vh", ease: "none" }, 0)
+      .to(".hero-portrait", { scale: 1.08, transformOrigin: "50% 72%", ease: "none" }, 0)
+      .to(".hero-title-outline", { opacity: 0, duration: .18, ease: "none" }, 0)
       .to(".hero-bottom", { opacity: 0, y: -40, ease: "none" }, 0)
       .to(".hero-kicker", { opacity: 0, ease: "none" }, 0);
   }
