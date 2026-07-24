@@ -1,5 +1,8 @@
 (function () {
-  if (typeof gsap === "undefined") return;
+  if (typeof gsap === "undefined") {
+    document.querySelector(".preloader")?.remove();
+    return;
+  }
 
   gsap.registerPlugin(ScrollTrigger, ScrollSmoother, SplitText);
 
@@ -28,6 +31,77 @@
       .to(".hero-portrait-shell", { y: 0, opacity: 1, duration: 1.25 }, "-=.9")
       .to(".hero-title-outline", { opacity: 1, duration: .55 }, "-=.7")
       .from(".hero-kicker, .hero-bottom", { y: 24, opacity: 0, duration: .8, stagger: .15 }, "-=.65");
+  }
+
+  function preloader() {
+    const loader = document.querySelector(".preloader");
+    if (!loader || reduceMotion) {
+      if (loader) loader.remove();
+      intro();
+      return;
+    }
+
+    const counter = { value: 0 };
+    const counterElement = loader.querySelector(".preloader-progress b");
+    const mark = new SplitText(".preloader-mark", { type: "chars" });
+    const tl = gsap.timeline({
+      defaults: { ease: "power4.inOut" },
+      onComplete: () => loader.remove()
+    });
+
+    gsap.set(mark.chars, { yPercent: 115 });
+    gsap.set(".site-header", { yPercent: -105 });
+    gsap.set(".rail, .hud", { opacity: 0 });
+
+    tl.to(mark.chars, {
+      yPercent: 0,
+      duration: .85,
+      stagger: .045,
+      ease: "power4.out"
+    })
+      .to(counter, {
+        value: 100,
+        duration: 3,
+        ease: "power2.inOut",
+        onUpdate: () => {
+          counterElement.textContent = String(Math.round(counter.value)).padStart(3, "0");
+        }
+      }, "-=.5")
+      .to(".preloader-progress-line", {
+        scaleX: 1,
+        duration: 3,
+        ease: "power2.inOut"
+      }, "<")
+      .to(".preloader-meta, .preloader-progress", {
+        opacity: 0,
+        y: -18,
+        duration: .35
+      })
+      .to(mark.chars, {
+        yPercent: -125,
+        duration: .65,
+        stagger: .025
+      }, "-=.2")
+      .call(intro, null, "-=.3")
+      .to(".preloader-panel-top", {
+        xPercent: -101,
+        duration: 1.05
+      }, "-=.25")
+      .to(".preloader-panel-bottom", {
+        xPercent: 101,
+        duration: 1.05
+      }, "<")
+      .to(".site-header", {
+        yPercent: 0,
+        duration: .8,
+        ease: "power3.out"
+      }, "-=.72")
+      .to(".rail, .hud", {
+        opacity: 1,
+        duration: .55,
+        stagger: .08,
+        ease: "power2.out"
+      }, "-=.55");
   }
 
   function heroMotion() {
@@ -223,7 +297,7 @@
 
   window.addEventListener("load", () => {
     initSmoother();
-    intro();
+    preloader();
     heroMotion();
     sectionReveals();
     hud();

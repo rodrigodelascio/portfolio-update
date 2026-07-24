@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>document.documentElement.classList.add("js")</script>
     <link rel="icon" href="./assets/images/faviconRod.png" />
     <link rel="stylesheet" href="./style.css" />
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13/dist/gsap.min.js"></script>
@@ -19,6 +20,24 @@
     />
   </head>
   <body id="top">
+    <div class="preloader" role="status" aria-label="Loading portfolio">
+      <div class="preloader-panel preloader-panel-top" aria-hidden="true"></div>
+      <div class="preloader-panel preloader-panel-bottom" aria-hidden="true"></div>
+      <div class="preloader-content" aria-hidden="true">
+        <div class="preloader-meta">
+          <span>Portfolio / 2026</span>
+          <span>Loading the good bits</span>
+        </div>
+        <div class="preloader-mark">
+          <span>ROD</span><i>/</i><span>DEV</span>
+        </div>
+        <div class="preloader-progress">
+          <span class="preloader-progress-line"></span>
+          <b>000</b>
+        </div>
+      </div>
+    </div>
+
     <a class="skip-link" href="work">Skip to selected work</a>
     <div class="page-noise" aria-hidden="true"></div>
 

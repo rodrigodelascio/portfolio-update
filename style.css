@@ -57,6 +57,96 @@ button {
   color: var(--ink);
 }
 
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  overflow: hidden;
+  color: var(--ink);
+}
+html:not(.js) .preloader {
+  display: none;
+}
+.preloader-panel {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 50.5%;
+  background: var(--acid);
+  will-change: transform;
+}
+.preloader-panel-top {
+  top: 0;
+}
+.preloader-panel-bottom {
+  bottom: 0;
+}
+.preloader-content {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding: clamp(2.4rem, 4vw, 6rem) var(--edge);
+}
+.preloader-meta {
+  display: flex;
+  justify-content: space-between;
+  font: 500 1rem/1 var(--mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.preloader-mark {
+  align-self: center;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  justify-content: center;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 100%;
+  padding-inline: clamp(1rem, 2vw, 3rem);
+  font: 700 clamp(7rem, 18.5vw, 28rem)/0.72 var(--display);
+  letter-spacing: -0.11em;
+}
+.preloader-mark span,
+.preloader-mark i {
+  display: block;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.preloader-mark i {
+  color: var(--coral);
+  font-style: normal;
+  margin: 0 0.04em;
+}
+.preloader-progress {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 2rem;
+}
+.preloader-progress::before {
+  content: "";
+  grid-column: 1;
+  grid-row: 1;
+  height: 1px;
+  background: rgba(8, 9, 11, 0.25);
+}
+.preloader-progress-line {
+  grid-column: 1;
+  grid-row: 1;
+  height: 3px;
+  width: 100%;
+  background: var(--ink);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+.preloader-progress b {
+  font: 500 clamp(2.4rem, 4vw, 5.6rem)/0.8 var(--mono);
+  letter-spacing: -0.08em;
+}
+
 .skip-link {
   position: fixed;
   left: 2rem;
@@ -1118,6 +1208,9 @@ main {
   }
   .hero-title-outline {
     opacity: 1;
+  }
+  .preloader {
+    display: none;
   }
   *,
   *::before,
