@@ -8,14 +8,32 @@ const navLinks = document.querySelectorAll(".nav-links a").forEach((link) => {
   }
 });
 
-hamburgerMenu.addEventListener("click", () => {
-  hamburgerMenu.classList.toggle("active");
-  offScreenMenu.classList.toggle("active");
-});
+if (hamburgerMenu && offScreenMenu) {
+  hamburgerMenu.addEventListener("click", () => {
+    const isOpen = hamburgerMenu.classList.toggle("active");
+    offScreenMenu.classList.toggle("active", isOpen);
+    offScreenMenu.setAttribute("aria-hidden", String(!isOpen));
+    hamburgerMenu.setAttribute("aria-expanded", String(isOpen));
+    hamburgerMenu.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+    document.body.style.overflow = isOpen ? "hidden" : "";
+  });
+
+  offScreenMenu.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      hamburgerMenu.classList.remove("active");
+      offScreenMenu.classList.remove("active");
+      offScreenMenu.setAttribute("aria-hidden", "true");
+      hamburgerMenu.setAttribute("aria-expanded", "false");
+      document.body.style.overflow = "";
+    });
+  });
+}
 
 window.addEventListener("resize", (e) => {
   if (window.matchMedia(`(min-width: 900px)`).matches) {
-    hamburgerMenu.classList.remove("active");
-    offScreenMenu.classList.remove("active");
+    hamburgerMenu?.classList.remove("active");
+    offScreenMenu?.classList.remove("active");
+    offScreenMenu?.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
   }
 });
