@@ -79,20 +79,27 @@ button {
 }
 
 .site-header {
+  --cta-inset: 0px;
+  --cta-panel: var(--ink);
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  height: 8.4rem;
-  padding: 0 var(--edge);
+  width: 100%;
+  height: 7rem;
+  padding-left: var(--edge);
   display: grid;
   grid-template-columns: 1fr auto auto auto;
   column-gap: clamp(2rem, 3vw, 5rem);
   align-items: center;
   z-index: 40;
-  mix-blend-mode: difference;
+  overflow: hidden;
+  border-bottom: 1px solid var(--paper);
+  background: var(--ink);
+  color: var(--paper);
 }
 .wordmark {
+  color: var(--paper);
   font: 700 1.8rem/1 var(--display);
   letter-spacing: -0.08em;
   width: max-content;
@@ -103,7 +110,8 @@ button {
 }
 .header-status {
   justify-self: end;
-  font: 400 1rem/1 var(--mono);
+  color: var(--paper);
+  font: 500 1rem/1 var(--mono);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   white-space: nowrap;
@@ -115,41 +123,90 @@ button {
   border-radius: 50%;
   background: var(--acid);
   margin-right: 0.7rem;
-  box-shadow: 0 0 1.2rem var(--acid);
+  box-shadow: 0 0 1.2rem rgba(216, 255, 62, 0.55);
 }
 .desktop-nav {
   display: flex;
-  gap: 2.8rem;
-  font: 400 1.1rem/1 var(--mono);
+  gap: 4rem;
+  font: 700 1.35rem/1 var(--display);
   text-transform: uppercase;
 }
-.desktop-nav a {
+.nav-roll {
+  --dot-position: -1.4rem;
+  --dot-opacity: 0;
   position: relative;
+  display: inline-block;
+  color: var(--paper);
+  line-height: 0.8;
 }
-.desktop-nav a::after {
+.nav-roll::before,
+.nav-roll::after {
   content: "";
   position: absolute;
-  left: 0;
-  right: 100%;
-  bottom: -0.6rem;
-  height: 1px;
-  background: currentColor;
-  transition: right 0.3s;
+  top: 50%;
+  width: 0.3rem;
+  height: 0.3rem;
+  border-radius: 50%;
+  background: var(--coral);
+  opacity: var(--dot-opacity);
+  transform: translateY(-50%);
 }
-.desktop-nav a:hover::after {
-  right: 0;
+.nav-roll::before {
+  left: var(--dot-position);
+}
+.nav-roll::after {
+  right: var(--dot-position);
+}
+.nav-roll-primary,
+.nav-roll-secondary {
+  display: inline-block;
+  line-height: 0.8;
+  overflow: hidden;
+}
+.nav-roll-primary {
+  position: relative;
+  z-index: 2;
+}
+.nav-roll-secondary {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  visibility: hidden;
+  color: var(--coral);
 }
 .header-contact {
-  justify-self: end;
-  font: 500 1.1rem/1 var(--mono);
+  position: relative;
+  align-self: stretch;
+  min-width: 17rem;
+  margin-left: 1rem;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-left: 1px solid var(--paper);
+  background: var(--acid);
+  color: var(--ink);
+  font: 700 1.3rem/1 var(--display);
   text-transform: uppercase;
-  border: 1px solid currentColor;
-  border-radius: 5rem;
-  padding: 1.2rem 1.6rem;
 }
-.header-contact span {
+.header-contact::before {
+  content: "";
+  position: absolute;
+  inset: var(--cta-inset);
+  z-index: 1;
+  background: var(--cta-panel);
+}
+.nav-cta-inner {
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  width: 9rem;
+  line-height: 0.8;
+  text-align: center;
+  white-space: nowrap;
+}
+.header-contact .nav-roll-primary,
+.header-contact .nav-roll-secondary {
   color: var(--acid);
-  margin-left: 0.6rem;
 }
 .hamburger-menu {
   display: none;
@@ -271,7 +328,7 @@ main {
 .hero-kicker {
   display: flex;
   justify-content: space-between;
-  font: 400 1rem/1.3 var(--mono);
+  font: 400 clamp(1.15rem, 1vw, 1.35rem)/1.3 var(--mono);
   color: var(--muted);
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -820,7 +877,8 @@ main {
 @media (max-width: 900px) {
   .site-header {
     grid-template-columns: 1fr auto;
-    height: 7rem;
+    height: 6.4rem;
+    padding: 0 1.4rem 0 2rem;
   }
   .desktop-nav,
   .header-contact,

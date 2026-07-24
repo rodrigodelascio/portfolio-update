@@ -173,6 +173,45 @@
     });
   }
 
+  function navHovers() {
+    if (!finePointer || reduceMotion) return;
+
+    const animateRoll = (link, button = false) => {
+      const first = link.querySelector(".nav-roll-primary");
+      const second = link.querySelector(".nav-roll-secondary");
+      if (!first || !second) return;
+
+      const firstSplit = new SplitText(first, { type: "chars" });
+      const secondSplit = new SplitText(second, { type: "chars" });
+      gsap.set(secondSplit.chars, { yPercent: 110 });
+      gsap.set(second, { visibility: "visible" });
+
+      link.addEventListener("pointerenter", () => {
+        gsap.to(firstSplit.chars, { yPercent: -110, duration: button ? .55 : .4, stagger: button ? .045 : .025, ease: "power3.inOut" });
+        gsap.to(secondSplit.chars, { yPercent: 0, duration: button ? .55 : .4, stagger: button ? .045 : .025, ease: "power3.inOut" });
+        if (button) {
+          gsap.to(".site-header", { "--cta-inset": "5px", duration: .55, ease: "power3.inOut" });
+        } else {
+          gsap.to(link, { "--dot-position": "-1rem", "--dot-opacity": 1, duration: .4, ease: "power3.inOut" });
+        }
+      });
+
+      link.addEventListener("pointerleave", () => {
+        gsap.to(firstSplit.chars, { yPercent: 0, duration: button ? .55 : .4, stagger: .02, ease: "power3.inOut" });
+        gsap.to(secondSplit.chars, { yPercent: 110, duration: button ? .55 : .4, stagger: .02, ease: "power3.inOut" });
+        if (button) {
+          gsap.to(".site-header", { "--cta-inset": "0px", duration: .55, ease: "power3.inOut" });
+        } else {
+          gsap.to(link, { "--dot-position": "-1.4rem", "--dot-opacity": 0, duration: .4, ease: "power3.inOut" });
+        }
+      });
+    };
+
+    document.querySelectorAll(".desktop-nav .nav-roll").forEach(link => animateRoll(link));
+    const cta = document.querySelector(".nav-cta");
+    if (cta) animateRoll(cta, true);
+  }
+
   window.addEventListener("load", () => {
     initSmoother();
     intro();
@@ -180,6 +219,7 @@
     sectionReveals();
     hud();
     magnetic();
+    navHovers();
     ScrollTrigger.refresh();
   });
 })();

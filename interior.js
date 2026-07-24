@@ -52,11 +52,13 @@
         <span>ROD</span><b>/</b><span>DEV</span>
       </a>
       <nav aria-label="Main navigation">
-        <a href="${root}work.html">Work</a>
-        <a href="${root}blog.html">Blog</a>
-        <a href="${root}about.html">About</a>
+        <a class="nav-roll" href="${root}work.html"><span class="nav-roll-primary">Work</span><span class="nav-roll-secondary" aria-hidden="true">Work</span></a>
+        <a class="nav-roll" href="${root}blog.html"><span class="nav-roll-primary">Blog</span><span class="nav-roll-secondary" aria-hidden="true">Blog</span></a>
+        <a class="nav-roll" href="${root}about.html"><span class="nav-roll-primary">About</span><span class="nav-roll-secondary" aria-hidden="true">About</span></a>
       </nav>
-      <a class="interior-contact" href="mailto:rodrigodelascio@gmail.com">Let's talk <span>↗</span></a>
+      <a class="interior-contact nav-cta" href="mailto:rodrigodelascio@gmail.com">
+        <span class="nav-cta-inner"><span class="nav-roll-primary">Let's talk</span><span class="nav-roll-secondary" aria-hidden="true">Say hello</span></span>
+      </a>
       <button class="interior-menu-button" aria-label="Open menu" aria-expanded="false">
         <i></i><i></i>
       </button>
@@ -134,6 +136,92 @@
     document.querySelectorAll(selectors.join(",")).forEach((section, index) => {
       section.dataset.sectionNumber = String(index + 1).padStart(2, "0")
     })
+  }
+
+  function initialiseNavHovers() {
+    if (
+      typeof gsap === "undefined" ||
+      typeof SplitText === "undefined" ||
+      !window.matchMedia("(pointer: fine)").matches ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) return
+
+    gsap.registerPlugin(SplitText)
+
+    const animateRoll = (link, button = false) => {
+      const first = link.querySelector(".nav-roll-primary")
+      const second = link.querySelector(".nav-roll-secondary")
+      if (!first || !second) return
+
+      const firstSplit = new SplitText(first, { type: "chars" })
+      const secondSplit = new SplitText(second, { type: "chars" })
+      gsap.set(secondSplit.chars, { yPercent: 110 })
+      gsap.set(second, { visibility: "visible" })
+
+      link.addEventListener("pointerenter", () => {
+        gsap.to(firstSplit.chars, {
+          yPercent: -110,
+          duration: button ? .55 : .4,
+          stagger: button ? .045 : .025,
+          ease: "power3.inOut"
+        })
+        gsap.to(secondSplit.chars, {
+          yPercent: 0,
+          duration: button ? .55 : .4,
+          stagger: button ? .045 : .025,
+          ease: "power3.inOut"
+        })
+        if (button) {
+          gsap.to(".interior-header", {
+            "--cta-inset": "5px",
+            duration: .55,
+            ease: "power3.inOut"
+          })
+        } else {
+          gsap.to(link, {
+            "--dot-position": "-1rem",
+            "--dot-opacity": 1,
+            duration: .4,
+            ease: "power3.inOut"
+          })
+        }
+      })
+
+      link.addEventListener("pointerleave", () => {
+        gsap.to(firstSplit.chars, {
+          yPercent: 0,
+          duration: button ? .55 : .4,
+          stagger: .02,
+          ease: "power3.inOut"
+        })
+        gsap.to(secondSplit.chars, {
+          yPercent: 110,
+          duration: button ? .55 : .4,
+          stagger: .02,
+          ease: "power3.inOut"
+        })
+        if (button) {
+          gsap.to(".interior-header", {
+            "--cta-inset": "0px",
+            duration: .55,
+            ease: "power3.inOut"
+          })
+        } else {
+          gsap.to(link, {
+            "--dot-position": "-1.4rem",
+            "--dot-opacity": 0,
+            duration: .4,
+            ease: "power3.inOut"
+          })
+        }
+      })
+    }
+
+    document.querySelectorAll(".interior-header nav .nav-roll").forEach(link => {
+      animateRoll(link)
+    })
+    const cta = document.querySelector(".interior-header .nav-cta")
+    if (cta) animateRoll(cta, true)
   }
 
   function initialiseMotion(scope = document) {
@@ -223,6 +311,7 @@
     addSectionNumbers()
     cleanVisibleText()
     initialiseHud()
+    initialiseNavHovers()
     initialiseMotion(document)
 
     const dynamicTargets = document.querySelectorAll(".blog-container, .post-container")
