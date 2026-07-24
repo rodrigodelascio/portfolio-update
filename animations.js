@@ -1,10 +1,13 @@
 (function () {
   if (typeof gsap === "undefined") {
     document.querySelector(".preloader")?.remove();
+    document.documentElement.classList.remove("is-loading");
     return;
   }
 
-  gsap.registerPlugin(ScrollTrigger, ScrollSmoother, SplitText);
+  const gsapPlugins = [ScrollTrigger, ScrollSmoother, SplitText];
+  if (typeof DrawSVGPlugin !== "undefined") gsapPlugins.push(DrawSVGPlugin);
+  gsap.registerPlugin(...gsapPlugins);
 
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const finePointer = window.matchMedia("(pointer: fine)").matches;
@@ -33,10 +36,21 @@
       .from(".hero-kicker, .hero-bottom", { y: 24, opacity: 0, duration: .8, stagger: .15 }, "-=.65");
   }
 
-  function preloader() {
+  function preloader(smoother) {
     const loader = document.querySelector(".preloader");
+    const resetToHero = () => {
+      if (smoother) smoother.scrollTo(0, false);
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    };
+
+    resetToHero();
+
     if (!loader || reduceMotion) {
       if (loader) loader.remove();
+      document.documentElement.classList.remove("is-loading");
+      if (smoother) smoother.paused(false);
       intro();
       return;
     }
@@ -46,7 +60,14 @@
     const mark = new SplitText(".preloader-mark", { type: "chars" });
     const tl = gsap.timeline({
       defaults: { ease: "power4.inOut" },
-      onComplete: () => loader.remove()
+      onComplete: () => {
+        resetToHero();
+        document.documentElement.classList.remove("is-loading");
+        if (smoother) smoother.paused(false);
+        resetToHero();
+        loader.remove();
+        ScrollTrigger.refresh();
+      }
     });
 
     gsap.set(mark.chars, { yPercent: 115 });
@@ -191,10 +212,117 @@
       });
     }
 
-    gsap.to(".interlude-track", {
-      xPercent: -36,
-      ease: "none",
-      scrollTrigger: { trigger: ".interlude", start: "top bottom", end: "bottom top", scrub: 1 }
+    const interlude = document.querySelector(".interlude");
+    const interludeTrack = document.querySelector(".interlude-track");
+    const interludeRouteSvg = document.querySelector(".interlude-route");
+    const interludeRouteBase = document.querySelector(".interlude-route-base");
+    const interludeRoute = document.querySelector(".interlude-route-progress");
+    const sizeInterludeRoute = () => {
+      if (!interlude || !interludeRouteSvg || !interludeRouteBase || !interludeRoute) return;
+      const { width, height } = interludeRouteSvg.getBoundingClientRect();
+      const route = [
+        `M0 0`,
+        `C${width * .09} ${height * .02} ${width * .16} ${height * .12} ${width * .23} ${height * .21}`,
+        `C${width * .29} ${height * .3} ${width * .45} ${height * .33} ${width * .51} ${height * .14}`,
+        `C${width * .58} ${height * -.04} ${width * .77} ${height * .02} ${width * .89} ${height * .2}`,
+        `C${width} ${height * .37} ${width * .91} ${height * .6} ${width * .79} ${height * .72}`,
+        `C${width * .67} ${height * .84} ${width * .5} ${height * .9} ${width * .37} ${height * .78}`,
+        `C${width * .24} ${height * .66} ${width * .12} ${height * .8} 0 ${height}`
+      ].join("");
+
+      interludeRouteSvg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+      interludeRouteBase.setAttribute("d", route);
+      interludeRoute.setAttribute("d", route);
+    };
+
+    sizeInterludeRoute();
+
+    const interludeTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".interlude",
+        start: "top top",
+        end: "+=175%",
+        pin: true,
+        pinSpacing: true,
+        anticipatePin: 1,
+        scrub: 1,
+        invalidateOnRefresh: true,
+        onRefreshInit: sizeInterludeRoute
+      }
+    });
+    const interludeSymbols = [
+      ".symbol-cube",
+      ".symbol-pointer",
+      ".symbol-spark",
+      ".symbol-squiggle",
+      ".symbol-code"
+    ];
+
+    if (interludeRoute) {
+      if (typeof DrawSVGPlugin !== "undefined") {
+        gsap.set(interludeRoute, { drawSVG: 0 });
+      } else {
+        const routeLength = interludeRoute.getTotalLength();
+        gsap.set(interludeRoute, {
+          strokeDasharray: `${routeLength} ${routeLength}`,
+          strokeDashoffset: routeLength
+        });
+      }
+    }
+    gsap.set(".interlude-symbol", {
+      scale: .42,
+      opacity: .1,
+      transformOrigin: "50% 50%"
+    });
+
+    interludeTimeline
+      .fromTo(".interlude-track", {
+        x: 0
+      }, {
+        x: () => -Math.max(0, interludeTrack.scrollWidth - window.innerWidth),
+        duration: 1,
+        ease: "none"
+      }, 0)
+      .fromTo(".interlude-symbol", {
+        xPercent: (index) => index % 2 ? 28 : -28,
+        yPercent: (index) => index % 2 ? -10 : 10,
+        rotation: (index) => index % 2 ? -18 : 18
+      }, {
+        xPercent: (index) => index % 2 ? -34 : 34,
+        yPercent: (index) => index % 2 ? 16 : -16,
+        rotation: (index) => index % 2 ? 42 : -42,
+        duration: 1,
+        ease: "none"
+      }, 0);
+
+    if (interludeRoute) {
+      interludeTimeline.to(interludeRoute, typeof DrawSVGPlugin !== "undefined" ? {
+        drawSVG: "100%",
+        duration: 1,
+        ease: "none"
+      } : {
+        strokeDashoffset: 0,
+        duration: 1,
+        ease: "none"
+      }, 0);
+    }
+
+    interludeSymbols.forEach((selector, index) => {
+      const arrival = [.1, .26, .42, .68, .84][index];
+      interludeTimeline
+        .to(selector, {
+          scale: 1.18,
+          opacity: 1,
+          filter: "drop-shadow(0 0 1.8rem var(--symbol-glow))",
+          duration: .075,
+          ease: "power3.out"
+        }, arrival)
+        .to(selector, {
+          scale: 1,
+          filter: "drop-shadow(0 0 .8rem var(--symbol-glow-rest))",
+          duration: .08,
+          ease: "power2.inOut"
+        }, arrival + .075);
     });
 
     gsap.from(".article-card", {
@@ -256,6 +384,95 @@
     });
   }
 
+  function cursorTrail() {
+    if (
+      !finePointer ||
+      reduceMotion ||
+      !window.matchMedia("(min-width: 901px)").matches
+    ) return;
+
+    const canvas = document.querySelector(".cursor-trail");
+    const context = canvas?.getContext("2d");
+    if (!canvas || !context) return;
+
+    const points = [];
+    const lifetime = 520;
+    let frame;
+    let lastPoint;
+
+    const resize = () => {
+      const ratio = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.round(window.innerWidth * ratio);
+      canvas.height = Math.round(window.innerHeight * ratio);
+      context.setTransform(ratio, 0, 0, ratio, 0, 0);
+    };
+
+    const draw = (time) => {
+      context.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+      while (points.length && time - points[0].time > lifetime) points.shift();
+
+      context.lineCap = "round";
+      context.lineJoin = "round";
+
+      for (let index = 1; index < points.length; index += 1) {
+        const point = points[index];
+        const previous = points[index - 1];
+        const life = Math.max(0, 1 - (time - point.time) / lifetime);
+
+        context.beginPath();
+        context.moveTo(previous.x, previous.y);
+        context.lineTo(point.x, point.y);
+        context.strokeStyle = `rgba(255, 92, 53, ${life * .64})`;
+        context.lineWidth = .5 + life * 1.7;
+        context.stroke();
+      }
+
+      frame = requestAnimationFrame(draw);
+    };
+
+    window.addEventListener("pointermove", (event) => {
+      const nextPoint = {
+        x: event.clientX,
+        y: event.clientY,
+        time: performance.now()
+      };
+
+      if (lastPoint) {
+        const distance = Math.hypot(
+          nextPoint.x - lastPoint.x,
+          nextPoint.y - lastPoint.y
+        );
+        const steps = Math.min(5, Math.floor(distance / 12));
+
+        for (let step = 1; step <= steps; step += 1) {
+          const progress = step / (steps + 1);
+          points.push({
+            x: gsap.utils.interpolate(lastPoint.x, nextPoint.x, progress),
+            y: gsap.utils.interpolate(lastPoint.y, nextPoint.y, progress),
+            time: nextPoint.time
+          });
+        }
+      }
+
+      points.push(nextPoint);
+      if (points.length > 70) points.splice(0, points.length - 70);
+      lastPoint = nextPoint;
+    }, { passive: true });
+
+    document.addEventListener("mouseleave", () => {
+      lastPoint = undefined;
+    });
+
+    window.addEventListener("resize", resize);
+    resize();
+    frame = requestAnimationFrame(draw);
+
+    window.addEventListener("pagehide", () => cancelAnimationFrame(frame), {
+      once: true
+    });
+  }
+
   function navHovers() {
     if (!finePointer || reduceMotion) return;
 
@@ -266,11 +483,11 @@
 
       const firstSplit = new SplitText(first, { type: "chars" });
       const secondSplit = new SplitText(second, { type: "chars" });
-      gsap.set(secondSplit.chars, { yPercent: 110 });
+      gsap.set(secondSplit.chars, { yPercent: 145 });
       gsap.set(second, { visibility: "visible" });
 
       link.addEventListener("pointerenter", () => {
-        gsap.to(firstSplit.chars, { yPercent: -110, duration: button ? .55 : .4, stagger: button ? .045 : .025, ease: "power3.inOut" });
+        gsap.to(firstSplit.chars, { yPercent: -145, duration: button ? .55 : .4, stagger: button ? .045 : .025, ease: "power3.inOut" });
         gsap.to(secondSplit.chars, { yPercent: 0, duration: button ? .55 : .4, stagger: button ? .045 : .025, ease: "power3.inOut" });
         if (button) {
           gsap.to(".site-header", { "--cta-inset": "5px", duration: .55, ease: "power3.inOut" });
@@ -281,7 +498,7 @@
 
       link.addEventListener("pointerleave", () => {
         gsap.to(firstSplit.chars, { yPercent: 0, duration: button ? .55 : .4, stagger: .02, ease: "power3.inOut" });
-        gsap.to(secondSplit.chars, { yPercent: 110, duration: button ? .55 : .4, stagger: .02, ease: "power3.inOut" });
+        gsap.to(secondSplit.chars, { yPercent: 145, duration: button ? .55 : .4, stagger: .02, ease: "power3.inOut" });
         if (button) {
           gsap.to(".site-header", { "--cta-inset": "0px", duration: .55, ease: "power3.inOut" });
         } else {
@@ -296,12 +513,14 @@
   }
 
   window.addEventListener("load", () => {
-    initSmoother();
-    preloader();
+    const smoother = initSmoother();
+    if (smoother) smoother.paused(true);
+    preloader(smoother);
     heroMotion();
     sectionReveals();
     hud();
     magnetic();
+    cursorTrail();
     navHovers();
     ScrollTrigger.refresh();
   });

@@ -3,13 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script>document.documentElement.classList.add("js")</script>
+    <script>
+      document.documentElement.classList.add("js", "is-loading");
+      if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+      window.scrollTo(0, 0);
+    </script>
     <link rel="icon" href="./assets/images/faviconRod.png" />
     <link rel="stylesheet" href="./style.css" />
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13/dist/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13/dist/ScrollSmoother.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13/dist/SplitText.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13/dist/DrawSVGPlugin.min.js"></script>
     <script defer src="./script.js"></script>
     <script defer src="./landing-blog.js"></script>
     <script defer src="./animations.js"></script>
@@ -22,7 +27,10 @@
   <body id="top">
     <div class="preloader" role="status" aria-label="Loading portfolio">
       <div class="preloader-panel preloader-panel-top" aria-hidden="true"></div>
-      <div class="preloader-panel preloader-panel-bottom" aria-hidden="true"></div>
+      <div
+        class="preloader-panel preloader-panel-bottom"
+        aria-hidden="true"
+      ></div>
       <div class="preloader-content" aria-hidden="true">
         <div class="preloader-meta">
           <span>Portfolio / 2026</span>
@@ -38,8 +46,8 @@
       </div>
     </div>
 
-    <a class="skip-link" href="work">Skip to selected work</a>
     <div class="page-noise" aria-hidden="true"></div>
+    <canvas class="cursor-trail" aria-hidden="true"></canvas>
 
     <div class="off-screen-menu" aria-hidden="true">
       <div class="menu-meta">Navigate / 2026</div>
@@ -60,12 +68,26 @@
       </a>
       <div class="header-status"><i></i> Available for the right project</div>
       <nav class="desktop-nav" aria-label="Main navigation">
-        <a class="nav-roll" href="./work.html"><span class="nav-roll-primary">Work</span><span class="nav-roll-secondary" aria-hidden="true">Work</span></a>
-        <a class="nav-roll" href="./blog.html"><span class="nav-roll-primary">Writing</span><span class="nav-roll-secondary" aria-hidden="true">Writing</span></a>
-        <a class="nav-roll" href="./about.html"><span class="nav-roll-primary">About</span><span class="nav-roll-secondary" aria-hidden="true">About</span></a>
+        <a class="nav-roll" href="./work.html"
+          ><span class="nav-roll-primary">Work</span
+          ><span class="nav-roll-secondary" aria-hidden="true">Work</span></a
+        >
+        <a class="nav-roll" href="./blog.html"
+          ><span class="nav-roll-primary">Writing</span
+          ><span class="nav-roll-secondary" aria-hidden="true">Writing</span></a
+        >
+        <a class="nav-roll" href="./about.html"
+          ><span class="nav-roll-primary">About</span
+          ><span class="nav-roll-secondary" aria-hidden="true">About</span></a
+        >
       </nav>
       <a class="header-contact nav-cta" href="mailto:rodrigodelascio@gmail.com">
-        <span class="nav-cta-inner"><span class="nav-roll-primary">Let's talk</span><span class="nav-roll-secondary" aria-hidden="true">Say hello</span></span>
+        <span class="nav-cta-inner"
+          ><span class="nav-roll-primary">Let's talk</span
+          ><span class="nav-roll-secondary" aria-hidden="true"
+            >Say hello</span
+          ></span
+        >
       </a>
       <button
         class="hamburger-menu"
@@ -86,7 +108,7 @@
     <div id="smooth-wrapper">
       <main id="smooth-content">
         <section class="hero" data-section="00 / INTRO">
-          <div class="hero-kicker reveal-line">
+          <div class="hero-kicker">
             <span>I make websites.</span>
             <span>Sometimes they even behave.</span>
           </div>
@@ -105,7 +127,7 @@
             <div class="hero-portrait-shell">
               <div class="hero-portrait">
                 <img
-                  src="./assets/images/rodrigoPortrait.webp"
+                  src="./assets/images/rodProfile.webp"
                   alt="Rodrigo De Lascio"
                 />
               </div>
@@ -116,15 +138,12 @@
 
           <div class="hero-bottom">
             <p>
-              Clean, elegant, and intelligent... me, not my code, but I try.
+              Clean, elegant, and intelligent...<br />me, not my code, but I
+              try.
             </p>
-            <a
-              class="round-link magnetic"
-              href="#work"
-              aria-label="Explore selected work"
-            >
-              <span>Explore<br />the work</span><b>↓</b>
-            </a>
+            <div class="round-link scroll-indicator" aria-hidden="true">
+              <span>Scroll<br />to explore</span><b>↓</b>
+            </div>
           </div>
         </section>
 
@@ -152,7 +171,7 @@
 
           <div class="project-rail">
             <div class="project-list">
-              <a class="project project-featured" href="./work/rodflix.html">
+              <a class="project" href="./work/rodflix.html">
                 <div class="project-topline">
                   <span>01 / 04</span><span>Full-stack application · 2025</span>
                 </div>
@@ -172,7 +191,7 @@
                 <div class="project-visual">
                   <div class="project-image">
                     <img
-                      src="./assets/images/rodflixLandingMockup2.webp"
+                      src="./assets/images/rodflixLandingMockup.webp"
                       alt="RodFlix application interface"
                     />
                   </div>
@@ -226,8 +245,8 @@
                 <div class="project-visual project-visual-blue">
                   <div class="project-image">
                     <img
-                      src="./assets/images/sunnysideOnMacbook.webp"
-                      alt="Sunnyside agency website on a laptop"
+                      src="./assets/images/sunnysideIphoneMockup.webp"
+                      alt="Sunnyside agency website displayed on a phone"
                     />
                   </div>
                   <span class="project-arrow">↗</span>
@@ -262,15 +281,55 @@
               </a>
             </div>
           </div>
-          <a class="text-link" href="./work.html"
-            >See the complete archive <span>↗</span></a
-          >
+          <a class="text-link archive-link" href="./work.html">
+            <span class="archive-link-copy">
+              <small>Project archive</small>
+              <strong>See all projects</strong>
+            </span>
+            <span class="archive-link-arrow">↗</span>
+          </a>
         </section>
 
         <section class="interlude" aria-label="Personal statement">
+          <div class="interlude-decor" aria-hidden="true">
+            <svg class="interlude-route" viewBox="0 0 1600 900">
+              <path
+                class="interlude-route-base"
+                d="M0 0C150 10 260 110 360 190C460 270 720 300 820 130C920-40 1230 20 1420 180C1600 332 1450 540 1260 650C1070 760 800 810 590 700C380 590 200 720 0 900"
+              ></path>
+              <path
+                class="interlude-route-progress"
+                d="M0 0C150 10 260 110 360 190C460 270 720 300 820 130C920-40 1230 20 1420 180C1600 332 1450 540 1260 650C1070 760 800 810 590 700C380 590 200 720 0 900"
+              ></path>
+            </svg>
+            <svg class="interlude-symbol symbol-cube" viewBox="0 0 180 180">
+              <path d="m90 12 67 38v80l-67 38-67-38V50l67-38Z"></path>
+              <path d="m23 50 67 39 67-39M90 89v79"></path>
+              <path d="m55 31 68 39v79"></path>
+            </svg>
+            <svg class="interlude-symbol symbol-spark" viewBox="0 0 160 160">
+              <path
+                d="M80 7 91 60l39-38-30 48 53 10-53 10 30 48-39-38-11 53-11-53-39 38 30-48L7 80l53-10-30-48 39 38L80 7Z"
+              ></path>
+            </svg>
+            <svg class="interlude-symbol symbol-code" viewBox="0 0 200 140">
+              <path
+                d="m72 20-54 50 54 50M128 20l54 50-54 50M116 8 84 132"
+              ></path>
+            </svg>
+            <svg class="interlude-symbol symbol-squiggle" viewBox="0 0 230 160">
+              <path d="M12 104C35 28 68 24 86 88s49 72 70 4 48-68 62-20"></path>
+              <circle cx="12" cy="104" r="7"></circle>
+              <circle cx="218" cy="72" r="7"></circle>
+            </svg>
+            <svg class="interlude-symbol symbol-pointer" viewBox="0 0 150 180">
+              <path d="m25 14 97 91-48 4-25 45L25 14Z"></path>
+            </svg>
+          </div>
           <div class="interlude-track">
             <span>BUILD IT USEFUL</span><i>✳</i><span>MAKE IT MEMORABLE</span
-            ><i>✳</i><span>BUILD IT USEFUL</span><i>✳</i>
+            ><i>✳</i><span>BUILD IT USEFUL</span><i>✳</i
+            ><span>MAKE IT MEMORABLE</span><i>✳</i>
           </div>
         </section>
 
@@ -347,9 +406,13 @@
               <span class="read-arrow">Read article ↗</span>
             </a>
           </div>
-          <a class="text-link writing-link" href="./blog.html"
-            >Visit the blog <span>↗</span></a
-          >
+          <a class="text-link archive-link writing-link" href="./blog.html">
+            <span class="archive-link-copy">
+              <small>Writing archive</small>
+              <strong>Read all articles</strong>
+            </span>
+            <span class="archive-link-arrow">↗</span>
+          </a>
         </section>
 
         <section class="about-home" data-section="04 / ABOUT">
@@ -370,7 +433,9 @@
                 Brazilian by birth, based in Walton-on-Thames, powered mostly by
                 curiosity and an unreasonable amount of coffee.
               </p>
-              <a href="./about.html">The slightly longer version ↗</a>
+              <a href="./about.html">
+                <span>The slightly longer version</span><i>↗</i>
+              </a>
             </div>
           </div>
         </section>

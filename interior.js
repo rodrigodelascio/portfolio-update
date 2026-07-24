@@ -51,9 +51,10 @@
       <a class="interior-wordmark" href="${root}index.html" aria-label="Rodrigo De Lascio, home">
         <span>ROD</span><b>/</b><span>DEV</span>
       </a>
+      <div class="interior-header-status"><i></i> Available for the right project</div>
       <nav aria-label="Main navigation">
         <a class="nav-roll" href="${root}work.html"><span class="nav-roll-primary">Work</span><span class="nav-roll-secondary" aria-hidden="true">Work</span></a>
-        <a class="nav-roll" href="${root}blog.html"><span class="nav-roll-primary">Blog</span><span class="nav-roll-secondary" aria-hidden="true">Blog</span></a>
+        <a class="nav-roll" href="${root}blog.html"><span class="nav-roll-primary">Writing</span><span class="nav-roll-secondary" aria-hidden="true">Writing</span></a>
         <a class="nav-roll" href="${root}about.html"><span class="nav-roll-primary">About</span><span class="nav-roll-secondary" aria-hidden="true">About</span></a>
       </nav>
       <a class="interior-contact nav-cta" href="mailto:rodrigodelascio@gmail.com">
@@ -72,6 +73,11 @@
     noise.className = "interior-noise"
     noise.setAttribute("aria-hidden", "true")
     document.body.append(noise)
+
+    const trail = document.createElement("canvas")
+    trail.className = "interior-cursor-trail"
+    trail.setAttribute("aria-hidden", "true")
+    document.body.append(trail)
 
     const hud = document.createElement("div")
     hud.className = "interior-hud"
@@ -104,11 +110,11 @@
       footer.innerHTML = `
         <div class="interior-footer">
           <div class="interior-footer-top">
-            <span>Made with care, caffeine and several browser tabs</span>
-            <span>Walton-on-Thames / UK</span>
+            <span>Have an idea worth making real?</span>
+            <span>Available / 2026</span>
           </div>
           <a class="interior-footer-heading" href="mailto:rodrigodelascio@gmail.com">
-            <span>LET'S BUILD</span><strong>SOMETHING</strong><i>↗</i>
+            <span>LET’S MAKE</span><strong>SOMETHING</strong><i>↗</i>
           </a>
           <div class="interior-footer-bottom">
             <span>© ${new Date().getFullYear()} Rodrigo De Lascio</span>
@@ -155,12 +161,12 @@
 
       const firstSplit = new SplitText(first, { type: "chars" })
       const secondSplit = new SplitText(second, { type: "chars" })
-      gsap.set(secondSplit.chars, { yPercent: 110 })
+      gsap.set(secondSplit.chars, { yPercent: 145 })
       gsap.set(second, { visibility: "visible" })
 
       link.addEventListener("pointerenter", () => {
         gsap.to(firstSplit.chars, {
-          yPercent: -110,
+          yPercent: -145,
           duration: button ? .55 : .4,
           stagger: button ? .045 : .025,
           ease: "power3.inOut"
@@ -195,7 +201,7 @@
           ease: "power3.inOut"
         })
         gsap.to(secondSplit.chars, {
-          yPercent: 110,
+          yPercent: 145,
           duration: button ? .55 : .4,
           stagger: .02,
           ease: "power3.inOut"
@@ -288,6 +294,26 @@
       })
     })
 
+    const footerHeading = scope.querySelector?.(".interior-footer-heading")
+    if (footerHeading && !footerHeading.dataset.animated) {
+      footerHeading.dataset.animated = "true"
+      gsap.from(
+        footerHeading.querySelectorAll("span, strong"),
+        {
+          xPercent: index => index ? 18 : -18,
+          opacity: 0,
+          duration: 1.2,
+          stagger: .1,
+          ease: "power4.out",
+          scrollTrigger: {
+            trigger: ".footer-section",
+            start: "top 55%",
+            once: true
+          }
+        }
+      )
+    }
+
     ScrollTrigger.refresh()
   }
 
@@ -306,11 +332,125 @@
     }, { passive: true })
   }
 
+  function initialiseCursorTrail() {
+    if (
+      !window.matchMedia("(pointer: fine) and (min-width: 901px)").matches ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) return
+
+    const canvas = document.querySelector(".interior-cursor-trail")
+    const context = canvas?.getContext("2d")
+    if (!canvas || !context) return
+
+    const points = []
+    const lifetime = 520
+    let lastPoint
+    let frame
+
+    const resize = () => {
+      const ratio = Math.min(window.devicePixelRatio || 1, 2)
+      canvas.width = Math.round(window.innerWidth * ratio)
+      canvas.height = Math.round(window.innerHeight * ratio)
+      context.setTransform(ratio, 0, 0, ratio, 0, 0)
+    }
+
+    const draw = time => {
+      context.clearRect(0, 0, window.innerWidth, window.innerHeight)
+      while (points.length && time - points[0].time > lifetime) points.shift()
+      context.lineCap = "round"
+      context.lineJoin = "round"
+
+      for (let index = 1; index < points.length; index += 1) {
+        const point = points[index]
+        const previous = points[index - 1]
+        const life = Math.max(0, 1 - (time - point.time) / lifetime)
+        context.beginPath()
+        context.moveTo(previous.x, previous.y)
+        context.lineTo(point.x, point.y)
+        context.strokeStyle = `rgba(255, 92, 53, ${life * .64})`
+        context.lineWidth = .5 + life * 1.7
+        context.stroke()
+      }
+
+      frame = requestAnimationFrame(draw)
+    }
+
+    window.addEventListener("pointermove", event => {
+      const nextPoint = {
+        x: event.clientX,
+        y: event.clientY,
+        time: performance.now()
+      }
+
+      if (lastPoint) {
+        const distance = Math.hypot(
+          nextPoint.x - lastPoint.x,
+          nextPoint.y - lastPoint.y
+        )
+        const steps = Math.min(5, Math.floor(distance / 12))
+        for (let step = 1; step <= steps; step += 1) {
+          const progress = step / (steps + 1)
+          points.push({
+            x: lastPoint.x + (nextPoint.x - lastPoint.x) * progress,
+            y: lastPoint.y + (nextPoint.y - lastPoint.y) * progress,
+            time: nextPoint.time
+          })
+        }
+      }
+
+      points.push(nextPoint)
+      if (points.length > 70) points.splice(0, points.length - 70)
+      lastPoint = nextPoint
+    }, { passive: true })
+
+    document.addEventListener("mouseleave", () => {
+      lastPoint = undefined
+    })
+    window.addEventListener("resize", resize)
+    window.addEventListener("pagehide", () => cancelAnimationFrame(frame), {
+      once: true
+    })
+
+    resize()
+    frame = requestAnimationFrame(draw)
+  }
+
+  function initialiseMagneticFooter() {
+    if (
+      typeof gsap === "undefined" ||
+      !window.matchMedia("(pointer: fine)").matches ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) return
+
+    const heading = document.querySelector(".interior-footer-heading")
+    if (!heading) return
+
+    heading.addEventListener("pointermove", event => {
+      const bounds = heading.getBoundingClientRect()
+      gsap.to(heading, {
+        x: (event.clientX - bounds.left - bounds.width / 2) * .12,
+        y: (event.clientY - bounds.top - bounds.height / 2) * .12,
+        duration: .35
+      })
+    })
+
+    heading.addEventListener("pointerleave", () => {
+      gsap.to(heading, {
+        x: 0,
+        y: 0,
+        duration: .7,
+        ease: "elastic.out(1,.35)"
+      })
+    })
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
     buildChrome()
     addSectionNumbers()
     cleanVisibleText()
     initialiseHud()
+    initialiseCursorTrail()
+    initialiseMagneticFooter()
     initialiseNavHovers()
     initialiseMotion(document)
 
