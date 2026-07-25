@@ -435,6 +435,43 @@ main {
   min-height: 58rem;
   transform: translateY(6rem);
 }
+.hero-ambient {
+  position: absolute;
+  z-index: 0;
+  width: calc(var(--portrait-width) + clamp(24rem, 32vw, 52rem));
+  height: calc(var(--portrait-height) + 36%);
+  left: 50%;
+  bottom: calc(var(--portrait-bottom) - 14%);
+  transform: translateX(-50%);
+  opacity: 0.82;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  -webkit-mask-image: radial-gradient(
+    ellipse 88% 88% at 50% 50%,
+    #000 24%,
+    rgba(0, 0, 0, 0.78) 68%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    ellipse 88% 88% at 50% 50%,
+    #000 24%,
+    rgba(0, 0, 0, 0.78) 68%,
+    transparent 100%
+  );
+}
+.hero-ambient.is-fallback {
+  background:
+    radial-gradient(
+      ellipse 18% 72% at 31% 50%,
+      rgba(255, 92, 53, 0.12),
+      transparent 76%
+    ),
+    radial-gradient(
+      ellipse 18% 72% at 69% 47%,
+      rgba(216, 255, 62, 0.09),
+      transparent 76%
+    );
+}
 .hero-title,
 .hero-title-outline {
   position: relative;
@@ -1282,6 +1319,23 @@ main {
     min-height: clamp(38rem, 59svh, 55rem);
     transform: translateY(clamp(-15rem, -14svh, -9rem));
   }
+  .hero-ambient {
+    width: min(132vw, 96rem);
+    height: clamp(54rem, 66svh, 72rem);
+    bottom: calc(var(--portrait-bottom) - 10svh);
+    -webkit-mask-image: radial-gradient(
+      ellipse 88% 82% at 50% 50%,
+      #000 18%,
+      rgba(0, 0, 0, 0.76) 62%,
+      transparent 100%
+    );
+    mask-image: radial-gradient(
+      ellipse 88% 82% at 50% 50%,
+      #000 18%,
+      rgba(0, 0, 0, 0.76) 62%,
+      transparent 100%
+    );
+  }
   .hero-title,
   .hero-title-outline {
     font-size: clamp(7.2rem, 16vw, 11.5rem);
@@ -1398,6 +1452,11 @@ main {
     flex: 1 1 auto;
     padding-top: 0;
     transform: none;
+  }
+  .hero-ambient {
+    width: 146vw;
+    height: clamp(38rem, 62svh, 52rem);
+    bottom: -5svh;
   }
   .hero-title,
   .hero-title-outline {
