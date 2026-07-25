@@ -9,407 +9,469 @@
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13/dist/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13/dist/SplitText.min.js"></script>
-    <script defer src="../script.js"></script>
-    <script defer src="./rodflix.js"></script>
     <script defer src="../interior.js"></script>
-    <script
-      src="https://kit.fontawesome.com/057d435fa0.js"
-      crossorigin="anonymous"
-    ></script>
+    <script defer src="./rodflix.js"></script>
 
     <title>RodFlix | Work | Rodrigo De Lascio | Full-Stack Developer</title>
     <meta
       name="description"
-      content="Explore 'RodFlix', a TV series catalogue web app with search, series details, seasons and episodes, and an admin area for content management. Built with PHP, MySQL, and modern web fundamentals."
+      content="RodFlix is a full-stack TV series catalogue with search, detailed season and episode data, and an admin area built with PHP, SQL, JavaScript, and the TVmaze API."
     />
   </head>
 
   <body>
-    <a name="top"></a>
-    <div class="background-container">
-      <div class="page-container">
-        <div class="off-screen-menu">
-          <div class="off-screen-menu-wrapper">
-            <a href="/"> Home </a>
-            <a href="../work.html"> Work </a>
-            <a href="../blog.html"> Blog </a>
-            <a href="../about.html"> About </a>
+    <nav class="nav-container" aria-hidden="true"></nav>
+
+    <main class="rodflix-page">
+      <section class="rf-hero" aria-labelledby="rodflix-title">
+        <div class="rf-entry" aria-hidden="true">
+          <i></i><i></i><i></i><i></i>
+          <span>CASE STUDY / 01</span>
+        </div>
+
+        <div class="rf-hero-meta">
+          <span>01 / FULL-STACK APPLICATION</span>
+          <span>UNIVERSITY PROJECT / 2025</span>
+        </div>
+
+        <div class="rf-hero-copy">
+          <p class="rf-kicker">One database, several rabbit holes</p>
+          <h1 id="rodflix-title"><span>ROD</span><strong>FLIX</strong></h1>
+          <p class="rf-hero-intro">
+            A TV series catalogue for browsing shows, seasons, and episodes,
+            with a proper admin area quietly preventing complete chaos behind
+            the scenes.
+          </p>
+          <div class="rf-hero-actions">
+            <a
+              href="https://rodflix.infinityfreeapp.com/index.php"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <span>View live site</span><i>↗</i>
+            </a>
+            <a
+              href="https://github.com/rodrigodelascio/rodflix-app"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <span>Source code</span><i>↗</i>
+            </a>
           </div>
         </div>
 
-        <nav class="nav-container">
-          <div class="navbar">
-            <div class="nav-socials">
-              <a
-                href="https://github.com/rodrigodelascio/"
-                aria-label="Follow this link to open Rodrigo's GitHub on a new tab"
-                target="_blank"
-              >
-                <i class="fa-brands fa-github"></i>
-              </a>
-              <a
-                href="https://www.linkedin.com/in/rodrigo-de-lascio/"
-                aria-label="Follow this link to open Rodrigo's LinkedIn on a new tab"
-                target="_blank"
-              >
-                <i class="fa-brands fa-linkedin"></i>
-              </a>
-            </div>
-            <div class="nav-logo">
-              <a href="/">
-                <div class="logo-wrapper">
-                  <img
-                    src="../assets/images/logoWhite2.webp"
-                    alt="Rodrigo De Lascio logo"
-                  />
-                </div>
-              </a>
-            </div>
-
-            <div class="nav-links-container">
-              <div class="nav-links">
-                <a href="../work.html"> Work </a>
-                <a href="../blog.html"> Blog </a>
-                <a href="../about.html"> About </a>
-                <div></div>
-              </div>
-              <a
-                href="mailto:rodrigodelascio@gmail.com?subject=Let's%20Create%20Something%20Together%20%7C%20Developer%20Opportunity&body=Hi%20Rodrigo%2C%0A%0AI%20came%20across%20your%20portfolio%20and%20was%20impressed%20by%20your%20skills%20and%20transition%20into%20full-stack%20development.%20%0A%0AI'd%20like%20to%20discuss%20a%20potential%20opportunity%20with%20you.%20Here's%20a%20bit%20about%20what%20we're%20looking%20for%3A%0A%0A%5BFill%20in%20details%20here%5D%0A%0AWould%20you%20be%20available%20for%20a%20chat%20in%20the%20coming%20days%3F%0A%0ALooking%20forward%20to%20hearing%20from%20you!%0A%0A%5BName%5D%0A%5BContact%20details%5D"
-                class="nav-button"
-              >
-                Get in Touch
-              </a>
-            </div>
-            <div class="hamburger-menu">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
+        <div class="rf-hero-screen">
+          <div class="rf-screen-chrome">
+            <span></span><span></span><span></span>
+            <small>RODFLIX / CATALOGUE</small>
           </div>
-        </nav>
-
-        <section class="projects-hero-section">
-          <div class="projects-title-container">
-            <h1 class="projects-title-bold">RODFLIX</h1>
-            <p>
-              A TV series catalogue app that lets you browse shows, dive into
-              seasons and episodes, and click your way down rabbit holes you did
-              not plan to enter. RodFlix was built as a full-stack university
-              project, where I learned that databases are fun, until they start
-              judging you for forgetting a foreign key.
-            </p>
+          <div class="rf-hero-image">
             <img
               src="../assets/images/rodflixLaptopMockup.webp"
-              alt="RodFlix TV series catalogue web app"
-              class="project-image"
+              alt="RodFlix catalogue displayed on a desktop monitor"
             />
+            <span class="rf-scan-line" aria-hidden="true"></span>
           </div>
-        </section>
-
-        <section class="content-section">
-          <h2>The Brief (And My Brief Existential Crisis)</h2>
-          <p class="brief-description">
-            The goal was to build a TV series catalogue application with a real
-            database behind it, clear navigation between shows, seasons and
-            episodes, and a working admin area for managing content. In theory,
-            this sounded lovely. In practice, it meant carefully designing a
-            schema, wiring up CRUD features, keeping the UI readable, and
-            preventing the whole thing from collapsing the moment a user typed
-            something creative into a search box. RodFlix is the result, a
-            full-stack web app that demonstrates server side logic, database
-            interaction, and a clean, structured interface. It is built to feel
-            simple for the user, even when the back end is quietly doing a lot
-            of heavy lifting.
-          </p>
-        </section>
-
-        <section class="content-section">
-          <h2>Tech Stack</h2>
-          <p>
-            I kept it pragmatic and focused on fundamentals, server-side
-            rendering, database design, and clean UI patterns. The project was
-            built using:
-          </p>
-          <div class="tech-stack">
-            <span class="tech-tag">PHP</span>
-            <span class="tech-tag">SQL</span>
-            <span class="tech-tag">JavaScript</span>
-            <span class="tech-tag">TVmaze API</span>
-            <span class="tech-tag">HTML</span>
-            <span class="tech-tag">CSS</span>
+          <div class="rf-screen-footer">
+            <span>PHP / SQL / TVMAZE API</span>
+            <span>STATUS: IT WORKS</span>
           </div>
-        </section>
+        </div>
 
-        <section class="content-section">
-          <h2>Key Features</h2>
-          <div class="features-grid">
-            <div class="feature-card">
-              <h3>Series Catalogue & Search</h3>
-              <p>
-                Browse a growing list of shows, search by title, and get to the
-                right series quickly, even when you only remember half the name
-                and the vibe.
-              </p>
-            </div>
-            <div class="feature-card">
-              <h3>Show Details, Seasons & Episodes</h3>
-              <p>
-                A clear navigation flow from series to seasons to episodes,
-                designed to keep exploration intuitive and reduce “where am I
-                now?” moments.
-              </p>
-            </div>
-            <div class="feature-card">
-              <h3>Admin Area (Because Chaos Needs Structure)</h3>
-              <p>
-                An admin section for managing content, supporting create, edit
-                and delete workflows, because someone has to keep the catalogue
-                under control.
-              </p>
-            </div>
-            <div class="feature-card">
-              <h3>Database-Driven Architecture</h3>
-              <p>
-                A relational design focused on consistency and maintainability,
-                so data stays organised and the app does not turn into a
-                spreadsheet with feelings.
-              </p>
-            </div>
+        <a class="rf-scroll-cue" href="#the-brief">
+          <span>Start the case study</span><i>↓</i>
+        </a>
+      </section>
+
+      <section class="rf-brief rf-light" id="the-brief">
+        <div class="rf-section-label">
+          <span>01</span><span>The brief</span>
+        </div>
+        <div class="rf-brief-heading">
+          <p>THE ASSIGNMENT</p>
+          <h2>
+            BUILD A CATALOGUE<br />
+            <strong>WITH A DATABASE</strong><br />
+            <span>AND CONSEQUENCES.</span>
+          </h2>
+        </div>
+        <div class="rf-brief-copy">
+          <p class="rf-brief-lead">
+            The goal was to build a TV series catalogue with a real database,
+            clear navigation between shows, seasons, and episodes, plus a
+            working admin area for managing content.
+          </p>
+          <div>
+            <p>
+              In theory, lovely. In practice, it meant carefully designing a
+              schema, wiring up CRUD features, keeping the interface readable,
+              and preventing everything from collapsing when a user typed
+              something creative into a search box.
+            </p>
+            <p>
+              RodFlix demonstrates server-side logic, database interaction, and
+              a structured interface. It feels simple for the user while the
+              back end quietly does the heavy lifting.
+            </p>
           </div>
-        </section>
+        </div>
+        <div class="rf-brief-stats">
+          <div><strong>06</strong><span>Core technologies</span></div>
+          <div><strong>04</strong><span>Main user flows</span></div>
+          <div><strong>01</strong><span>Very judgmental database</span></div>
+        </div>
+      </section>
 
-        <section class="content-section paragraph-spacing">
-          <h2>Challenges & Solutions</h2>
-          <p>
-            <strong>Challenge:</strong> Designing a database that supports
-            series, seasons, episodes, and related information without turning
-            every query into a small tragedy.
-          </p>
-          <p>
-            <strong>Solution:</strong> Built a clear relational structure and
-            kept responsibilities separated, so the app can grow without
-            breaking everything that already works.
-          </p>
+      <section
+        class="rf-evidence"
+        data-cursor-contrast="paper"
+        aria-label="RodFlix interface preview"
+      >
+        <div class="rf-evidence-copy">
+          <span>THE FRONT DOOR</span>
+          <p>Search, filter, browse, then forget why you opened the site.</p>
+        </div>
+        <figure>
+          <img
+            src="../assets/images/rodflixLandingMockup2.webp"
+            alt="RodFlix main catalogue interface"
+          />
+        </figure>
+      </section>
 
+      <section class="rf-system" aria-labelledby="system-title">
+        <div class="rf-system-intro">
+          <div class="rf-section-label">
+            <span>02</span><span>Under the bonnet</span>
+          </div>
+          <p class="rf-kicker">Pragmatic beats unnecessarily clever</p>
+          <h2 id="system-title">
+            THE STACK<br />
+            <strong>BEHIND THE</strong><br />
+            <span>STREAM.</span>
+          </h2>
           <p>
-            <strong>Challenge:</strong> Making the UI feel simple while the app
-            is doing data fetching, filtering, and rendering dynamically.
+            I focused on the fundamentals, server-side rendering, relational
+            data, clear responsibilities, and UI patterns that remain
+            predictable as the catalogue grows.
           </p>
-          <p>
-            <strong>Solution:</strong> Kept screens predictable and consistent,
-            used reusable UI patterns, and made sure users can always navigate
-            back up a level without getting lost.
-          </p>
-        </section>
+        </div>
 
-        <section class="content-section paragraph-spacing">
-          <h2>What I Learned</h2>
+        <div class="rf-stack-board">
+          <article class="rf-stack-card rf-stack-server">
+            <span>01 / SERVER</span>
+            <h3>PHP</h3>
+            <p>Routing, application logic, rendering, and admin workflows.</p>
+          </article>
+          <article class="rf-stack-card rf-stack-data">
+            <span>02 / DATA</span>
+            <h3>SQL</h3>
+            <p>
+              Series, seasons, episodes, and the relationships between them.
+            </p>
+          </article>
+          <article class="rf-stack-card rf-stack-api">
+            <span>03 / EXTERNAL DATA</span>
+            <h3>TVmaze API</h3>
+            <p>
+              Importing useful catalogue data without entering it all by hand.
+            </p>
+          </article>
+          <article class="rf-stack-card rf-stack-browser">
+            <span>04 / INTERFACE</span>
+            <h3>HTML, CSS, JS</h3>
+            <p>
+              The visible bit, kept responsive, readable, and easy to explore.
+            </p>
+          </article>
+          <div class="rf-stack-connector" aria-hidden="true">
+            <i></i><i></i><i></i>
+          </div>
+        </div>
+      </section>
+
+      <section class="rf-features" aria-labelledby="features-title">
+        <header class="rf-features-header">
+          <div class="rf-section-label">
+            <span>03</span><span>Feature guide</span>
+          </div>
+          <h2 id="features-title">
+            FOUR REASONS<br />
+            <strong>IT IS MORE THAN</strong><br />
+            <span>A PRETTY GRID.</span>
+          </h2>
+          <p>Scroll for the full season.</p>
+        </header>
+
+        <div class="rf-feature-viewport">
+          <div class="rf-feature-track">
+            <article class="rf-feature-card rf-feature-acid">
+              <span>EPISODE 01 / 04</span>
+              <strong>01</strong>
+              <div>
+                <h3>Series catalogue and search</h3>
+                <p>
+                  Browse a growing list of shows, search by title, and find the
+                  right series even when you only remember half the name and the
+                  general vibe.
+                </p>
+              </div>
+            </article>
+            <article class="rf-feature-card">
+              <span>EPISODE 02 / 04</span>
+              <strong>02</strong>
+              <div>
+                <h3>Seasons and episodes</h3>
+                <p>
+                  A clear flow from series to seasons to episodes, designed to
+                  reduce the familiar “where am I now?” moment.
+                </p>
+              </div>
+            </article>
+            <article class="rf-feature-card rf-feature-coral">
+              <span>EPISODE 03 / 04</span>
+              <strong>03</strong>
+              <div>
+                <h3>An admin area for the chaos</h3>
+                <p>
+                  Create, edit, delete, and import catalogue content. Someone
+                  has to keep all those shows under control.
+                </p>
+              </div>
+            </article>
+            <article class="rf-feature-card rf-feature-paper">
+              <span>EPISODE 04 / 04</span>
+              <strong>04</strong>
+              <div>
+                <h3>Relational by design</h3>
+                <p>
+                  A maintainable database structure that keeps data organised
+                  and stops the app becoming a spreadsheet with feelings.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="rf-conflicts"
+        data-cursor-contrast="paper"
+        aria-labelledby="conflicts-title"
+      >
+        <div class="rf-section-label">
+          <span>04</span><span>Plot complications</span>
+        </div>
+        <h2 id="conflicts-title">
+          EVERY BUILD NEEDS<br />
+          <strong>A LITTLE DRAMA.</strong>
+        </h2>
+
+        <div class="rf-conflict-list">
+          <article>
+            <div class="rf-conflict-problem">
+              <span>PROBLEM / 01</span>
+              <h3>A database with too many opinions</h3>
+              <p>
+                Series, seasons, episodes, and related information needed to
+                work together without turning every query into a small tragedy.
+              </p>
+            </div>
+            <div class="rf-conflict-solution">
+              <span>REWRITE / 01</span>
+              <h3>Give every relationship a proper job</h3>
+              <p>
+                I built a clear relational structure and separated
+                responsibilities so the application can grow without breaking
+                everything that already works.
+              </p>
+            </div>
+          </article>
+
+          <article>
+            <div class="rf-conflict-problem">
+              <span>PROBLEM / 02</span>
+              <h3>A busy back end, pretending to be simple</h3>
+              <p>
+                The interface still needed to feel obvious while fetching,
+                filtering, and rendering dynamic data behind the scenes.
+              </p>
+            </div>
+            <div class="rf-conflict-solution">
+              <span>REWRITE / 02</span>
+              <h3>Keep the user facing the right direction</h3>
+              <p>
+                Predictable screens, reusable patterns, and clear navigation let
+                users move back up a level without becoming part of the
+                catalogue themselves.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="rf-learnings" aria-labelledby="learnings-title">
+        <div class="rf-learnings-heading">
+          <div class="rf-section-label">
+            <span>05</span><span>What survived production</span>
+          </div>
+          <h2 id="learnings-title">
+            THE BIT WHERE<br />
+            <strong>I ACTUALLY</strong><br />
+            <span>LEARNED THINGS.</span>
+          </h2>
+        </div>
+
+        <div class="rf-learning-copy">
           <p>
             This project made server-side development feel real. Not
             theoretical, not tutorial-based, real. The kind of real where small
             mistakes have consequences, and those consequences appear
             immediately on screen.
           </p>
-          <p>
-            I improved my understanding of relational databases, SQL querying,
-            and how to structure an application so that the back end and front
-            end stay readable. I also learned that input validation is not a
-            “nice-to-have”, it is self-defence.
-          </p>
-          <p>
-            Most importantly, I came out of it more confident about building a
-            full-stack application end to end, from data modelling to UI flow,
-            and everything in between.
-          </p>
-        </section>
+          <ol>
+            <li>
+              <span>01</span>
+              <p>
+                Relational databases became something I could design and reason
+                about, not only something I queried.
+              </p>
+            </li>
+            <li>
+              <span>02</span>
+              <p>
+                Keeping the back end and front end readable requires structure,
+                not optimism.
+              </p>
+            </li>
+            <li>
+              <span>03</span>
+              <p>Input validation is not a nice extra. It is self-defence.</p>
+            </li>
+          </ol>
+        </div>
+      </section>
 
-        <section class="content-section">
-          <h2>Project Gallery</h2>
+      <section class="rf-gallery" aria-labelledby="gallery-title">
+        <header>
+          <div class="rf-section-label">
+            <span>06</span><span>Screening room</span>
+          </div>
+          <h2 id="gallery-title">
+            FIVE SCREENS.<br />
+            <strong>ONE RABBIT HOLE.</strong>
+          </h2>
+        </header>
 
-          <div class="gallery-container">
-            <div class="gallery-track js-gallery">
-              <div class="gallery-group">
-                <div class="gallery-item">
-                  <img
-                    src="../assets/images/rodflixLandingMockup2.webp"
-                    alt="RodFlix homepage"
-                  />
-                  <div class="gallery-caption">
-                    Landing Page - The main catalogue page
-                  </div>
-                </div>
-                <div class="gallery-item">
-                  <img
-                    src="../assets/images/rodflixSeriesMockup2.webp"
-                    alt="RodFlix series page"
-                  />
-                  <div class="gallery-caption">
-                    Series Page - Browse seasons, episodes, and poeple
-                  </div>
-                </div>
-                <div class="gallery-item">
-                  <img
-                    src="../assets/images/rodflixSeasonMockup.webp"
-                    alt="RodFlix series details page"
-                  />
-                  <div class="gallery-caption">
-                    Series Details - The rabbit hole begins here
-                  </div>
-                </div>
-                <div class="gallery-item">
-                  <img
-                    src="../assets/images/rodflixManageSeries2.webp"
-                    alt="RodFlix Admin Area - Managing series content"
-                  />
-                  <div class="gallery-caption">
-                    Admin Area - Managing series content
-                  </div>
-                </div>
-                <div class="gallery-item">
-                  <img
-                    src="../assets/images/rodflixImportSeriesMockup.webp"
-                    alt="RodFlix Admin Area - Importing series from TVmaze"
-                  />
-                  <div class="gallery-caption">
-                    Admin Area - Importing series
-                  </div>
-                </div>
-              </div>
-              <!-- Duplicate Content for seamless loop -->
-              <div class="gallery-group" aria-hidden="true">
-                <div class="gallery-item">
-                  <img
-                    src="../assets/images/rodflixLandingMockup2.webp"
-                    alt="RodFlix homepage"
-                  />
-                  <div class="gallery-caption">
-                    Landing Page - The main catalogue page
-                  </div>
-                </div>
-                <div class="gallery-item">
-                  <img
-                    src="../assets/images/rodflixSeriesMockup2.webp"
-                    alt="RodFlix series page"
-                  />
-                  <div class="gallery-caption">
-                    Series Page - Browse seasons, episodes, and poeple
-                  </div>
-                </div>
-                <div class="gallery-item">
-                  <img
-                    src="../assets/images/rodflixSeasonMockup.webp"
-                    alt="RodFlix series details page"
-                  />
-                  <div class="gallery-caption">
-                    Series Details - The rabbit hole begins here
-                  </div>
-                </div>
-                <div class="gallery-item">
-                  <img
-                    src="../assets/images/rodflixManageSeries2.webp"
-                    alt="RodFlix Admin Area - Managing series content"
-                  />
-                  <div class="gallery-caption">
-                    Admin Area - Managing series content
-                  </div>
-                </div>
-                <div class="gallery-item">
-                  <img
-                    src="../assets/images/rodflixImportSeriesMockup.webp"
-                    alt="RodFlix Admin Area - Importing series from TVmaze"
-                  />
-                  <div class="gallery-caption">
-                    Admin Area - Importing series
-                  </div>
-                </div>
-              </div>
+        <div class="rf-gallery-layout">
+          <div class="rf-gallery-stage">
+            <figure class="is-active">
+              <img
+                src="../assets/images/rodflixLandingMockup2.webp"
+                alt="RodFlix main catalogue page"
+              />
+            </figure>
+            <figure>
+              <img
+                src="../assets/images/rodflixSeriesMockup2.webp"
+                alt="RodFlix series page"
+              />
+            </figure>
+            <figure>
+              <img
+                src="../assets/images/rodflixSeasonMockup.webp"
+                alt="RodFlix season details"
+              />
+            </figure>
+            <figure>
+              <img
+                src="../assets/images/rodflixManageSeries2.webp"
+                alt="RodFlix admin series management"
+              />
+            </figure>
+            <figure>
+              <img
+                src="../assets/images/rodflixImportSeriesMockup.webp"
+                alt="RodFlix TVmaze import workflow"
+              />
+            </figure>
+            <div class="rf-gallery-counter">
+              <span id="rf-gallery-current">01</span><i></i><span>05</span>
             </div>
           </div>
-        </section>
 
-        <div class="project-links">
+          <div class="rf-gallery-notes">
+            <article class="is-active" data-gallery-index="0">
+              <span>SCREEN / 01</span>
+              <h3>The main catalogue</h3>
+              <p>Where browsing begins and productivity quietly ends.</p>
+            </article>
+            <article data-gallery-index="1">
+              <span>SCREEN / 02</span>
+              <h3>Series details</h3>
+              <p>
+                Cast, context, seasons, and all the useful bits in one place.
+              </p>
+            </article>
+            <article data-gallery-index="2">
+              <span>SCREEN / 03</span>
+              <h3>Season deep dive</h3>
+              <p>The rabbit hole gets organised into manageable episodes.</p>
+            </article>
+            <article data-gallery-index="3">
+              <span>SCREEN / 04</span>
+              <h3>Catalogue control</h3>
+              <p>
+                Create, update, and delete without touching the database by
+                hand.
+              </p>
+            </article>
+            <article data-gallery-index="4">
+              <span>SCREEN / 05</span>
+              <h3>Import from TVmaze</h3>
+              <p>
+                Because manually typing every series would be a terrible hobby.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="rf-outro">
+        <div>
+          <span>END CREDITS</span>
+          <h2>
+            BUILT END TO END.<br />
+            <strong>DEBUGGED SOMEWHERE</strong><br />
+            <i>IN THE MIDDLE.</i>
+          </h2>
+        </div>
+        <div class="rf-outro-actions">
           <a
             href="https://rodflix.infinityfreeapp.com/index.php"
             target="_blank"
-            class="project-btn primary"
-            >View Live</a
+            rel="noreferrer"
           >
+            <span>View live site</span><i>↗</i>
+          </a>
           <a
             href="https://github.com/rodrigodelascio/rodflix-app"
             target="_blank"
-            class="project-btn secondary"
-            >View Code</a
+            rel="noreferrer"
           >
+            <span>Source code</span><i>↗</i>
+          </a>
+          <a href="../work.html"> <span>All projects</span><i>←</i> </a>
         </div>
+      </section>
 
-        <a href="../work.html" class="back-button">← Back to Projects</a>
-      </div>
+      <a class="rf-next-project" href="./let-it-shine.html">
+        <span>NEXT CASE STUDY / 02</span>
+        <strong>LET IT SHINE</strong>
+        <i>↗</i>
+      </a>
+    </main>
 
-      <footer class="footer-section">
-        <div class="footer-container">
-          <div class="footer-logo">
-            <a href="/">
-              <img
-                src="../assets/images/logoWhite2.webp"
-                alt="Rodrigo De Lascio logo"
-              />
-            </a>
-          </div>
-
-          <div class="footer-links-container">
-            <div class="footer-socials">
-              <a
-                href="https://github.com/rodrigodelascio/"
-                aria-label="Follow this link to open Rodrigo's GitHub on a new tab"
-                target="_blank"
-              >
-                <i class="fa-brands fa-github"></i>
-              </a>
-              <a
-                href="https://www.linkedin.com/in/rodrigo-de-lascio/"
-                aria-label="Follow this link to open Rodrigo's LinkedIn on a new tab"
-                target="_blank"
-              >
-                <i class="fa-brands fa-linkedin"></i>
-              </a>
-            </div>
-
-            <div class="footer-links">
-              <a href="../work.html"> Work </a>
-              <a href="../blog.html"> Blog </a>
-              <a href="../about.html"> About </a>
-            </div>
-
-            <div class="footer-mail">
-              <a
-                href="mailto:rodrigodelascio@gmail.com?subject=Let's%20Create%20Something%20Together%20%7C%20Developer%20Opportunity&body=Hi%20Rodrigo%2C%0A%0AI%20came%20across%20your%20portfolio%20and%20was%20impressed%20by%20your%20skills%20and%20transition%20into%20full-stack%20development.%20%0A%0AI'd%20like%20to%20discuss%20a%20potential%20opportunity%20with%20you.%20Here's%20a%20bit%20about%20what%20we're%20looking%20for%3A%0A%0A%5BFill%20in%20details%20here%5D%0A%0AWould%20you%20be%20available%20for%20a%20chat%20in%20the%20coming%20days%3F%0A%0ALooking%20forward%20to%20hearing%20from%20you!%0A%0A%5BName%5D%0A%5BContact%20details%5D"
-              >
-                rodrigodelascio@gmail.com
-              </a>
-            </div>
-          </div>
-
-          <div class="footer-copyright-container">
-            <p class="footer-copyright-text">
-              ©
-              <script>
-                document.write(new Date().getFullYear());
-              </script>
-              Rodrigo De Lascio. All rights reserved.
-            </p>
-          </div>
-
-          <div class="footer-back-to-top">
-            <a href="#top"
-              ><img
-                src="../assets/images/supermanIcon.webp"
-                alt="icon of superman"
-                class="superman-icon"
-              /><span class="back-to-top-text">Back to the top</span></a
-            >
-          </div>
-        </div>
-      </footer>
-    </div>
+    <footer class="footer-section"></footer>
   </body>
 </html>
