@@ -76,13 +76,13 @@
 
     tl.to(mark.chars, {
       yPercent: 0,
-      duration: .85,
-      stagger: .045,
+      duration: .75,
+      stagger: .04,
       ease: "power4.out"
     })
       .to(counter, {
         value: 100,
-        duration: 3,
+        duration: 2.1,
         ease: "power2.inOut",
         onUpdate: () => {
           counterElement.textContent = String(Math.round(counter.value)).padStart(3, "0");
@@ -90,39 +90,39 @@
       }, "-=.5")
       .to(".preloader-progress-line", {
         scaleX: 1,
-        duration: 3,
+        duration: 2.1,
         ease: "power2.inOut"
       }, "<")
       .to(".preloader-meta, .preloader-progress", {
         opacity: 0,
         y: -18,
-        duration: .35
+        duration: .25
       })
       .to(mark.chars, {
         yPercent: -125,
-        duration: .65,
+        duration: .5,
         stagger: .025
       }, "-=.2")
       .call(intro, null, "-=.3")
       .to(".preloader-panel-top", {
         xPercent: -101,
-        duration: 1.05
+        duration: .8
       }, "-=.25")
       .to(".preloader-panel-bottom", {
         xPercent: 101,
-        duration: 1.05
+        duration: .8
       }, "<")
       .to(".site-header", {
         yPercent: 0,
-        duration: .8,
+        duration: .6,
         ease: "power3.out"
-      }, "-=.72")
+      }, "-=.6")
       .to(".rail, .hud", {
         opacity: 1,
-        duration: .55,
+        duration: .4,
         stagger: .08,
         ease: "power2.out"
-      }, "-=.55");
+      }, "-=.45");
   }
 
   function heroMotion() {
@@ -137,8 +137,8 @@
     });
     tl.to(".hero-line-one", { xPercent: -12, opacity: .1, ease: "none" }, 0)
       .to(".hero-line-two", { xPercent: 12, opacity: .12, ease: "none" }, 0)
-      .to(".hero-portrait-shell", { y: "-14vh", ease: "none" }, 0)
-      .to(".hero-portrait", { scale: 1.08, transformOrigin: "50% 72%", ease: "none" }, 0)
+      .to(".hero-portrait-shell", { y: "18vh", ease: "none" }, 0)
+      .to(".hero-portrait", { scale: 1.38, transformOrigin: "50% 58%", ease: "none" }, 0)
       .to(".hero-title-outline", { opacity: 0, duration: .18, ease: "none" }, 0)
       .to(".hero-bottom", { opacity: 0, y: -40, ease: "none" }, 0)
       .to(".hero-kicker", { opacity: 0, ease: "none" }, 0);
