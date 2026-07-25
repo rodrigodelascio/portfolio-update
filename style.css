@@ -49,6 +49,17 @@ button {
     url("./assets/images/circle-medium-green.svg") 20 20,
     pointer;
 }
+body.cursor-on-coral {
+  cursor:
+    url("./assets/images/circle-small-paper.svg") 12 12,
+    auto;
+}
+body.cursor-on-coral a,
+body.cursor-on-coral button {
+  cursor:
+    url("./assets/images/circle-medium-paper.svg") 20 20,
+    pointer;
+}
 img {
   display: block;
   width: 100%;

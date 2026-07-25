@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -9,169 +9,88 @@
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13/dist/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13/dist/SplitText.min.js"></script>
-    <script defer src="./script.js"></script>
     <script defer src="./interior.js"></script>
+    <script defer src="./blog.js"></script>
 
-    <script
-      src="https://kit.fontawesome.com/057d435fa0.js"
-      crossorigin="anonymous"
-    ></script>
-
-    <title>Blog | Rodrigo De Lascio | Full-Stack Developer</title>
+    <title>Writing | Rodrigo De Lascio | Full-Stack Developer</title>
     <meta
       name="description"
-      content="Read the latest blog posts by Rodrigo De Lascio, a full-stack developer based in Walton-on-Thames, UK. Explore tutorials, career insights, and more."
+      content="Tutorials, career insights, technical deep dives, and debugging stories by full-stack developer Rodrigo De Lascio."
     />
   </head>
 
   <body>
-    <a name="top"></a>
-    <div class="background-container">
-      <div class="page-container">
-        <div class="off-screen-menu">
-          <div class="off-screen-menu-wrapper">
-            <a href="/"> Home </a>
-            <a href="./work.html"> Work </a>
-            <a href="./blog.html"> Blog </a>
-            <a href="./about.html"> About </a>
+    <nav class="nav-container" aria-hidden="true"></nav>
+
+    <main class="writing-page">
+      <section class="writing-hero" aria-labelledby="writing-title">
+        <div class="writing-orbits" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
+
+        <div class="writing-hero-meta">
+          <span>02 / WRITING</span>
+          <span>Filed under, things I learned the hard way</span>
+        </div>
+
+        <div class="writing-hero-heading">
+          <p>Dispatches from the debugging department</p>
+          <h1 id="writing-title" class="writing-title">
+            <span>WORDS, BUGS</span>
+            <strong>&amp; USEFUL THINGS.</strong>
+          </h1>
+        </div>
+
+        <div class="writing-marquee" aria-hidden="true">
+          <div>
+            <span>BUILD</span><i>✳</i><span>BREAK</span><i>✳</i>
+            <span>LEARN</span><i>✳</i><span>WRITE</span><i>✳</i>
+            <span>BUILD</span><i>✳</i><span>BREAK</span><i>✳</i>
+            <span>LEARN</span><i>✳</i><span>WRITE</span><i>✳</i>
           </div>
         </div>
 
-        <nav class="nav-container">
-          <div class="navbar">
-            <div class="nav-socials">
-              <a
-                href="https://github.com/rodrigodelascio/"
-                aria-label="Follow this link to open Rodrigo's GitHub on a new tab"
-                target="_blank"
-              >
-                <i class="fa-brands fa-github"></i>
-              </a>
-              <a
-                href="https://www.linkedin.com/in/rodrigo-de-lascio/"
-                aria-label="Follow this link to open Rodrigo's LinkedIn on a new tab"
-                target="_blank"
-              >
-                <i class="fa-brands fa-linkedin"></i>
-              </a>
-            </div>
-            <div class="nav-logo">
-              <a href="/">
-                <div class="logo-wrapper">
-                  <img
-                    src="./assets/images/logoWhite2.webp"
-                    alt="Rodrigo De Lascio logo"
-                  />
-                </div>
-              </a>
-            </div>
+        <div class="writing-hero-bottom">
+          <p>
+            Tutorials, career detours, technical deep dives, and the occasional
+            debugging horror story. Written after the bug is fixed, naturally.
+          </p>
+          <a href="#article-archive" class="writing-scroll-cue">
+            <span>Open the archive</span>
+            <i>↓</i>
+          </a>
+        </div>
+      </section>
 
-            <div class="nav-links-container">
-              <div class="nav-links">
-                <a href="./work.html"> Work </a>
-                <a href="./blog.html"> Blog </a>
-                <a href="./about.html"> About </a>
-                <div></div>
-              </div>
-              <a
-                href="mailto:rodrigodelascio@gmail.com?subject=Let's%20Create%20Something%20Together%20%7C%20Developer%20Opportunity&body=Hi%20Rodrigo%2C%0A%0AI%20came%20across%20your%20portfolio%20and%20was%20impressed%20by%20your%20skills%20and%20transition%20into%20full-stack%20development.%20%0A%0AI'd%20like%20to%20discuss%20a%20potential%20opportunity%20with%20you.%20Here's%20a%20bit%20about%20what%20we're%20looking%20for%3A%0A%0A%5BFill%20in%20details%20here%5D%0A%0AWould%20you%20be%20available%20for%20a%20chat%20in%20the%20coming%20days%3F%0A%0ALooking%20forward%20to%20hearing%20from%20you!%0A%0A%5BName%5D%0A%5BContact%20details%5D"
-                class="nav-button"
-              >
-                Get in Touch
-              </a>
-            </div>
-            <div class="hamburger-menu">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
+      <section class="blog-archive" id="article-archive" aria-labelledby="archive-title">
+        <header class="archive-heading">
+          <div>
+            <span>01</span>
+            <span>The archive</span>
           </div>
-        </nav>
+          <h2 id="archive-title">LATEST<br /><strong>THINKING.</strong></h2>
+          <p>
+            Some articles are practical. Some are personal. Most began with me
+            asking why something was not working.
+          </p>
+        </header>
 
-        <section class="blog-hero-section">
-          <div class="blog-title-container">
-            <h1 class="blog-title-bold">THE BLOG</h1>
-            <p>
-              Where I document my journey through the wonderful (and
-              occasionally terrifying) world of development. Expect tutorials,
-              career insights, and the occasional debugging horror story.
-            </p>
-          </div>
-        </section>
+        <div class="blog-status" aria-live="polite">
+          <span id="blog-result-count">Fetching articles</span>
+          <span>Newest first</span>
+        </div>
 
-        <section class="blog-section">
-          <div class="blog-container"></div>
-          <div class="pagination-container"></div>
-        </section>
-      </div>
-
-      <footer class="footer-section">
-        <div class="footer-container">
-          <div class="footer-logo">
-            <a href="/">
-              <img
-                src="./assets/images/logoWhite2.webp"
-                alt="Rodrigo De Lascio logo"
-              />
-            </a>
-          </div>
-
-          <div class="footer-links-container">
-            <div class="footer-socials">
-              <a
-                href="https://github.com/rodrigodelascio/"
-                aria-label="Follow this link to open Rodrigo's GitHub on a new tab"
-                target="_blank"
-              >
-                <i class="fa-brands fa-github"></i>
-              </a>
-              <a
-                href="https://www.linkedin.com/in/rodrigo-de-lascio/"
-                aria-label="Follow this link to open Rodrigo's LinkedIn on a new tab"
-                target="_blank"
-              >
-                <i class="fa-brands fa-linkedin"></i>
-              </a>
-            </div>
-
-            <div class="footer-links">
-              <a href="./work.html"> Work </a>
-              <a href="./blog.html"> Blog </a>
-              <a href="./about.html"> About </a>
-            </div>
-
-            <div class="footer-mail">
-              <a
-                href="mailto:rodrigodelascio@gmail.com?subject=Let's%20Create%20Something%20Together%20%7C%20Developer%20Opportunity&body=Hi%20Rodrigo%2C%0A%0AI%20came%20across%20your%20portfolio%20and%20was%20impressed%20by%20your%20skills%20and%20transition%20into%20full-stack%20development.%20%0A%0AI'd%20like%20to%20discuss%20a%20potential%20opportunity%20with%20you.%20Here's%20a%20bit%20about%20what%20we're%20looking%20for%3A%0A%0A%5BFill%20in%20details%20here%5D%0A%0AWould%20you%20be%20available%20for%20a%20chat%20in%20the%20coming%20days%3F%0A%0ALooking%20forward%20to%20hearing%20from%20you!%0A%0A%5BName%5D%0A%5BContact%20details%5D"
-              >
-                rodrigodelascio@gmail.com
-              </a>
-            </div>
-          </div>
-
-          <div class="footer-copyright-container">
-            <p class="footer-copyright-text">
-              ©
-              <script>
-                document.write(new Date().getFullYear());
-              </script>
-              Rodrigo De Lascio. All rights reserved.
-            </p>
-          </div>
-
-          <div class="footer-back-to-top">
-            <a href="#top"
-              ><img
-                src="./assets/images/supermanIcon.webp"
-                alt="icon of superman"
-                class="superman-icon"
-              /><span class="back-to-top-text">Back to the top</span></a
-            >
+        <div class="blog-container">
+          <div class="blog-loading">
+            <span>Checking the filing cabinet</span>
+            <i></i>
           </div>
         </div>
-      </footer>
-    </div>
 
-    <script src="./blog.js"></script>
+        <div class="pagination-container" aria-label="Article pagination"></div>
+      </section>
+    </main>
+
+    <footer class="footer-section"></footer>
   </body>
 </html>
