@@ -9,425 +9,293 @@
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13/dist/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13/dist/SplitText.min.js"></script>
-    <script defer src="./script.js"></script>
     <script defer src="./interior.js"></script>
-    <script
-      src="https://kit.fontawesome.com/057d435fa0.js"
-      crossorigin="anonymous"
-    ></script>
+    <script defer src="./about.js"></script>
 
     <title>About Me | Rodrigo De Lascio | Full-Stack Developer</title>
     <meta
       name="description"
-      content="Discover the journey of Rodrigo De Lascio, a full-stack developer based in Walton-on-Thames, UK. From localization to coding, learn about his unique path and skills."
+      content="Meet Rodrigo De Lascio, a full-stack developer based in Walton-on-Thames, UK, who took the scenic route into technology."
     />
   </head>
 
   <body>
-    <a name="top"></a>
-    <div class="background-container">
-      <div class="page-container">
-        <div class="off-screen-menu">
-          <div class="off-screen-menu-wrapper">
-            <a href="/"> Home </a>
-            <a href="./work.html"> Work </a>
-            <a href="./blog.html"> Blog </a>
-            <a href="./about.html"> About </a>
-          </div>
+    <nav class="nav-container" aria-hidden="true"></nav>
+
+    <main class="about-page-main">
+      <section class="about-hero-section" aria-labelledby="about-title">
+        <div class="about-hero-meta">
+          <span>03 / ABOUT</span>
+          <span>Walton-on-Thames, UK</span>
         </div>
 
-        <nav class="nav-container">
-          <div class="navbar">
-            <div class="nav-socials">
-              <a
-                href="https://github.com/rodrigodelascio/"
-                aria-label="Follow this link to open Rodrigo's GitHub on a new tab"
-                target="_blank"
-              >
-                <i class="fa-brands fa-github"></i>
-              </a>
-              <a
-                href="https://www.linkedin.com/in/rodrigo-de-lascio/"
-                aria-label="Follow this link to open Rodrigo's LinkedIn on a new tab"
-                target="_blank"
-              >
-                <i class="fa-brands fa-linkedin"></i>
-              </a>
-            </div>
-            <div class="nav-logo">
-              <a href="/">
-                <div class="logo-wrapper">
-                  <img
-                    src="./assets/images/logoWhite2.webp"
-                    alt="Rodrigo De Lascio logo"
-                  />
-                </div>
-              </a>
-            </div>
+        <div class="about-hero-copy">
+          <p class="about-eyebrow">Full-stack developer, eventually</p>
+          <h1 id="about-title" class="about-title-bold">
+            <span class="about-title-line">I TOOK THE</span>
+            <span class="about-title-line about-title-accent">SCENIC ROUTE.</span>
+          </h1>
+          <p class="about-hero-intro">
+            Journalism, civil engineering, localization, content, design, and
+            now code. It sounds less chaotic when I call it range.
+          </p>
+        </div>
 
-            <div class="nav-links-container">
-              <div class="nav-links">
-                <a href="./work.html"> Work </a>
-                <a href="./blog.html"> Blog </a>
-                <a href="./about.html"> About </a>
-                <div></div>
-              </div>
-              <a
-                href="mailto:rodrigodelascio@gmail.com?subject=Let's%20Create%20Something%20Together%20%7C%20Developer%20Opportunity&body=Hi%20Rodrigo%2C%0A%0AI%20came%20across%20your%20portfolio%20and%20was%20impressed%20by%20your%20skills%20and%20transition%20into%20full-stack%20development.%20%0A%0AI'd%20like%20to%20discuss%20a%20potential%20opportunity%20with%20you.%20Here's%20a%20bit%20about%20what%20we're%20looking%20for%3A%0A%0A%5BFill%20in%20details%20here%5D%0A%0AWould%20you%20be%20available%20for%20a%20chat%20in%20the%20coming%20days%3F%0A%0ALooking%20forward%20to%20hearing%20from%20you!%0A%0A%5BName%5D%0A%5BContact%20details%5D"
-                class="nav-button"
-              >
-                Get in Touch
-              </a>
-            </div>
-            <div class="hamburger-menu">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-          </div>
-        </nav>
+        <div class="about-portrait-frame">
+          <div class="portrait-colour portrait-colour-coral"></div>
+          <div class="portrait-colour portrait-colour-acid"></div>
+          <img src="./assets/images/rod.webp" alt="Rodrigo smiling" />
+          <span class="portrait-note portrait-note-left">A normal amount of careers</span>
+          <span class="portrait-note portrait-note-right">One suspiciously large coffee</span>
+        </div>
 
-        <section class="about-hero-section">
-          <div class="about-title-container">
-            <h1 class="about-title-bold">ABOUT ME</h1>
+        <a class="about-scroll-cue" href="#the-human">
+          <span>Keep going</span>
+          <i>↓</i>
+        </a>
+      </section>
 
-            <div class="about-intro">
-              <div class="about-image">
-                <img src="./assets/images/rod.webp" alt="Rodrigo De Lascio" />
-              </div>
-              <div class="about-text">
-                <h2>The Human Behind the Code</h2>
-                <p>
-                  I'm a full-stack developer based in Walton-on-Thames, UK, who
-                  took the scenic route to tech. After successful careers in
-                  localization, content management, and graphic design (yes,
-                  I've been busy), I finally admitted to myself that I'm
-                  happiest when I'm making computers do my bidding.
-                </p>
-                <p>
-                  Currently pursuing a BSc in Computing while working as a
-                  Localization Specialist, my journey through multiple
-                  industries means I can translate between tech jargon and human
-                  language almost as well as I translate between Portuguese and
-                  English.
-                </p>
-                <p>
-                  When I'm not trying to understand why my code works (or more
-                  frequently, why it doesn't), you'll find me cooking elaborate
-                  meals, watching football, or explaining to my family why I
-                  need "just five more minutes" to fix this one bug.
-                </p>
-                <p>
-                  I'm a career changer with skills for problem-solving and a
-                  commitment to continuous learning. My unique background gives
-                  me a different perspective on development challenges. I don't
-                  just build features, I build experiences that make sense to
-                  actual humans.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="about-journey-section">
-          <div class="about-journey-section-container">
-            <div class="journey-section">
-              <div class="journey-card">
-                <div class="journey-icon">
-                  <i class="fa-solid fa-rocket"></i>
-                </div>
-                <h3>The Past</h3>
-                <p>
-                  My computing adventure began back in 2000 with a Level III
-                  Certificate in Computing where I learned Visual Basic and
-                  Delphi. Life had other plans though, and I found myself
-                  completing degrees in Journalism and Civil Engineering.
-                </p>
-                <p>
-                  After working in content creation and localization, I
-                  rediscovered my love for computing and decided it was time for
-                  a change. The bootcamp was my first step back, and now there's
-                  no stopping me.
-                </p>
-                <p>
-                  Those weren't wasted years though, they equipped me with
-                  analytical thinking, stakeholder management skills, and the
-                  ability to explain complex concepts to non-technical people.
-                </p>
-              </div>
-              <div class="journey-card">
-                <div class="journey-icon">
-                  <i class="fa-solid fa-code"></i>
-                </div>
-                <h3>The Present</h3>
-                <p>
-                  Currently juggling my BSc in Computing studies with
-                  professional work, I'm fully immersed in the world of
-                  development. My tech stack includes Next.js, React, Node.js,
-                  and I'm adding Java to deepen my programming fundamentals.
-                </p>
-                <p>
-                  I'm passionate about creating clean, user-friendly experiences
-                  and writing code that doesn't make other developers want to
-                  quit their jobs.
-                </p>
-                <p>
-                  My transition might be taking longer than I'd like (turns out
-                  learning to code while working full-time is
-                  <em>slightly</em> challenging), but I'm more committed than
-                  ever to becoming a professional developer.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="skills-section">
-          <h2>What I Bring to the Table</h2>
-          <div class="skills-container">
-            <div class="skill-category">
-              <h3>Development Skills</h3>
-              <div class="skill-list">
-                <span class="skill-item">Next.js</span>
-                <span class="skill-item">React</span>
-                <span class="skill-item">Node.js</span>
-                <span class="skill-item">JavaScript</span>
-                <span class="skill-item">TypeScript</span>
-                <span class="skill-item">HTML</span>
-                <span class="skill-item">CSS</span>
-                <span class="skill-item">Tailwind</span>
-                <span class="skill-item">SQL</span>
-                <span class="skill-item">NoSQL</span>
-                <span class="skill-item">Java (in progress)</span>
-              </div>
-            </div>
-            <div class="skill-category">
-              <h3>Design Skills</h3>
-              <div class="skill-list">
-                <span class="skill-item">Web Design</span>
-                <span class="skill-item">Mobile Design</span>
-                <span class="skill-item">UI/UX Design</span>
-                <span class="skill-item">Wireframing</span>
-                <span class="skill-item">Prototyping</span>
-                <span class="skill-item">Figma</span>
-                <span class="skill-item">Landing Pages</span>
-                <span class="skill-item">E-Commerce</span>
-                <span class="skill-item">Responsive Design</span>
-              </div>
-            </div>
-            <div class="skill-category">
-              <h3>Professional Skills</h3>
-              <div class="skill-list">
-                <span class="skill-item">Problem Solving</span>
-                <span class="skill-item">Analytical Thinking</span>
-                <span class="skill-item">Project Management</span>
-                <span class="skill-item">Content Strategy</span>
-                <span class="skill-item">Communication</span>
-                <span class="skill-item">Time Management</span>
-                <span class="skill-item">Adaptability</span>
-                <span class="skill-item">Teamwork</span>
-                <span class="skill-item">Stakeholder Management</span>
-              </div>
-            </div>
-            <div class="skill-category">
-              <h3>Languages & Tools</h3>
-              <div class="skill-list">
-                <span class="skill-item">English (Fluent)</span>
-                <span class="skill-item">Portuguese (Native)</span>
-                <span class="skill-item">VS Code</span>
-                <span class="skill-item">GitHub</span>
-                <span class="skill-item">Notion</span>
-                <span class="skill-item">Jira</span>
-                <span class="skill-item">Adobe Creative Suite</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="fun-facts-section">
-          <div class="fun-facts">
-            <h2>The Slightly Less Professional Bits</h2>
-            <div class="facts-grid">
-              <div class="fact-item">
-                <div class="fact-icon"><i class="fa-solid fa-gamepad"></i></div>
-                <div class="fact-content">
-                  <h3>Gamer at Heart</h3>
-                  <p>
-                    I've been gaming since the Atari days. And yes, I will bore
-                    you with stories about how "games were better back then" if
-                    given the chance.
-                  </p>
-                </div>
-              </div>
-              <div class="fact-item">
-                <div class="fact-icon"><i class="fa-solid fa-futbol"></i></div>
-                <div class="fact-content">
-                  <h3>Football Fan</h3>
-                  <p>
-                    I'm passionate about football and will defend its position
-                    as the world's greatest sport with unreasonable enthusiasm.
-                  </p>
-                </div>
-              </div>
-              <div class="fact-item">
-                <div class="fact-icon">
-                  <i class="fa-solid fa-kitchen-set"></i>
-                </div>
-                <div class="fact-content">
-                  <h3>Kitchen Experimenter</h3>
-                  <p>
-                    I approach cooking like programming... lots of
-                    experimentation, occasional disasters, and sometimes
-                    something amazing happens.
-                  </p>
-                </div>
-              </div>
-              <div class="fact-item">
-                <div class="fact-icon"><i class="fa-solid fa-film"></i></div>
-                <div class="fact-content">
-                  <h3>Series Binger</h3>
-                  <p>
-                    I've watched an embarrassing number of TV series and films.
-                    My Netflix algorithm is confused about who I am as a person.
-                  </p>
-                </div>
-              </div>
-              <div class="fact-item">
-                <div class="fact-icon">
-                  <i class="fa-solid fa-graduation-cap"></i>
-                </div>
-                <div class="fact-content">
-                  <h3>Perpetual Learner</h3>
-                  <p>
-                    I'm always learning something new. Currently, it's Java.
-                    Next month? Who knows, possibly underwater basket weaving.
-                  </p>
-                </div>
-              </div>
-              <div class="fact-item">
-                <div class="fact-icon">
-                  <i class="fa-solid fa-earth-americas"></i>
-                </div>
-                <div class="fact-content">
-                  <h3>Brazilian-Born Brit</h3>
-                  <p>
-                    Born in Brazil, now a proud UK resident. I've blended my
-                    Brazilian warmth with British politeness into a confusing
-                    but charming mix.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="cta-and-quote-section">
-          <div class="cta-section">
-            <h2>Like what you see?</h2>
+      <section class="about-human" id="the-human">
+        <div class="about-section-label">
+          <span>01</span>
+          <span>The human bit</span>
+        </div>
+        <div class="about-human-copy">
+          <p class="about-human-lead">
+            I am happiest when I am making computers do my bidding.
+            <em>Politely, most of the time.</em>
+          </p>
+          <div class="about-human-columns">
             <p>
-              If you're in need of a developer who's fresh to the field but rich
-              in determination, brings transferable skills from past lives, and
-              promises to only panic about merge conflicts internally (while
-              looking perfectly calm externally), let's connect! I can't promise
-              I'll solve every problem on day one, but I can guarantee I'll
-              Google it with impressive speed.
+              I am a full-stack developer based in Walton-on-Thames who took a
+              few successful detours through localization, content management,
+              graphic design, journalism, and civil engineering before finally
+              admitting that technology was where I wanted to be.
             </p>
-            <div class="cta-buttons">
-              <a
-                href="mailto:rodrigodelascio@gmail.com?subject=Let's%20Create%20Something%20Together!%20|%20Developer%20Opportunity&body=Hi%20Rodrigo,%0A%0AI%20came%20across%20your%20portfolio%20and%20was%20impressed%20by%20your%20skills%20and%20transition%20into%20full-stack%20development.%20%0A%0AI'd%20like%20to%20discuss%20a%20potential%20opportunity%20with%20you.%20Here's%20a%20bit%20about%20what%20we're%20looking%20for:%0A%0A%5BThey%20can%20fill%20in%20details%20here%5D%0A%0AWould%20you%20be%20available%20for%20a%20chat%20in%20the%20coming%20days?%0A%0ALooking%20forward%20to%20hearing%20from%20you!%0A%0A%5BTheir%20name%5D"
-                class="cta-btn cta-primary"
-              >
-                <i class="fa-solid fa-envelope"></i>
-                Let's Work Together
-              </a>
-              <a
-                href="https://www.linkedin.com/in/rodrigo-de-lascio"
-                target="_blank"
-                class="cta-btn cta-secondary"
-              >
-                <i class="fa-brands fa-linkedin"></i>
-                Connect on LinkedIn
-              </a>
-            </div>
-          </div>
-
-          <div class="quote-section">
-            <p class="quote-text">
-              Building digital experiences by day, questioning my life choices
-              while staring at error messages by night
+            <p>
+              I am currently pursuing a BSc in Computing while working as a
+              Localization Specialist. My background means I can translate
+              between technical jargon and human language almost as well as I
+              translate between Portuguese and English.
             </p>
-            <p class="quote-author">
-              - Rodrigo De Lascio, while debugging at 2 AM
+            <p>
+              I care about clean, useful experiences and code that does not make
+              the next developer consider a completely different career. I
+              bring analytical thinking, stakeholder experience, design sense,
+              and a healthy willingness to ask why.
             </p>
-          </div>
-        </section>
-      </div>
-
-      <footer class="footer-section">
-        <div class="footer-container">
-          <div class="footer-logo">
-            <a href="/">
-              <img
-                src="./assets/images/logoWhite2.webp"
-                alt="Rodrigo De Lascio logo"
-              />
-            </a>
-          </div>
-
-          <div class="footer-links-container">
-            <div class="footer-socials">
-              <a
-                href="https://github.com/rodrigodelascio/"
-                aria-label="Follow this link to open Rodrigo's GitHub on a new tab"
-                target="_blank"
-              >
-                <i class="fa-brands fa-github"></i>
-              </a>
-              <a
-                href="https://www.linkedin.com/in/rodrigo-de-lascio/"
-                aria-label="Follow this link to open Rodrigo's LinkedIn on a new tab"
-                target="_blank"
-              >
-                <i class="fa-brands fa-linkedin"></i>
-              </a>
-            </div>
-
-            <div class="footer-links">
-              <a href="./work.html"> Work </a>
-              <a href="./blog.html"> Blog </a>
-              <a href="./about.html"> About </a>
-            </div>
-
-            <div class="footer-mail">
-              <a
-                href="mailto:rodrigodelascio@gmail.com?subject=Let's%20Create%20Something%20Together%20%7C%20Developer%20Opportunity&body=Hi%20Rodrigo%2C%0A%0AI%20came%20across%20your%20portfolio%20and%20was%20impressed%20by%20your%20skills%20and%20transition%20into%20full-stack%20development.%20%0A%0AI'd%20like%20to%20discuss%20a%20potential%20opportunity%20with%20you.%20Here's%20a%20bit%20about%20what%20we're%20looking%20for%3A%0A%0A%5BFill%20in%20details%20here%5D%0A%0AWould%20you%20be%20available%20for%20a%20chat%20in%20the%20coming%20days%3F%0A%0ALooking%20forward%20to%20hearing%20from%20you!%0A%0A%5BName%5D%0A%5BContact%20details%5D"
-              >
-                rodrigodelascio@gmail.com
-              </a>
-            </div>
-          </div>
-
-          <div class="footer-copyright-container">
-            <p class="footer-copyright-text">
-              ©
-              <script>
-                document.write(new Date().getFullYear());
-              </script>
-              Rodrigo De Lascio. All rights reserved.
+            <p>
+              Away from the screen, I cook elaborate meals, watch football,
+              play games, binge an unreasonable number of series, and tell my
+              family I only need five more minutes to fix one tiny bug.
             </p>
-          </div>
-
-          <div class="footer-back-to-top">
-            <a href="#top"
-              ><img
-                src="./assets/images/supermanIcon.webp"
-                alt="icon of superman"
-                class="superman-icon"
-              /><span class="back-to-top-text">Back to the top</span></a
-            >
           </div>
         </div>
-      </footer>
-    </div>
+      </section>
+
+      <section class="about-route" aria-labelledby="route-title">
+        <div class="route-sticky">
+          <div class="about-section-label">
+            <span>02</span>
+            <span>The scenic route</span>
+          </div>
+          <h2 id="route-title">NOT A STRAIGHT LINE.<br /><span>MUCH MORE USEFUL.</span></h2>
+          <p>Every stop left something useful in the backpack.</p>
+          <div class="route-progress" aria-hidden="true"><i></i></div>
+        </div>
+
+        <div class="route-steps">
+          <article class="route-card" data-route="01">
+            <span class="route-year">2000</span>
+            <div>
+              <p class="route-kicker">The first hello</p>
+              <h3>Visual Basic, Delphi, and a Level III Certificate</h3>
+              <p>
+                My computing adventure started here. Then life opened several
+                unrelated tabs and I forgot which one was playing the music.
+              </p>
+            </div>
+          </article>
+
+          <article class="route-card route-card-coral" data-route="02">
+            <span class="route-year">PLOT TWIST</span>
+            <div>
+              <p class="route-kicker">The useful detours</p>
+              <h3>Journalism, civil engineering, content, and localization</h3>
+              <p>
+                None of it was wasted. I learned to investigate, organise,
+                communicate, manage stakeholders, and explain complicated ideas
+                without making people regret asking.
+              </p>
+            </div>
+          </article>
+
+          <article class="route-card route-card-acid" data-route="03">
+            <span class="route-year">THE RETURN</span>
+            <div>
+              <p class="route-kicker">Back to the keyboard</p>
+              <h3>A bootcamp, a BSc, and no intention of stopping</h3>
+              <p>
+                Rediscovering computing felt less like changing direction and
+                more like finally returning to the right road.
+              </p>
+            </div>
+          </article>
+
+          <article class="route-card route-card-paper" data-route="04">
+            <span class="route-year">NOW</span>
+            <div>
+              <p class="route-kicker">Currently juggling</p>
+              <h3>Professional work, university, and production-ready builds</h3>
+              <p>
+                I work across React, Next.js, Node.js, TypeScript, databases,
+                and Java, while making interfaces that actual humans can use.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="about-skills" aria-labelledby="skills-title">
+        <div class="about-section-label">
+          <span>03</span>
+          <span>What is in the toolbox</span>
+        </div>
+        <div class="skills-heading-row">
+          <h2 id="skills-title">USEFUL THINGS<br />I HAVE PICKED UP.</h2>
+          <p>Tap a category. I promise there is no personality test at the end.</p>
+        </div>
+
+        <div class="skills-console">
+          <div class="skills-tabs" role="tablist" aria-label="Skill categories">
+            <button class="skill-tab is-active" role="tab" aria-selected="true" data-skill-target="development">
+              <span>01</span>Development
+            </button>
+            <button class="skill-tab" role="tab" aria-selected="false" data-skill-target="design">
+              <span>02</span>Design
+            </button>
+            <button class="skill-tab" role="tab" aria-selected="false" data-skill-target="professional">
+              <span>03</span>Professional
+            </button>
+            <button class="skill-tab" role="tab" aria-selected="false" data-skill-target="tools">
+              <span>04</span>Languages &amp; tools
+            </button>
+          </div>
+
+          <div class="skills-panels">
+            <div class="skill-panel is-active" role="tabpanel" data-skill-panel="development">
+              <span>Next.js</span><span>React</span><span>Node.js</span>
+              <span>JavaScript</span><span>TypeScript</span><span>PHP</span>
+              <span>HTML</span><span>CSS</span><span>Tailwind</span>
+              <span>GSAP</span><span>ScrollTrigger</span><span>ScrollSmoother</span>
+              <span>SplitText</span><span>WebGL</span><span>REST APIs</span>
+              <span>Firebase</span><span>SQL</span><span>NoSQL</span>
+              <span>Java, loading...</span>
+            </div>
+            <div class="skill-panel" role="tabpanel" data-skill-panel="design" hidden>
+              <span>Web design</span><span>Mobile design</span><span>UI and UX</span>
+              <span>Wireframing</span><span>Prototyping</span><span>Figma</span>
+              <span>Landing pages</span><span>E-commerce</span><span>Responsive design</span>
+            </div>
+            <div class="skill-panel" role="tabpanel" data-skill-panel="professional" hidden>
+              <span>Problem solving</span><span>Analytical thinking</span>
+              <span>Project management</span><span>Content strategy</span>
+              <span>Communication</span><span>Time management</span>
+              <span>Adaptability</span><span>Teamwork</span><span>Stakeholder management</span>
+            </div>
+            <div class="skill-panel" role="tabpanel" data-skill-panel="tools" hidden>
+              <span>English, fluent</span><span>Portuguese, native</span>
+              <span>VS Code</span><span>GitHub</span><span>Notion</span>
+              <span>Jira</span><span>Adobe Creative Suite</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="about-off-duty" aria-labelledby="off-duty-title">
+        <div class="about-section-label">
+          <span>04</span>
+          <span>Human after all</span>
+        </div>
+        <h2 id="off-duty-title">WHEN I AM NOT<br /><span>ARGUING WITH CODE.</span></h2>
+
+        <div
+          class="fact-deck"
+          role="region"
+          aria-label="Personal interests"
+          tabindex="0"
+        >
+          <article class="fact-card fact-card-acid">
+            <span class="fact-symbol">01</span>
+            <h3>Gamer at heart</h3>
+            <p>
+              Gaming since the Atari days. Yes, I can explain at length why
+              games were better back then. No, nobody has requested the lecture.
+            </p>
+          </article>
+          <article class="fact-card">
+            <span class="fact-symbol">02</span>
+            <h3>Football fan</h3>
+            <p>
+              I will defend its position as the world's greatest sport with a
+              completely reasonable and measured level of enthusiasm.
+            </p>
+          </article>
+          <article class="fact-card fact-card-coral">
+            <span class="fact-symbol">03</span>
+            <h3>Kitchen experimenter</h3>
+            <p>
+              Cooking is basically programming with more garlic. There are
+              experiments, occasional failures, and very satisfying releases.
+            </p>
+          </article>
+          <article class="fact-card fact-card-paper">
+            <span class="fact-symbol">04</span>
+            <h3>Series binger</h3>
+            <p>
+              I have watched enough films and series to make every streaming
+              algorithm quietly give up on understanding me.
+            </p>
+          </article>
+          <article class="fact-card">
+            <span class="fact-symbol">05</span>
+            <h3>Perpetual learner</h3>
+            <p>
+              Currently Java. Next month, who knows. Possibly underwater basket
+              weaving, if the documentation is good.
+            </p>
+          </article>
+          <article class="fact-card fact-card-paper">
+            <span class="fact-symbol">06</span>
+            <h3>Brazilian-born Brit</h3>
+            <p>
+              Brazilian warmth mixed with British politeness. The result is
+              friendly, confusing, and very likely to offer you coffee.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="about-final">
+        <div class="about-final-heading">
+          <span>05 / AFTER HOURS</span>
+          <span>Unsolicited wisdom</span>
+        </div>
+        <div class="about-final-quote-wrap">
+          <span class="about-final-mark about-final-mark-open" aria-hidden="true">“</span>
+          <p class="about-final-quote">
+            Building digital experiences by day, questioning my life choices
+            while staring at error messages by night.
+          </p>
+          <span class="about-final-mark about-final-mark-close" aria-hidden="true">”</span>
+        </div>
+        <div class="about-final-meta">
+          <span>Rodrigo De Lascio</span>
+          <span>Probably debugging at 2 AM</span>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer-section"></footer>
   </body>
 </html>

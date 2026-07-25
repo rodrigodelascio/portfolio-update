@@ -240,7 +240,7 @@
     scope.dataset && (scope.dataset.motionReady = "true")
 
     const hero = scope.querySelector?.(
-      ".projects-title-bold, .blog-title-bold, .about-title-bold"
+      ".projects-title-bold"
     )
     if (hero && !hero.dataset.animated) {
       hero.dataset.animated = "true"
@@ -344,8 +344,40 @@
 
     const points = []
     const lifetime = 520
+    const coral = [255, 92, 53]
+    const paper = [238, 234, 225]
+    const trailColour = [...coral]
+    let trailTarget = coral
     let lastPoint
     let frame
+
+    const isCoralSurface = (x, y) => {
+      const visited = new Set()
+      for (const element of document.elementsFromPoint(x, y)) {
+        let node = element
+        while (node && node !== document.documentElement) {
+          if (visited.has(node)) break
+          visited.add(node)
+          if (node.dataset?.cursorContrast === "paper") return true
+          const match = getComputedStyle(node).backgroundColor.match(
+            /rgba?\(([\d.]+),\s*([\d.]+),\s*([\d.]+)(?:,\s*([\d.]+))?/
+          )
+          if (match) {
+            const alpha = match[4] === undefined ? 1 : Number(match[4])
+            if (alpha > .08) {
+              const distance = Math.hypot(
+                Number(match[1]) - coral[0],
+                Number(match[2]) - coral[1],
+                Number(match[3]) - coral[2]
+              )
+              return distance < 45
+            }
+          }
+          node = node.parentElement
+        }
+      }
+      return false
+    }
 
     const resize = () => {
       const ratio = Math.min(window.devicePixelRatio || 1, 2)
@@ -359,6 +391,10 @@
       while (points.length && time - points[0].time > lifetime) points.shift()
       context.lineCap = "round"
       context.lineJoin = "round"
+      trailColour.forEach((value, index) => {
+        trailColour[index] += (trailTarget[index] - value) * .14
+      })
+      const colour = trailColour.map(value => Math.round(value)).join(", ")
 
       for (let index = 1; index < points.length; index += 1) {
         const point = points[index]
@@ -367,7 +403,7 @@
         context.beginPath()
         context.moveTo(previous.x, previous.y)
         context.lineTo(point.x, point.y)
-        context.strokeStyle = `rgba(255, 92, 53, ${life * .64})`
+        context.strokeStyle = `rgba(${colour}, ${life * .64})`
         context.lineWidth = .5 + life * 1.7
         context.stroke()
       }
@@ -376,6 +412,10 @@
     }
 
     window.addEventListener("pointermove", event => {
+      const onCoral = isCoralSurface(event.clientX, event.clientY)
+      trailTarget = onCoral ? paper : coral
+      document.body.classList.toggle("cursor-on-coral", onCoral)
+
       const nextPoint = {
         x: event.clientX,
         y: event.clientY,
@@ -405,6 +445,8 @@
 
     document.addEventListener("mouseleave", () => {
       lastPoint = undefined
+      trailTarget = coral
+      document.body.classList.remove("cursor-on-coral")
     })
     window.addEventListener("resize", resize)
     window.addEventListener("pagehide", () => cancelAnimationFrame(frame), {
