@@ -112,10 +112,10 @@
 }
 
 .writing-title strong {
-  color: transparent;
+  color: var(--writing-acid);
   font-size: 0.74em;
   font-weight: inherit;
-  -webkit-text-stroke: 1.5px var(--writing-paper);
+  -webkit-text-stroke: 0 transparent;
 }
 
 .writing-hero-bottom {
