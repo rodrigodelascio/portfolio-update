@@ -13,7 +13,7 @@
         "A database-driven application for browsing, exploring, importing, and managing television series data.",
       image: "./assets/images/rodflixSeriesMockup.webp",
       imageAlt: "RodFlix series page displayed on a desktop computer",
-      accent: "lavender",
+      accent: "rodflix",
       tags: ["PHP", "JavaScript", "SQL", "TVmaze API"],
       links: [
         { label: "Live site", url: "https://rodflix.infinityfreeapp.com/", external: true },
@@ -30,7 +30,7 @@
         "A complete website for a local cleaning company, with a modern interface, responsive layout, and a delightfully spotless user experience.",
       image: "./assets/images/letItShineOnImac.webp",
       imageAlt: "Let It Shine website displayed on an iMac",
-      accent: "amber",
+      accent: "shine",
       tags: ["React", "React Hooks", "React Router"],
       links: [
         { label: "Live site", url: "https://let-it-shine.co.uk/", external: true },
@@ -47,7 +47,7 @@
         "A playful creative-agency concept built as a responsive frontend study, with strong art direction and mobile-first behaviour.",
       image: "./assets/images/sunnysideOnMacbook.webp",
       imageAlt: "Sunnyside creative agency website displayed on a MacBook",
-      accent: "cyan",
+      accent: "sunnyside",
       tags: ["HTML", "CSS", "JavaScript"],
       links: [
         { label: "Live site", url: "https://rodrigodelascio.github.io/Sunnyside-Agency-Website/", external: true },
@@ -63,7 +63,7 @@
         "A weather application combining live forecasts, location search, city data, and contextual photography.",
       image: "./assets/images/rodweatherIpadMockup.webp",
       imageAlt: "RodWeather application displayed on an iPad",
-      accent: "coral",
+      accent: "rodweather",
       tags: ["JavaScript", "OpenWeather API", "GeoDB API", "Unsplash API"],
       links: [
         { label: "Live site", url: "https://rodrigodelascio.github.io/RodWeather/", external: true },

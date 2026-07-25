@@ -8,6 +8,10 @@
   --line: rgba(238, 234, 225, 0.18);
   --acid: #d8ff3e;
   --coral: #ff5c35;
+  --project-rodflix: #ff8b1c;
+  --project-shine: #008c8c;
+  --project-sunnyside: #3dbeff;
+  --project-rodweather: #29282d;
   --display: "Syne", sans-serif;
   --body: "Manrope", sans-serif;
   --mono: "DM Mono", monospace;
@@ -785,18 +789,25 @@ main {
   position: relative;
   align-self: stretch;
   min-height: 0;
-  background: #a8b0ff;
+  background: var(--paper);
   display: grid;
   place-items: center;
   overflow: hidden;
 }
-.project-visual-light {
-  background: #f6df82;
+
+.project-visual-rodflix {
+  background: var(--project-rodflix);
 }
-.project-visual-blue {
-  background: #6ed4dd;
+
+.project-visual-shine {
+  background: var(--project-shine);
 }
-.project-visual-blue .project-image img {
+
+.project-visual-sunnyside {
+  background: var(--project-sunnyside);
+}
+
+.project-visual-sunnyside .project-image img {
   -webkit-mask-image: linear-gradient(
     to bottom,
     #000 0%,
@@ -814,8 +825,14 @@ main {
     transparent 100%
   );
 }
-.project-visual-orange {
-  background: var(--coral);
+
+.project-visual-rodweather {
+  background: var(--project-rodweather);
+}
+
+.project-visual-rodweather .project-arrow {
+  background: var(--paper);
+  color: var(--ink);
 }
 .project-image {
   width: 83%;
