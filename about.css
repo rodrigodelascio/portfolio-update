@@ -44,6 +44,82 @@
   isolation: isolate;
 }
 
+.about-entry {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: none;
+  overflow: hidden;
+  color: var(--about-ink);
+  pointer-events: none;
+}
+
+.about-entry-shutters {
+  position: absolute;
+  inset: 0;
+}
+
+.about-entry-shutters i {
+  position: absolute;
+  top: -2%;
+  bottom: -2%;
+  width: 20.2%;
+  background: var(--about-coral);
+  will-change: transform;
+}
+
+.about-entry-shutters i::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: clamp(0.8rem, 0.8vw, 1.4rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--about-acid);
+  transform: translateX(-50%);
+}
+
+.about-entry-shutters i:nth-child(odd)::after {
+  bottom: clamp(2rem, 4vw, 6rem);
+}
+
+.about-entry-shutters i:nth-child(even)::after {
+  top: clamp(2rem, 4vw, 6rem);
+}
+
+.about-entry-shutters i:nth-child(1) {
+  left: 0;
+}
+
+.about-entry-shutters i:nth-child(2) {
+  left: 20%;
+}
+
+.about-entry-shutters i:nth-child(3) {
+  left: 40%;
+}
+
+.about-entry-shutters i:nth-child(4) {
+  left: 60%;
+}
+
+.about-entry-shutters i:nth-child(5) {
+  left: 80%;
+}
+
+.about-entry-index {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  top: 50%;
+  padding: 0.9rem 1.2rem;
+  border: 1px solid rgba(8, 9, 11, 0.42);
+  border-radius: 999px;
+  font: 600 0.85rem/1 var(--ix-mono);
+  letter-spacing: 0.12em;
+  transform: translate(-50%, -50%);
+}
+
 .about-hero-meta {
   grid-column: 1 / -1;
   display: flex;
@@ -156,6 +232,33 @@
     rgba(0, 0, 0, 0.82) 86%,
     transparent 100%
   );
+}
+
+.about-portrait-frame .portrait-ghost {
+  z-index: 2;
+  opacity: 0;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.about-portrait-frame .portrait-ghost-coral {
+  filter:
+    saturate(2.6)
+    sepia(1)
+    hue-rotate(320deg)
+    contrast(1.15);
+}
+
+.about-portrait-frame .portrait-ghost-acid {
+  filter:
+    saturate(2.8)
+    sepia(1)
+    hue-rotate(35deg)
+    contrast(1.15);
+}
+
+.about-portrait-frame .portrait-main {
+  z-index: 3;
 }
 
 .portrait-colour {
@@ -676,6 +779,12 @@
   }
 }
 
+@media (min-width: 901px) and (max-height: 800px) {
+  .about-portrait-frame {
+    top: 1.5vh;
+  }
+}
+
 @media (max-width: 900px) {
   .about-hero-section {
     min-height: auto;
@@ -695,7 +804,7 @@
   .about-portrait-frame {
     width: min(70rem, 100%);
     height: min(76rem, 76svh);
-    justify-self: end;
+    justify-self: center;
   }
 
   .about-human,

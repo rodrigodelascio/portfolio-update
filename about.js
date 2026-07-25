@@ -63,30 +63,101 @@
 
     gsap.registerPlugin(ScrollTrigger, SplitText)
 
-    const title = new SplitText(".about-title-bold", { type: "chars" })
-    gsap.from(title.chars, {
-      yPercent: 120,
-      opacity: 0,
-      duration: 1.15,
-      stagger: 0.018,
-      ease: "power4.out"
+    const entry = gsap.timeline()
+    gsap.set(".about-entry", { display: "block", opacity: 1 })
+    gsap.set(".about-entry-shutters i", { yPercent: 0 })
+    gsap.set(".about-entry-index", { opacity: 1, scale: 1 })
+    gsap.set(".about-title-line:first-child", {
+      x: -48,
+      clipPath: "inset(0 100% 0 0)"
     })
-
-    gsap.from(".about-portrait-frame", {
-      clipPath: "inset(100% 0 0 0)",
-      duration: 1.25,
-      delay: 0.2,
-      ease: "power4.inOut"
+    gsap.set(".about-title-line:last-child", {
+      x: 48,
+      clipPath: "inset(0 0 0 100%)"
     })
-
-    gsap.from(".about-portrait-frame img", {
-      scale: 1.12,
-      duration: 1.5,
-      delay: 0.25,
-      ease: "power3.out"
+    gsap.set(".about-hero-meta, .about-eyebrow, .about-hero-intro, .about-scroll-cue", {
+      y: 18,
+      opacity: 0
     })
+    gsap.set(".portrait-note", { opacity: 0, scale: 0.75 })
+    gsap.set(".about-portrait-frame", {
+      clipPath: "inset(8% 48% 8% 48%)",
+      scale: 0.94,
+      rotate: 1.5
+    })
+    gsap.set(".portrait-main", { scale: 1.12 })
+    gsap.set(".portrait-ghost-coral", { x: -28, opacity: 0 })
+    gsap.set(".portrait-ghost-acid", { x: 28, opacity: 0 })
 
-    gsap.to(".about-portrait-frame img", {
+    entry
+      .to(".about-entry-index", {
+        opacity: 0,
+        scale: 0.82,
+        duration: 0.25,
+        ease: "power2.in"
+      }, "+=0.16")
+      .to(".about-entry-shutters i", {
+        yPercent: index => index % 2 ? 105 : -105,
+        duration: 1.15,
+        stagger: {
+          each: 0.075,
+          from: "center"
+        },
+        ease: "power4.inOut"
+      })
+      .to(".about-portrait-frame", {
+        clipPath: "inset(0% 0% 0% 0%)",
+        scale: 1,
+        rotate: 0,
+        duration: 1.15,
+        ease: "power4.inOut"
+      }, "-=1.02")
+      .to(".portrait-main", {
+        scale: 1,
+        duration: 1.15,
+        ease: "power3.out"
+      }, "<")
+      .to(".portrait-ghost-coral, .portrait-ghost-acid", {
+        x: 0,
+        opacity: 0.62,
+        duration: 0.28,
+        ease: "power2.out"
+      }, "-=0.82")
+      .to(".portrait-ghost-coral, .portrait-ghost-acid", {
+        x: index => index ? 12 : -12,
+        opacity: 0,
+        duration: 0.42,
+        ease: "power2.out"
+      })
+      .to(".about-title-line:first-child", {
+        x: 0,
+        clipPath: "inset(0 0% 0 0)",
+        duration: 0.85,
+        ease: "power4.out"
+      }, "-=0.72")
+      .to(".about-title-line:last-child", {
+        x: 0,
+        clipPath: "inset(0 0 0 0%)",
+        duration: 0.85,
+        ease: "power4.out"
+      }, "-=0.66")
+      .to(".portrait-note", {
+        opacity: 1,
+        scale: 1,
+        duration: 0.42,
+        stagger: 0.08,
+        ease: "back.out(1.8)"
+      }, "-=0.5")
+      .to(".about-hero-meta, .about-eyebrow, .about-hero-intro, .about-scroll-cue", {
+        y: 0,
+        opacity: 1,
+        duration: 0.65,
+        stagger: 0.07,
+        ease: "power3.out"
+      }, "-=0.55")
+      .set(".about-entry", { display: "none" })
+
+    gsap.to(".about-portrait-frame .portrait-main", {
       yPercent: 8,
       scale: 1.08,
       ease: "none",
