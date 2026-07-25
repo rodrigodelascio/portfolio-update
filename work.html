@@ -9,377 +9,100 @@
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13/dist/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13/dist/SplitText.min.js"></script>
-    <script defer src="./script.js"></script>
     <script defer src="./interior.js"></script>
-    <script
-      src="https://kit.fontawesome.com/057d435fa0.js"
-      crossorigin="anonymous"
-    ></script>
-
+    <script defer src="./work.js"></script>
     <title>Work | Rodrigo De Lascio | Full-Stack Developer</title>
     <meta
       name="description"
-      content="Explore the work of Rodrigo De Lascio, a full-stack developer based in Walton-on-Thames, UK. A selection of projects showcasing applications and how I bring ideas to life through technology."
+      content="Applications, websites, experiments, and case studies by full-stack developer Rodrigo De Lascio."
     />
   </head>
 
   <body>
-    <a name="top"></a>
-    <div class="background-container">
-      <div class="page-container">
-        <div class="off-screen-menu">
-          <div class="off-screen-menu-wrapper">
-            <a href="/"> Home </a>
-            <a href="./work.html"> Work </a>
-            <a href="./blog.html"> Blog </a>
-            <a href="./about.html"> About </a>
-          </div>
+    <nav class="nav-container" aria-hidden="true"></nav>
+
+    <main class="work-page">
+      <section class="work-hero" aria-labelledby="work-title">
+        <div class="work-hero-wipe" aria-hidden="true">
+          <span>SELECTED WORK / 2026</span>
         </div>
 
-        <nav class="nav-container">
-          <div class="navbar">
-            <div class="nav-socials">
-              <a
-                href="https://github.com/rodrigodelascio/"
-                aria-label="Follow this link to open Rodrigo's GitHub on a new tab"
-                target="_blank"
-              >
-                <i class="fa-brands fa-github"></i>
-              </a>
-              <a
-                href="https://www.linkedin.com/in/rodrigo-de-lascio/"
-                aria-label="Follow this link to open Rodrigo's LinkedIn on a new tab"
-                target="_blank"
-              >
-                <i class="fa-brands fa-linkedin"></i>
-              </a>
-            </div>
-            <div class="nav-logo">
-              <a href="/">
-                <div class="logo-wrapper">
-                  <img
-                    src="./assets/images/logoWhite2.webp"
-                    alt="Rodrigo De Lascio logo"
-                  />
-                </div>
-              </a>
-            </div>
-
-            <div class="nav-links-container">
-              <div class="nav-links">
-                <a href="./work.html"> Work </a>
-                <a href="./blog.html"> Blog </a>
-                <a href="./about.html"> About </a>
-                <div></div>
-              </div>
-              <a
-                href="mailto:rodrigodelascio@gmail.com?subject=Let's%20Create%20Something%20Together%20%7C%20Developer%20Opportunity&body=Hi%20Rodrigo%2C%0A%0AI%20came%20across%20your%20portfolio%20and%20was%20impressed%20by%20your%20skills%20and%20transition%20into%20full-stack%20development.%20%0A%0AI'd%20like%20to%20discuss%20a%20potential%20opportunity%20with%20you.%20Here's%20a%20bit%20about%20what%20we're%20looking%20for%3A%0A%0A%5BFill%20in%20details%20here%5D%0A%0AWould%20you%20be%20available%20for%20a%20chat%20in%20the%20coming%20days%3F%0A%0ALooking%20forward%20to%20hearing%20from%20you!%0A%0A%5BName%5D%0A%5BContact%20details%5D"
-                class="nav-button"
-              >
-                Get in Touch
-              </a>
-            </div>
-            <div class="hamburger-menu">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-          </div>
-        </nav>
-
-        <section class="projects-hero-section">
-          <div class="projects-title-container">
-            <h1 class="projects-title-bold">MY PROJECTS</h1>
-            <p>
-              A collection of projects where my code actually behaves as
-              intended. Well, most of the time... when they went from
-              'why-isn't-this-working' to eventually working. Expect clean
-              design, responsive layouts, and only minimal cursing during
-              development
-            </p>
-          </div>
-        </section>
-
-        <section class="work-section">
-          <div class="work-section-container">
-            <div class="gradient-background"></div>
-
-            <div class="projects-grid">
-              <div class="project-card project-highlight">
-                <span class="featured-badge">Featured Project</span>
-
-                <div class="project-image">
-                  <img
-                    src="./assets/images/rodflixSeriesMockup.webp"
-                    alt="rodflix series page on a computer screen"
-                  />
-                </div>
-
-                <div class="project-details">
-                  <h3 class="project-title">RodFlix App</h3>
-                  <p class="project-description">
-                    A full-stack, database-driven web application for browsing,
-                    exploring, and managing television series data.
-                  </p>
-
-                  <div class="project-links-tags-wrapper">
-                    <div class="project-links">
-                      <a
-                        href="https://rodflix.infinityfreeapp.com/"
-                        target="_blank"
-                        class="project-link"
-                      >
-                        <i class="fa-solid fa-up-right-from-square"></i>
-                        View Live
-                      </a>
-
-                      <a
-                        href="https://github.com/rodrigodelascio/rodflix-app"
-                        target="_blank"
-                        class="project-link"
-                      >
-                        <i class="fa-brands fa-github"></i>
-                        View Code
-                      </a>
-
-                      <a href="./work/rodflix.html" class="project-link">
-                        <i class="fa-solid fa-circle-info"></i>
-                        Learn More
-                      </a>
-                    </div>
-
-                    <div class="project-tags">
-                      <span class="project-tag">PHP</span>
-                      <span class="project-tag">JavaScript</span>
-                      <span class="project-tag">SQL</span>
-                      <span class="project-tag">TVmaze API</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="project-card project-highlight">
-                <span class="featured-badge">Featured Project</span>
-
-                <div class="project-image">
-                  <img
-                    src="./assets/images/letItShineOnImac.webp"
-                    alt="Let It Shine website open on a iMac"
-                  />
-                </div>
-
-                <div class="project-details">
-                  <h3 class="project-title">Let It Shine</h3>
-                  <p class="project-description">
-                    A comprehensive website for a local cleaning company,
-                    featuring a modern design, responsive layout, and seamless
-                    user experience.
-                  </p>
-
-                  <div class="project-links-tags-wrapper">
-                    <div class="project-links">
-                      <a
-                        href="https://let-it-shine.co.uk/"
-                        target="_blank"
-                        class="project-link"
-                      >
-                        <i class="fa-solid fa-up-right-from-square"></i>
-                        View Live
-                      </a>
-
-                      <a
-                        href="https://github.com/rodrigodelascio/let-it-shine"
-                        target="_blank"
-                        class="project-link"
-                      >
-                        <i class="fa-brands fa-github"></i>
-                        View Code
-                      </a>
-
-                      <a href="./work/let-it-shine.html" class="project-link">
-                        <i class="fa-solid fa-circle-info"></i>
-                        Learn More
-                      </a>
-                    </div>
-
-                    <div class="project-tags">
-                      <span class="project-tag">React</span>
-                      <span class="project-tag">React Hooks</span>
-                      <span class="project-tag">React Router</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="project-card">
-                <div class="project-image">
-                  <img
-                    src="./assets/images/sunnysideOnMacbook.webp"
-                    alt="Sunnyside website on a MacBook"
-                  />
-                </div>
-                <div class="project-details">
-                  <h3 class="project-title">Sunnyside</h3>
-                  <p class="project-description-2">
-                    Website for Sunnyside Creative Agency, built as part of a
-                    study, using Flexbox and optimized for the most common
-                    screen sizes.
-                  </p>
-
-                  <div class="project-links-tags-wrapper-2">
-                    <div class="project-links">
-                      <a
-                        href="https://rodrigodelascio.github.io/Sunnyside-Agency-Website/"
-                        target="_blank"
-                        class="project-link"
-                      >
-                        <i class="fa-solid fa-up-right-from-square"></i>
-                        View Live
-                      </a>
-
-                      <a
-                        href="https://github.com/rodrigodelascio/Sunnyside-Agency-Website"
-                        target="_blank"
-                        class="project-link"
-                      >
-                        <i class="fa-brands fa-github"></i>
-                        View Code
-                      </a>
-
-                      <a href="./coming-soon.html" class="project-link">
-                        <i class="fa-solid fa-circle-info"></i>
-                        Learn More
-                      </a>
-                    </div>
-
-                    <div class="project-tags">
-                      <span class="project-tag">HTML</span>
-                      <span class="project-tag">CSS</span>
-                      <span class="project-tag">JavaScript</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="project-card">
-                <div class="project-image">
-                  <img
-                    src="./assets/images/rodweatherIpadMockup.webp"
-                    alt="RodWeather app open on an iPad"
-                  />
-                </div>
-                <div class="project-details">
-                  <h3 class="project-title">RodWeather</h3>
-                  <p class="project-description-2">
-                    A weather application that provides real-time forecasts,
-                    location-based weather data, and beautiful visualizations.
-                  </p>
-
-                  <div class="project-links-tags-wrapper-2">
-                    <div class="project-links">
-                      <a
-                        href="https://rodrigodelascio.github.io/RodWeather/"
-                        target="_blank"
-                        class="project-link"
-                      >
-                        <i class="fa-solid fa-up-right-from-square"></i>
-                        View Live
-                      </a>
-
-                      <a
-                        href="https://github.com/rodrigodelascio/Rod-Weather"
-                        target="_blank"
-                        class="project-link"
-                      >
-                        <i class="fa-brands fa-github"></i>
-                        View Code
-                      </a>
-
-                      <a href="./coming-soon.html" class="project-link">
-                        <i class="fa-solid fa-circle-info"></i>
-                        Learn More
-                      </a>
-                    </div>
-
-                    <div class="project-tags">
-                      <span class="project-tag">JavaScript</span>
-                      <span class="project-tag">OpenWeather API</span>
-                      <span class="project-tag">Geo DB Cities API</span>
-                      <span class="project-tag">Unsplash API</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
-
-      <footer class="footer-section">
-        <div class="footer-container">
-          <div class="footer-logo">
-            <a href="/">
-              <img
-                src="./assets/images/logoWhite2.webp"
-                alt="Rodrigo De Lascio logo"
-              />
-            </a>
-          </div>
-
-          <div class="footer-links-container">
-            <div class="footer-socials">
-              <a
-                href="https://github.com/rodrigodelascio/"
-                aria-label="Follow this link to open Rodrigo's GitHub on a new tab"
-                target="_blank"
-              >
-                <i class="fa-brands fa-github"></i>
-              </a>
-              <a
-                href="https://www.linkedin.com/in/rodrigo-de-lascio/"
-                aria-label="Follow this link to open Rodrigo's LinkedIn on a new tab"
-                target="_blank"
-              >
-                <i class="fa-brands fa-linkedin"></i>
-              </a>
-            </div>
-
-            <div class="footer-links">
-              <a href="./work.html"> Work </a>
-              <a href="./blog.html"> Blog </a>
-              <a href="./about.html"> About </a>
-            </div>
-
-            <div class="footer-mail">
-              <a
-                href="mailto:rodrigodelascio@gmail.com?subject=Let's%20Create%20Something%20Together%20%7C%20Developer%20Opportunity&body=Hi%20Rodrigo%2C%0A%0AI%20came%20across%20your%20portfolio%20and%20was%20impressed%20by%20your%20skills%20and%20transition%20into%20full-stack%20development.%20%0A%0AI'd%20like%20to%20discuss%20a%20potential%20opportunity%20with%20you.%20Here's%20a%20bit%20about%20what%20we're%20looking%20for%3A%0A%0A%5BFill%20in%20details%20here%5D%0A%0AWould%20you%20be%20available%20for%20a%20chat%20in%20the%20coming%20days%3F%0A%0ALooking%20forward%20to%20hearing%20from%20you!%0A%0A%5BName%5D%0A%5BContact%20details%5D"
-              >
-                rodrigodelascio@gmail.com
-              </a>
-            </div>
-          </div>
-
-          <div class="footer-copyright-container">
-            <p class="footer-copyright-text">
-              ©
-              <script>
-                document.write(new Date().getFullYear());
-              </script>
-              Rodrigo De Lascio. All rights reserved.
-            </p>
-          </div>
-
-          <div class="footer-back-to-top">
-            <a href="#top"
-              ><img
-                src="./assets/images/supermanIcon.webp"
-                alt="icon of superman"
-                class="superman-icon"
-              /><span class="back-to-top-text">Back to the top</span></a
-            >
-          </div>
+        <div class="work-showreel" aria-label="Selected project previews">
+          <a class="work-showreel-panel panel-rodflix" href="./work/rodflix.html">
+            <img src="./assets/images/rodflixSeriesMockup.webp" alt="">
+            <span><b>01</b> RodFlix</span>
+          </a>
+          <a class="work-showreel-panel panel-shine" href="./work/let-it-shine.html">
+            <img src="./assets/images/letItShineOnImac.webp" alt="">
+            <span><b>02</b> Let It Shine</span>
+          </a>
+          <a
+            class="work-showreel-panel panel-sunny"
+            href="https://rodrigodelascio.github.io/Sunnyside-Agency-Website/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img src="./assets/images/sunnysideOnMacbook.webp" alt="">
+            <span><b>03</b> Sunnyside</span>
+          </a>
+          <a
+            class="work-showreel-panel panel-weather"
+            href="https://rodrigodelascio.github.io/RodWeather/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img src="./assets/images/rodweatherIpadMockup.webp" alt="">
+            <span><b>04</b> RodWeather</span>
+          </a>
         </div>
-      </footer>
-    </div>
+
+        <div class="work-hero-meta">
+          <span>01 / SELECTED WORK</span>
+          <span>Built carefully, debugged eventually</span>
+        </div>
+
+        <div class="work-hero-copy">
+          <p>Things I made after asking, how hard could it be?</p>
+          <h1 id="work-title">
+            <span class="work-title-line work-title-primary">WORK THAT</span>
+            <strong class="work-title-line work-title-acid">MADE IT OUT</strong>
+            <span class="work-title-line work-title-outline">OF LOCALHOST.</span>
+          </h1>
+        </div>
+
+        <a href="#work-archive" class="work-scroll-cue">
+          <span>Explore all <b data-project-total>04</b> projects</span><i>↓</i>
+        </a>
+      </section>
+
+      <section class="work-archive" id="work-archive" aria-labelledby="archive-title">
+        <header class="work-archive-header">
+          <div>
+            <span>01</span>
+            <span>Project archive</span>
+          </div>
+          <h2 id="archive-title">PICK A<br><strong>RABBIT HOLE.</strong></h2>
+          <p>
+            Full-stack applications, client work, API experiments, and frontend
+            studies. All real, all responsive, all responsible for at least one
+            unnecessary late night.
+          </p>
+        </header>
+
+        <div class="work-toolbar">
+          <div class="work-filters" role="group" aria-label="Filter projects">
+            <button type="button" data-filter="all" aria-pressed="true">All</button>
+            <button type="button" data-filter="full-stack" aria-pressed="false">Full-stack</button>
+            <button type="button" data-filter="frontend" aria-pressed="false">Frontend</button>
+            <button type="button" data-filter="api" aria-pressed="false">API work</button>
+          </div>
+          <p aria-live="polite"><strong id="visible-project-count">04</strong> projects showing</p>
+        </div>
+
+        <div class="work-projects"></div>
+      </section>
+    </main>
+
+    <footer class="footer-section"></footer>
   </body>
 </html>
