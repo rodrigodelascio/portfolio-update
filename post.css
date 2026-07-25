@@ -221,9 +221,9 @@ body {
 
 .article-aside > a:hover,
 .article-aside > a:focus-visible {
-  background: var(--post-coral);
-  color: var(--post-ink);
-  border-bottom-color: var(--post-coral);
+  background: var(--post-ink);
+  color: var(--post-acid);
+  border-bottom-color: var(--post-ink);
   transform: translateX(-0.5rem);
 }
 
