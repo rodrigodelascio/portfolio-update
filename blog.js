@@ -4,6 +4,7 @@
   const PAGE_SIZE = 6
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
   let totalPostsCache
+  const postPagesCache = new Map()
 
   const escapeHTML = value =>
     String(value ?? "").replace(
@@ -42,23 +43,28 @@
     return payload.data
   }
 
-  async function fetchPosts(page) {
-    const query = `
-      query GetPosts($first: Int, $skip: Int) {
-        posts(first: $first, skip: $skip, orderBy: publishedDate_DESC) {
-          title
-          slug
-          excerpt
-          coverImage { url }
-          publishedDate
+  function fetchPosts(page) {
+    if (postPagesCache.has(page)) return postPagesCache.get(page)
+    const promise = (async () => {
+      const query = `
+        query GetPosts($first: Int, $skip: Int) {
+          posts(first: $first, skip: $skip, orderBy: publishedDate_DESC) {
+            title
+            slug
+            excerpt
+            coverImage { url }
+            publishedDate
+          }
         }
-      }
-    `
-    const data = await request(query, {
-      first: PAGE_SIZE,
-      skip: pageOffset(page)
-    })
-    return data.posts
+      `
+      const data = await request(query, {
+        first: PAGE_SIZE,
+        skip: pageOffset(page)
+      })
+      return data.posts
+    })()
+    postPagesCache.set(page, promise)
+    return promise
   }
 
   async function fetchTotalPosts() {
@@ -98,6 +104,38 @@
         </div>
       </a>
     `
+  }
+
+  async function renderLatestIndex() {
+    const container = document.getElementById("writing-latest-list")
+    if (!container) return
+
+    try {
+      const posts = (await fetchPosts(1)).slice(0, 3)
+      container.innerHTML = posts.length
+        ? posts.map((post, index) => `
+            <a class="writing-latest-row" href="post.html?slug=${encodeURIComponent(post.slug)}">
+              <span>${String(index + 1).padStart(2, "0")}</span>
+              <time>${escapeHTML(formatDate(post.publishedDate))}</time>
+              <strong>${escapeHTML(post.title)}</strong>
+              <i>↗</i>
+            </a>
+          `).join("")
+        : `<span class="writing-index-loading">No dispatches filed yet</span>`
+
+      if (!reduceMotion && typeof gsap !== "undefined") {
+        gsap.from(".writing-latest-row", {
+          x: 35,
+          opacity: 0,
+          duration: 0.65,
+          stagger: 0.08,
+          ease: "power3.out"
+        })
+      }
+    } catch (error) {
+      container.innerHTML =
+        `<span class="writing-index-loading">Index temporarily misplaced</span>`
+    }
   }
 
   function pageNumbers(current, total) {
@@ -267,56 +305,59 @@
       y: 20,
       opacity: 0
     })
-    gsap.set(".writing-marquee", { opacity: 0 })
+    gsap.set(".writing-editorial-index", {
+      clipPath: "inset(0 0 100% 0)"
+    })
+    gsap.set(".writing-print-head", { y: 0, opacity: 1 })
 
     heroTimeline
       .fromTo(".writing-hero", {
-        clipPath: "circle(0% at 68% 47%)"
+        clipPath: "inset(0 0 100% 0)"
       }, {
-        clipPath: "circle(150% at 68% 47%)",
-        duration: 1.35,
+        clipPath: "inset(0 0 0% 0)",
+        duration: 1.2,
         ease: "power4.inOut"
       })
-      .from(".writing-orbits span", {
-        scale: index => 4.5 - index * 0.8,
-        rotate: index => index % 2 ? 42 : -38,
+      .to(".writing-print-head", {
+        y: () => window.innerHeight,
+        duration: 1.2,
+        ease: "power4.inOut"
+      }, 0)
+      .to(".writing-print-head", {
         opacity: 0,
-        duration: 1.4,
-        stagger: 0.08,
-        ease: "power4.out"
-      }, 0.1)
+        duration: 0.2
+      }, 1.05)
+      .to(".writing-editorial-index", {
+        clipPath: "inset(0 0 0% 0)",
+        duration: 0.9,
+        ease: "power3.inOut"
+      }, 0.5)
+      .to(".writing-editorial-rule i", {
+        scaleY: 1,
+        duration: 0.9,
+        ease: "power3.inOut"
+      }, 0.62)
       .to(title.chars, {
         yPercent: 0,
         opacity: 1,
         duration: 0.9,
         stagger: 0.016,
         ease: "power4.out"
-      }, 0.62)
-      .to(".writing-marquee", {
-        opacity: 0.11,
-        duration: 0.65,
-        ease: "power2.out"
-      }, 0.95)
+      }, 0.72)
       .to(".writing-hero-meta, .writing-hero-bottom", {
         opacity: 1,
         y: 0,
         duration: 0.7,
         stagger: 0.1,
         ease: "power3.out"
-      }, 1.02)
+      }, 0.92)
       .set(".writing-hero", { clearProps: "clipPath" })
 
     heroTimeline.eventCallback("onComplete", () => {
-      gsap.fromTo(".writing-orbits span", {
-        scale: 1,
-        rotate: 0
-      }, {
-        scale: index => 1.22 + index * 0.08,
-        rotate: index => index % 2 ? -14 : 12,
-        xPercent: index => 7 + index * 3,
-        yPercent: index => -5 - index * 2,
+      gsap.to(".writing-editorial-index", {
+        yPercent: -18,
+        xPercent: 5,
         ease: "none",
-        immediateRender: false,
         scrollTrigger: {
           trigger: ".writing-hero",
           start: "top top",
@@ -343,6 +384,7 @@
 
   document.addEventListener("DOMContentLoaded", () => {
     initialiseHeroMotion()
+    renderLatestIndex()
     const initialPage = Math.max(
       1,
       Number.parseInt(new URLSearchParams(window.location.search).get("page"), 10) || 1
