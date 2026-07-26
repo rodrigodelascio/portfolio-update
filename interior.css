@@ -653,8 +653,8 @@ body.interior-page .footer-section {
   width: 100%;
   color: var(--ix-ink);
   text-decoration: none;
-  font: 700 clamp(6rem, 13vw, 19rem)/0.73 var(--ix-display);
-  letter-spacing: -0.09em;
+  font: 700 clamp(6rem, 13vw, 19rem)/0.8 var(--ix-display);
+  letter-spacing: -0.05em;
 }
 .interior-footer-heading span,
 .interior-footer-heading strong {
