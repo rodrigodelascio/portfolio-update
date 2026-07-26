@@ -192,24 +192,25 @@ body {
 .work-hero-copy {
   position: relative;
   z-index: 2;
+  width: min(52vw, 94rem);
   margin: auto 0;
   padding: clamp(5rem, 8vw, 11rem) 0;
+  container-type: inline-size;
   pointer-events: none;
 }
 
 .work-hero-copy > p {
   margin-bottom: 2.5rem;
   color: var(--work-coral);
-  font: 500 1rem/1 var(--ix-mono);
-  letter-spacing: 0.08em;
+  font: 500 1rem/1.25 var(--ix-mono);
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
 .work-hero-copy h1 {
-  max-width: 100rem;
   margin: 0;
-  font: 600 clamp(6rem, 10.5vw, 16rem)/0.78 var(--ix-display);
-  letter-spacing: -0.075em;
+  font: 700 clamp(5.8rem, 15cqw, 14rem)/0.84 var(--ix-display);
+  letter-spacing: -0.05em;
 }
 
 .work-title-line {
@@ -295,19 +296,19 @@ body {
 
 .work-archive-header h2 {
   margin: 0;
-  font: 600 clamp(5.5rem, 9vw, 13rem)/0.8 var(--ix-display);
-  letter-spacing: -0.07em;
+  font: 700 clamp(5rem, 7.4vw, 11rem)/0.9 var(--ix-display);
+  letter-spacing: -0.045em;
 }
 
 .work-archive-header h2 strong {
-  color: transparent;
+  color: var(--work-coral);
   font-weight: inherit;
-  -webkit-text-stroke: 1px var(--work-ink);
+  -webkit-text-stroke: 0 transparent;
 }
 
 .work-archive-header > p {
   margin: 0;
-  font: 400 1.65rem/1.55 var(--ix-body);
+  font: 400 1.55rem/1.68 var(--ix-body);
 }
 
 .work-toolbar {
@@ -402,9 +403,10 @@ body {
 .work-project h3 {
   max-width: 100%;
   margin: auto 0 2.5rem;
-  font: 600 clamp(4.2rem, 14cqw, 9rem)/0.86 var(--ix-display);
-  letter-spacing: -0.065em;
+  font: 600 clamp(3.8rem, 12cqw, 7.6rem)/1.03 var(--ix-display);
+  letter-spacing: -0.025em;
   overflow-wrap: normal;
+  text-wrap: balance;
   word-break: normal;
 }
 
@@ -412,7 +414,7 @@ body {
   max-width: 55rem;
   margin: 0;
   color: rgba(8, 9, 11, 0.68);
-  font: 400 1.55rem/1.6 var(--ix-body);
+  font: 400 1.55rem/1.65 var(--ix-body);
 }
 
 .work-project-tags {
@@ -543,8 +545,13 @@ body {
 
 @media (max-width: 1000px) {
   .work-hero-copy {
+    width: 100%;
     margin-top: 8rem;
     margin-bottom: 18rem;
+  }
+
+  .work-hero-copy h1 {
+    font-size: clamp(6rem, 14cqw, 11rem);
   }
 
   .work-showreel {
@@ -592,8 +599,9 @@ body {
   }
 
   .work-hero-copy h1 {
-    font-size: clamp(4rem, 12.5vw, 5.2rem);
-    line-height: 0.82;
+    font-size: clamp(4.6rem, 13.5cqw, 6.2rem);
+    line-height: 0.88;
+    letter-spacing: -0.05em;
   }
 
   .work-title-outline {
@@ -643,7 +651,8 @@ body {
   }
 
   .work-archive-header h2 {
-    font-size: clamp(5rem, 17vw, 7.5rem);
+    font-size: clamp(5rem, 13vw, 6.2rem);
+    line-height: 0.9;
   }
 
   .work-toolbar {
@@ -680,7 +689,8 @@ body {
 
   .work-project h3 {
     margin: 6rem 0 2rem;
-    font-size: clamp(4.3rem, 14vw, 6.5rem);
+    font-size: clamp(4rem, 12vw, 5.8rem);
+    line-height: 1.05;
   }
 
   .work-project-media {
