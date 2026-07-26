@@ -66,7 +66,7 @@
     const entry = gsap.timeline()
     gsap.set(".about-entry", { display: "block", opacity: 1 })
     gsap.set(".about-entry-shutters i", { yPercent: 0 })
-    gsap.set(".about-entry-index", { opacity: 1, scale: 1 })
+    gsap.set(".about-entry-index", { y: 20, opacity: 0 })
     gsap.set(".about-title-line:first-child", {
       x: -48,
       clipPath: "inset(0 100% 0 0)"
@@ -79,7 +79,7 @@
       y: 18,
       opacity: 0
     })
-    gsap.set(".portrait-note", { opacity: 0, scale: 0.75 })
+    gsap.set(".portrait-nail, .portrait-cords", { opacity: 0 })
     gsap.set(".about-portrait-frame", {
       clipPath: "inset(8% 48% 8% 48%)",
       scale: 0.94,
@@ -91,11 +91,17 @@
 
     entry
       .to(".about-entry-index", {
+        y: 0,
+        opacity: 1,
+        duration: 0.45,
+        ease: "power3.out"
+      })
+      .to(".about-entry-index", {
+        y: -15,
         opacity: 0,
-        scale: 0.82,
-        duration: 0.25,
-        ease: "power2.in"
-      }, "+=0.16")
+        duration: 0.35,
+        delay: 0.15
+      })
       .to(".about-entry-shutters i", {
         yPercent: index => index % 2 ? 105 : -105,
         duration: 1.15,
@@ -112,6 +118,11 @@
         duration: 1.15,
         ease: "power4.inOut"
       }, "-=1.02")
+      .to(".portrait-nail, .portrait-cords", {
+        opacity: 1,
+        duration: 0.45,
+        ease: "power2.out"
+      }, "-=0.82")
       .to(".portrait-main", {
         scale: 1,
         duration: 1.15,
@@ -141,13 +152,6 @@
         duration: 0.85,
         ease: "power4.out"
       }, "-=0.66")
-      .to(".portrait-note", {
-        opacity: 1,
-        scale: 1,
-        duration: 0.42,
-        stagger: 0.08,
-        ease: "back.out(1.8)"
-      }, "-=0.5")
       .to(".about-hero-meta, .about-eyebrow, .about-hero-intro, .about-scroll-cue", {
         y: 0,
         opacity: 1,
@@ -287,6 +291,107 @@
     ScrollTrigger.refresh()
   }
 
+  function initialisePortraitPlay() {
+    const hanging = document.querySelector(".about-portrait-hanging")
+    const swing = hanging?.querySelector(".portrait-swing")
+    const entryOverlay = document.querySelector(".about-entry")
+    const coralGhost = hanging?.querySelector(".portrait-ghost-coral")
+    const acidGhost = hanging?.querySelector(".portrait-ghost-acid")
+    const colourGlow = hanging?.querySelectorAll(".portrait-colour")
+    const canTrackPointer = window.matchMedia("(pointer: fine)").matches
+
+    if (!hanging || !swing || reduceMotion || typeof gsap === "undefined") return
+
+    if (!canTrackPointer) {
+      gsap.set(swing, { rotate: -0.45 })
+      gsap.to(swing, {
+        rotate: 0.45,
+        duration: 3.8,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+      })
+      return
+    }
+
+    let glowFade
+    let previousPointerX
+
+    const rotateFrame = gsap.quickTo(swing, "rotation", {
+      duration: 0.8,
+      ease: "elastic.out(1, 0.42)"
+    })
+
+    const hideGlow = () => {
+      gsap.to([coralGhost, acidGhost], {
+        opacity: 0,
+        duration: 0.55,
+        ease: "power2.out",
+        overwrite: true
+      })
+      gsap.to(colourGlow, {
+        opacity: 0.18,
+        duration: 0.7,
+        ease: "power2.out",
+        overwrite: true
+      })
+    }
+
+    const showGlow = (offsetX, pointerDistance) => {
+      if (entryOverlay && getComputedStyle(entryOverlay).display !== "none") return
+
+      const intensity = 0.24 + Math.min(pointerDistance / 24, 1) * 0.14
+
+      gsap.to(coralGhost, {
+        x: -9 - offsetX * 5,
+        opacity: intensity,
+        duration: 0.18,
+        ease: "power2.out",
+        overwrite: true
+      })
+      gsap.to(acidGhost, {
+        x: 9 + offsetX * 5,
+        opacity: intensity,
+        duration: 0.18,
+        ease: "power2.out",
+        overwrite: true
+      })
+      gsap.to(colourGlow, {
+        opacity: 0.3,
+        duration: 0.24,
+        ease: "power2.out",
+        overwrite: true
+      })
+
+      glowFade?.kill()
+      glowFade = gsap.delayedCall(0.32, hideGlow)
+    }
+
+    window.addEventListener("pointermove", event => {
+      const bounds = hanging.getBoundingClientRect()
+      const centreX = bounds.left + bounds.width / 2
+      const offsetX = Math.max(
+        -1,
+        Math.min(1, (event.clientX - centreX) / (window.innerWidth * 0.4))
+      )
+      const pointerDistance = previousPointerX === undefined
+        ? 0
+        : Math.abs(event.clientX - previousPointerX)
+
+      rotateFrame(offsetX * 2.6)
+      showGlow(offsetX, pointerDistance)
+      previousPointerX = event.clientX
+    }, { passive: true })
+
+    const settleFrame = () => {
+      glowFade?.kill()
+      rotateFrame(0)
+      hideGlow()
+    }
+    document.addEventListener("mouseleave", settleFrame)
+    window.addEventListener("blur", settleFrame)
+  }
+
   function initialiseFactDeck() {
     const deck = document.querySelector(".fact-deck")
     if (!deck) return
@@ -349,5 +454,6 @@
     initialiseSkills()
     initialiseFactDeck()
     initialiseAboutMotion()
+    initialisePortraitPlay()
   })
 })()

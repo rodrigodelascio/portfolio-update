@@ -112,11 +112,8 @@
   z-index: 2;
   left: 50%;
   top: 50%;
-  padding: 0.9rem 1.2rem;
-  border: 1px solid rgba(8, 9, 11, 0.42);
-  border-radius: 999px;
-  font: 600 0.85rem/1 var(--ix-mono);
-  letter-spacing: 0.12em;
+  font: 600 clamp(1rem, 1.4vw, 1.8rem)/1 var(--ix-mono);
+  letter-spacing: 0.14em;
   transform: translate(-50%, -50%);
 }
 
@@ -170,36 +167,123 @@
   font: 400 clamp(1.6rem, 1.35vw, 2.1rem)/1.55 var(--ix-body);
 }
 
-.about-portrait-frame {
+.about-portrait-hanging {
   position: relative;
   z-index: 2;
   align-self: end;
   justify-self: end;
-  width: min(100%, 64rem, 57svh);
-  height: min(78rem, 76svh);
-  min-height: 58rem;
+  width: min(100%, 64rem, 56.5svh);
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 2881 / 3872;
+}
+
+.portrait-swing {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-origin: 50% -6.4rem;
+  will-change: transform;
+}
+
+.portrait-nail {
+  position: absolute;
+  z-index: 6;
+  top: -7.1rem;
+  left: 50%;
+  width: 1.4rem;
+  aspect-ratio: 1;
+  border: 1px solid rgba(238, 234, 225, 0.46);
+  border-radius: 50%;
+  background: var(--about-ink);
+  box-shadow:
+    inset 0.2rem 0.2rem 0 rgba(238, 234, 225, 0.2),
+    0 0.5rem 1.4rem rgba(0, 0, 0, 0.58);
+  transform: translateX(-50%);
+}
+
+.portrait-nail::after {
+  content: "";
+  position: absolute;
+  inset: 38%;
+  border-radius: inherit;
+  background: var(--about-paper);
+  opacity: 0.68;
+}
+
+.portrait-cords {
+  position: absolute;
+  z-index: 0;
+  top: -6.4rem;
+  left: 18%;
+  right: 18%;
+  height: 6.6rem;
+  background:
+    linear-gradient(
+        to bottom right,
+        transparent 49.25%,
+        rgba(196, 151, 105, 0.88) 49.55%,
+        rgba(196, 151, 105, 0.88) 50.45%,
+        transparent 50.75%
+      )
+      left / 50% 100% no-repeat,
+    linear-gradient(
+        to bottom left,
+        transparent 49.25%,
+        rgba(196, 151, 105, 0.88) 49.55%,
+        rgba(196, 151, 105, 0.88) 50.45%,
+        transparent 50.75%
+      )
+      right / 50% 100% no-repeat;
+  filter: drop-shadow(0 0.2rem 0.15rem rgba(0, 0, 0, 0.55));
+  pointer-events: none;
+}
+
+.about-portrait-frame {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 2.8rem 3.2rem rgba(0, 0, 0, 0.48));
+}
+
+.portrait-stage {
+  position: absolute;
+  z-index: 1;
+  inset: 4.7% 7.65% 4.45% 7.6%;
   overflow: hidden;
-  border: 1px solid var(--about-line);
   background:
     linear-gradient(115deg, rgba(255, 92, 53, 0.09), transparent 36%),
     linear-gradient(245deg, rgba(216, 255, 62, 0.08), transparent 38%),
     #0d0f12;
 }
 
-.about-portrait-frame::before,
-.about-portrait-frame::after {
+.portrait-frame-art {
+  position: absolute;
+  z-index: 6;
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  object-fit: fill;
+  pointer-events: none;
+  user-select: none;
+}
+
+.portrait-stage::before,
+.portrait-stage::after {
   content: "";
   position: absolute;
   z-index: 1;
   pointer-events: none;
 }
 
-.about-portrait-frame::before {
+.portrait-stage::before {
   inset: 1.2rem;
   border: 1px solid rgba(238, 234, 225, 0.14);
 }
 
-.about-portrait-frame::after {
+.portrait-stage::after {
   left: 0;
   right: 0;
   bottom: 0;
@@ -207,7 +291,7 @@
   background: linear-gradient(to bottom, transparent, var(--about-ink));
 }
 
-.about-portrait-frame img {
+.portrait-stage img {
   position: absolute;
   z-index: 3;
   width: 120%;
@@ -234,14 +318,14 @@
   );
 }
 
-.about-portrait-frame .portrait-ghost {
+.portrait-stage .portrait-ghost {
   z-index: 2;
   opacity: 0;
   mix-blend-mode: screen;
   pointer-events: none;
 }
 
-.about-portrait-frame .portrait-ghost-coral {
+.portrait-stage .portrait-ghost-coral {
   filter:
     saturate(2.6)
     sepia(1)
@@ -249,7 +333,7 @@
     contrast(1.15);
 }
 
-.about-portrait-frame .portrait-ghost-acid {
+.portrait-stage .portrait-ghost-acid {
   filter:
     saturate(2.8)
     sepia(1)
@@ -257,7 +341,7 @@
     contrast(1.15);
 }
 
-.about-portrait-frame .portrait-main {
+.portrait-stage .portrait-main {
   z-index: 3;
 }
 
@@ -279,29 +363,6 @@
 .portrait-colour-acid {
   right: -28%;
   background: var(--about-acid);
-}
-
-.portrait-note {
-  position: absolute;
-  z-index: 5;
-  padding: 0.9rem 1.1rem;
-  color: var(--about-ink);
-  font: 500 0.9rem/1 var(--ix-mono);
-  text-transform: uppercase;
-  transform: rotate(-4deg);
-}
-
-.portrait-note-left {
-  left: 2rem;
-  top: 27%;
-  background: var(--about-coral);
-}
-
-.portrait-note-right {
-  right: 1.4rem;
-  bottom: 18%;
-  background: var(--about-acid);
-  transform: rotate(3deg);
 }
 
 .about-scroll-cue {
@@ -765,9 +826,10 @@
 }
 
 .about-final-quote {
-  max-width: 108rem;
-  font: 600 clamp(4rem, 6.3vw, 9.5rem)/1.06 var(--ix-display);
-  letter-spacing: -0.03em;
+  max-width: 136rem;
+  font: 600 clamp(4rem, 4.9vw, 8.2rem)/1.1 var(--ix-display);
+  letter-spacing: -0.025em;
+  text-wrap: balance;
 }
 
 .about-final-meta {
@@ -785,15 +847,15 @@
     top: -3vh;
   }
 
-  .about-portrait-frame {
-    top: -3vh;
+  .about-portrait-hanging {
+    top: 2vh;
     align-self: center;
   }
 }
 
 @media (min-width: 901px) and (max-height: 800px) {
-  .about-portrait-frame {
-    top: 1.5vh;
+  .about-portrait-hanging {
+    top: 5vh;
   }
 }
 
@@ -813,9 +875,10 @@
     font-size: clamp(6rem, 14cqw, 11rem);
   }
 
-  .about-portrait-frame {
-    width: min(70rem, 100%);
-    height: min(76rem, 76svh);
+  .about-portrait-hanging {
+    width: min(70rem, 100%, 56.5svh);
+    height: auto;
+    margin-top: 6rem;
     justify-self: center;
   }
 
@@ -897,27 +960,27 @@
     margin-top: 2.5rem !important;
   }
 
-  .about-portrait-frame {
-    height: 60rem;
-    min-height: 0;
+  .about-portrait-hanging {
+    width: 100%;
+    height: auto;
   }
 
-  .about-portrait-frame img {
+  .portrait-stage img {
     width: 130%;
     left: -15%;
   }
 
-  .portrait-note {
-    font-size: 0.7rem;
+  .portrait-swing {
+    transform-origin: 50% -4.8rem;
   }
 
-  .portrait-note-left {
-    top: 22%;
-    left: 1rem;
+  .portrait-nail {
+    top: -5.4rem;
   }
 
-  .portrait-note-right {
-    right: 1rem;
+  .portrait-cords {
+    top: -4.8rem;
+    height: 5rem;
   }
 
   .about-human,
