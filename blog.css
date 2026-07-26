@@ -58,46 +58,91 @@
   pointer-events: none;
 }
 
-.writing-print-head {
+.writing-entry {
   position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 12;
-  width: 100%;
-  height: 3px;
-  background: var(--writing-acid);
-  box-shadow: 0 0 3rem 1rem rgba(216, 255, 62, 0.22);
+  inset: 0;
+  z-index: 20;
+  display: none;
+  padding: var(--writing-edge);
+  place-items: center;
+  overflow: hidden;
+  background: var(--writing-coral);
+  color: var(--writing-ink);
   pointer-events: none;
 }
 
-.writing-print-head span {
-  position: absolute;
-  top: 1.2rem;
-  right: var(--writing-edge);
-  padding: 0.7rem 0.9rem;
-  background: var(--writing-acid);
+.writing-entry-copy {
+  width: min(46rem, 100%);
   color: var(--writing-ink);
-  font: 600 0.75rem/1 var(--ix-mono);
-  letter-spacing: 0.08em;
+  font: 600 clamp(1.15rem, 1.25vw, 1.8rem)/1.45 var(--ix-mono);
+  letter-spacing: 0.14em;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.writing-entry-dot {
+  position: absolute;
+  top: calc(50% + clamp(3.5rem, 4vw, 5rem));
+  left: 50%;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background: var(--writing-acid);
+  transform: translateX(-50%);
+}
+
+.writing-computer {
+  position: absolute;
+  top: clamp(15rem, 18vh, 22rem);
+  right: var(--writing-edge);
+  z-index: 1;
+  width: min(45vw, 68rem);
+  aspect-ratio: 850 / 878;
+  transform-origin: center 35%;
+  will-change: transform;
+}
+
+.writing-computer-motion {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+
+.writing-computer-motion > img {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  filter: drop-shadow(0 3rem 3rem rgba(0, 0, 0, 0.38));
 }
 
 .writing-editorial-index {
   position: absolute;
-  top: 12.5rem;
-  right: var(--writing-edge);
-  z-index: 4;
-  width: min(42vw, 62rem);
+  top: 6.1%;
+  left: 14.1%;
+  z-index: 3;
+  width: 51.7%;
+  height: 37.6%;
+  padding: 1.2rem 1.4rem;
+  overflow: hidden;
+  background: #17191d;
   color: var(--writing-paper);
+  box-shadow:
+    inset 0 0 3rem rgba(0, 0, 0, 0.72),
+    0 0 2.5rem rgba(216, 255, 62, 0.08);
 }
 
 .writing-index-heading {
-  padding: 1.2rem 0;
+  padding: 0.7rem 0;
   display: flex;
   justify-content: space-between;
   border-top: 1px solid var(--writing-line);
   border-bottom: 1px solid var(--writing-line);
   color: var(--writing-muted);
-  font: 500 0.85rem/1 var(--ix-mono);
+  font: 500 clamp(0.62rem, 0.62vw, 0.8rem)/1 var(--ix-mono);
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -107,12 +152,17 @@
   font-style: normal;
 }
 
+.writing-latest-list {
+  height: calc(100% - 2.7rem);
+}
+
 .writing-latest-row {
-  min-height: 5.3rem;
-  padding: 1rem 0.8rem;
+  min-height: 0;
+  height: calc(100% / 3);
+  padding: 0.55rem 0.25rem;
   display: grid;
-  grid-template-columns: 2.5rem 7.5rem minmax(0, 1fr) 2rem;
-  gap: 1rem;
+  grid-template-columns: 1.6rem 5.2rem minmax(0, 1fr) 1rem;
+  gap: 0.55rem;
   align-items: center;
   border-bottom: 1px solid var(--writing-line);
   color: var(--writing-paper);
@@ -125,8 +175,8 @@
 .writing-latest-row span,
 .writing-latest-row time,
 .writing-latest-row i {
-  font: 500 0.78rem/1.2 var(--ix-mono);
-  letter-spacing: 0.05em;
+  font: 500 clamp(0.56rem, 0.55vw, 0.72rem)/1.2 var(--ix-mono);
+  letter-spacing: 0.035em;
   text-transform: uppercase;
   font-style: normal;
 }
@@ -139,8 +189,8 @@
   min-width: 0;
   overflow: hidden;
   color: inherit;
-  font: 500 clamp(1.1rem, 1.2vw, 1.55rem)/1.28 var(--ix-body);
-  letter-spacing: -0.012em;
+  font: 500 clamp(0.8rem, 0.78vw, 1.05rem)/1.2 var(--ix-body);
+  letter-spacing: -0.01em;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -152,7 +202,7 @@
 
 .writing-latest-row:hover,
 .writing-latest-row:focus-visible {
-  padding-inline: 1.2rem;
+  padding-inline: 0.55rem;
   background: var(--writing-acid);
   color: var(--writing-ink);
 }
@@ -170,20 +220,22 @@
 }
 
 .writing-index-loading {
-  min-height: 8rem;
+  height: 100%;
   display: grid;
   place-items: center;
   border-bottom: 1px solid var(--writing-line);
   color: var(--writing-muted);
-  font: 500 0.8rem/1 var(--ix-mono);
+  font: 500 clamp(0.62rem, 0.62vw, 0.8rem)/1.4 var(--ix-mono);
   letter-spacing: 0.08em;
+  text-align: center;
   text-transform: uppercase;
 }
 
 .writing-editorial-rule {
   position: absolute;
   top: 0;
-  left: -2rem;
+  left: 0;
+  z-index: 4;
   width: 2px;
   height: 100%;
   overflow: hidden;
@@ -199,6 +251,30 @@
   transform-origin: top;
 }
 
+.writing-screen-glare {
+  position: absolute;
+  top: 6.1%;
+  left: 14.1%;
+  z-index: 4;
+  width: 51.7%;
+  height: 37.6%;
+  overflow: hidden;
+  background:
+    linear-gradient(
+      115deg,
+      rgba(238, 234, 225, 0.12),
+      transparent 25% 74%,
+      rgba(216, 255, 62, 0.04)
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(238, 234, 225, 0.025) 0 1px,
+      transparent 1px 3px
+    );
+  box-shadow: inset 0 0 2.5rem rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+}
+
 .writing-hero-meta {
   display: flex;
   justify-content: space-between;
@@ -212,9 +288,16 @@
   color: var(--writing-acid);
 }
 
+.writing-filed-under {
+  min-width: min(46rem, 60vw);
+  text-align: right;
+  white-space: nowrap;
+}
+
 .writing-hero-heading {
   position: relative;
   z-index: 2;
+  width: min(52vw, 94rem);
   margin: clamp(8rem, 16vh, 18rem) 0 0;
   padding: 6rem 0 3rem;
   container-type: inline-size;
@@ -229,7 +312,7 @@
 }
 
 .writing-title {
-  font: 700 clamp(6.2rem, 10.6vw, 16rem)/0.86 var(--ix-display);
+  font: 700 clamp(5.8rem, 15cqw, 14rem)/0.84 var(--ix-display);
   letter-spacing: -0.05em;
 }
 
@@ -594,23 +677,35 @@
 
 @media (max-width: 900px) {
   .writing-hero {
-    min-height: 88svh;
+    min-height: max(100svh, 78rem);
     padding-top: 9rem;
   }
 
   .writing-title {
-    font-size: clamp(5.8rem, 13cqw, 10rem);
-    line-height: 0.88;
+    font-size: clamp(6rem, 14cqw, 11rem);
+    line-height: 0.84;
   }
 
   .writing-hero-heading {
-    margin-top: clamp(15rem, 20vh, 20rem);
-    padding-top: 5rem;
+    width: 100%;
+    margin-top: clamp(46rem, 56vh, 54rem);
+    padding-top: 3rem;
   }
 
-  .writing-editorial-index {
-    top: 12rem;
-    width: min(50vw, 48rem);
+  .writing-computer {
+    top: clamp(14rem, 17vh, 18rem);
+    right: auto;
+    left: 50%;
+    width: min(52vw, 42rem);
+    transform: translateX(-50%);
+  }
+
+  .writing-latest-row {
+    grid-template-columns: 1.4rem minmax(0, 1fr) 1rem;
+  }
+
+  .writing-latest-row time {
+    display: none;
   }
 
   .archive-heading {
@@ -667,8 +762,19 @@
 }
 
 @media (max-width: 560px) {
+  .writing-entry {
+    padding: 2rem;
+  }
+
+  .writing-entry-copy {
+    width: min(28rem, 100%);
+    font-size: 1.05rem;
+    line-height: 1.55;
+    letter-spacing: 0.12em;
+  }
+
   .writing-hero {
-    min-height: 82svh;
+    min-height: max(100svh, 76rem);
     padding: 8.8rem 2rem 8rem;
   }
 
@@ -677,14 +783,14 @@
   }
 
   .writing-hero-heading {
-    margin-top: 16rem;
+    margin-top: 38rem;
     padding: 3.5rem 0 2rem;
   }
 
   .writing-title {
-    font-size: clamp(4rem, 13.5cqw, 5.2rem);
-    line-height: 0.9;
-    letter-spacing: -0.035em;
+    font-size: clamp(4.6rem, 13.5cqw, 6.2rem);
+    line-height: 0.88;
+    letter-spacing: -0.05em;
   }
 
   .writing-hero-bottom {
@@ -695,14 +801,31 @@
     justify-self: end;
   }
 
-  .writing-editorial-index {
+  .writing-computer {
     top: 13rem;
-    right: 2rem;
-    width: calc(100% - 4rem);
+    width: min(72vw, 30rem);
   }
 
   .writing-latest-row {
-    grid-template-columns: 2.5rem 6.5rem minmax(0, 1fr) 2rem;
+    height: 100%;
+    grid-template-columns: 1.2rem minmax(0, 1fr) 0.8rem;
+    gap: 0.4rem;
+  }
+
+  .writing-index-heading span:first-child {
+    display: none;
+  }
+
+  .writing-index-heading {
+    justify-content: center;
+  }
+
+  .writing-editorial-index {
+    padding: 0.65rem 0.75rem;
+  }
+
+  .writing-latest-row strong {
+    font-size: 0.68rem;
   }
 
   .writing-latest-row:nth-child(n + 2) {
@@ -710,7 +833,7 @@
   }
 
   .writing-editorial-rule {
-    left: -1rem;
+    left: 0;
   }
 
   .blog-archive {
@@ -779,8 +902,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .writing-print-head {
-    display: none;
+  .writing-entry {
+    display: none !important;
   }
 
   .writing-editorial-rule i {

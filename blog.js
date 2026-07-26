@@ -299,7 +299,16 @@
 
     gsap.registerPlugin(ScrollTrigger, SplitText)
     const title = new SplitText(".writing-title", { type: "chars" })
+    const entryCopy = new SplitText(".writing-entry-copy", {
+      type: "words"
+    })
     const heroTimeline = gsap.timeline()
+    gsap.set(".writing-entry", {
+      display: "grid",
+      clipPath: "circle(150% at 50% 50%)"
+    })
+    gsap.set(entryCopy.words, { y: 12, opacity: 0 })
+    gsap.set(".writing-entry-dot", { scale: 0, opacity: 0 })
     gsap.set(title.chars, { yPercent: 115, opacity: 0 })
     gsap.set(".writing-hero-meta, .writing-hero-bottom", {
       y: 20,
@@ -308,55 +317,77 @@
     gsap.set(".writing-editorial-index", {
       clipPath: "inset(0 0 100% 0)"
     })
-    gsap.set(".writing-print-head", { y: 0, opacity: 1 })
+    gsap.set(".writing-computer", {
+      y: 55,
+      scale: 0.88,
+      rotate: 2,
+      opacity: 0
+    })
 
     heroTimeline
-      .fromTo(".writing-hero", {
-        clipPath: "inset(0 0 100% 0)"
-      }, {
-        clipPath: "inset(0 0 0% 0)",
-        duration: 1.2,
-        ease: "power4.inOut"
+      .to(entryCopy.words, {
+        y: 0,
+        opacity: 1,
+        duration: 0.48,
+        stagger: 0.045,
+        ease: "power3.out"
       })
-      .to(".writing-print-head", {
-        y: () => window.innerHeight,
-        duration: 1.2,
-        ease: "power4.inOut"
-      }, 0)
-      .to(".writing-print-head", {
+      .to(".writing-entry-dot", {
+        scale: 1,
+        opacity: 1,
+        duration: 0.35,
+        ease: "back.out(2)"
+      }, "-=0.15")
+      .to(".writing-entry-copy, .writing-entry-dot", {
         opacity: 0,
-        duration: 0.2
-      }, 1.05)
+        duration: 0.3,
+        delay: 0.38,
+        ease: "power2.in"
+      })
+      .to(".writing-entry", {
+        clipPath: "circle(0% at 50% 50%)",
+        duration: 0.9,
+        ease: "power4.inOut"
+      }, "-=0.08")
+      .to(".writing-computer", {
+        y: 0,
+        scale: 1,
+        rotate: 0,
+        opacity: 1,
+        duration: 1,
+        ease: "back.out(1.2)"
+      }, "-=0.72")
       .to(".writing-editorial-index", {
         clipPath: "inset(0 0 0% 0)",
         duration: 0.9,
         ease: "power3.inOut"
-      }, 0.5)
+      }, "-=0.72")
       .to(".writing-editorial-rule i", {
         scaleY: 1,
         duration: 0.9,
         ease: "power3.inOut"
-      }, 0.62)
+      }, "<+=0.1")
       .to(title.chars, {
         yPercent: 0,
         opacity: 1,
         duration: 0.9,
         stagger: 0.016,
         ease: "power4.out"
-      }, 0.72)
+      }, "-=0.7")
       .to(".writing-hero-meta, .writing-hero-bottom", {
         opacity: 1,
         y: 0,
         duration: 0.7,
         stagger: 0.1,
         ease: "power3.out"
-      }, 0.92)
-      .set(".writing-hero", { clearProps: "clipPath" })
+      }, "-=0.58")
+      .set(".writing-entry", { display: "none" })
 
     heroTimeline.eventCallback("onComplete", () => {
-      gsap.to(".writing-editorial-index", {
-        yPercent: -18,
-        xPercent: 5,
+      gsap.to(".writing-computer", {
+        yPercent: -12,
+        xPercent: 4,
+        rotate: -2,
         ease: "none",
         scrollTrigger: {
           trigger: ".writing-hero",
@@ -367,6 +398,30 @@
         }
       })
     })
+
+    if (window.matchMedia("(pointer: fine)").matches) {
+      const computer = document.querySelector(".writing-computer-motion")
+      const moveX = gsap.quickTo(computer, "x", {
+        duration: 0.8,
+        ease: "power3.out"
+      })
+      const moveY = gsap.quickTo(computer, "y", {
+        duration: 0.8,
+        ease: "power3.out"
+      })
+      const rotateComputer = gsap.quickTo(computer, "rotation", {
+        duration: 0.9,
+        ease: "power3.out"
+      })
+
+      document.querySelector(".writing-hero").addEventListener("pointermove", event => {
+        const x = event.clientX / window.innerWidth - 0.5
+        const y = event.clientY / window.innerHeight - 0.5
+        moveX(x * 12)
+        moveY(y * 10)
+        rotateComputer(x * 1.4)
+      }, { passive: true })
+    }
 
     gsap.from(".archive-heading h2, .archive-heading > p", {
       y: 70,
@@ -382,8 +437,51 @@
     })
   }
 
+  function initialiseFiledUnderRotation() {
+    const label = document.querySelector(".writing-filed-under")
+    if (!label) return
+
+    const phrases = [
+      "Filed under: things I learned the hard way",
+      "Filed under: things that should have been obvious",
+      "Filed under: why did nobody tell me this?",
+      "Filed under: five hours to save five minutes"
+    ]
+    let currentPhrase = 0
+
+    window.setInterval(() => {
+      if (document.hidden) return
+      currentPhrase = (currentPhrase + 1) % phrases.length
+
+      if (reduceMotion || typeof gsap === "undefined") {
+        label.textContent = phrases[currentPhrase]
+        return
+      }
+
+      gsap.to(label, {
+        y: -8,
+        opacity: 0,
+        duration: 0.22,
+        ease: "power2.in",
+        onComplete: () => {
+          label.textContent = phrases[currentPhrase]
+          gsap.fromTo(label, {
+            y: 8,
+            opacity: 0
+          }, {
+            y: 0,
+            opacity: 1,
+            duration: 0.32,
+            ease: "power3.out"
+          })
+        }
+      })
+    }, 3600)
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
     initialiseHeroMotion()
+    initialiseFiledUnderRotation()
     renderLatestIndex()
     const initialPage = Math.max(
       1,
