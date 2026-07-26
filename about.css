@@ -149,8 +149,8 @@
 
 .about-title-bold {
   margin: 0;
-  font: 700 clamp(5.8rem, 15cqw, 14rem)/0.77 var(--ix-display);
-  letter-spacing: -0.085em;
+  font: 700 clamp(5.8rem, 15cqw, 14rem)/0.84 var(--ix-display);
+  letter-spacing: -0.05em;
 }
 
 .about-title-line {
@@ -354,8 +354,8 @@
 
 .about-human-lead {
   max-width: 118rem;
-  font: 600 clamp(4rem, 6.8vw, 10rem)/0.98 var(--ix-display);
-  letter-spacing: -0.055em;
+  font: 600 clamp(4rem, 6.8vw, 10rem)/1.06 var(--ix-display);
+  letter-spacing: -0.03em;
 }
 
 .about-human-lead em {
@@ -394,8 +394,8 @@
 .about-skills h2,
 .about-off-duty h2 {
   margin: 4rem 0 3rem;
-  font: 700 clamp(4.8rem, 6.8vw, 10rem)/0.84 var(--ix-display);
-  letter-spacing: -0.07em;
+  font: 700 clamp(4.8rem, 6.8vw, 10rem)/0.91 var(--ix-display);
+  letter-spacing: -0.04em;
 }
 
 .route-sticky h2 span,
@@ -450,7 +450,7 @@
   position: absolute;
   top: -2.5rem;
   right: 1rem;
-  color: rgba(238, 234, 225, 0.035);
+  color: rgba(238, 234, 225, 0.09);
   font: 700 18rem/1 var(--ix-display);
 }
 
@@ -474,8 +474,8 @@
 .route-card h3 {
   max-width: 62rem;
   margin: 0 0 2rem;
-  font: 600 clamp(3rem, 3.4vw, 5.2rem)/0.98 var(--ix-display);
-  letter-spacing: -0.045em;
+  font: 600 clamp(3rem, 3.4vw, 5.2rem)/1.05 var(--ix-display);
+  letter-spacing: -0.025em;
 }
 
 .route-card div > p:last-child {
@@ -489,6 +489,10 @@
   color: var(--about-ink);
 }
 
+.route-card-coral::before {
+  color: rgba(8, 9, 11, 0.11);
+}
+
 .route-card-coral .route-year,
 .route-card-coral .route-kicker,
 .route-card-coral div > p:last-child {
@@ -500,6 +504,10 @@
   color: var(--about-ink);
 }
 
+.route-card-acid::before {
+  color: rgba(8, 9, 11, 0.09);
+}
+
 .route-card-acid .route-year,
 .route-card-acid .route-kicker,
 .route-card-acid div > p:last-child {
@@ -509,6 +517,10 @@
 .route-card-paper {
   background: var(--about-paper);
   color: var(--about-ink);
+}
+
+.route-card-paper::before {
+  color: rgba(8, 9, 11, 0.08);
 }
 
 .route-card-paper .route-year {
@@ -569,7 +581,7 @@
   border-bottom: 1px solid var(--about-ink);
   background: transparent;
   color: var(--about-ink);
-  font: 600 clamp(1.6rem, 1.5vw, 2.2rem)/1 var(--ix-display);
+  font: 600 clamp(1.6rem, 1.5vw, 2.2rem)/1.1 var(--ix-display);
   text-align: left;
   transition: 0.35s ease;
 }
@@ -665,8 +677,8 @@
 
 .fact-card h3 {
   margin: auto 0 2rem;
-  font: 600 clamp(2.8rem, 3vw, 4.6rem)/0.95 var(--ix-display);
-  letter-spacing: -0.045em;
+  font: 600 clamp(2.8rem, 3vw, 4.6rem)/1.03 var(--ix-display);
+  letter-spacing: -0.025em;
 }
 
 .fact-card p {
@@ -754,8 +766,8 @@
 
 .about-final-quote {
   max-width: 108rem;
-  font: 600 clamp(4rem, 6.3vw, 9.5rem)/0.98 var(--ix-display);
-  letter-spacing: -0.055em;
+  font: 600 clamp(4rem, 6.3vw, 9.5rem)/1.06 var(--ix-display);
+  letter-spacing: -0.03em;
 }
 
 .about-final-meta {
@@ -873,7 +885,7 @@
 
   .about-title-bold {
     font-size: clamp(4.6rem, 13.5cqw, 6.2rem);
-    line-height: 0.82;
+    line-height: 0.88;
   }
 
   .about-title-accent {

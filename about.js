@@ -228,7 +228,7 @@
     const quoteTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: ".about-final",
-        start: "top 68%",
+        start: "top 90%",
         once: true
       }
     })
@@ -236,8 +236,8 @@
       .from(".about-final-heading span", {
         y: 18,
         opacity: 0,
-        duration: 0.55,
-        stagger: 0.1,
+        duration: 0.35,
+        stagger: 0.06,
         ease: "power3.out"
       })
       .from(".about-final-mark-open", {
@@ -245,33 +245,33 @@
         rotate: -18,
         scale: 0.55,
         opacity: 0,
-        duration: 0.8,
+        duration: 0.5,
         ease: "back.out(1.5)"
-      }, "-=0.2")
+      }, "-=0.18")
       .from(".about-final-quote", {
         clipPath: "inset(0 0 100% 0)",
         y: 70,
         rotate: 1.2,
         opacity: 0,
-        duration: 1.05,
+        duration: 0.72,
         ease: "power4.out"
-      }, "-=0.5")
+      }, "-=0.38")
       .from(".about-final-mark-close", {
         x: 50,
         y: 25,
         rotate: 20,
         scale: 0.5,
         opacity: 0,
-        duration: 0.7,
+        duration: 0.48,
         ease: "back.out(1.7)"
-      }, "-=0.45")
+      }, "-=0.34")
       .from(".about-final-meta span", {
         y: 16,
         opacity: 0,
-        duration: 0.5,
-        stagger: 0.1,
+        duration: 0.35,
+        stagger: 0.06,
         ease: "power3.out"
-      }, "-=0.3")
+      }, "-=0.24")
 
     gsap.to(".about-final-quote-wrap", {
       yPercent: -5,
