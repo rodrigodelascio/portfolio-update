@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@300;400;500;600;700&family=Syne:wght@500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@75..125,500..900&family=DM+Mono:wght@300;400;500&family=Manrope:wght@300;400;500;600;700&display=swap");
 
 :root {
   --ix-ink: #08090b;
@@ -8,7 +8,7 @@
   --ix-line: rgba(238, 234, 225, 0.18);
   --ix-acid: #d8ff3e;
   --ix-coral: #ff5c35;
-  --ix-display: "Syne", sans-serif;
+  --ix-display: "Anybody", sans-serif;
   --ix-body: "Manrope", sans-serif;
   --ix-mono: "DM Mono", monospace;
   --ix-edge: clamp(2rem, 5vw, 7.2rem);
@@ -214,13 +214,15 @@ body.interior-page h3 {
   z-index: 2;
   display: inline-block;
   width: 9rem;
-  line-height: 0.8;
+  line-height: 1.15;
   text-align: center;
   white-space: nowrap;
 }
 .interior-contact .nav-roll-primary,
 .interior-contact .nav-roll-secondary {
   color: var(--ix-acid);
+  line-height: 1.15;
+  padding: 0.14em 0 0.08em;
 }
 .interior-menu-button {
   display: none;

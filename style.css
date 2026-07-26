@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@300;400;500;600;700&family=Syne:wght@500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@75..125,500..900&family=DM+Mono:wght@300;400;500&family=Manrope:wght@300;400;500;600;700&display=swap");
 
 :root {
   --ink: #08090b;
@@ -12,7 +12,7 @@
   --project-shine: #008c8c;
   --project-sunnyside: #3dbeff;
   --project-rodweather: #29282d;
-  --display: "Syne", sans-serif;
+  --display: "Anybody", sans-serif;
   --body: "Manrope", sans-serif;
   --mono: "DM Mono", monospace;
   --edge: clamp(2rem, 5vw, 7.2rem);
@@ -120,14 +120,14 @@ html:not(.js) .preloader {
   align-self: center;
   display: flex;
   flex-wrap: nowrap;
-  align-items: baseline;
+  align-items: center;
   justify-content: center;
   overflow: hidden;
   white-space: nowrap;
   max-width: 100%;
-  padding-inline: 0;
-  font: 700 clamp(7rem, 16vw, 26rem)/0.72 var(--display);
-  letter-spacing: -0.11em;
+  padding: 0.12em 0 0.08em;
+  font: 700 clamp(7rem, 16vw, 26rem)/1 var(--display);
+  letter-spacing: -0.07em;
 }
 .preloader-mark span,
 .preloader-mark i {
@@ -207,7 +207,7 @@ html:not(.js) .preloader {
 .wordmark {
   color: var(--paper);
   font: 700 1.8rem/1 var(--display);
-  letter-spacing: -0.08em;
+  letter-spacing: -0.04em;
   width: max-content;
 }
 .wordmark-mark {
@@ -307,13 +307,15 @@ html:not(.js) .preloader {
   z-index: 2;
   display: inline-block;
   width: 9rem;
-  line-height: 0.8;
+  line-height: 1.15;
   text-align: center;
   white-space: nowrap;
 }
 .header-contact .nav-roll-primary,
 .header-contact .nav-roll-secondary {
   color: var(--acid);
+  line-height: 1.15;
+  padding: 0.14em 0 0.08em;
 }
 .hamburger-menu {
   display: none;
@@ -377,8 +379,8 @@ html:not(.js) .preloader {
   flex-direction: column;
 }
 .menu-link {
-  font: 700 clamp(5rem, 12vw, 12rem)/0.88 var(--display);
-  letter-spacing: -0.06em;
+  font: 700 clamp(5rem, 12vw, 12rem)/0.92 var(--display);
+  letter-spacing: -0.035em;
   border-bottom: 1px solid rgba(8, 9, 11, 0.3);
   padding: 1rem 0;
 }
@@ -491,8 +493,8 @@ main {
 .hero-title-outline {
   position: relative;
   width: 100%;
-  font: 700 clamp(7.2rem, 13.4vw, 20rem)/0.72 var(--display);
-  letter-spacing: -0.09em;
+  font: 700 clamp(7.2rem, 13.4vw, 20rem)/0.78 var(--display);
+  letter-spacing: -0.055em;
 }
 .hero-title {
   z-index: 1;
@@ -659,9 +661,10 @@ main {
   justify-content: space-between;
 }
 .manifesto-copy {
-  max-width: 130rem;
-  font: 600 clamp(4.3rem, 7.4vw, 11rem)/0.93 var(--display);
-  letter-spacing: -0.065em;
+  max-width: min(100%, 145rem);
+  font: 600 clamp(4.2rem, 6.35vw, 9.8rem)/1.12 var(--display);
+  letter-spacing: -0.035em;
+  text-wrap: balance;
   padding: 8rem 0;
 }
 .manifesto-copy em {
@@ -696,8 +699,8 @@ main {
 }
 .section-heading h2 {
   padding-top: 2rem;
-  font: 700 clamp(6.4rem, 12.2vw, 18rem)/0.77 var(--display);
-  letter-spacing: -0.085em;
+  font: 700 clamp(6.4rem, 12.2vw, 18rem)/0.84 var(--display);
+  letter-spacing: -0.05em;
 }
 .section-heading h2 span,
 .section-heading h2 strong {
@@ -751,8 +754,8 @@ main {
   position: relative;
   z-index: 2;
   max-width: 100%;
-  font: 700 clamp(3.8rem, 4.5vw, 6.6rem)/0.86 var(--display);
-  letter-spacing: -0.065em;
+  font: 700 clamp(3.8rem, 4.5vw, 6.6rem)/0.94 var(--display);
+  letter-spacing: -0.035em;
   margin-bottom: 3rem;
   overflow-wrap: normal;
   word-break: normal;
@@ -763,7 +766,7 @@ main {
 }
 .project:last-child .project-copy h3 {
   font-size: clamp(3.4rem, 3.8vw, 5.5rem);
-  letter-spacing: -0.055em;
+  letter-spacing: -0.03em;
 }
 .project-copy p {
   max-width: 46rem;
@@ -884,8 +887,8 @@ main {
   transition: color 0.4s ease;
 }
 .archive-link-copy strong {
-  font: 700 clamp(2.8rem, 4vw, 5.8rem)/0.9 var(--display);
-  letter-spacing: -0.055em;
+  font: 700 clamp(2.8rem, 4vw, 5.8rem)/0.96 var(--display);
+  letter-spacing: -0.025em;
   text-transform: none;
 }
 .archive-link-arrow {
@@ -1027,7 +1030,7 @@ main {
   padding: 3rem 0;
   background: var(--acid);
   font: 700 clamp(4rem, 6vw, 9rem)/1 var(--display);
-  letter-spacing: -0.05em;
+  letter-spacing: -0.025em;
   white-space: nowrap;
   transform: rotate(-2deg) scale(1.04);
 }
@@ -1072,8 +1075,8 @@ main {
   color: var(--muted);
 }
 .article-card h3 {
-  font: 600 clamp(3.2rem, 4.5vw, 7rem)/0.98 var(--display);
-  letter-spacing: -0.055em;
+  font: 600 clamp(3.2rem, 4.5vw, 7rem)/1.04 var(--display);
+  letter-spacing: -0.025em;
   max-width: 80rem;
 }
 .article-card p {
@@ -1142,8 +1145,8 @@ main {
   text-transform: uppercase;
 }
 .about-home h2 {
-  font: 700 clamp(5.2rem, 8vw, 12rem)/0.83 var(--display);
-  letter-spacing: -0.075em;
+  font: 700 clamp(5.2rem, 8vw, 12rem)/0.9 var(--display);
+  letter-spacing: -0.04em;
 }
 .about-home h2 span {
   color: var(--coral);
@@ -1202,8 +1205,8 @@ main {
 }
 .contact-heading {
   position: relative;
-  font: 700 clamp(6rem, 13vw, 19rem)/0.73 var(--display);
-  letter-spacing: -0.09em;
+  font: 700 clamp(6rem, 13vw, 19rem)/0.8 var(--display);
+  letter-spacing: -0.05em;
 }
 .contact-heading span,
 .contact-heading strong {
@@ -1367,8 +1370,8 @@ main {
   .hero-title,
   .hero-title-outline {
     font-size: clamp(7.2rem, 16vw, 11.5rem);
-    line-height: 0.8;
-    letter-spacing: -0.085em;
+    line-height: 0.85;
+    letter-spacing: -0.05em;
     transform: translateY(clamp(-5rem, -4svh, -3rem));
   }
   .hero-title {
@@ -1489,8 +1492,8 @@ main {
   .hero-title,
   .hero-title-outline {
     font-size: clamp(5.8rem, 17vw, 7.4rem);
-    line-height: 0.82;
-    letter-spacing: -0.075em;
+    line-height: 0.87;
+    letter-spacing: -0.045em;
     transform: translateY(clamp(4.5rem, 8svh, 6.5rem));
   }
   .hero-portrait-shell {
@@ -1524,7 +1527,8 @@ main {
     padding-top: 5rem;
   }
   .manifesto-copy {
-    font-size: 12vw;
+    font-size: 10.8vw;
+    line-height: 1.1;
   }
   .work,
   .writing {
