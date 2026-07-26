@@ -139,8 +139,8 @@
   min-width: 0;
   overflow: hidden;
   color: inherit;
-  font: 500 clamp(1.1rem, 1.2vw, 1.55rem)/1.15 var(--ix-body);
-  letter-spacing: -0.02em;
+  font: 500 clamp(1.1rem, 1.2vw, 1.55rem)/1.28 var(--ix-body);
+  letter-spacing: -0.012em;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -223,14 +223,14 @@
 .writing-hero-heading > p {
   margin-bottom: 2rem;
   color: var(--writing-coral);
-  font: 500 1rem/1 var(--ix-mono);
+  font: 500 1rem/1.25 var(--ix-mono);
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
 .writing-title {
-  font: 700 clamp(6.5rem, 11.2vw, 17rem)/0.76 var(--ix-display);
-  letter-spacing: -0.085em;
+  font: 700 clamp(6.2rem, 10.6vw, 16rem)/0.86 var(--ix-display);
+  letter-spacing: -0.05em;
 }
 
 .writing-title span,
@@ -317,8 +317,8 @@
 }
 
 .archive-heading h2 {
-  font: 700 clamp(5rem, 8vw, 12rem)/0.8 var(--ix-display);
-  letter-spacing: -0.075em;
+  font: 700 clamp(5rem, 7.4vw, 11rem)/0.9 var(--ix-display);
+  letter-spacing: -0.045em;
 }
 
 .archive-heading h2 strong {
@@ -328,7 +328,7 @@
 
 .archive-heading > p {
   padding-bottom: 1rem;
-  font: 400 1.55rem/1.62 var(--ix-body);
+  font: 400 1.55rem/1.68 var(--ix-body);
 }
 
 .blog-status {
@@ -456,14 +456,16 @@
 
 .article-row h3 {
   margin: 2.5rem 0 1.5rem;
-  font: 600 clamp(2.8rem, 3.5vw, 5.2rem)/0.96 var(--ix-display);
-  letter-spacing: -0.05em;
+  max-width: 22ch;
+  font: 600 clamp(2.8rem, 3.3vw, 5rem)/1.06 var(--ix-display);
+  letter-spacing: -0.025em;
+  text-wrap: balance;
 }
 
 .article-row-copy > p {
   max-width: 72rem;
   color: rgba(8, 9, 11, 0.65);
-  font: 400 1.5rem/1.58 var(--ix-body);
+  font: 400 1.5rem/1.65 var(--ix-body);
 }
 
 .article-row .article-read {
@@ -498,8 +500,8 @@
 
 .pagination-summary strong {
   margin: 1.2rem 0;
-  font: 700 clamp(3rem, 4vw, 5rem)/0.8 var(--ix-display);
-  letter-spacing: -0.07em;
+  font: 700 clamp(3rem, 4vw, 5rem)/0.94 var(--ix-display);
+  letter-spacing: -0.04em;
 }
 
 .pagination-pages {
@@ -571,7 +573,8 @@
 }
 
 .blog-error strong {
-  font: 600 clamp(3rem, 5vw, 7rem)/0.95 var(--ix-display);
+  font: 600 clamp(3rem, 5vw, 7rem)/1.04 var(--ix-display);
+  letter-spacing: -0.025em;
 }
 
 .blog-error p {
@@ -597,6 +600,7 @@
 
   .writing-title {
     font-size: clamp(5.8rem, 13cqw, 10rem);
+    line-height: 0.88;
   }
 
   .writing-hero-heading {
@@ -678,8 +682,9 @@
   }
 
   .writing-title {
-    font-size: clamp(4.1rem, 14cqw, 5.2rem);
-    line-height: 0.82;
+    font-size: clamp(4rem, 13.5cqw, 5.2rem);
+    line-height: 0.9;
+    letter-spacing: -0.035em;
   }
 
   .writing-hero-bottom {
@@ -733,6 +738,7 @@
 
   .article-row h3 {
     font-size: clamp(3rem, 9vw, 4.2rem);
+    line-height: 1.08;
   }
 
   .pagination-container {
