@@ -180,6 +180,419 @@
     })
   }
 
+  function roundedCardShape(width, height, radius) {
+    const left = -width / 2
+    const right = width / 2
+    const bottom = -height / 2
+    const top = height / 2
+    const shape = new THREE.Shape()
+
+    shape.moveTo(left + radius, bottom)
+    shape.lineTo(right - radius, bottom)
+    shape.quadraticCurveTo(right, bottom, right, bottom + radius)
+    shape.lineTo(right, top - radius)
+    shape.quadraticCurveTo(right, top, right - radius, top)
+    shape.lineTo(left + radius, top)
+    shape.quadraticCurveTo(left, top, left, top - radius)
+    shape.lineTo(left, bottom + radius)
+    shape.quadraticCurveTo(left, bottom, left + radius, bottom)
+    shape.closePath()
+
+    return shape
+  }
+
+  function normaliseCardUvs(geometry, width, height) {
+    const positions = geometry.attributes.position
+    const uvs = geometry.attributes.uv
+
+    for (let index = 0; index < positions.count; index += 1) {
+      uvs.setXY(
+        index,
+        (positions.getX(index) + width / 2) / width,
+        (positions.getY(index) + height / 2) / height
+      )
+    }
+    uvs.needsUpdate = true
+  }
+
+  function cropTextureToCard(texture, cardAspect) {
+    const imageAspect = texture.image.width / texture.image.height
+    texture.wrapS = THREE.ClampToEdgeWrapping
+    texture.wrapT = THREE.ClampToEdgeWrapping
+
+    if (imageAspect > cardAspect) {
+      texture.repeat.x = cardAspect / imageAspect
+      texture.offset.x = (1 - texture.repeat.x) / 2
+    } else {
+      texture.repeat.y = imageAspect / cardAspect
+      texture.offset.y = (1 - texture.repeat.y) / 2
+    }
+  }
+
+  async function initialiseWebGLShowreel() {
+    const host = document.querySelector(".work-showreel")
+    const canvas = document.querySelector(".work-showreel-canvas")
+    const fallbackStage = document.querySelector(".work-showreel-stage")
+    const fallbackPanels = [...document.querySelectorAll(".work-showreel-panel")]
+    const projectLinks = [...document.querySelectorAll("[data-webgl-project]")]
+
+    if (
+      !host ||
+      !canvas ||
+      !fallbackStage ||
+      reduceMotion ||
+      typeof THREE === "undefined"
+    ) return
+
+    const accentColours = [0xff8b1c, 0x008c8c, 0x3dbeff, 0x29282d]
+    const layouts = [
+      { x: -3.15, y: 0, z: 0.9, rx: 0, ry: 0, rz: 0 },
+      { x: -1.05, y: 0.03, z: 0.3, rx: 0, ry: 0, rz: 0 },
+      { x: 1.05, y: 0.03, z: -0.3, rx: 0, ry: 0, rz: 0 },
+      { x: 3.15, y: 0, z: -0.9, rx: 0, ry: 0, rz: 0 }
+    ]
+    const cardWidth = 2.2
+    const cardHeight = 3.68
+    const cardAspect = cardWidth / cardHeight
+    const deckFrame = {
+      width: 9,
+      height: 5.35,
+      nearestZ: 2
+    }
+    const cards = []
+    const hitTargets = []
+    const white = new THREE.Color(0xffffff)
+    const dimmed = new THREE.Color(0x353638)
+
+    try {
+      const renderer = new THREE.WebGLRenderer({
+        canvas,
+        alpha: true,
+        antialias: true,
+        powerPreference: "high-performance"
+      })
+      renderer.setClearColor(0x000000, 0)
+      renderer.outputColorSpace = THREE.SRGBColorSpace
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.75))
+
+      const scene = new THREE.Scene()
+      const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 100)
+      const deck = new THREE.Group()
+      deck.position.y = 0.28
+      scene.add(deck)
+
+      scene.add(new THREE.AmbientLight(0xffffff, 1.3))
+
+      const keyLight = new THREE.DirectionalLight(0xeeeae1, 3.2)
+      keyLight.position.set(-4, 6, 9)
+      scene.add(keyLight)
+
+      const acidLight = new THREE.PointLight(0xd8ff3e, 22, 18, 2)
+      acidLight.position.set(4, 1.5, 5)
+      scene.add(acidLight)
+
+      const coralLight = new THREE.PointLight(0xff5c35, 18, 16, 2)
+      coralLight.position.set(-4, -2, 4)
+      scene.add(coralLight)
+
+      const loader = new THREE.TextureLoader()
+      const textures = await Promise.all(
+        fallbackPanels.map(panel =>
+          loader.loadAsync(panel.querySelector("img").getAttribute("src"))
+        )
+      )
+
+      textures.forEach((texture, index) => {
+        texture.colorSpace = THREE.SRGBColorSpace
+        texture.anisotropy = Math.min(
+          8,
+          renderer.capabilities.getMaxAnisotropy()
+        )
+        cropTextureToCard(texture, cardAspect)
+
+        const shape = roundedCardShape(cardWidth, cardHeight, 0.2)
+        const frontGeometry = new THREE.ShapeGeometry(shape, 20)
+        normaliseCardUvs(frontGeometry, cardWidth, cardHeight)
+
+        const bodyGeometry = new THREE.ExtrudeGeometry(shape, {
+          depth: 0.2,
+          bevelEnabled: true,
+          bevelSegments: 5,
+          bevelSize: 0.055,
+          bevelThickness: 0.055,
+          curveSegments: 20,
+          steps: 1
+        })
+        bodyGeometry.translate(0, 0, -0.23)
+
+        const accent = new THREE.Color(accentColours[index])
+        const bodyMaterial = new THREE.MeshPhysicalMaterial({
+          color: accent,
+          roughness: 0.3,
+          metalness: 0.12,
+          clearcoat: 0.72,
+          clearcoatRoughness: 0.2
+        })
+        const frontMaterial = new THREE.MeshStandardMaterial({
+          map: texture,
+          color: white.clone(),
+          roughness: 0.66,
+          metalness: 0.03
+        })
+
+        const card = new THREE.Group()
+        const body = new THREE.Mesh(bodyGeometry, bodyMaterial)
+        const front = new THREE.Mesh(frontGeometry, frontMaterial)
+        front.position.z = 0.055
+
+        const outline = new THREE.LineSegments(
+          new THREE.EdgesGeometry(frontGeometry, 18),
+          new THREE.LineBasicMaterial({
+            color: 0xeeeae1,
+            transparent: true,
+            opacity: 0.38
+          })
+        )
+        outline.position.z = 0.065
+
+        Array.of(body, front, outline).forEach(object => {
+          object.userData.cardIndex = index
+          hitTargets.push(object)
+        })
+
+        card.add(body, front, outline)
+        card.position.set(
+          layouts[index].x,
+          layouts[index].y - 0.7,
+          layouts[index].z - 4
+        )
+        card.rotation.set(
+          layouts[index].rx + 0.18,
+          layouts[index].ry,
+          layouts[index].rz
+        )
+        card.scale.setScalar(0.72)
+        card.userData = {
+          index,
+          base: layouts[index],
+          frontMaterial,
+          bodyMaterial,
+          accent,
+          dimAccent: accent.clone().multiplyScalar(0.24),
+          phase: index * 1.35
+        }
+        cards.push(card)
+        deck.add(card)
+      })
+
+      fallbackStage.setAttribute("aria-hidden", "true")
+      fallbackPanels.forEach(panel => {
+        panel.tabIndex = -1
+      })
+      host.classList.add("is-webgl")
+
+      const raycaster = new THREE.Raycaster()
+      const pointer = new THREE.Vector2(3, 3)
+      const baseDeckRotationX = -0.02
+      const baseDeckRotationY = -0.3
+      let focusedIndex = null
+      let pointerRotationX = baseDeckRotationX
+      let pointerRotationY = baseDeckRotationY
+      let cameraBaseZ = 12
+      let isVisible = true
+
+      const setFocusedCard = index => {
+        if (focusedIndex === index) return
+        focusedIndex = index
+        projectLinks.forEach((link, linkIndex) => {
+          link.classList.toggle("is-active", linkIndex === index)
+        })
+      }
+
+      const updatePointer = event => {
+        const bounds = canvas.getBoundingClientRect()
+        pointer.x = ((event.clientX - bounds.left) / bounds.width) * 2 - 1
+        pointer.y = -((event.clientY - bounds.top) / bounds.height) * 2 + 1
+        pointerRotationY = baseDeckRotationY + pointer.x * 0.06
+        pointerRotationX = baseDeckRotationX + pointer.y * -0.04
+        raycaster.setFromCamera(pointer, camera)
+        const match = raycaster.intersectObjects(hitTargets, false)[0]
+        setFocusedCard(match?.object.userData.cardIndex ?? null)
+      }
+
+      canvas.addEventListener("pointermove", updatePointer)
+      canvas.addEventListener("pointerdown", updatePointer)
+      canvas.addEventListener("pointerleave", () => {
+        pointerRotationX = baseDeckRotationX
+        pointerRotationY = baseDeckRotationY
+        setFocusedCard(null)
+      })
+      canvas.addEventListener("click", () => {
+        if (focusedIndex === null) return
+        const link = projectLinks[focusedIndex]
+        if (link.target === "_blank") {
+          window.open(link.href, "_blank", "noopener,noreferrer")
+        } else {
+          window.location.href = link.href
+        }
+      })
+
+      projectLinks.forEach((link, index) => {
+        link.addEventListener("pointerenter", () => setFocusedCard(index))
+        link.addEventListener("focus", () => setFocusedCard(index))
+        link.addEventListener("pointerleave", () => setFocusedCard(null))
+        link.addEventListener("blur", () => setFocusedCard(null))
+      })
+
+      const resize = () => {
+        const bounds = host.getBoundingClientRect()
+        if (!bounds.width || !bounds.height) return
+        renderer.setSize(bounds.width, bounds.height, false)
+        camera.aspect = bounds.width / bounds.height
+
+        const verticalFov = THREE.MathUtils.degToRad(camera.fov)
+        const horizontalFov =
+          2 * Math.atan(Math.tan(verticalFov / 2) * camera.aspect)
+        const distanceForHeight =
+          deckFrame.height / (2 * Math.tan(verticalFov / 2))
+        const distanceForWidth =
+          deckFrame.width / (2 * Math.tan(horizontalFov / 2))
+
+        cameraBaseZ =
+          Math.max(distanceForHeight, distanceForWidth) +
+          deckFrame.nearestZ +
+          0.35
+        camera.position.set(
+          0,
+          0.18,
+          cameraBaseZ + (focusedIndex === null ? 0 : 0.85)
+        )
+        camera.updateProjectionMatrix()
+      }
+      const resizeObserver = new ResizeObserver(resize)
+      resizeObserver.observe(host)
+      resize()
+
+      const visibilityObserver = new IntersectionObserver(entries => {
+        isVisible = entries[0]?.isIntersecting ?? true
+      })
+      visibilityObserver.observe(host)
+
+      let previousTime = performance.now()
+      const animate = time => {
+        requestAnimationFrame(animate)
+        if (!isVisible || document.hidden) {
+          previousTime = time
+          return
+        }
+
+        const delta = Math.min((time - previousTime) / 1000, 0.05)
+        previousTime = time
+        const smoothing = 1 - Math.exp(-delta * 7.5)
+        const colourSmoothing = 1 - Math.exp(-delta * 5.5)
+        const targetCameraZ =
+          cameraBaseZ + (focusedIndex === null ? 0 : 0.85)
+
+        camera.position.z = THREE.MathUtils.lerp(
+          camera.position.z,
+          targetCameraZ,
+          smoothing
+        )
+
+        deck.rotation.x = THREE.MathUtils.lerp(
+          deck.rotation.x,
+          pointerRotationX,
+          smoothing
+        )
+        deck.rotation.y = THREE.MathUtils.lerp(
+          deck.rotation.y,
+          pointerRotationY,
+          smoothing
+        )
+
+        cards.forEach((card, index) => {
+          const data = card.userData
+          const isFocused = focusedIndex === index
+          const isReceding = focusedIndex !== null && !isFocused
+          const direction =
+            focusedIndex === null
+              ? 0
+              : index < focusedIndex
+                ? -0.12
+                : index > focusedIndex
+                  ? 0.12
+                  : 0
+          const float = Math.sin(time * 0.00072 + data.phase) * 0.035
+          const targetX =
+            data.base.x * (isFocused ? 0.98 : 1) + direction
+          const targetY = data.base.y + (isFocused ? 0.1 : 0) + float
+          const targetZ = isFocused
+            ? 1.9
+            : isReceding
+              ? data.base.z - 0.75
+              : data.base.z
+          const targetScale = isFocused ? 1.08 : isReceding ? 0.95 : 1
+          const targetRotationX = isFocused ? 0 : data.base.rx
+          const targetRotationY = isFocused ? 0 : data.base.ry
+          const targetRotationZ = isFocused ? 0 : data.base.rz
+
+          card.position.x = THREE.MathUtils.lerp(
+            card.position.x,
+            targetX,
+            smoothing
+          )
+          card.position.y = THREE.MathUtils.lerp(
+            card.position.y,
+            targetY,
+            smoothing
+          )
+          card.position.z = THREE.MathUtils.lerp(
+            card.position.z,
+            targetZ,
+            smoothing
+          )
+          card.rotation.x = THREE.MathUtils.lerp(
+            card.rotation.x,
+            targetRotationX,
+            smoothing
+          )
+          card.rotation.y = THREE.MathUtils.lerp(
+            card.rotation.y,
+            targetRotationY,
+            smoothing
+          )
+          card.rotation.z = THREE.MathUtils.lerp(
+            card.rotation.z,
+            targetRotationZ,
+            smoothing
+          )
+
+          const currentScale = card.scale.x
+          const nextScale = THREE.MathUtils.lerp(
+            currentScale,
+            targetScale,
+            smoothing
+          )
+          card.scale.setScalar(nextScale)
+
+          data.frontMaterial.color.lerp(
+            isReceding ? dimmed : white,
+            colourSmoothing
+          )
+          data.bodyMaterial.color.lerp(
+            isReceding ? data.dimAccent : data.accent,
+            colourSmoothing
+          )
+        })
+
+        renderer.render(scene, camera)
+      }
+      requestAnimationFrame(animate)
+    } catch (error) {
+      console.warn("The 3D project deck could not be initialised.", error)
+    }
+  }
+
   function initialiseHeroMotion() {
     if (
       reduceMotion ||
@@ -195,13 +608,17 @@
       opacity: 0
     })
     gsap.set(title.lines, { yPercent: 120, opacity: 0 })
-    gsap.set(".work-showreel-panel", { yPercent: 110 })
-    gsap.set(".work-showreel-panel img", { scale: 1.25 })
+    gsap.set(".work-showreel-panel", {
+      clipPath: "inset(48% 48% 48% 48%)",
+      opacity: 0
+    })
+    gsap.set(".work-showreel-panel img", { opacity: 0 })
 
     const initialiseHeroScroll = () => {
       gsap.to(".work-showreel", {
-        xPercent: 10,
-        scale: 0.94,
+        xPercent: 8,
+        yPercent: 6,
+        scale: 0.93,
         ease: "none",
         scrollTrigger: {
           trigger: ".work-hero",
@@ -209,19 +626,6 @@
           end: "bottom top",
           scrub: 1
         }
-      })
-
-      document.querySelectorAll(".work-showreel-panel").forEach((panel, index) => {
-        gsap.to(panel, {
-          yPercent: index % 2 ? 11 : -11,
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".work-hero",
-            start: "top top",
-            end: "bottom top",
-            scrub: 1
-          }
-        })
       })
       ScrollTrigger.refresh()
     }
@@ -246,17 +650,21 @@
         ease: "power4.inOut"
       })
       .to(".work-showreel-panel", {
-        yPercent: 0,
-        duration: 1,
-        stagger: 0.09,
+        clipPath: "inset(0% 0% 0% 0%)",
+        opacity: 1,
+        duration: 0.9,
+        stagger: {
+          each: 0.1,
+          from: "center"
+        },
         ease: "power4.out"
       }, "-=0.9")
       .to(".work-showreel-panel img", {
-        scale: 1,
-        duration: 1.2,
+        opacity: 1,
+        duration: 0.8,
         stagger: 0.07,
         ease: "power3.out"
-      }, "-=1")
+      }, "-=0.75")
       .to(".work-hero-meta, .work-hero-copy > p", {
         y: 0,
         opacity: 1,
@@ -278,20 +686,37 @@
       .set(".work-hero-wipe", {
         display: "none"
       })
+      .set(".work-showreel-panel", {
+        clearProps: "clipPath,opacity"
+      })
+      .set(".work-showreel-panel img", {
+        clearProps: "opacity"
+      })
     entrance.eventCallback("onComplete", initialiseHeroScroll)
 
     if (window.matchMedia("(pointer: fine)").matches) {
-      const moveX = gsap.quickTo(".work-showreel", "x", {
-        duration: 0.8,
+      gsap.set(".work-showreel-stage", {
+        rotationX: -2,
+        rotationY: -5,
+        transformPerspective: 1400
+      })
+      const tiltX = gsap.quickTo(".work-showreel-stage", "rotationY", {
+        duration: 0.9,
         ease: "power3.out"
       })
-      const moveY = gsap.quickTo(".work-showreel", "y", {
-        duration: 0.8,
+      const tiltY = gsap.quickTo(".work-showreel-stage", "rotationX", {
+        duration: 0.9,
         ease: "power3.out"
       })
-      document.querySelector(".work-hero").addEventListener("pointermove", event => {
-        moveX((event.clientX / window.innerWidth - 0.5) * 14)
-        moveY((event.clientY / window.innerHeight - 0.5) * 14)
+
+      const hero = document.querySelector(".work-hero")
+      hero.addEventListener("pointermove", event => {
+        tiltX((event.clientX / window.innerWidth - 0.5) * 16)
+        tiltY((0.5 - event.clientY / window.innerHeight) * 10)
+      })
+      hero.addEventListener("pointerleave", () => {
+        tiltX(-5)
+        tiltY(-2)
       })
     }
   }
@@ -324,6 +749,7 @@
 
   renderProjects()
   initialiseFilters()
+  initialiseWebGLShowreel()
   initialiseHeroMotion()
   initialiseProjectMotion()
 })()
