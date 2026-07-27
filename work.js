@@ -261,6 +261,10 @@
     }
     const cards = []
     const hitTargets = []
+    const motionState = {
+      intro: 0,
+      scroll: 0
+    }
     const white = new THREE.Color(0xffffff)
     const dimmed = new THREE.Color(0x353638)
 
@@ -333,11 +337,10 @@
           clearcoat: 0.72,
           clearcoatRoughness: 0.2
         })
-        const frontMaterial = new THREE.MeshStandardMaterial({
+        const frontMaterial = new THREE.MeshBasicMaterial({
           map: texture,
           color: white.clone(),
-          roughness: 0.66,
-          metalness: 0.03
+          toneMapped: false
         })
 
         const card = new THREE.Group()
@@ -355,9 +358,27 @@
         )
         outline.position.z = 0.065
 
+        const hitArea = new THREE.Mesh(
+          new THREE.PlaneGeometry(cardWidth * 1.04, cardHeight * 1.04),
+          new THREE.MeshBasicMaterial({
+            transparent: true,
+            opacity: 0,
+            depthWrite: false,
+            colorWrite: false,
+            side: THREE.DoubleSide
+          })
+        )
+        hitArea.position.set(
+          layouts[index].x,
+          layouts[index].y,
+          layouts[index].z + 0.12
+        )
+        hitArea.userData.cardIndex = index
+        hitTargets.push(hitArea)
+        deck.add(hitArea)
+
         Array.of(body, front, outline).forEach(object => {
           object.userData.cardIndex = index
-          hitTargets.push(object)
         })
 
         card.add(body, front, outline)
@@ -379,7 +400,9 @@
           bodyMaterial,
           accent,
           dimAccent: accent.clone().multiplyScalar(0.24),
-          phase: index * 1.35
+          phase: index * 1.35,
+          reveal: 0,
+          hitArea
         }
         cards.push(card)
         deck.add(card)
@@ -400,6 +423,7 @@
       let pointerRotationY = baseDeckRotationY
       let cameraBaseZ = 12
       let isVisible = true
+      let lastPointerHit = 0
 
       const setFocusedCard = index => {
         if (focusedIndex === index) return
@@ -417,7 +441,12 @@
         pointerRotationX = baseDeckRotationX + pointer.y * -0.04
         raycaster.setFromCamera(pointer, camera)
         const match = raycaster.intersectObjects(hitTargets, false)[0]
-        setFocusedCard(match?.object.userData.cardIndex ?? null)
+        if (match) {
+          lastPointerHit = performance.now()
+          setFocusedCard(match.object.userData.cardIndex)
+        } else if (performance.now() - lastPointerHit > 110) {
+          setFocusedCard(null)
+        }
       }
 
       canvas.addEventListener("pointermove", updatePointer)
@@ -425,6 +454,7 @@
       canvas.addEventListener("pointerleave", () => {
         pointerRotationX = baseDeckRotationX
         pointerRotationY = baseDeckRotationY
+        lastPointerHit = 0
         setFocusedCard(null)
       })
       canvas.addEventListener("click", () => {
@@ -447,6 +477,22 @@
       const resize = () => {
         const bounds = host.getBoundingClientRect()
         if (!bounds.width || !bounds.height) return
+
+        const responsiveSpacing =
+          window.innerWidth <= 700
+            ? 2.3
+            : window.innerWidth <= 1000
+              ? 2.24
+              : 2.1
+
+        cards.forEach((card, index) => {
+          card.userData.base.x = (index - 1.5) * responsiveSpacing
+        })
+        deckFrame.width = Math.max(
+          9,
+          responsiveSpacing * 3 + cardWidth + 0.25
+        )
+
         renderer.setSize(bounds.width, bounds.height, false)
         camera.aspect = bounds.width / bounds.height
 
@@ -490,8 +536,13 @@
         previousTime = time
         const smoothing = 1 - Math.exp(-delta * 7.5)
         const colourSmoothing = 1 - Math.exp(-delta * 5.5)
+        const intro = motionState.intro
+        const scroll = motionState.scroll
         const targetCameraZ =
-          cameraBaseZ + (focusedIndex === null ? 0 : 0.85)
+          cameraBaseZ +
+          (1 - intro) * 2.2 +
+          (focusedIndex === null ? 0 : 0.85) -
+          scroll * 0.8
 
         camera.position.z = THREE.MathUtils.lerp(
           camera.position.z,
@@ -499,19 +550,32 @@
           smoothing
         )
 
+        deck.position.x = THREE.MathUtils.lerp(
+          deck.position.x,
+          (1 - intro) * 1.35 - scroll * 0.35,
+          smoothing
+        )
+        deck.position.y = THREE.MathUtils.lerp(
+          deck.position.y,
+          THREE.MathUtils.lerp(0.82, 0.28, intro) + scroll * 0.42,
+          smoothing
+        )
         deck.rotation.x = THREE.MathUtils.lerp(
           deck.rotation.x,
-          pointerRotationX,
+          THREE.MathUtils.lerp(0.34, pointerRotationX, intro) +
+            scroll * 0.12,
           smoothing
         )
         deck.rotation.y = THREE.MathUtils.lerp(
           deck.rotation.y,
-          pointerRotationY,
+          THREE.MathUtils.lerp(-0.92, pointerRotationY, intro) -
+            scroll * 0.2,
           smoothing
         )
 
         cards.forEach((card, index) => {
           const data = card.userData
+          const reveal = data.reveal
           const isFocused = focusedIndex === index
           const isReceding = focusedIndex !== null && !isFocused
           const direction =
@@ -523,18 +587,67 @@
                   ? 0.12
                   : 0
           const float = Math.sin(time * 0.00072 + data.phase) * 0.035
-          const targetX =
-            data.base.x * (isFocused ? 0.98 : 1) + direction
-          const targetY = data.base.y + (isFocused ? 0.1 : 0) + float
-          const targetZ = isFocused
+          const restingY =
+            data.base.y + (isFocused ? 0.1 : 0) + float
+          const restingZ = isFocused
             ? 1.9
             : isReceding
               ? data.base.z - 0.75
               : data.base.z
-          const targetScale = isFocused ? 1.08 : isReceding ? 0.95 : 1
-          const targetRotationX = isFocused ? 0 : data.base.rx
-          const targetRotationY = isFocused ? 0 : data.base.ry
-          const targetRotationZ = isFocused ? 0 : data.base.rz
+          const scrollDepth = (1.5 - index) * 0.42 * scroll
+          const focusXCompensation = isFocused
+            ? (data.base.z - restingZ) * Math.tan(deck.rotation.y)
+            : 0
+          const restingX =
+            data.base.x + direction + focusXCompensation
+          data.hitArea.position.set(
+            data.base.x + (index - 1.5) * 0.2 * scroll,
+            data.base.y,
+            data.base.z + scrollDepth + 0.12
+          )
+          const targetX = THREE.MathUtils.lerp(
+            data.base.x * 0.08,
+            restingX + (index - 1.5) * 0.2 * scroll,
+            reveal
+          )
+          const targetY = THREE.MathUtils.lerp(
+            index % 2 === 0 ? -0.55 : 0.55,
+            restingY,
+            reveal
+          )
+          const targetZ = THREE.MathUtils.lerp(
+            -7.5 - index * 1.15,
+            restingZ + scrollDepth,
+            reveal
+          )
+          const restingScale = isFocused ? 1.08 : isReceding ? 0.95 : 1
+          const targetScale = THREE.MathUtils.lerp(
+            0.18,
+            restingScale,
+            reveal
+          )
+          const restingRotationX = isFocused
+            ? -deck.rotation.x
+            : data.base.rx
+          const restingRotationY = isFocused
+            ? -deck.rotation.y
+            : data.base.ry
+          const restingRotationZ = isFocused ? 0 : data.base.rz
+          const targetRotationX = THREE.MathUtils.lerp(
+            0.48,
+            restingRotationX,
+            reveal
+          )
+          const targetRotationY = THREE.MathUtils.lerp(
+            (index - 1.5) * 0.22,
+            restingRotationY,
+            reveal
+          )
+          const targetRotationZ = THREE.MathUtils.lerp(
+            0,
+            restingRotationZ,
+            reveal
+          )
 
           card.position.x = THREE.MathUtils.lerp(
             card.position.x,
@@ -588,12 +701,18 @@
         renderer.render(scene, camera)
       }
       requestAnimationFrame(animate)
+
+      return {
+        cards,
+        state: motionState
+      }
     } catch (error) {
       console.warn("The 3D project deck could not be initialised.", error)
+      return null
     }
   }
 
-  function initialiseHeroMotion() {
+  function initialiseHeroMotion(showreel) {
     if (
       reduceMotion ||
       typeof gsap === "undefined" ||
@@ -608,25 +727,98 @@
       opacity: 0
     })
     gsap.set(title.lines, { yPercent: 120, opacity: 0 })
-    gsap.set(".work-showreel-panel", {
-      clipPath: "inset(48% 48% 48% 48%)",
+    gsap.set(".work-showreel-index, .work-showreel-legend", {
+      y: 18,
       opacity: 0
     })
-    gsap.set(".work-showreel-panel img", { opacity: 0 })
+
+    if (!showreel) {
+      gsap.set(".work-showreel-panel", {
+        clipPath: "inset(48% 48% 48% 48%)",
+        opacity: 0
+      })
+      gsap.set(".work-showreel-panel img", { opacity: 0 })
+    }
 
     const initialiseHeroScroll = () => {
-      gsap.to(".work-showreel", {
-        xPercent: 8,
-        yPercent: 6,
-        scale: 0.93,
-        ease: "none",
+      const compact = window.matchMedia("(max-width: 700px)").matches
+      const scrollTimeline = gsap.timeline({
         scrollTrigger: {
           trigger: ".work-hero",
           start: "top top",
           end: "bottom top",
-          scrub: 1
+          scrub: 1.1,
+          invalidateOnRefresh: true
         }
       })
+
+      if (showreel) {
+        scrollTimeline.to(
+          showreel.state,
+          {
+            scroll: 1,
+            ease: "none"
+          },
+          0
+        )
+      }
+
+      scrollTimeline
+        .to(
+          ".work-showreel",
+          {
+            yPercent: compact ? 7 : 11,
+            scale: compact ? 1.025 : 1.07,
+            ease: "none"
+          },
+          0
+        )
+        .to(
+          ".work-title-primary",
+          {
+            xPercent: compact ? -5 : -11,
+            opacity: 0.48,
+            ease: "none"
+          },
+          0
+        )
+        .to(
+          ".work-title-acid",
+          {
+            xPercent: compact ? 5 : 10,
+            scale: 1.035,
+            transformOrigin: "left center",
+            ease: "none"
+          },
+          0
+        )
+        .to(
+          ".work-title-outline",
+          {
+            xPercent: compact ? -8 : -17,
+            opacity: 0.12,
+            ease: "none"
+          },
+          0
+        )
+        .to(
+          ".work-hero-copy > p",
+          {
+            xPercent: -8,
+            opacity: 0,
+            ease: "none"
+          },
+          0
+        )
+        .to(
+          ".work-hero-meta, .work-scroll-cue",
+          {
+            opacity: 0,
+            ease: "none"
+          },
+          0
+        )
+
       ScrollTrigger.refresh()
     }
 
@@ -649,52 +841,96 @@
         duration: 1.05,
         ease: "power4.inOut"
       })
-      .to(".work-showreel-panel", {
-        clipPath: "inset(0% 0% 0% 0%)",
-        opacity: 1,
-        duration: 0.9,
-        stagger: {
-          each: 0.1,
-          from: "center"
+      .addLabel("cards", "-=0.88")
+
+    if (showreel) {
+      entrance.to(
+        showreel.state,
+        {
+          intro: 1,
+          duration: 1.7,
+          ease: "expo.out"
         },
-        ease: "power4.out"
-      }, "-=0.9")
-      .to(".work-showreel-panel img", {
+        "cards"
+      )
+
+      showreel.cards
+        .slice()
+        .reverse()
+        .forEach((card, index) => {
+          entrance.to(
+            card.userData,
+            {
+              reveal: 1,
+              duration: 1.35,
+              ease: "power4.out"
+            },
+            `cards+=${index * 0.11}`
+          )
+        })
+    } else {
+      entrance
+        .to(".work-showreel-panel", {
+          clipPath: "inset(0% 0% 0% 0%)",
+          opacity: 1,
+          duration: 0.9,
+          stagger: {
+            each: 0.1,
+            from: "center"
+          },
+          ease: "power4.out"
+        }, "cards")
+        .to(".work-showreel-panel img", {
+          opacity: 1,
+          duration: 0.8,
+          stagger: 0.07,
+          ease: "power3.out"
+        }, "cards+=0.15")
+    }
+
+    entrance
+      .to(".work-showreel-index, .work-showreel-legend", {
+        y: 0,
         opacity: 1,
-        duration: 0.8,
-        stagger: 0.07,
+        duration: 0.55,
+        stagger: 0.08,
         ease: "power3.out"
-      }, "-=0.75")
+      }, "cards+=0.62")
       .to(".work-hero-meta, .work-hero-copy > p", {
         y: 0,
         opacity: 1,
         duration: 0.55,
         stagger: 0.08
-      }, "-=0.65")
+      }, "cards+=0.3")
       .to(title.lines, {
         yPercent: 0,
         opacity: 1,
         duration: 0.95,
         stagger: 0.1,
         ease: "power4.out"
-      }, "-=0.35")
+      }, "cards+=0.46")
       .to(".work-scroll-cue", {
         y: 0,
         opacity: 1,
         duration: 0.5
-      }, "-=0.25")
+      }, "cards+=0.92")
       .set(".work-hero-wipe", {
         display: "none"
       })
-      .set(".work-showreel-panel", {
-        clearProps: "clipPath,opacity"
-      })
-      .set(".work-showreel-panel img", {
-        clearProps: "opacity"
-      })
+
+    if (!showreel) {
+      entrance
+        .set(".work-showreel-panel", {
+          clearProps: "clipPath,opacity"
+        })
+        .set(".work-showreel-panel img", {
+          clearProps: "opacity"
+        })
+    }
+
     entrance.eventCallback("onComplete", initialiseHeroScroll)
 
-    if (window.matchMedia("(pointer: fine)").matches) {
+    if (!showreel && window.matchMedia("(pointer: fine)").matches) {
       gsap.set(".work-showreel-stage", {
         rotationX: -2,
         rotationY: -5,
@@ -747,9 +983,14 @@
     ScrollTrigger.refresh()
   }
 
-  renderProjects()
-  initialiseFilters()
-  initialiseWebGLShowreel()
-  initialiseHeroMotion()
-  initialiseProjectMotion()
+  async function initialiseWorkPage() {
+    renderProjects()
+    initialiseFilters()
+
+    const showreel = await initialiseWebGLShowreel()
+    initialiseHeroMotion(showreel)
+    initialiseProjectMotion()
+  }
+
+  initialiseWorkPage()
 })()
