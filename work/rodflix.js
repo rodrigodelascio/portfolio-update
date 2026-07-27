@@ -10,6 +10,7 @@
 
     const desktop = window.matchMedia("(min-width: 901px)").matches
     const title = new SplitText(".rf-hero-copy h1", { type: "chars" })
+    const entryCopy = new SplitText(".rf-entry span", { type: "words" })
     const timeline = gsap.timeline({
       onComplete: () => {
         gsap.set(".rf-entry", { display: "none" })
@@ -19,6 +20,7 @@
 
     gsap.set(".rf-entry", { display: "block" })
     gsap.set(".rf-entry i", { yPercent: 0 })
+    gsap.set(entryCopy.words, { y: 18, opacity: 0 })
     gsap.set(title.chars, { yPercent: 115, opacity: 0 })
     gsap.set(".rf-kicker, .rf-hero-intro, .rf-hero-actions, .rf-hero-meta, .rf-scroll-cue", {
       y: 24,
@@ -31,12 +33,20 @@
     })
 
     timeline
+      .to(entryCopy.words, {
+        y: 0,
+        opacity: 1,
+        duration: 0.48,
+        stagger: 0.06,
+        ease: "power3.out"
+      })
       .to(".rf-entry span", {
+        y: -12,
         opacity: 0,
-        scale: 0.82,
-        duration: 0.24,
+        duration: 0.32,
+        delay: 0.32,
         ease: "power2.in"
-      }, "+=0.2")
+      })
       .to(".rf-entry i", {
         yPercent: index => index % 2 ? 105 : -105,
         duration: 1.05,

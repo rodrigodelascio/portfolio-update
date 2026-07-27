@@ -34,7 +34,7 @@
   display: flex;
   gap: 2rem;
   color: var(--rf-muted);
-  font: 500 1rem/1 var(--ix-mono);
+  font: 500 1rem/1.25 var(--ix-mono);
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -104,9 +104,12 @@
   z-index: 2;
   left: 50%;
   top: 50%;
+  width: max-content;
+  max-width: calc(100% - 4rem);
   color: var(--rf-ink);
-  font: 600 1rem/1 var(--ix-mono);
-  letter-spacing: 0.13em;
+  font: 600 clamp(1.15rem, 1.4vw, 1.8rem)/1.4 var(--ix-mono);
+  letter-spacing: 0.14em;
+  text-align: center;
   transform: translate(-50%, -50%);
 }
 
@@ -115,7 +118,7 @@
   display: flex;
   justify-content: space-between;
   color: var(--rf-muted);
-  font: 500 0.95rem/1 var(--ix-mono);
+  font: 500 0.95rem/1.25 var(--ix-mono);
   letter-spacing: 0.09em;
 }
 
@@ -123,33 +126,24 @@
   position: relative;
   z-index: 3;
   align-self: center;
+  container-type: inline-size;
 }
 
 .rf-hero-copy h1 {
   margin: 2rem 0 3rem;
-  font: 700 clamp(8rem, 11vw, 18rem)/0.73 var(--ix-display);
-  letter-spacing: -0.09em;
-}
-
-.rf-hero-copy h1 span,
-.rf-hero-copy h1 strong {
-  display: block;
+  font: 700 clamp(6rem, 20cqw, 12rem)/0.9 var(--ix-display);
+  letter-spacing: -0.05em;
   white-space: nowrap;
 }
 
 .rf-hero-copy h1 span {
-  color: var(--rf-paper);
-}
-
-.rf-hero-copy h1 strong {
   color: var(--rf-acid);
-  font-weight: 700;
 }
 
 .rf-hero-intro {
   max-width: 52rem;
   color: var(--rf-paper);
-  font: 400 clamp(1.6rem, 1.3vw, 2rem)/1.55 var(--ix-body);
+  font: 400 clamp(1.6rem, 1.3vw, 2rem)/1.62 var(--ix-body);
 }
 
 .rf-hero-actions {
@@ -161,6 +155,7 @@
 
 .rf-hero-actions a,
 .rf-outro-actions a {
+  position: relative;
   min-width: 17rem;
   min-height: 5.4rem;
   padding: 1rem 1.4rem 1rem 1.8rem;
@@ -169,7 +164,7 @@
   align-items: center;
   gap: 2rem;
   border: 1px solid var(--rf-line);
-  font: 500 1rem/1 var(--ix-mono);
+  font: 500 1rem/1.25 var(--ix-mono);
   letter-spacing: 0.07em;
   text-transform: uppercase;
   transition:
@@ -180,9 +175,35 @@
 
 .rf-hero-actions a i,
 .rf-outro-actions a i {
+  position: relative;
+  z-index: 2;
   font-style: normal;
   font-size: 1.6rem;
   transition: transform 0.35s ease;
+}
+
+.rf-hero-actions a {
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.rf-hero-actions a > span {
+  position: relative;
+  z-index: 2;
+}
+
+.rf-hero-actions a::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: var(--rf-paper);
+  transform: translateY(102%);
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.rf-hero-actions a:first-child::before {
+  background: var(--rf-coral);
 }
 
 .rf-hero-actions a:first-child {
@@ -192,7 +213,25 @@
 }
 
 .rf-hero-actions a:hover,
-.rf-hero-actions a:focus-visible,
+.rf-hero-actions a:focus-visible {
+  color: var(--rf-ink);
+}
+
+.rf-hero-actions a:hover::before,
+.rf-hero-actions a:focus-visible::before {
+  transform: translateY(0);
+}
+
+.rf-hero-actions a:first-child:hover,
+.rf-hero-actions a:first-child:focus-visible {
+  border-color: var(--rf-coral);
+}
+
+.rf-hero-actions a:not(:first-child):hover,
+.rf-hero-actions a:not(:first-child):focus-visible {
+  border-color: var(--rf-paper);
+}
+
 .rf-outro-actions a:hover,
 .rf-outro-actions a:focus-visible {
   border-color: var(--rf-ink);
@@ -228,7 +267,7 @@
   gap: 0.7rem;
   border-bottom: 1px solid var(--rf-line);
   color: var(--rf-muted);
-  font: 500 0.85rem/1 var(--ix-mono);
+  font: 500 0.85rem/1.25 var(--ix-mono);
   letter-spacing: 0.08em;
 }
 
@@ -299,7 +338,7 @@
   align-items: center;
   gap: 1.4rem;
   color: var(--rf-paper);
-  font: 500 0.9rem/1 var(--ix-mono);
+  font: 500 0.9rem/1.25 var(--ix-mono);
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -355,7 +394,7 @@
 .rf-brief-heading p {
   margin-bottom: 2rem;
   color: var(--rf-coral);
-  font: 500 1rem/1 var(--ix-mono);
+  font: 500 1rem/1.25 var(--ix-mono);
   letter-spacing: 0.12em;
 }
 
@@ -363,8 +402,9 @@
 .rf-system-intro h2,
 .rf-features-header h2,
 .rf-learnings-heading h2 {
-  font: 700 clamp(5rem, 7vw, 11rem)/0.87 var(--ix-display);
-  letter-spacing: -0.075em;
+  font: 700 clamp(5rem, 7.4vw, 11rem)/0.9 var(--ix-display);
+  letter-spacing: -0.045em;
+  text-wrap: balance;
 }
 
 .rf-brief-heading h2 strong,
@@ -393,8 +433,8 @@
 
 .rf-brief-lead {
   max-width: 74rem;
-  font: 500 clamp(2.3rem, 2.5vw, 4rem)/1.25 var(--ix-body);
-  letter-spacing: -0.035em;
+  font: 500 clamp(2.3rem, 2.5vw, 3.8rem)/1.4 var(--ix-body);
+  letter-spacing: -0.015em;
 }
 
 .rf-brief-copy > div {
@@ -429,7 +469,8 @@
 }
 
 .rf-brief-stats strong {
-  font: 700 clamp(4rem, 5vw, 7rem)/0.8 var(--ix-display);
+  font: 700 clamp(4rem, 5vw, 7rem)/0.92 var(--ix-display);
+  letter-spacing: -0.035em;
 }
 
 .rf-brief-stats span {
@@ -460,14 +501,15 @@
 }
 
 .rf-evidence-copy span {
-  font: 500 0.9rem/1 var(--ix-mono);
+  font: 500 0.9rem/1.25 var(--ix-mono);
   letter-spacing: 0.1em;
 }
 
 .rf-evidence-copy p {
   margin-top: 1rem;
-  font: 600 clamp(2rem, 2.6vw, 4rem)/1.1 var(--ix-display);
-  letter-spacing: -0.04em;
+  font: 650 clamp(2rem, 2.6vw, 3.8rem)/1.18 var(--ix-display);
+  letter-spacing: -0.025em;
+  text-wrap: balance;
 }
 
 .rf-evidence figure {
@@ -507,7 +549,7 @@
   max-width: 50rem;
   margin-top: 4rem;
   color: var(--rf-muted);
-  font: 400 1.7rem/1.6 var(--ix-body);
+  font: 400 1.7rem/1.68 var(--ix-body);
 }
 
 .rf-stack-board {
@@ -551,7 +593,7 @@
 
 .rf-stack-card > span {
   color: var(--rf-muted);
-  font: 500 0.9rem/1 var(--ix-mono);
+  font: 500 0.9rem/1.25 var(--ix-mono);
   letter-spacing: 0.08em;
 }
 
@@ -560,14 +602,15 @@
 }
 
 .rf-stack-card h3 {
-  font: 700 clamp(4rem, 5vw, 8rem)/0.86 var(--ix-display);
-  letter-spacing: -0.07em;
+  font: 700 clamp(3.8rem, 4.3vw, 6.8rem)/1.03 var(--ix-display);
+  letter-spacing: -0.025em;
+  text-wrap: balance;
 }
 
 .rf-stack-card p {
   max-width: 32rem;
   color: var(--rf-muted);
-  font: 400 1.5rem/1.55 var(--ix-body);
+  font: 400 1.5rem/1.65 var(--ix-body);
 }
 
 .rf-stack-card:hover p {
@@ -633,7 +676,6 @@
 
 .rf-features-header h2 {
   max-width: 110rem;
-  font-size: clamp(5rem, 6.5vw, 10rem);
 }
 
 .rf-features-header h2 strong {
@@ -647,7 +689,7 @@
 .rf-features-header > p {
   padding-bottom: 0.7rem;
   color: var(--rf-muted);
-  font: 500 0.9rem/1 var(--ix-mono);
+  font: 500 0.9rem/1.25 var(--ix-mono);
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -680,7 +722,7 @@
 
 .rf-feature-card > span {
   color: var(--rf-muted);
-  font: 500 0.9rem/1 var(--ix-mono);
+  font: 500 0.9rem/1.25 var(--ix-mono);
   letter-spacing: 0.08em;
 }
 
@@ -700,15 +742,16 @@
 }
 
 .rf-feature-card h3 {
-  font: 700 clamp(4rem, 5vw, 8rem)/0.9 var(--ix-display);
-  letter-spacing: -0.065em;
+  font: 700 clamp(3.8rem, 4.6vw, 7.2rem)/1.03 var(--ix-display);
+  letter-spacing: -0.025em;
+  text-wrap: balance;
 }
 
 .rf-feature-card p {
   max-width: 55rem;
   margin-top: 2rem;
   color: var(--rf-muted);
-  font: 400 1.6rem/1.55 var(--ix-body);
+  font: 400 1.6rem/1.65 var(--ix-body);
 }
 
 .rf-feature-acid,
@@ -761,8 +804,9 @@
 
 .rf-conflicts > h2 {
   margin: 6rem 0 9rem;
-  font: 700 clamp(5rem, 8vw, 12rem)/0.84 var(--ix-display);
-  letter-spacing: -0.075em;
+  font: 700 clamp(5rem, 7.4vw, 11rem)/0.9 var(--ix-display);
+  letter-spacing: -0.045em;
+  text-wrap: balance;
 }
 
 .rf-conflicts > h2 strong {
@@ -800,19 +844,20 @@
 
 .rf-conflict-problem > span,
 .rf-conflict-solution > span {
-  font: 500 0.9rem/1 var(--ix-mono);
+  font: 500 0.9rem/1.25 var(--ix-mono);
   letter-spacing: 0.08em;
 }
 
 .rf-conflict-list h3 {
   max-width: 55rem;
-  font: 700 clamp(3.6rem, 4.4vw, 7rem)/0.94 var(--ix-display);
-  letter-spacing: -0.055em;
+  font: 700 clamp(3.6rem, 4.2vw, 6.6rem)/1.04 var(--ix-display);
+  letter-spacing: -0.025em;
+  text-wrap: balance;
 }
 
 .rf-conflict-list p {
   max-width: 54rem;
-  font: 400 1.6rem/1.55 var(--ix-body);
+  font: 400 1.6rem/1.65 var(--ix-body);
 }
 
 .rf-learnings {
@@ -840,8 +885,8 @@
 .rf-learning-copy > p {
   max-width: 72rem;
   color: var(--rf-paper);
-  font: 500 clamp(2.2rem, 2.3vw, 3.6rem)/1.32 var(--ix-body);
-  letter-spacing: -0.025em;
+  font: 500 clamp(2.2rem, 2.3vw, 3.5rem)/1.45 var(--ix-body);
+  letter-spacing: -0.015em;
 }
 
 .rf-learning-copy ol {
@@ -863,12 +908,12 @@
 
 .rf-learning-copy li span {
   color: var(--rf-coral);
-  font: 500 1rem/1 var(--ix-mono);
+  font: 500 1rem/1.25 var(--ix-mono);
 }
 
 .rf-learning-copy li p {
   color: var(--rf-muted);
-  font: 400 1.6rem/1.5 var(--ix-body);
+  font: 400 1.6rem/1.65 var(--ix-body);
 }
 
 .rf-gallery {
@@ -888,8 +933,9 @@
 
 .rf-gallery > header h2 {
   margin-top: 5rem;
-  font: 700 clamp(5rem, 8vw, 12rem)/0.86 var(--ix-display);
-  letter-spacing: -0.075em;
+  font: 700 clamp(5rem, 7.4vw, 11rem)/0.9 var(--ix-display);
+  letter-spacing: -0.045em;
+  text-wrap: balance;
 }
 
 .rf-gallery > header h2 strong {
@@ -945,7 +991,7 @@
   gap: 1.5rem;
   background: var(--rf-ink);
   color: var(--rf-paper);
-  font: 500 0.9rem/1 var(--ix-mono);
+  font: 500 0.9rem/1.25 var(--ix-mono);
 }
 
 .rf-gallery-counter i {
@@ -970,21 +1016,22 @@
 
 .rf-gallery-notes article > span {
   color: var(--rf-coral);
-  font: 500 0.9rem/1 var(--ix-mono);
+  font: 500 0.9rem/1.25 var(--ix-mono);
   letter-spacing: 0.08em;
 }
 
 .rf-gallery-notes h3 {
   margin-top: 2rem;
-  font: 700 clamp(3.5rem, 4vw, 6rem)/0.94 var(--ix-display);
-  letter-spacing: -0.055em;
+  font: 700 clamp(3.5rem, 3.8vw, 5.8rem)/1.04 var(--ix-display);
+  letter-spacing: -0.025em;
+  text-wrap: balance;
 }
 
 .rf-gallery-notes p {
   max-width: 42rem;
   margin-top: 2rem;
   color: rgba(8, 9, 11, 0.62);
-  font: 400 1.6rem/1.55 var(--ix-body);
+  font: 400 1.6rem/1.65 var(--ix-body);
 }
 
 .rf-outro {
@@ -999,14 +1046,15 @@
 }
 
 .rf-outro > div:first-child > span {
-  font: 500 0.9rem/1 var(--ix-mono);
+  font: 500 0.9rem/1.25 var(--ix-mono);
   letter-spacing: 0.09em;
 }
 
 .rf-outro h2 {
   margin-top: 3rem;
-  font: 700 clamp(5rem, 8vw, 13rem)/0.84 var(--ix-display);
-  letter-spacing: -0.08em;
+  font: 700 clamp(5rem, 7.4vw, 11rem)/0.9 var(--ix-display);
+  letter-spacing: -0.045em;
+  text-wrap: balance;
 }
 
 .rf-outro h2 strong,
@@ -1056,14 +1104,14 @@
 
 .rf-next-project > span {
   color: var(--rf-muted);
-  font: 500 0.9rem/1 var(--ix-mono);
+  font: 500 0.9rem/1.25 var(--ix-mono);
   letter-spacing: 0.08em;
 }
 
 .rf-next-project strong {
   justify-self: center;
-  font: 700 clamp(4rem, 7vw, 10rem)/0.8 var(--ix-display);
-  letter-spacing: -0.07em;
+  font: 700 clamp(4rem, 7vw, 9rem)/0.92 var(--ix-display);
+  letter-spacing: -0.045em;
 }
 
 .rf-next-project i {
@@ -1094,7 +1142,7 @@
   }
 
   .rf-hero-copy h1 {
-    font-size: clamp(7rem, 10vw, 12rem);
+    font-size: clamp(6rem, 8vw, 10rem);
   }
 
   .rf-brief,
@@ -1117,7 +1165,7 @@
   }
 
   .rf-hero-copy h1 {
-    font-size: clamp(8rem, 18vw, 14rem);
+    font-size: clamp(6rem, 13vw, 9.5rem);
   }
 
   .rf-hero-screen {
@@ -1241,7 +1289,7 @@
 
   .rf-hero-copy h1 {
     margin-block: 1.5rem 2rem;
-    font-size: clamp(7rem, 24vw, 10rem);
+    font-size: clamp(4.8rem, 17vw, 6.5rem);
   }
 
   .rf-hero-intro {
@@ -1430,6 +1478,10 @@
 @media (prefers-reduced-motion: reduce) {
   .rf-entry {
     display: none !important;
+  }
+
+  .rf-hero-actions a::before {
+    transition: none;
   }
 
   .rf-hero-screen,
