@@ -6,6 +6,14 @@
     <link rel="icon" href="../assets/images/faviconRod.png" />
     <link rel="stylesheet" href="./rodflix.css" />
     <link rel="stylesheet" href="../interior.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.159.0/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.159.0/examples/jsm/"
+        }
+      }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13/dist/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13/dist/SplitText.min.js"></script>
@@ -36,7 +44,9 @@
 
         <div class="rf-hero-copy">
           <p class="rf-kicker">One database, several rabbit holes</p>
-          <h1 id="rodflix-title">ROD<span>FLIX</span></h1>
+          <h1 id="rodflix-title">
+            <span class="rf-title-rod">ROD</span><span class="rf-title-flix">FLIX</span>
+          </h1>
           <p class="rf-hero-intro">
             A TV series catalogue for browsing shows, seasons, and episodes,
             with a proper admin area quietly preventing complete chaos behind
@@ -60,22 +70,26 @@
           </div>
         </div>
 
-        <div class="rf-hero-screen">
-          <div class="rf-screen-chrome">
-            <span></span><span></span><span></span>
-            <small>RODFLIX / CATALOGUE</small>
+        <div
+          class="rf-hero-screen"
+          data-model-state="loading"
+          aria-label="Interactive three-dimensional television broadcasting RodFlix project previews"
+        >
+          <span class="rf-model-aura" aria-hidden="true"></span>
+          <canvas class="rf-hero-canvas" aria-hidden="true"></canvas>
+          <img
+            class="rf-model-fallback"
+            src="../assets/images/rodflixLaptopMockup.webp"
+            alt=""
+            aria-hidden="true"
+          />
+          <div class="rf-model-interface" aria-hidden="true">
+            <span>RODFLIX BROADCAST / CH 01</span>
+            <span class="rf-model-status">LOADING MODEL</span>
           </div>
-          <div class="rf-hero-image">
-            <img
-              src="../assets/images/rodflixLaptopMockup.webp"
-              alt="RodFlix catalogue displayed on a desktop monitor"
-            />
-            <span class="rf-scan-line" aria-hidden="true"></span>
-          </div>
-          <div class="rf-screen-footer">
-            <span>PHP / SQL / TVMAZE API</span>
-            <span>STATUS: IT WORKS</span>
-          </div>
+          <p class="rf-model-instruction" aria-hidden="true">
+            Move to tune in <i>↗</i>
+          </p>
         </div>
 
         <a class="rf-scroll-cue" href="#the-brief">
