@@ -274,7 +274,11 @@
   border-radius: 50%;
   background:
     radial-gradient(circle at 38% 44%, rgba(255, 92, 53, 0.2), transparent 46%),
-    radial-gradient(circle at 68% 46%, rgba(216, 255, 62, 0.12), transparent 48%);
+    radial-gradient(
+      circle at 68% 46%,
+      rgba(216, 255, 62, 0.12),
+      transparent 48%
+    );
   filter: blur(4.8rem);
   opacity: 0.8;
   transform: scale(0.88);
@@ -560,8 +564,7 @@
 }
 
 .rf-evidence figure {
-  width: min(100%, 140rem);
-  box-shadow: 0 4rem 10rem rgba(8, 9, 11, 0.3);
+  width: min(90%, 120rem);
   transform: rotate(-2deg);
 }
 

@@ -43,14 +43,14 @@
         </div>
 
         <div class="rf-hero-copy">
-          <p class="rf-kicker">One database, several rabbit holes</p>
+          <p class="rf-kicker">EVERY EPISODE STARTS WITH A QUERY</p>
           <h1 id="rodflix-title">
-            <span class="rf-title-rod">ROD</span><span class="rf-title-flix">FLIX</span>
+            <span class="rf-title-rod">ROD</span
+            ><span class="rf-title-flix">FLIX</span>
           </h1>
           <p class="rf-hero-intro">
-            A TV series catalogue for browsing shows, seasons, and episodes,
-            with a proper admin area quietly preventing complete chaos behind
-            the scenes.
+            Browse shows, seasons, and episodes through a simple interface while
+            the database quietly does the heavy lifting behind the scenes.
           </p>
           <div class="rf-hero-actions">
             <a
@@ -88,12 +88,12 @@
             <span class="rf-model-status">LOADING MODEL</span>
           </div>
           <p class="rf-model-instruction" aria-hidden="true">
-            Move to tune in <i>↗</i>
+            CONTINUE WATCHING <i>↗</i>
           </p>
         </div>
 
         <a class="rf-scroll-cue" href="#the-brief">
-          <span>Start the case study</span><i>↓</i>
+          <span>BEHIND THE SCENES</span><i>↓</i>
         </a>
       </section>
 
@@ -102,7 +102,7 @@
           <span>01</span><span>The brief</span>
         </div>
         <div class="rf-brief-heading">
-          <p>THE ASSIGNMENT</p>
+          <p>MISSION ACCEPTED</p>
           <h2>
             BUILD A CATALOGUE<br />
             <strong>WITH A DATABASE</strong><br />
@@ -111,21 +111,20 @@
         </div>
         <div class="rf-brief-copy">
           <p class="rf-brief-lead">
-            The goal was to build a TV series catalogue with a real database,
-            clear navigation between shows, seasons, and episodes, plus a
-            working admin area for managing content.
+            The brief sounded simple enough: build a TV series catalogue backed
+            by a relational database, complete with intuitive navigation and an
+            admin area for managing content.
           </p>
           <div>
             <p>
-              In theory, lovely. In practice, it meant carefully designing a
-              schema, wiring up CRUD features, keeping the interface readable,
-              and preventing everything from collapsing when a user typed
-              something creative into a search box.
+              The "simple" part lasted about five minutes. Soon there were
+              schemas to design, CRUD operations to build, and plenty of
+              opportunities for users to do things I hadn't anticipated.
             </p>
             <p>
-              RodFlix demonstrates server-side logic, database interaction, and
-              a structured interface. It feels simple for the user while the
-              back end quietly does the heavy lifting.
+              Looking back, RodFlix wasn't really about TV series. It was about
+              understanding how databases, business logic, and UI work together
+              to create software that feels simple to use.
             </p>
           </div>
         </div>
@@ -142,12 +141,12 @@
         aria-label="RodFlix interface preview"
       >
         <div class="rf-evidence-copy">
-          <span>THE FRONT DOOR</span>
+          <span>THE OPENING SCENE</span>
           <p>Search, filter, browse, then forget why you opened the site.</p>
         </div>
         <figure>
           <img
-            src="../assets/images/rodflixLandingMockup2.webp"
+            src="../assets/images/rodflixLandingMockup.webp"
             alt="RodFlix main catalogue interface"
           />
         </figure>
@@ -165,9 +164,10 @@
             <span>STREAM.</span>
           </h2>
           <p>
-            I focused on the fundamentals, server-side rendering, relational
-            data, clear responsibilities, and UI patterns that remain
-            predictable as the catalogue grows.
+            Rather than chasing the latest framework, I focused on solid
+            fundamentals: clear responsibilities, relational data, server-side
+            rendering, and an architecture that could grow without becoming
+            difficult to maintain.
           </p>
         </div>
 
@@ -175,27 +175,33 @@
           <article class="rf-stack-card rf-stack-server">
             <span>01 / SERVER</span>
             <h3>PHP</h3>
-            <p>Routing, application logic, rendering, and admin workflows.</p>
+            <p>
+              The engine room. Routing, business logic, rendering, and
+              everything powering the admin side of the application.
+            </p>
           </article>
           <article class="rf-stack-card rf-stack-data">
             <span>02 / DATA</span>
             <h3>SQL</h3>
             <p>
-              Series, seasons, episodes, and the relationships between them.
+              A relational database built around shows, seasons, and episodes
+              connected without relying on crossed fingers.
             </p>
           </article>
           <article class="rf-stack-card rf-stack-api">
             <span>03 / EXTERNAL DATA</span>
             <h3>TVmaze API</h3>
             <p>
-              Importing useful catalogue data without entering it all by hand.
+              Populating the catalogue with real-world data, because manually
+              entering hundreds of TV series sounded like a terrible idea.
             </p>
           </article>
           <article class="rf-stack-card rf-stack-browser">
             <span>04 / INTERFACE</span>
             <h3>HTML, CSS, JS</h3>
             <p>
-              The visible bit, kept responsive, readable, and easy to explore.
+              The part users actually see, designed to stay clean, responsive,
+              and out of the way of the content.
             </p>
           </article>
           <div class="rf-stack-connector" aria-hidden="true">
@@ -211,7 +217,7 @@
           </div>
           <h2 id="features-title">
             FOUR REASONS<br />
-            <strong>IT IS MORE THAN</strong><br />
+            <strong>IT'S MORE THAN</strong><br />
             <span>A PRETTY GRID.</span>
           </h2>
           <p>Scroll for the full season.</p>
@@ -220,41 +226,54 @@
         <div class="rf-feature-viewport">
           <div class="rf-feature-track">
             <article class="rf-feature-card rf-feature-acid">
-              <span>EPISODE 01 / 04</span>
+              <span
+                >EPISODE 01 / 04<br />Finding content should be easier than
+                remembering its exact title</span
+              >
               <strong>01</strong>
               <div>
                 <h3>Series catalogue and search</h3>
                 <p>
-                  Browse a growing list of shows, search by title, and find the
-                  right series even when you only remember half the name and the
-                  general vibe.
+                  Browse a growing catalogue, search by title, and still find
+                  the right series when all you remember is half the name and
+                  the general vibe.
                 </p>
               </div>
             </article>
             <article class="rf-feature-card">
-              <span>EPISODE 02 / 04</span>
+              <span
+                >EPISODE 02 / 04<br />Navigation should feel obvious, not
+                something users have to think about</span
+              >
               <strong>02</strong>
               <div>
                 <h3>Seasons and episodes</h3>
                 <p>
-                  A clear flow from series to seasons to episodes, designed to
-                  reduce the familiar “where am I now?” moment.
+                  A clear path from series to seasons to episodes, so you're
+                  never wondering, "Wait... where am I now?"
                 </p>
               </div>
             </article>
             <article class="rf-feature-card rf-feature-coral">
-              <span>EPISODE 03 / 04</span>
+              <span
+                >EPISODE 03 / 04<br />Good admin tools save time long after the
+                interface is finished</span
+              >
               <strong>03</strong>
               <div>
                 <h3>An admin area for the chaos</h3>
                 <p>
-                  Create, edit, delete, and import catalogue content. Someone
-                  has to keep all those shows under control.
+                  Create, edit, delete, and import catalogue content. Every
+                  catalogue looks organised from the front end. Somebody still
+                  has to do the organising.
                 </p>
               </div>
             </article>
             <article class="rf-feature-card rf-feature-paper">
-              <span>EPISODE 04 / 04</span>
+              <span
+                >EPISODE 04 / 04<br />Good databases make everything else
+                simpler</span
+              >
               <strong>04</strong>
               <div>
                 <h3>Relational by design</h3>
@@ -284,7 +303,7 @@
         <div class="rf-conflict-list">
           <article>
             <div class="rf-conflict-problem">
-              <span>PROBLEM / 01</span>
+              <span>WHAT BROKE / 01</span>
               <h3>A database with too many opinions</h3>
               <p>
                 Series, seasons, episodes, and related information needed to
@@ -292,32 +311,33 @@
               </p>
             </div>
             <div class="rf-conflict-solution">
-              <span>REWRITE / 01</span>
+              <span>WHAT CHANGED / 01</span>
               <h3>Give every relationship a proper job</h3>
               <p>
-                I built a clear relational structure and separated
-                responsibilities so the application can grow without breaking
-                everything that already works.
+                The solution wasn't more tables. It was giving each relationship
+                a clear responsibility, making the whole catalogue easier to
+                extend and maintain.
               </p>
             </div>
           </article>
 
           <article>
             <div class="rf-conflict-problem">
-              <span>PROBLEM / 02</span>
+              <span>WHAT BROKE / 02</span>
               <h3>A busy back end, pretending to be simple</h3>
               <p>
-                The interface still needed to feel obvious while fetching,
-                filtering, and rendering dynamic data behind the scenes.
+                Users shouldn't have to think about everything happening behind
+                the scenes. The interface needed to stay simple, even when the
+                application wasn't.
               </p>
             </div>
             <div class="rf-conflict-solution">
-              <span>REWRITE / 02</span>
+              <span>WHAT CHANGED / 02</span>
               <h3>Keep the user facing the right direction</h3>
               <p>
-                Predictable screens, reusable patterns, and clear navigation let
-                users move back up a level without becoming part of the
-                catalogue themselves.
+                Predictable layouts, reusable patterns, and clear navigation
+                meant users always knew where they were, without accidentally
+                becoming part of the catalogue themselves.
               </p>
             </div>
           </article>
@@ -338,10 +358,10 @@
 
         <div class="rf-learning-copy">
           <p>
-            This project made server-side development feel real. Not
-            theoretical, not tutorial-based, real. The kind of real where small
-            mistakes have consequences, and those consequences appear
-            immediately on screen.
+            This was the project where server-side development stopped being a
+            tutorial and started feeling real. Small mistakes had immediate
+            consequences, and fixing them meant understanding the problem rather
+            than searching for another code snippet.
           </p>
           <ol>
             <li>
