@@ -877,7 +877,7 @@
       }
     })
 
-    gsap.from(".rf-brief-copy > *, .rf-brief-stats div", {
+    gsap.from(".rf-brief-copy > *", {
       y: 45,
       opacity: 0,
       duration: 0.85,
@@ -887,6 +887,89 @@
         trigger: ".rf-brief-copy",
         start: "top 72%"
       }
+    })
+
+    const flapCounters = Array.from(
+      document.querySelectorAll(".rf-brief-stats [data-flap-value]")
+    )
+
+    flapCounters.forEach(counter => {
+      const target = counter.dataset.flapValue.padStart(2, "0")
+      counter.setAttribute("aria-label", target)
+      counter.innerHTML = target
+        .split("")
+        .map(
+          () =>
+            '<span class="rf-flap-digit" aria-hidden="true"><i>0</i></span>'
+        )
+        .join("")
+    })
+
+    const rollBriefCounters = () => {
+      flapCounters.forEach((counter, counterIndex) => {
+        const target = counter.dataset.flapValue.padStart(2, "0")
+        const digits = Array.from(counter.querySelectorAll(".rf-flap-digit i"))
+
+        digits.forEach((digit, digitIndex) => {
+          const targetDigit = Number(target[digitIndex])
+          const turns = 9 + counterIndex * 2 + digitIndex * 2
+          let currentDigit = (targetDigit - turns + 100) % 10
+          const timeline = gsap.timeline({
+            delay: counterIndex * 0.14 + digitIndex * 0.04
+          })
+
+          digit.textContent = String(currentDigit)
+
+          for (let turn = 0; turn < turns; turn += 1) {
+            const nextDigit =
+              turn === turns - 1 ? targetDigit : (currentDigit + 1) % 10
+
+            timeline
+              .to(digit, {
+                yPercent: -82,
+                rotationX: -78,
+                opacity: 0.12,
+                duration: 0.045,
+                ease: "power1.in"
+              })
+              .call(() => {
+                digit.textContent = String(nextDigit)
+              })
+              .set(digit, {
+                yPercent: 82,
+                rotationX: 78,
+                opacity: 0.12
+              })
+              .to(digit, {
+                yPercent: 0,
+                rotationX: 0,
+                opacity: 1,
+                duration: 0.055,
+                ease: "power1.out"
+              })
+
+            currentDigit = nextDigit
+          }
+        })
+      })
+    }
+
+    gsap.from(".rf-brief-stats div", {
+      opacity: 0,
+      duration: 0.45,
+      stagger: 0.08,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: ".rf-brief-stats",
+        start: "top 82%"
+      }
+    })
+
+    ScrollTrigger.create({
+      trigger: ".rf-brief-stats",
+      start: "top 82%",
+      once: true,
+      onEnter: rollBriefCounters
     })
 
     gsap.fromTo(

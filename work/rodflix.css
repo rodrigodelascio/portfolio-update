@@ -520,11 +520,31 @@
 }
 
 .rf-brief-stats strong {
+  display: inline-flex;
+  align-items: flex-end;
   font: 700 clamp(4rem, 5vw, 7rem)/0.92 var(--ix-display);
   letter-spacing: -0.035em;
 }
 
-.rf-brief-stats span {
+.rf-flap-digit {
+  position: relative;
+  width: 0.58em;
+  height: 0.94em;
+  display: inline-grid;
+  place-items: center;
+  overflow: hidden;
+  perspective: 8rem;
+}
+
+.rf-flap-digit i {
+  display: block;
+  font-style: normal;
+  line-height: 0.94;
+  transform-origin: 50% 50%;
+  will-change: transform, opacity;
+}
+
+.rf-brief-stats div > span {
   max-width: 15rem;
   text-align: right;
   font: 500 0.9rem/1.3 var(--ix-mono);
@@ -1085,17 +1105,19 @@
 }
 
 .rf-outro {
-  min-height: 90svh;
-  padding: clamp(9rem, 11vw, 16rem) var(--rf-edge);
+  min-height: 68svh;
+  padding: clamp(8rem, 9vw, 13rem) var(--rf-edge);
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 6rem;
   align-items: center;
-  background: var(--rf-acid);
+  border-block: 1px solid rgba(8, 9, 11, 0.3);
+  background: var(--rf-coral);
   color: var(--rf-ink);
 }
 
 .rf-outro > div:first-child > span {
+  color: var(--rf-paper);
   font: 500 0.9rem/1.25 var(--ix-mono);
   letter-spacing: 0.09em;
 }
@@ -1113,14 +1135,14 @@
 }
 
 .rf-outro h2 strong {
-  color: var(--rf-coral);
+  color: var(--rf-paper);
   font-weight: 700;
 }
 
 .rf-outro h2 i {
   color: transparent;
   font-style: normal;
-  -webkit-text-stroke: 1px var(--rf-ink);
+  -webkit-text-stroke: 1px rgba(8, 9, 11, 0.72);
 }
 
 .rf-outro-actions {
@@ -1130,7 +1152,7 @@
 
 .rf-outro-actions a {
   min-width: 26rem;
-  border-color: rgba(8, 9, 11, 0.35);
+  border-color: rgba(8, 9, 11, 0.5);
 }
 
 .rf-outro-actions a + a {
@@ -1172,13 +1194,13 @@
 
 .rf-next-project:hover,
 .rf-next-project:focus-visible {
-  background: var(--rf-coral);
-  color: var(--rf-ink);
+  background: var(--rf-ink);
+  color: var(--rf-acid);
 }
 
 .rf-next-project:hover > span,
 .rf-next-project:focus-visible > span {
-  color: var(--rf-ink);
+  color: var(--rf-acid);
 }
 
 .rf-next-project:hover i,
@@ -1305,7 +1327,10 @@
   }
 
   .rf-outro {
+    min-height: auto;
+    padding-block: clamp(7rem, 12vw, 10rem);
     grid-template-columns: 1fr;
+    gap: 4rem;
   }
 
   .rf-outro-actions {
@@ -1502,7 +1527,7 @@
   }
 
   .rf-outro {
-    min-height: 80svh;
+    min-height: auto;
   }
 
   .rf-outro-actions {
