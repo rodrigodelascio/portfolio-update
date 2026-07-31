@@ -1051,7 +1051,7 @@
       }
     })
 
-    gsap.from(".lis-promise-copy > *", {
+    gsap.from(".lis-promise-copy > p, .lis-promise-copy > h2", {
       y: 40,
       opacity: 0,
       duration: 1,

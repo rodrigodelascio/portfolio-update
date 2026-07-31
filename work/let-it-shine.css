@@ -663,6 +663,37 @@ body.interior-page .lis-action-primary:focus-visible {
   letter-spacing: 0.06em;
 }
 
+@media (min-width: 901px) {
+  .lis-promise-copy .lis-section-label {
+    margin-bottom: clamp(6rem, 5svh, 8rem);
+  }
+
+  .lis-promise::after {
+    background:
+      linear-gradient(
+        90deg,
+        rgba(8, 9, 11, 0.78) 0%,
+        rgba(8, 9, 11, 0.48) 28%,
+        rgba(8, 9, 11, 0.08) 48%,
+        transparent 62%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(8, 9, 11, 0.25),
+        transparent 25%,
+        transparent 70%,
+        rgba(8, 9, 11, 0.48)
+      );
+  }
+
+  .lis-promise figure img {
+    width: 66%;
+    height: 88%;
+    margin: 6svh 0 0 auto;
+    object-position: right center;
+  }
+}
+
 .lis-system {
   min-height: 110svh;
   padding: 11rem var(--lis-edge);
