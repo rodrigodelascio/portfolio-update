@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -6,418 +6,572 @@
     <link rel="icon" href="../assets/images/faviconRod.png" />
     <link rel="stylesheet" href="./let-it-shine.css" />
     <link rel="stylesheet" href="../interior.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.159.0/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.159.0/examples/jsm/"
+        }
+      }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13/dist/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13/dist/SplitText.min.js"></script>
-    <script defer src="../script.js"></script>
-    <script defer src="./let-it-shine.js"></script>
     <script defer src="../interior.js"></script>
-    <script
-      src="https://kit.fontawesome.com/057d435fa0.js"
-      crossorigin="anonymous"
-    ></script>
+    <script defer src="./let-it-shine.js"></script>
+    <noscript><style>.lis-entry { display: none !important; }</style></noscript>
 
-    <title>
-      Let It Shine | Work | Rodrigo De Lascio | Full-Stack Developer
-    </title>
+    <title>Let It Shine | Work | Rodrigo De Lascio | Full-Stack Developer</title>
     <meta
       name="description"
-      content="Explore 'Let It Shine', a comprehensive website for a local cleaning company, showcasing modern design, responsive layout, and seamless user experience. Built with React, React Hooks, and React Router."
+      content="Let It Shine is a responsive React website designed and built for a local cleaning company, with clear services, approachable visual design, and focused calls to action."
     />
   </head>
 
   <body>
-    <a name="top"></a>
-    <div class="background-container">
-      <div class="page-container">
-        <div class="off-screen-menu">
-          <div class="off-screen-menu-wrapper">
-            <a href="/"> Home </a>
-            <a href="../work.html"> Work </a>
-            <a href="../blog.html"> Blog </a>
-            <a href="../about.html"> About </a>
+    <nav class="nav-container" aria-hidden="true"></nav>
+
+    <main class="lis-page">
+      <section class="lis-hero" aria-labelledby="lis-title">
+        <div class="lis-entry" aria-hidden="true">
+          <div class="lis-entry-panel lis-entry-panel-a"></div>
+          <div class="lis-entry-panel lis-entry-panel-b"></div>
+          <div class="lis-entry-panel lis-entry-panel-c"></div>
+          <div class="lis-entry-panel lis-entry-panel-d"></div>
+          <div class="lis-entry-mark">
+            <span>A SPOTLESS START.</span>
           </div>
         </div>
 
-        <nav class="nav-container">
-          <div class="navbar">
-            <div class="nav-socials">
-              <a
-                href="https://github.com/rodrigodelascio/"
-                aria-label="Follow this link to open Rodrigo's GitHub on a new tab"
-                target="_blank"
-              >
-                <i class="fa-brands fa-github"></i>
-              </a>
-              <a
-                href="https://www.linkedin.com/in/rodrigo-de-lascio/"
-                aria-label="Follow this link to open Rodrigo's LinkedIn on a new tab"
-                target="_blank"
-              >
-                <i class="fa-brands fa-linkedin"></i>
-              </a>
-            </div>
-            <div class="nav-logo">
-              <a href="/">
-                <div class="logo-wrapper">
-                  <img
-                    src="../assets/images/logoWhite2.webp"
-                    alt="Rodrigo De Lascio logo"
-                  />
-                </div>
-              </a>
-            </div>
+        <div class="lis-hero-meta">
+          <span>02 / FRONTEND BUILD</span>
+          <span>CLIENT PROJECT / RESPONSIVE</span>
+        </div>
 
-            <div class="nav-links-container">
-              <div class="nav-links">
-                <a href="../work.html"> Work </a>
-                <a href="../blog.html"> Blog </a>
-                <a href="../about.html"> About </a>
-                <div></div>
-              </div>
-              <a
-                href="mailto:rodrigodelascio@gmail.com?subject=Let's%20Create%20Something%20Together%20%7C%20Developer%20Opportunity&body=Hi%20Rodrigo%2C%0A%0AI%20came%20across%20your%20portfolio%20and%20was%20impressed%20by%20your%20skills%20and%20transition%20into%20full-stack%20development.%20%0A%0AI'd%20like%20to%20discuss%20a%20potential%20opportunity%20with%20you.%20Here's%20a%20bit%20about%20what%20we're%20looking%20for%3A%0A%0A%5BFill%20in%20details%20here%5D%0A%0AWould%20you%20be%20available%20for%20a%20chat%20in%20the%20coming%20days%3F%0A%0ALooking%20forward%20to%20hearing%20from%20you!%0A%0A%5BName%5D%0A%5BContact%20details%5D"
-                class="nav-button"
-              >
-                Get in Touch
-              </a>
-            </div>
-            <div class="hamburger-menu">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
+        <div class="lis-hero-copy">
+          <p class="lis-kicker">A CLEANING WEBSITE, MINUS THE CLUTTER</p>
+          <h1 id="lis-title">
+            <span>LET IT</span>
+            <strong>SHINE.</strong>
+          </h1>
+          <p class="lis-hero-intro">
+            A warm, responsive website for a local cleaning company, designed
+            to make trust immediate and getting in touch wonderfully simple.
+          </p>
+          <div class="lis-actions">
+            <a
+              class="lis-action lis-action-primary"
+              data-cursor-contrast="paper"
+              href="https://let-it-shine.co.uk/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <span>View live site</span><i>↗</i>
+            </a>
+            <a
+              class="lis-action lis-action-secondary"
+              href="https://github.com/rodrigodelascio/let-it-shine"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <span>Source code</span><i>↗</i>
+            </a>
           </div>
-        </nav>
+        </div>
 
-        <section class="projects-hero-section">
-          <div class="projects-title-container">
-            <h1 class="projects-title-bold">LET IT SHINE</h1>
+        <div
+          class="lis-polaroid-stage"
+          data-polaroid-state="loading"
+          role="img"
+          aria-label="A three-dimensional Polaroid camera photographing and developing five Let It Shine website mockups"
+        >
+          <canvas class="lis-polaroid-canvas" aria-hidden="true"></canvas>
+          <div class="lis-polaroid-flash" aria-hidden="true"></div>
+
+          <div class="lis-polaroid-fallback" aria-hidden="true">
+            <figure>
+              <img
+                src="../assets/images/letItShineHome.webp"
+                alt=""
+                decoding="async"
+              />
+            </figure>
+            <figure>
+              <img
+                src="../assets/images/letItShineServices.webp"
+                alt=""
+                decoding="async"
+              />
+            </figure>
+            <figure>
+              <img
+                src="../assets/images/letItShineAbout.webp"
+                alt=""
+                decoding="async"
+              />
+            </figure>
+            <figure>
+              <img
+                src="../assets/images/letItShineTabletHome.webp"
+                alt=""
+                decoding="async"
+              />
+            </figure>
+            <figure>
+              <img
+                src="../assets/images/letItShineIphoneHome.webp"
+                alt=""
+                decoding="async"
+              />
+            </figure>
+          </div>
+
+          <div class="lis-polaroid-chrome" aria-hidden="true">
+            <span>POLAROID / LET IT SHINE</span>
+            <span class="lis-polaroid-status">LOADING FILM</span>
+          </div>
+          <p class="lis-polaroid-hint" aria-hidden="true">
+            <span>FIVE FRAMES</span><i>MOVE TO INSPECT ↗</i>
+          </p>
+        </div>
+
+        <a class="lis-scroll-cue" href="#the-brief">
+          <span>SEE WHAT GOT POLISHED</span><i>↓</i>
+        </a>
+      </section>
+
+      <section class="lis-brief lis-paper" id="the-brief">
+        <div class="lis-section-label">
+          <span>01</span><span>The brief</span>
+        </div>
+
+        <div class="lis-brief-heading">
+          <p>THE MISSION, NEATLY FOLDED</p>
+          <h2>
+            MAKE IT FEEL<br />
+            <strong>SPOTLESS</strong><br />
+            <span>BEFORE THEY ARRIVE.</span>
+          </h2>
+        </div>
+
+        <div class="lis-brief-copy">
+          <p class="lis-brief-lead">
+            Let It Shine needed a professional home online, somewhere that
+            explained the services clearly, felt trustworthy immediately, and
+            made the next step obvious.
+          </p>
+          <div>
             <p>
-              Making dirt disappear faster than my motivation on Monday
-              mornings. Let It Shine is a modern, responsive website for a local
-              cleaning company, designed to sweep away clutter and leave a
-              sparkling first impression, ensuring every pixel shines brighter
-              than your freshly polished countertops
+              I handled the whole journey, from the first sketches and visual
+              direction to the React build, responsive behaviour, and final
+              deployment.
             </p>
+            <p>
+              The hard part was not adding more. It was knowing what to remove,
+              what to emphasise, and how to make a service business feel both
+              polished and genuinely approachable.
+            </p>
+          </div>
+        </div>
+
+        <div class="lis-responsibilities" aria-label="Project responsibilities">
+          <div><span>01</span><strong>Design</strong><small>From blank page</small></div>
+          <div><span>02</span><strong>Build</strong><small>React and CSS</small></div>
+          <div><span>03</span><strong>Deploy</strong><small>Ready for customers</small></div>
+        </div>
+      </section>
+
+      <section class="lis-promise" aria-labelledby="promise-title">
+        <div class="lis-promise-copy">
+          <div class="lis-section-label">
+            <span>02</span><span>The promise</span>
+          </div>
+          <p>THE FIRST IMPRESSION SHOULD FEEL LIKE THE SERVICE</p>
+          <h2 id="promise-title">
+            QUIETLY<br />
+            <strong>REASSURING.</strong>
+          </h2>
+        </div>
+        <figure>
+          <img
+            src="../assets/images/letItShineHome.webp"
+            alt="Let It Shine homepage displayed on a laptop"
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
+        <div class="lis-promise-note">
+          <span>NO VISUAL CLUTTER</span>
+          <span>NO MYSTERY BUTTONS</span>
+          <span>NO PANIC REQUIRED</span>
+        </div>
+      </section>
+
+      <section class="lis-system" aria-labelledby="system-title">
+        <div class="lis-system-copy">
+          <div class="lis-section-label">
+            <span>03</span><span>How it was built</span>
+          </div>
+          <p>THE WHOLE JOB, NOT JUST THE POLISH</p>
+          <h2 id="system-title">
+            SIMPLE<br />
+            <strong>ON PURPOSE.</strong>
+          </h2>
+          <p class="lis-system-intro">
+            A focused stack kept the site fast, maintainable, and easy to
+            extend. The clever bit was making every decision feel obvious to
+            the visitor.
+          </p>
+          <div class="lis-tech-list" aria-label="Technologies used">
+            <span>React</span>
+            <span>React Hooks</span>
+            <span>React Router</span>
+            <span>JavaScript</span>
+            <span>CSS</span>
+            <span>Responsive Design</span>
+          </div>
+        </div>
+
+        <div class="lis-process-board">
+          <article class="lis-process-card">
+            <span>01 / LISTEN</span>
+            <h3>START WITH THE CUSTOMER</h3>
+            <p>
+              Understand what visitors need to trust before deciding what the
+              interface needs to show.
+            </p>
+          </article>
+          <article class="lis-process-card">
+            <span>02 / ORGANISE</span>
+            <h3>MAKE SERVICES SCANNABLE</h3>
+            <p>
+              Turn a long list of jobs into a clear journey with useful
+              groupings and straightforward language.
+            </p>
+          </article>
+          <article class="lis-process-card">
+            <span>03 / BUILD</span>
+            <h3>ONE SYSTEM, EVERY SCREEN</h3>
+            <p>
+              Create reusable React components that adapt without turning the
+              mobile version into an afterthought.
+            </p>
+          </article>
+          <article class="lis-process-card">
+            <span>04 / REFINE</span>
+            <h3>REMOVE THE LAST BIT OF FUSS</h3>
+            <p>
+              Test the hierarchy, contact flow, and little details until the
+              experience feels effortless.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="lis-decisions lis-paper" aria-labelledby="decisions-title">
+        <div class="lis-section-label">
+          <span>04</span><span>The awkward decisions</span>
+        </div>
+        <div class="lis-decisions-heading">
+          <p>THE BEFORE AND AFTER WAS MOSTLY IN THE THINKING</p>
+          <h2 id="decisions-title">
+            THREE THINGS<br />
+            <strong>I HAD TO GET RIGHT.</strong>
+          </h2>
+        </div>
+
+        <div class="lis-decision-list">
+          <article class="lis-decision-row">
+            <div class="lis-decision-number">01</div>
+            <div class="lis-decision-problem">
+              <span>THE RISK</span>
+              <h3>Premium becomes intimidating</h3>
+              <p>
+                Too much polish can make a local service feel distant or
+                expensive before the conversation has even started.
+              </p>
+            </div>
+            <div class="lis-decision-solution">
+              <span>THE CLEANER ANSWER</span>
+              <h3>Warm, clear, and human</h3>
+              <p>
+                Soft colours, generous space, friendly illustration, and copy
+                that sounds like an actual person.
+              </p>
+            </div>
+          </article>
+
+          <article class="lis-decision-row">
+            <div class="lis-decision-number">02</div>
+            <div class="lis-decision-problem">
+              <span>THE RISK</span>
+              <h3>Detail becomes a wall of text</h3>
+              <p>
+                Cleaning covers a lot more than "we clean things", but nobody
+                wants to read an instruction manual before booking.
+              </p>
+            </div>
+            <div class="lis-decision-solution">
+              <span>THE CLEANER ANSWER</span>
+              <h3>Useful chunks, visible choices</h3>
+              <p>
+                Services were grouped into digestible cards with concise
+                descriptions and visual cues.
+              </p>
+            </div>
+          </article>
+
+          <article class="lis-decision-row">
+            <div class="lis-decision-number">03</div>
+            <div class="lis-decision-problem">
+              <span>THE RISK</span>
+              <h3>Responsive means merely smaller</h3>
+              <p>
+                A desktop layout squeezed into a phone is technically
+                responsive and emotionally exhausting.
+              </p>
+            </div>
+            <div class="lis-decision-solution">
+              <span>THE CLEANER ANSWER</span>
+              <h3>Recompose, do not compress</h3>
+              <p>
+                Each breakpoint changes hierarchy and spacing so the important
+                action remains easy to find and easy to tap.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="lis-responsive" aria-labelledby="responsive-title">
+        <div class="lis-responsive-heading">
+          <div class="lis-section-label">
+            <span>05</span><span>Responsive by design</span>
+          </div>
+          <p>DIRT DOES NOT DISCRIMINATE BY SCREEN SIZE</p>
+          <h2 id="responsive-title">
+            ONE SITE.<br />
+            <strong>EVERY SURFACE.</strong>
+          </h2>
+        </div>
+
+        <div class="lis-device-stage">
+          <figure class="lis-device lis-device-desktop">
             <img
-              src="../assets/images/letItShineHome.webp"
-              alt="Let It Shine cleaning services website"
-              class="project-image"
+              src="../assets/images/letItShineImac.webp"
+              alt="Let It Shine website on a desktop display"
+              loading="lazy"
+              decoding="async"
             />
+            <figcaption>01 / DESKTOP</figcaption>
+          </figure>
+          <figure class="lis-device lis-device-tablet">
+            <img
+              src="../assets/images/letItShineTabletHome.webp"
+              alt="Let It Shine website on a tablet"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>02 / TABLET</figcaption>
+          </figure>
+          <figure class="lis-device lis-device-phone">
+            <img
+              src="../assets/images/letItShineIphoneHome.webp"
+              alt="Let It Shine website on a phone"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>03 / PHONE</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="lis-features" aria-labelledby="features-title">
+        <div class="lis-features-heading">
+          <div class="lis-section-label">
+            <span>06</span><span>What shipped</span>
           </div>
-        </section>
+          <p>THE USEFUL BITS, ARRANGED NEATLY</p>
+          <h2 id="features-title">
+            BUILT TO<br />
+            <strong>TURN INTEREST</strong><br />
+            <span>INTO ACTION.</span>
+          </h2>
+        </div>
 
-        <section class="content-section">
-          <h2>The Brief (And My Brief Panic)</h2>
-          <p class="brief-description">
-            A local cleaning company needed a professional website to showcase
-            their services and attract new customers. Simple enough, right?
-            Well, that was before I realized that making a cleaning website look
-            "spotless" while avoiding every cleaning pun in existence would be
-            harder than removing red wine from white carpet. The client wanted
-            something clean (sorry, couldn't resist), modern, and trustworthy.
-            They needed to showcase their services, display testimonials, and
-            make it easy for potential customers to contact them. No pressure at
-            all. Oh, and did I mention I wasn't just the "developer" on this
-            project? I was handed the mop and the blueprint... responsible for
-            everything from the initial design sketches to the final deployment.
-            Full cycle, full stack, full-on caffeine. If it sparkles, loads
-            fast, and looks good on your phone, that's because I handled every
-            step (and probably should have made more cleaning jokes along the
-            way).
-          </p>
-        </section>
-
-        <section class="content-section">
-          <h2>Tech Stack</h2>
-          <p>
-            I kept it simple but effective, sometimes the best solutions are the
-            ones that don't require a computer science degree to understand or
-            to implement (I am working on that). The project was built using:
-          </p>
-          <div class="tech-stack">
-            <span class="tech-tag">React</span>
-            <span class="tech-tag">React Hooks</span>
-            <span class="tech-tag">React Router</span>
-            <span class="tech-tag">CSS</span>
-            <span class="tech-tag">Responsive Design</span>
-            <span class="tech-tag">JavaScript</span>
-          </div>
-        </section>
-
-        <section class="content-section">
-          <h2>Key Features</h2>
-          <div class="features-grid">
-            <div class="feature-card">
-              <h3>Service Showcase</h3>
+        <div class="lis-feature-grid">
+          <article class="lis-feature-card">
+            <span>01</span>
+            <div>
+              <h3>Service showcase</h3>
               <p>
-                Clean, organized display of all cleaning services with detailed
-                descriptions. Each service has its own dedicated card because
-                apparently, "we clean stuff" wasn't descriptive enough.
+                Clear service groups with enough detail to answer questions
+                without burying the visitor.
               </p>
             </div>
-            <div class="feature-card">
-              <h3>Responsive Design</h3>
+          </article>
+          <article class="lis-feature-card">
+            <span>02</span>
+            <div>
+              <h3>Responsive system</h3>
               <p>
-                Works perfectly on all devices, from desktop monitors to
-                smartphones. Because dirty houses don't discriminate by screen
-                size.
+                A layout that keeps its hierarchy and personality from a large
+                monitor to a small phone.
               </p>
             </div>
-            <div class="feature-card">
-              <h3>Professional Aesthetic</h3>
+          </article>
+          <article class="lis-feature-card">
+            <span>03</span>
+            <div>
+              <h3>Approachable identity</h3>
               <p>
-                Modern, trustworthy design that says "we're professionals"
-                without screaming "we're trying too hard." The perfect balance
-                of clean and approachable.
+                Professional enough to inspire trust, friendly enough to start
+                a conversation.
               </p>
             </div>
-            <div class="feature-card">
-              <h3>Call-to-Action Focus</h3>
+          </article>
+          <article class="lis-feature-card">
+            <span>04</span>
+            <div>
+              <h3>Focused contact flow</h3>
               <p>
-                Strategic placement of contact forms and buttons to convert
-                visitors into customers. Developer meets cleaning... who knew?
+                Calls to action placed where decisions happen, with no treasure
+                hunt required.
               </p>
             </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="lis-gallery lis-paper" aria-labelledby="gallery-title">
+        <div class="lis-gallery-heading">
+          <div class="lis-section-label">
+            <span>07</span><span>Inspection log</span>
           </div>
-        </section>
+          <p>THE EVIDENCE, FOR ANYONE CHECKING THE CORNERS</p>
+          <h2 id="gallery-title">
+            A CLOSER<br />
+            <strong>LOOK.</strong>
+          </h2>
+        </div>
 
-        <section class="content-section paragraph-spacing">
-          <h2>Challenges & Solutions</h2>
-          <p>
-            <strong>Challenge:</strong> Creating a design that felt premium
-            without being intimidating. Cleaning services need to feel
-            approachable and trustworthy.
-          </p>
-          <p>
-            <strong>Solution:</strong> Used a soft color palette with plenty of
-            whitespace, cartoonish illustrations and icons, and straightforward
-            navigation. Sometimes less really is more.
-          </p>
-
-          <p>
-            <strong>Challenge:</strong> Making service descriptions engaging
-            without being overwhelming. Turns out, there's a lot more to
-            cleaning than just "making things clean."
-          </p>
-          <p>
-            <strong>Solution:</strong> Broke down services into digestible
-            sections with clear descriptions. Used icons and visual elements to
-            make the information scannable.
-          </p>
-        </section>
-
-        <section class="content-section paragraph-spacing">
-          <h2>What I Learned</h2>
-          <p>
-            This project taught me that sometimes the most "simple" projects are
-            the most challenging. Creating something that looks effortless
-            actually requires quite a bit of effort... kind of like cleaning,
-            ironically.
-          </p>
-          <p>
-            I also learned the importance of understanding your audience. A
-            cleaning company's website needs to inspire trust and
-            professionalism while remaining approachable. It's not about showing
-            off with fancy animations, it's about clearly communicating value
-            and reliability.
-          </p>
-          <p>
-            Most importantly, I discovered that there are way more cleaning puns
-            than I initially thought, and I somehow managed to prevent myself
-            from using most of them during development. The client didn't have
-            to deal with my humour every single day, surprisingly.
-          </p>
-        </section>
-
-        <section class="content-section">
-          <h2>Project Gallery</h2>
-
-          <div class="gallery-container">
-            <div class="gallery-track js-gallery">
-              <div class="gallery-group">
-                <div class="gallery-item">
-                  <img
-                    src="../assets/images/letItShineImac.webp"
-                    alt="Let It Shine homepage"
-                  />
-                  <div class="gallery-caption">
-                    Homepage - Clean and welcoming first impression
-                  </div>
-                </div>
-                <div class="gallery-item">
-                  <img
-                    src="../assets/images/letItShineServices.webp"
-                    alt="Services page"
-                  />
-                  <div class="gallery-caption">
-                    Services - Detailed breakdown of all cleaning options
-                  </div>
-                </div>
-                <div class="gallery-item">
-                  <img
-                    src="../assets/images/letItShineAbout.webp"
-                    alt="About page"
-                  />
-                  <div class="gallery-caption">
-                    About - Building trust through transparency
-                  </div>
-                </div>
-                <div class="gallery-item">
-                  <img
-                    src="../assets/images/letItShineTabletHome.webp"
-                    alt="Website on iPad"
-                  />
-                  <div class="gallery-caption">
-                    iPad View - Responsive design in action
-                  </div>
-                </div>
-                <div class="gallery-item">
-                  <img
-                    src="../assets/images/letItShineIphoneHome.webp"
-                    alt="Website on iPhone"
-                  />
-                  <div class="gallery-caption">
-                    iPhone View - Responsive design in action
-                  </div>
-                </div>
-              </div>
-              <!-- Duplicate Content for seamless loop -->
-              <div class="gallery-group" aria-hidden="true">
-                <div class="gallery-item">
-                  <img
-                    src="../assets/images/letItShineImac.webp"
-                    alt="Let It Shine homepage"
-                  />
-                  <div class="gallery-caption">
-                    Homepage - Clean and welcoming first impression
-                  </div>
-                </div>
-                <div class="gallery-item">
-                  <img
-                    src="../assets/images/letItShineServices.webp"
-                    alt="Services page"
-                  />
-                  <div class="gallery-caption">
-                    Services - Detailed breakdown of all cleaning options
-                  </div>
-                </div>
-                <div class="gallery-item">
-                  <img
-                    src="../assets/images/letItShineAbout.webp"
-                    alt="About page"
-                  />
-                  <div class="gallery-caption">
-                    About - Building trust through transparency
-                  </div>
-                </div>
-                <div class="gallery-item">
-                  <img
-                    src="../assets/images/letItShineTabletHome.webp"
-                    alt="Website on iPad"
-                  />
-                  <div class="gallery-caption">
-                    iPad View - Responsive design in action
-                  </div>
-                </div>
-                <div class="gallery-item">
-                  <img
-                    src="../assets/images/letItShineIphoneHome.webp"
-                    alt="Website on iPhone"
-                  />
-                  <div class="gallery-caption">
-                    iPhone View - Responsive design in action
-                  </div>
-                </div>
-              </div>
+        <div class="lis-gallery-grid">
+          <figure class="lis-gallery-item lis-gallery-wide">
+            <div>
+              <img
+                src="../assets/images/letItShineServices.webp"
+                alt="Let It Shine services page on a laptop"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
-          </div>
-        </section>
+            <figcaption><span>01</span> Services, clear at a glance</figcaption>
+          </figure>
+          <figure class="lis-gallery-item lis-gallery-tall">
+            <div>
+              <img
+                src="../assets/images/letItShineIphoneHome.webp"
+                alt="Let It Shine homepage on a phone"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <figcaption><span>02</span> Mobile, not miniature</figcaption>
+          </figure>
+          <figure class="lis-gallery-item">
+            <div>
+              <img
+                src="../assets/images/letItShineAbout.webp"
+                alt="Let It Shine about page"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <figcaption><span>03</span> Trust through transparency</figcaption>
+          </figure>
+          <figure class="lis-gallery-item lis-gallery-wide">
+            <div>
+              <img
+                src="../assets/images/letItShineOnImac.webp"
+                alt="Let It Shine website displayed on an iMac"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <figcaption><span>04</span> Ready for the big screen</figcaption>
+          </figure>
+        </div>
+      </section>
 
-        <div class="project-links">
-          <a
-            href="https://let-it-shine.co.uk/"
-            target="_blank"
-            class="project-btn primary"
-            >View Live</a
-          >
+      <section
+        class="lis-learning"
+        data-cursor-contrast="paper"
+        aria-labelledby="learning-title"
+      >
+        <div class="lis-section-label">
+          <span>08</span><span>What stayed with me</span>
+        </div>
+        <div class="lis-learning-copy">
+          <p>THE PART I TOOK TO THE NEXT PROJECT</p>
+          <h2 id="learning-title">
+            SIMPLE<br />
+            <strong>TAKES WORK.</strong>
+          </h2>
+        </div>
+        <div class="lis-learning-text">
+          <p>
+            This project reminded me that effortless interfaces are usually the
+            result of a lot of deliberate decisions. Every useful gap, clear
+            label, and obvious next step had to earn its place.
+          </p>
+          <p>
+            It also proved that understanding the audience matters more than
+            showing off the toolset. The website did not need to look
+            technical. It needed to feel reliable.
+          </p>
+          <p>
+            I also learned that there are far more cleaning puns than anyone
+            needs. A suspicious number survived this case study.
+          </p>
+        </div>
+      </section>
+
+      <section class="lis-outro" aria-labelledby="outro-title">
+        <div class="lis-section-label">
+          <span>09</span><span>Job complete</span>
+        </div>
+        <div class="lis-outro-copy">
+          <p>ONE LAST CHECK AROUND THE EDGES</p>
+          <h2 id="outro-title">
+            DESIGNED.<br />
+            <strong>BUILT.</strong><br />
+            <span>POLISHED.</span>
+          </h2>
+        </div>
+        <div class="lis-outro-links">
+          <a href="https://let-it-shine.co.uk/" target="_blank" rel="noreferrer">
+            <span>View live site</span><i>↗</i>
+          </a>
           <a
             href="https://github.com/rodrigodelascio/let-it-shine"
             target="_blank"
-            class="project-btn secondary"
-            >View Code</a
+            rel="noreferrer"
           >
+            <span>Source code</span><i>↗</i>
+          </a>
+          <a href="../work.html">
+            <span>All projects</span><i>←</i>
+          </a>
         </div>
+      </section>
 
-        <a href="../work.html" class="back-button">← Back to Projects</a>
-      </div>
+      <a class="lis-next-project" href="./rodflix.html">
+        <span>NEXT CASE STUDY / 01</span>
+        <strong>ROD<span>FLIX</span></strong>
+        <i>↗</i>
+      </a>
+    </main>
 
-      <footer class="footer-section">
-        <div class="footer-container">
-          <div class="footer-logo">
-            <a href="/">
-              <img
-                src="../assets/images/logoWhite2.webp"
-                alt="Rodrigo De Lascio logo"
-              />
-            </a>
-          </div>
-
-          <div class="footer-links-container">
-            <div class="footer-socials">
-              <a
-                href="https://github.com/rodrigodelascio/"
-                aria-label="Follow this link to open Rodrigo's GitHub on a new tab"
-                target="_blank"
-              >
-                <i class="fa-brands fa-github"></i>
-              </a>
-              <a
-                href="https://www.linkedin.com/in/rodrigo-de-lascio/"
-                aria-label="Follow this link to open Rodrigo's LinkedIn on a new tab"
-                target="_blank"
-              >
-                <i class="fa-brands fa-linkedin"></i>
-              </a>
-            </div>
-
-            <div class="footer-links">
-              <a href="../work.html"> Work </a>
-              <a href="../blog.html"> Blog </a>
-              <a href="../about.html"> About </a>
-            </div>
-
-            <div class="footer-mail">
-              <a
-                href="mailto:rodrigodelascio@gmail.com?subject=Let's%20Create%20Something%20Together%20%7C%20Developer%20Opportunity&body=Hi%20Rodrigo%2C%0A%0AI%20came%20across%20your%20portfolio%20and%20was%20impressed%20by%20your%20skills%20and%20transition%20into%20full-stack%20development.%20%0A%0AI'd%20like%20to%20discuss%20a%20potential%20opportunity%20with%20you.%20Here's%20a%20bit%20about%20what%20we're%20looking%20for%3A%0A%0A%5BFill%20in%20details%20here%5D%0A%0AWould%20you%20be%20available%20for%20a%20chat%20in%20the%20coming%20days%3F%0A%0ALooking%20forward%20to%20hearing%20from%20you!%0A%0A%5BName%5D%0A%5BContact%20details%5D"
-              >
-                rodrigodelascio@gmail.com
-              </a>
-            </div>
-          </div>
-
-          <div class="footer-copyright-container">
-            <p class="footer-copyright-text">
-              ©
-              <script>
-                document.write(new Date().getFullYear());
-              </script>
-              Rodrigo De Lascio. All rights reserved.
-            </p>
-          </div>
-
-          <div class="footer-back-to-top">
-            <a href="#top"
-              ><img
-                src="../assets/images/supermanIcon.webp"
-                alt="icon of superman"
-                class="superman-icon"
-              /><span class="back-to-top-text">Back to the top</span></a
-            >
-          </div>
-        </div>
-      </footer>
-    </div>
+    <footer class="footer-section"></footer>
   </body>
 </html>
