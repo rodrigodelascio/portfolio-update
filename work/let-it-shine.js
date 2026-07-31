@@ -1037,11 +1037,11 @@
     if (!section || reduceMotion) return
 
     gsap.fromTo(".lis-promise figure img", {
-      scale: 1.18,
-      yPercent: -7
+      scale: 1.08,
+      yPercent: -2.5
     }, {
       scale: 1,
-      yPercent: 5,
+      yPercent: 2.5,
       ease: "none",
       scrollTrigger: {
         trigger: section,
@@ -1116,14 +1116,14 @@
       })
 
       gsap.to(problem, {
-        opacity: 0.3,
-        x: -18,
+        opacity: 0.72,
+        x: -8,
         ease: "none",
         scrollTrigger: {
           trigger: row,
-          start: "top 82%",
-          end: "center 46%",
-          scrub: 0.75
+          start: "top 58%",
+          end: "center 40%",
+          scrub: 0.65
         }
       })
     })
@@ -1133,80 +1133,43 @@
     const stage = document.querySelector(".lis-device-stage")
     if (!stage || reduceMotion) return
 
-    gsap.from(".lis-device-desktop", {
-      xPercent: -42,
-      yPercent: 16,
-      rotate: -8,
+    const devices = gsap.utils.toArray(".lis-device")
+
+    gsap.from(devices, {
+      y: 90,
+      rotateX: 7,
       opacity: 0,
+      duration: 1,
+      stagger: 0.14,
       ease: "power3.out",
       scrollTrigger: {
         trigger: stage,
         start: "top 82%",
-        end: "center 48%",
-        scrub: 1
-      }
-    })
-
-    gsap.from(".lis-device-tablet", {
-      xPercent: 45,
-      yPercent: 18,
-      rotate: 9,
-      opacity: 0,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: stage,
-        start: "top 80%",
-        end: "center 46%",
-        scrub: 1
-      }
-    })
-
-    gsap.from(".lis-device-phone", {
-      yPercent: 68,
-      rotate: -6,
-      opacity: 0,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: stage,
-        start: "top 78%",
-        end: "center 44%",
-        scrub: 1
+        once: true
       }
     })
 
     if (!window.matchMedia("(pointer: fine)").matches) return
 
-    stage.addEventListener("pointermove", event => {
-      const bounds = stage.getBoundingClientRect()
-      const x = (event.clientX - bounds.left) / bounds.width - 0.5
-      const y = (event.clientY - bounds.top) / bounds.height - 0.5
+    devices.forEach((device, index) => {
+      device.addEventListener("pointerenter", () => {
+        gsap.to(device, {
+          y: -10,
+          rotateX: -1.5,
+          rotateY: (index - 1) * 1.5,
+          duration: 0.55,
+          ease: "power3.out"
+        })
+      })
 
-      gsap.to(".lis-device-desktop", {
-        x: x * -18,
-        y: y * -12,
-        duration: 0.7,
-        ease: "power2.out"
-      })
-      gsap.to(".lis-device-tablet", {
-        x: x * 28,
-        y: y * 18,
-        duration: 0.7,
-        ease: "power2.out"
-      })
-      gsap.to(".lis-device-phone", {
-        x: x * 44,
-        y: y * 28,
-        duration: 0.7,
-        ease: "power2.out"
-      })
-    })
-
-    stage.addEventListener("pointerleave", () => {
-      gsap.to(".lis-device", {
-        x: 0,
-        y: 0,
-        duration: 0.9,
-        ease: "elastic.out(1,.4)"
+      device.addEventListener("pointerleave", () => {
+        gsap.to(device, {
+          y: 0,
+          rotateX: 0,
+          rotateY: 0,
+          duration: 0.7,
+          ease: "elastic.out(1,.55)"
+        })
       })
     })
   }
@@ -1225,38 +1188,6 @@
         start: "top 82%",
         once: true
       }
-    })
-
-    gsap.utils.toArray(".lis-gallery-item").forEach((item, index) => {
-      const image = item.querySelector("img")
-
-      gsap.from(item, {
-        y: 90,
-        opacity: 0,
-        duration: 1,
-        delay: index % 2 * 0.08,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: item,
-          start: "top 88%",
-          once: true
-        }
-      })
-
-      gsap.fromTo(image, {
-        yPercent: -5,
-        scale: 1.12
-      }, {
-        yPercent: 5,
-        scale: 1.02,
-        ease: "none",
-        scrollTrigger: {
-          trigger: item,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: 1
-        }
-      })
     })
 
     gsap.from(".lis-learning-text p", {
@@ -1286,6 +1217,78 @@
     })
   }
 
+  function initialiseGallery() {
+    if (reduceMotion) return
+
+    const figures = Array.from(
+      document.querySelectorAll(".lis-gallery-stage figure")
+    )
+    const notes = Array.from(
+      document.querySelectorAll(".lis-gallery-notes article")
+    )
+    const counter = document.querySelector("#lis-gallery-current")
+    let activeIndex = 0
+
+    const activate = index => {
+      if (
+        index === activeIndex &&
+        figures[index]?.classList.contains("is-active")
+      ) return
+
+      const previous = figures[activeIndex]
+      const next = figures[index]
+
+      figures.forEach((figure, figureIndex) => {
+        if (figureIndex !== activeIndex && figureIndex !== index) {
+          figure.classList.remove("is-active")
+        }
+      })
+
+      notes.forEach((note, noteIndex) => {
+        note.classList.toggle("is-active", noteIndex === index)
+      })
+
+      if (previous && previous !== next) {
+        previous.classList.add("is-active")
+        gsap.to(previous, {
+          opacity: 0,
+          scale: 0.97,
+          duration: 0.42,
+          ease: "power2.out",
+          onComplete: () => previous.classList.remove("is-active")
+        })
+      }
+
+      if (next) {
+        next.classList.add("is-active")
+        gsap.fromTo(next, {
+          opacity: 0,
+          scale: 1.055
+        }, {
+          opacity: 1,
+          scale: 1,
+          duration: 0.72,
+          ease: "power3.out"
+        })
+      }
+
+      activeIndex = index
+      if (counter) {
+        counter.textContent = String(index + 1).padStart(2, "0")
+      }
+    }
+
+    notes.forEach((note, index) => {
+      ScrollTrigger.create({
+        trigger: note,
+        start: "top 58%",
+        end: "bottom 42%",
+        onEnter: () => activate(index),
+        onEnterBack: () => activate(index)
+      })
+    })
+  }
+
   function initialise() {
     if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
       document.querySelector(".lis-entry")?.remove()
@@ -1304,6 +1307,7 @@
     initialiseProcess()
     initialiseDecisions()
     initialiseDevices()
+    initialiseGallery()
     initialiseCardsAndGallery()
 
     window.addEventListener("load", () => ScrollTrigger.refresh(), {
