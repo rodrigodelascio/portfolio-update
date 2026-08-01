@@ -57,7 +57,7 @@
 
     const counter = { value: 0 };
     const counterElement = loader.querySelector(".preloader-progress b");
-    const mark = new SplitText(".preloader-mark", { type: "chars" });
+    const mark = loader.querySelector(".preloader-mark img");
     const tl = gsap.timeline({
       defaults: { ease: "power4.inOut" },
       onComplete: () => {
@@ -70,15 +70,21 @@
       }
     });
 
-    gsap.set(mark.chars, { yPercent: 115 });
+    gsap.set(mark, {
+      xPercent: -7,
+      scale: 1.14,
+      clipPath: "inset(0 100% 0 0)",
+      transformOrigin: "50% 50%"
+    });
     gsap.set(".site-header", { yPercent: -105 });
     gsap.set(".rail, .hud", { opacity: 0 });
 
-    tl.to(mark.chars, {
-      yPercent: 0,
-      duration: .75,
-      stagger: .04,
-      ease: "power4.out"
+    tl.to(mark, {
+      xPercent: 0,
+      scale: 1,
+      clipPath: "inset(0 0% 0 0)",
+      duration: 1.05,
+      ease: "expo.out"
     })
       .to(counter, {
         value: 100,
@@ -98,10 +104,12 @@
         y: -18,
         duration: .25
       })
-      .to(mark.chars, {
-        yPercent: -125,
-        duration: .5,
-        stagger: .025
+      .to(mark, {
+        scale: 1.7,
+        opacity: 0,
+        filter: "blur(10px)",
+        duration: .6,
+        ease: "power3.in"
       }, "-=.2")
       .call(intro, null, "-=.3")
       .to(".preloader-panel-top", {

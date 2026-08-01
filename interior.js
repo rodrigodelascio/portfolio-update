@@ -49,7 +49,7 @@
     header.className = "interior-header"
     header.innerHTML = `
       <a class="interior-wordmark" href="${root}index.html" aria-label="Rodrigo De Lascio, home">
-        <span>ROD</span><b>/</b><span>DEV</span>
+        <img src="${root}assets/images/logoWhite.svg" alt="" width="535" height="126">
       </a>
       <div class="interior-header-status"><i></i> Available for the right project</div>
       <nav aria-label="Main navigation">

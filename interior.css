@@ -109,13 +109,13 @@ body.interior-page h3 {
 }
 .interior-wordmark {
   justify-self: start;
-  color: var(--ix-paper);
-  font: 700 1.8rem/1 var(--ix-display);
-  letter-spacing: -0.08em;
+  display: block;
+  width: clamp(10.8rem, 8vw, 13rem);
 }
-.interior-wordmark b {
-  color: var(--ix-acid);
-  margin: 0 0.35rem;
+.interior-wordmark img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 .interior-header-status {
   justify-self: end;
