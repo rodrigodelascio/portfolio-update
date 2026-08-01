@@ -395,6 +395,17 @@ body {
   background: var(--post-coral);
   color: var(--post-ink);
   border-top: 1px solid var(--post-ink);
+  transition:
+    background-color 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+    color 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.article-back-strip:hover,
+.article-back-strip:focus-visible {
+  background: var(--post-ink);
+  color: var(--post-acid);
+  border-color: var(--post-ink);
 }
 
 .article-back-strip span {
@@ -415,7 +426,8 @@ body {
   transition: transform 0.35s ease;
 }
 
-.article-back-strip:hover i {
+.article-back-strip:hover i,
+.article-back-strip:focus-visible i {
   transform: translate(0.8rem, -0.8rem);
 }
 
