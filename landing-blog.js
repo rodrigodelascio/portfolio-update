@@ -69,7 +69,7 @@ async function updateLandingBlog() {
       }
       if (image && post.coverImage?.url) {
         image.src = post.coverImage.url
-        image.alt = ""
+        image.alt = `${cleanLandingText(post.title)} article cover`
       }
     })
 

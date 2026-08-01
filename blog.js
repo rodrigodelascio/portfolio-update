@@ -6,6 +6,19 @@
   let totalPostsCache
   const postPagesCache = new Map()
 
+  function updateArchiveSEO(page) {
+    const baseURL = "https://rodrigodelascio.co.uk/blog.html"
+    const pageURL = page > 1 ? `${baseURL}?page=${page}` : baseURL
+    const canonical = document.querySelector('link[rel="canonical"]')
+    const openGraphURL = document.querySelector('meta[property="og:url"]')
+
+    if (canonical) canonical.href = pageURL
+    if (openGraphURL) openGraphURL.content = pageURL
+    document.title = page > 1
+      ? `Writing, page ${page} | Rodrigo De Lascio`
+      : "Writing | Rodrigo De Lascio | Full-Stack Developer"
+  }
+
   const escapeHTML = value =>
     String(value ?? "").replace(
       /[&<>"']/g,
@@ -82,7 +95,7 @@
 
   function postImage(post) {
     const url = escapeHTML(post.coverImage?.url || "./assets/images/blogging.webp")
-    const alt = escapeHTML(post.title)
+    const alt = escapeHTML(`${post.title} article cover`)
     return `<img src="${url}" alt="${alt}" loading="lazy">`
   }
 
@@ -241,6 +254,8 @@
         navigateToPage(safePage, { replace: true })
         return
       }
+
+      updateArchiveSEO(safePage)
 
       container.innerHTML = `
         ${posts.length

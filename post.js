@@ -3,6 +3,38 @@
     "https://eu-west-2.cdn.hygraph.com/content/cm7f4o97y012007waqcbs2n5z/master"
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
 
+  function setMeta(attribute, key, content) {
+    let meta = document.head.querySelector(`meta[${attribute}="${key}"]`)
+    if (!meta) {
+      meta = document.createElement("meta")
+      meta.setAttribute(attribute, key)
+      document.head.append(meta)
+    }
+    meta.content = content
+  }
+
+  function setCanonical(href) {
+    let canonical = document.head.querySelector('link[rel="canonical"]')
+    if (!canonical) {
+      canonical = document.createElement("link")
+      canonical.rel = "canonical"
+      document.head.append(canonical)
+    }
+    canonical.href = href
+  }
+
+  function plainText(html = "") {
+    const container = document.createElement("div")
+    container.innerHTML = html
+    return container.textContent.replace(/\s+/g, " ").trim()
+  }
+
+  function conciseDescription(value, limit = 160) {
+    const description = String(value || "").replace(/\s+/g, " ").trim()
+    if (description.length <= limit) return description
+    return `${description.slice(0, limit - 3).trimEnd()}...`
+  }
+
   const escapeHTML = value =>
     String(value ?? "").replace(
       /[&<>"']/g,
@@ -33,6 +65,7 @@
           query GetPostBySlug($slug: String!) {
             post(where: { slug: $slug }) {
               title
+              excerpt
               content { html }
               coverImage { url }
               publishedDate
@@ -83,7 +116,7 @@
           </div>
 
           <div class="article-cover">
-            <img src="${cover}" alt="${title}">
+            <img src="${cover}" alt="${title} article cover">
             <span class="article-cover-index">READ / THINK / REPEAT</span>
           </div>
 
@@ -139,6 +172,97 @@
       }
       node = walker.nextNode()
     }
+  }
+
+  function auditArticleImages(title) {
+    document.querySelectorAll(".post-content img").forEach((image, index) => {
+      if (!image.getAttribute("alt")?.trim()) {
+        const caption = image.closest("figure")?.querySelector("figcaption")
+        image.alt = caption?.textContent.trim() ||
+          `${title} article illustration ${index + 1}`
+      }
+      image.loading = "lazy"
+      image.decoding = "async"
+    })
+  }
+
+  function updateArticleSEO(post, slug) {
+    const author = post.author?.[0] || post.author
+    const authorName = author?.name || "Rodrigo De Lascio"
+    const canonicalURL =
+      `https://rodrigodelascio.co.uk/post.html?slug=${encodeURIComponent(slug)}`
+    const imageURL = new URL(
+      post.coverImage?.url || "./assets/images/blogging.webp",
+      window.location.href
+    ).href
+    const description = conciseDescription(
+      post.excerpt || plainText(post.content?.html) ||
+        "Development, career detours, and useful things learned the hard way."
+    )
+    const imageAlt = `${post.title} article cover`
+    const categories = (post.category || []).map(category => category.name)
+
+    document.title = `${post.title} | Rodrigo De Lascio`
+    setCanonical(canonicalURL)
+    setMeta("name", "description", description)
+    setMeta("name", "robots", "index, follow, max-image-preview:large")
+    setMeta("property", "og:title", post.title)
+    setMeta("property", "og:description", description)
+    setMeta("property", "og:url", canonicalURL)
+    setMeta("property", "og:image", imageURL)
+    setMeta("property", "og:image:alt", imageAlt)
+    setMeta("name", "twitter:title", post.title)
+    setMeta("name", "twitter:description", description)
+    setMeta("name", "twitter:image", imageURL)
+    setMeta("name", "twitter:image:alt", imageAlt)
+
+    if (post.publishedDate) {
+      setMeta(
+        "property",
+        "article:published_time",
+        new Date(post.publishedDate).toISOString()
+      )
+    }
+    if (post.updatedDate) {
+      setMeta(
+        "property",
+        "article:modified_time",
+        new Date(post.updatedDate).toISOString()
+      )
+    }
+    if (categories.length) {
+      setMeta("property", "article:section", categories.join(", "))
+    }
+
+    let structuredData = document.getElementById("article-structured-data")
+    if (!structuredData) {
+      structuredData = document.createElement("script")
+      structuredData.id = "article-structured-data"
+      structuredData.type = "application/ld+json"
+      document.head.append(structuredData)
+    }
+    structuredData.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "@id": `${canonicalURL}#article`,
+      mainEntityOfPage: canonicalURL,
+      headline: post.title,
+      description,
+      image: imageURL,
+      datePublished: post.publishedDate || undefined,
+      dateModified: post.updatedDate || post.publishedDate || undefined,
+      inLanguage: "en-GB",
+      author: {
+        "@type": "Person",
+        "@id": "https://rodrigodelascio.co.uk/#person",
+        name: authorName,
+        url: "https://rodrigodelascio.co.uk/"
+      },
+      publisher: {
+        "@id": "https://rodrigodelascio.co.uk/#person"
+      },
+      keywords: categories.length ? categories : undefined
+    })
   }
 
   function initialiseProgress() {
@@ -213,6 +337,7 @@
   }
 
   function renderError(message) {
+    setMeta("name", "robots", "noindex, follow")
     document.querySelector(".post-container").innerHTML = `
       <div class="post-error">
         <span>404 / ISH</span>
@@ -237,9 +362,10 @@
         return
       }
 
-      document.title = `${post.title} | Rodrigo De Lascio`
       document.querySelector(".post-container").innerHTML = articleMarkup(post)
+      updateArticleSEO(post, slug)
       cleanArticlePunctuation()
+      auditArticleImages(post.title)
       updateReadingTime()
       initialiseProgress()
       initialiseArticleMotion()
