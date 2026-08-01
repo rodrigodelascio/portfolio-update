@@ -129,21 +129,6 @@
     }
   }
 
-  function addSectionNumbers() {
-    const selectors = [
-      ".work-section",
-      ".blog-section",
-      ".about-journey-section",
-      ".skills-section",
-      ".fun-facts-section",
-      ".cta-and-quote-section",
-      ".content-section"
-    ]
-    document.querySelectorAll(selectors.join(",")).forEach((section, index) => {
-      section.dataset.sectionNumber = String(index + 1).padStart(2, "0")
-    })
-  }
-
   function initialiseNavHovers() {
     if (
       typeof gsap === "undefined" ||
@@ -230,71 +215,14 @@
     if (cta) animateRoll(cta, true)
   }
 
-  function initialiseMotion(scope = document) {
-    if (typeof gsap === "undefined" || scope.dataset?.motionReady) return
-    gsap.registerPlugin(ScrollTrigger, SplitText)
+  function initialiseFooterMotion() {
+    if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return
+    gsap.registerPlugin(ScrollTrigger)
 
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
     if (reduceMotion) return
 
-    scope.dataset && (scope.dataset.motionReady = "true")
-
-    const hero = scope.querySelector?.(
-      ".projects-title-bold"
-    )
-    if (hero && !hero.dataset.animated) {
-      hero.dataset.animated = "true"
-      const split = new SplitText(hero, { type: "chars" })
-      gsap.from(split.chars, {
-        yPercent: 110,
-        opacity: 0,
-        duration: 1,
-        stagger: .025,
-        ease: "power4.out"
-      })
-    }
-
-    scope.querySelectorAll?.(
-      ".project-card, .journey-card, .skill-category, .fact-item, .feature-card, .post-link, .featured-post, .grid-post"
-    ).forEach(card => {
-      if (card.dataset.animated) return
-      card.dataset.animated = "true"
-      gsap.from(card, {
-        y: 70,
-        opacity: 0,
-        duration: .9,
-        ease: "power3.out",
-        scrollTrigger: { trigger: card, start: "top 88%", once: true }
-      })
-    })
-
-    scope.querySelectorAll?.(".content-section > h2, .skills-section > h2, .fun-facts h2").forEach(title => {
-      if (title.dataset.animated) return
-      title.dataset.animated = "true"
-      gsap.from(title, {
-        clipPath: "inset(0 100% 0 0)",
-        duration: 1,
-        ease: "power3.inOut",
-        scrollTrigger: { trigger: title, start: "top 84%", once: true }
-      })
-    })
-
-    scope.querySelectorAll?.(".projects-title-container > .project-image, .about-image img, .post > img").forEach(image => {
-      if (image.dataset.animated) return
-      image.dataset.animated = "true"
-      gsap.fromTo(image, { scale: 1.06 }, {
-        scale: .96,
-        ease: "none",
-        scrollTrigger: {
-          trigger: image,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: 1
-        }
-      })
-    })
-
-    const footerHeading = scope.querySelector?.(".interior-footer-heading")
+    const footerHeading = document.querySelector(".interior-footer-heading")
     if (footerHeading && !footerHeading.dataset.animated) {
       footerHeading.dataset.animated = "true"
       gsap.from(
@@ -488,19 +416,17 @@
 
   document.addEventListener("DOMContentLoaded", () => {
     buildChrome()
-    addSectionNumbers()
     cleanVisibleText()
     initialiseHud()
     initialiseCursorTrail()
     initialiseMagneticFooter()
     initialiseNavHovers()
-    initialiseMotion(document)
+    initialiseFooterMotion()
 
     const dynamicTargets = document.querySelectorAll(".blog-container, .post-container")
     dynamicTargets.forEach(target => {
       const observer = new MutationObserver(() => {
         cleanVisibleText(target)
-        initialiseMotion(target)
       })
       observer.observe(target, { childList: true, subtree: true })
     })

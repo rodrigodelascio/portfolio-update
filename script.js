@@ -1,8 +1,7 @@
 const hamburgerMenu = document.querySelector(".hamburger-menu");
 const offScreenMenu = document.querySelector(".off-screen-menu");
-const activePage = window.location.pathname;
 
-const navLinks = document.querySelectorAll(".nav-links a").forEach((link) => {
+document.querySelectorAll(".nav-links a").forEach((link) => {
   if (link.href === window.location.href) {
     link.classList.add("nav-active");
   }
@@ -29,7 +28,7 @@ if (hamburgerMenu && offScreenMenu) {
   });
 }
 
-window.addEventListener("resize", (e) => {
+window.addEventListener("resize", () => {
   if (window.matchMedia(`(min-width: 900px)`).matches) {
     hamburgerMenu?.classList.remove("active");
     offScreenMenu?.classList.remove("active");
