@@ -1,136 +1,65 @@
-# Personal Portfolio Website
+# Rodrigo de Lascio, portfolio
 
-![](./assets/images/landingPageSS.png)
+A motion-led portfolio for my work, writing, and background as a full-stack developer. The site is built with semantic HTML, modern CSS, and vanilla JavaScript, with GSAP and Three.js used for the richer interactions.
 
-A handcrafted personal portfolio built with HTML, CSS and Vanilla JavaScript, designed to showcase my work, writing, and development approach as a career-changing computing student and junior developer.
+## What is included
 
-This project intentionally avoids frameworks to demonstrate a solid understanding of core web technologies, layout systems, performance considerations, and browser APIs.
+- A responsive landing page with an animated hero, pinned project gallery, live writing feed, and custom cursor
+- Dedicated work, writing, about, and article pages
+- Detailed RodFlix and Let It Shine case studies
+- Scroll-based motion using GSAP, ScrollTrigger, ScrollSmoother, SplitText, and DrawSVG
+- Interactive 3D scenes built with Three.js and GLTF models
+- Blog content fetched from Hygraph through its GraphQL API
+- Reduced-motion fallbacks and keyboard-friendly navigation
 
----
-
-## Overview
-
-This portfolio acts as both a professional showcase and a learning artefact.
-
-It includes:
-
-- A landing page introducing who I am and how I work
-- Individual project pages explaining real design and development decisions
-- A blog powered by a headless CMS, where I document my learning journey
-- A clean, responsive UI focused on readability, accessibility, and performance
-
-Rather than optimising for speed of development, this project prioritises clarity, maintainability, and understanding of fundamentals.
-
----
-
-## Why Vanilla JavaScript?
-
-This portfolio was deliberately built without frameworks such as React or Next.js.
-
-As a career changer entering the industry, I wanted to demonstrate that I can:
-
-- Build complete interfaces from first principles
-- Work confidently with the DOM, events, and browser APIs
-- Structure CSS without relying on component libraries
-- Make intentional architectural decisions rather than defaulting to abstractions
-
-Frameworks are tools, not crutches. This project shows what I can do without them.
-
----
-
-## Features
-
-- Fully responsive layout using Flexbox and modern CSS
-- Semantic HTML structure for accessibility and SEO
-- Individual project pages with detailed explanations
-- Blog powered by Hygraph (headless CMS)
-- Optimised images and lazy loading where appropriate
-- Custom UI components and hover interactions
-- Framework-free, dependency-light setup
-
----
-
-## Screenshots
-
-### Landing Page
-
-![](./assets/images/landingPageFullSS.png)
-
-### Blog
-
-![](./assets/images/blogPageFullSS.png)
-
----
-
-## Built With
+## Technology
 
 - HTML5
-- CSS3 (Flexbox, custom properties, responsive design)
-- Vanilla JavaScript (ES6+)
-- Hygraph Headless CMS (for blog content)
+- CSS3 with custom properties, responsive layouts, and container-aware sizing
+- Vanilla JavaScript
+- GSAP and its ScrollTrigger, ScrollSmoother, SplitText, and DrawSVG plugins
+- Three.js with GLTF assets
+- Hygraph for article content
 
-No frameworks. No UI libraries. No build tools.
+There is no bundler or build step. Browser dependencies are loaded from a CDN.
 
----
+## Run locally
 
-## Project Structure
+Serve the repository through a local HTTP server so that modules, models, and media load correctly.
 
-The site is organised with clarity and separation of concerns in mind:
+```bash
+python3 -m http.server 4173
+```
 
-- Page-specific stylesheets rather than a single monolithic CSS file
-- Small, focused JavaScript files per page where behaviour is needed
-- Static HTML pages for predictability and performance
-- Content managed externally where it makes sense (blog)
+Then open `http://127.0.0.1:4173/`.
 
----
+## Project structure
 
-## What I Would Do Differently
+```text
+.
+├── index.html, style.css, animations.js
+├── about.html, about.css, about.js
+├── blog.html, blog.css, blog.js
+├── post.html, post.css, post.js
+├── work.html, work.css, work.js
+├── interior.css, interior.js
+├── landing-blog.js
+├── work/
+│   ├── rodflix.html, rodflix.css, rodflix.js
+│   └── let-it-shine.html, let-it-shine.css, let-it-shine.js
+└── assets/
+    ├── images/
+    ├── models/
+    └── videos/
+```
 
-This project intentionally prioritised fundamentals over abstraction. That said, revisiting it with fresh eyes highlights several areas I would approach differently in a future iteration:
+`interior.css` and `interior.js` contain the shared navigation, footer, cursor, status display, and common interactions used by the interior pages. Each page keeps its own layout and motion code alongside its HTML.
 
-- **Introduce a lightweight build step**  
-  While working without a build tool helped reinforce core concepts, a minimal setup using Vite or similar would improve asset optimisation, bundling, and development ergonomics without obscuring fundamentals.
+## Live site
 
-- **Stronger CSS architecture**  
-  Page-specific stylesheets worked well at this scale, but for a larger project I would introduce a more formal CSS architecture, such as utility layers or a stricter naming convention, to improve long-term scalability.
-
-- **Progressive enhancement for animations**  
-  Interactive elements are currently designed to degrade gracefully, but future enhancements could make better use of progressive enhancement patterns to ensure animations never impact performance or accessibility.
-
-- **Deeper accessibility auditing**  
-  Semantic HTML was a priority from the start, however I would like to add more explicit testing using screen readers and automated accessibility tools to validate real-world usage.
-
-- **Component abstraction where it adds value**  
-  Certain UI patterns could be abstracted more cleanly once their behaviour and usage are fully understood, rather than abstracting prematurely.
-
-Overall, this project reflects a deliberate learning-first approach. The decisions made here were intentional, and the lessons learned directly inform how I approach newer, more complex applications.
-
----
-
-## Live Site
-
-🔗 **Live URL:**  
-https://rodrigodelascio.co.uk/
-
----
-
-## About Me
-
-I am a UK-based BSc Computing student and career changer, transitioning from a long background in content, localisation, and digital marketing into software development.
-
-This portfolio reflects how I think, learn, and build, not just what I know.
-
----
+[rodrigodelascio.co.uk](https://rodrigodelascio.co.uk/)
 
 ## Author
 
-- Website: https://rodrigodelascio.co.uk/
-- GitHub: https://github.com/rodrigodelascio
-- LinkedIn: https://www.linkedin.com/in/rodrigo-de-lascio/
-
----
-
-## Notes
-
-This project is actively evolving.  
-Future enhancements may include scroll-based animations, performance refinements, and additional case-study depth as the portfolio grows.
+- [GitHub](https://github.com/rodrigodelascio)
+- [LinkedIn](https://www.linkedin.com/in/rodrigo-de-lascio/)
