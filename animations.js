@@ -9,17 +9,32 @@
   if (typeof DrawSVGPlugin !== "undefined") gsapPlugins.push(DrawSVGPlugin);
   gsap.registerPlugin(...gsapPlugins);
 
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const reduceMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
   const finePointer = window.matchMedia("(pointer: fine)").matches;
+  const touchDevice =
+    window.matchMedia("(hover: none), (pointer: coarse)").matches ||
+    navigator.maxTouchPoints > 0;
+  const stableTouchPin = touchDevice
+    ? {
+        pinType: "fixed",
+        pinReparent: true,
+      }
+    : {};
+
+  ScrollTrigger.config({
+    ignoreMobileResize: true,
+  });
 
   function initSmoother() {
-    if (reduceMotion) return null;
+    if (reduceMotion || touchDevice) return null;
     return ScrollSmoother.create({
       wrapper: "#smooth-wrapper",
       content: "#smooth-content",
       smooth: 1.15,
       effects: true,
-      normalizeScroll: false
+      normalizeScroll: false,
     });
   }
 
@@ -30,10 +45,19 @@
     gsap.set(title.chars, { yPercent: 115, opacity: 0 });
     gsap.set(".hero-portrait-shell", { xPercent: -50, y: 40, opacity: 0 });
     gsap.set(".hero-title-outline", { opacity: 0 });
-    tl.to(title.chars, { yPercent: 0, opacity: 1, duration: 1.25, stagger: .018 })
+    tl.to(title.chars, {
+      yPercent: 0,
+      opacity: 1,
+      duration: 1.25,
+      stagger: 0.018,
+    })
       .to(".hero-portrait-shell", { y: 0, opacity: 1, duration: 1.25 }, "-=.9")
-      .to(".hero-title-outline", { opacity: 1, duration: .55 }, "-=.7")
-      .from(".hero-kicker, .hero-bottom", { y: 24, opacity: 0, duration: .8, stagger: .15 }, "-=.65");
+      .to(".hero-title-outline", { opacity: 1, duration: 0.55 }, "-=.7")
+      .from(
+        ".hero-kicker, .hero-bottom",
+        { y: 24, opacity: 0, duration: 0.8, stagger: 0.15 },
+        "-=.65",
+      );
   }
 
   function preloader(smoother) {
@@ -67,14 +91,14 @@
         resetToHero();
         loader.remove();
         ScrollTrigger.refresh();
-      }
+      },
     });
 
     gsap.set(mark, {
       xPercent: -7,
       scale: 1.14,
       clipPath: "inset(0 100% 0 0)",
-      transformOrigin: "50% 50%"
+      transformOrigin: "50% 50%",
     });
     gsap.set(".site-header", { yPercent: -105 });
     gsap.set(".rail, .hud", { opacity: 0 });
@@ -84,53 +108,83 @@
       scale: 1,
       clipPath: "inset(0 0% 0 0)",
       duration: 1.05,
-      ease: "expo.out"
+      ease: "expo.out",
     })
-      .to(counter, {
-        value: 100,
-        duration: 2.1,
-        ease: "power2.inOut",
-        onUpdate: () => {
-          counterElement.textContent = String(Math.round(counter.value)).padStart(3, "0");
-        }
-      }, "-=.5")
-      .to(".preloader-progress-line", {
-        scaleX: 1,
-        duration: 2.1,
-        ease: "power2.inOut"
-      }, "<")
+      .to(
+        counter,
+        {
+          value: 100,
+          duration: 2.1,
+          ease: "power2.inOut",
+          onUpdate: () => {
+            counterElement.textContent = String(
+              Math.round(counter.value),
+            ).padStart(3, "0");
+          },
+        },
+        "-=.5",
+      )
+      .to(
+        ".preloader-progress-line",
+        {
+          scaleX: 1,
+          duration: 2.1,
+          ease: "power2.inOut",
+        },
+        "<",
+      )
       .to(".preloader-meta, .preloader-progress", {
         opacity: 0,
         y: -18,
-        duration: .25
+        duration: 0.25,
       })
-      .to(mark, {
-        scale: 1.7,
-        opacity: 0,
-        filter: "blur(10px)",
-        duration: .6,
-        ease: "power3.in"
-      }, "-=.2")
+      .to(
+        mark,
+        {
+          scale: 1.7,
+          opacity: 0,
+          filter: "blur(10px)",
+          duration: 0.6,
+          ease: "power3.in",
+        },
+        "-=.2",
+      )
       .call(intro, null, "-=.3")
-      .to(".preloader-panel-top", {
-        xPercent: -101,
-        duration: .8
-      }, "-=.25")
-      .to(".preloader-panel-bottom", {
-        xPercent: 101,
-        duration: .8
-      }, "<")
-      .to(".site-header", {
-        yPercent: 0,
-        duration: .6,
-        ease: "power3.out"
-      }, "-=.6")
-      .to(".rail, .hud", {
-        opacity: 1,
-        duration: .4,
-        stagger: .08,
-        ease: "power2.out"
-      }, "-=.45");
+      .to(
+        ".preloader-panel-top",
+        {
+          xPercent: -101,
+          duration: 0.8,
+        },
+        "-=.25",
+      )
+      .to(
+        ".preloader-panel-bottom",
+        {
+          xPercent: 101,
+          duration: 0.8,
+        },
+        "<",
+      )
+      .to(
+        ".site-header",
+        {
+          yPercent: 0,
+          duration: 0.6,
+          ease: "power3.out",
+        },
+        "-=.6",
+      )
+      .to(
+        ".rail, .hud",
+        {
+          opacity: 1,
+          duration: 0.4,
+          stagger: 0.08,
+          ease: "power2.out",
+        },
+        "-=.45",
+      );
   }
 
   function heroMotion() {
@@ -140,14 +194,22 @@
         trigger: ".hero",
         start: "top top",
         end: "bottom top",
-        scrub: 1
-      }
+        scrub: 1,
+      },
     });
-    tl.to(".hero-line-one", { xPercent: -12, opacity: .1, ease: "none" }, 0)
-      .to(".hero-line-two", { xPercent: 12, opacity: .12, ease: "none" }, 0)
+    tl.to(".hero-line-one", { xPercent: -12, opacity: 0.1, ease: "none" }, 0)
+      .to(".hero-line-two", { xPercent: 12, opacity: 0.12, ease: "none" }, 0)
       .to(".hero-portrait-shell", { y: "18vh", ease: "none" }, 0)
-      .to(".hero-portrait", { scale: 1.38, transformOrigin: "50% 58%", ease: "none" }, 0)
-      .to(".hero-title-outline", { opacity: 0, duration: .18, ease: "none" }, 0)
+      .to(
+        ".hero-portrait",
+        { scale: 1.38, transformOrigin: "50% 58%", ease: "none" },
+        0,
+      )
+      .to(
+        ".hero-title-outline",
+        { opacity: 0, duration: 0.18, ease: "none" },
+        0,
+      )
       .to(".hero-bottom", { opacity: 0, y: -40, ease: "none" }, 0)
       .to(".hero-kicker", { opacity: 0, ease: "none" }, 0);
   }
@@ -160,7 +222,7 @@
       alpha: true,
       antialias: false,
       premultipliedAlpha: true,
-      powerPreference: "low-power"
+      powerPreference: "low-power",
     });
     if (!gl) {
       canvas.classList.add("is-fallback");
@@ -301,7 +363,7 @@
     gl.bufferData(
       gl.ARRAY_BUFFER,
       new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]),
-      gl.STATIC_DRAW
+      gl.STATIC_DRAW,
     );
     gl.useProgram(program);
     const position = gl.getAttribLocation(program, "position");
@@ -329,7 +391,7 @@
       }
     };
 
-    const render = now => {
+    const render = (now) => {
       pointerCurrent.x += (pointerTarget.x - pointerCurrent.x) * 0.025;
       pointerCurrent.y += (pointerTarget.y - pointerCurrent.y) * 0.025;
       gl.uniform2f(resolution, canvas.width, canvas.height);
@@ -339,7 +401,7 @@
       frame = visible && !reduceMotion ? requestAnimationFrame(render) : 0;
     };
 
-    const observer = new IntersectionObserver(entries => {
+    const observer = new IntersectionObserver((entries) => {
       visible = entries[0].isIntersecting;
       if (visible && !frame) {
         start = performance.now();
@@ -351,10 +413,14 @@
     });
 
     if (finePointer) {
-      window.addEventListener("pointermove", event => {
-        pointerTarget.x = event.clientX / window.innerWidth;
-        pointerTarget.y = 1 - event.clientY / window.innerHeight;
-      }, { passive: true });
+      window.addEventListener(
+        "pointermove",
+        (event) => {
+          pointerTarget.x = event.clientX / window.innerWidth;
+          pointerTarget.y = 1 - event.clientY / window.innerHeight;
+        },
+        { passive: true },
+      );
     }
     new ResizeObserver(resize).observe(canvas);
     observer.observe(canvas);
@@ -365,55 +431,79 @@
   function sectionReveals() {
     if (reduceMotion) return;
     document.querySelectorAll(".section-heading").forEach((heading) => {
-      gsap.from(heading.querySelectorAll(".section-index, h2 span, h2 strong"), {
-        yPercent: 70,
-        opacity: 0,
-        duration: 1,
-        stagger: .1,
-        ease: "power3.out",
-        scrollTrigger: { trigger: heading, start: "top 78%", once: true }
-      });
+      gsap.from(
+        heading.querySelectorAll(".section-index, h2 span, h2 strong"),
+        {
+          yPercent: 70,
+          opacity: 0,
+          duration: 1,
+          stagger: 0.1,
+          ease: "power3.out",
+          scrollTrigger: { trigger: heading, start: "top 78%", once: true },
+        },
+      );
     });
 
-    const manifesto = new SplitText(".manifesto-copy", { type: "words,chars", wordsClass: "word" });
-    gsap.fromTo(manifesto.chars, {
-      color: "rgba(8, 9, 11, 0.14)"
-    }, {
-      color: (index, character) => character.closest("em") ? "#ff5c35" : "#08090b",
-      stagger: .018,
-      ease: "none",
-      scrollTrigger: {
-        trigger: ".manifesto",
-        start: "top top",
-        end: "+=110%",
-        pin: true,
-        anticipatePin: 1,
-        scrub: 1.2
-      }
+    const manifesto = new SplitText(".manifesto-copy", {
+      type: "words,chars",
+      wordsClass: "word",
     });
+    gsap.fromTo(
+      manifesto.chars,
+      {
+        color: "rgba(8, 9, 11, 0.14)",
+      },
+      {
+        color: (index, character) =>
+          character.closest("em") ? "#ff5c35" : "#08090b",
+        stagger: 0.018,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".manifesto",
+          start: "top top",
+          end: "+=110%",
+          pin: true,
+          pinSpacing: true,
+          anticipatePin: touchDevice ? 0 : 1,
+          scrub: touchDevice ? true : 1.2,
+          ...stableTouchPin,
+        },
+      },
+    );
 
     document.querySelectorAll(".project").forEach((project) => {
       const image = project.querySelector(".project-image");
       gsap.from(image, {
         yPercent: 24,
         rotate: -8,
-        scale: .88,
-        scrollTrigger: { trigger: project, start: "top 85%", end: "center 55%", scrub: .6 }
+        scale: 0.88,
+        scrollTrigger: {
+          trigger: project,
+          start: "top 85%",
+          end: "center 55%",
+          scrub: 0.6,
+        },
       });
       gsap.from(project.querySelectorAll(".project-copy > *"), {
         y: 40,
         opacity: 0,
-        stagger: .08,
-        duration: .85,
+        stagger: 0.08,
+        duration: 0.85,
         ease: "power3.out",
-        scrollTrigger: { trigger: project, start: "top 68%", once: true }
+        scrollTrigger: { trigger: project, start: "top 68%", once: true },
       });
     });
 
     if (window.matchMedia("(min-width: 901px)").matches) {
       const projectList = document.querySelector(".project-list");
       const projectRail = document.querySelector(".project-rail");
-      const projectTravel = () => Math.max(0, projectList.scrollWidth - document.documentElement.clientWidth + window.innerWidth * .05);
+      const projectTravel = () =>
+        Math.max(
+          0,
+          projectList.scrollWidth -
+            document.documentElement.clientWidth +
+            window.innerWidth * 0.05,
+        );
       gsap.to(projectList, {
         x: () => -projectTravel(),
         ease: "none",
@@ -425,8 +515,8 @@
           pinSpacing: true,
           anticipatePin: 1,
           scrub: 1,
-          invalidateOnRefresh: true
-        }
+          invalidateOnRefresh: true,
+        },
       });
     }
 
@@ -436,16 +526,22 @@
     const interludeRouteBase = document.querySelector(".interlude-route-base");
     const interludeRoute = document.querySelector(".interlude-route-progress");
     const sizeInterludeRoute = () => {
-      if (!interlude || !interludeRouteSvg || !interludeRouteBase || !interludeRoute) return;
+      if (
+        !interlude ||
+        !interludeRouteSvg ||
+        !interludeRouteBase ||
+        !interludeRoute
+      )
+        return;
       const { width, height } = interludeRouteSvg.getBoundingClientRect();
       const route = [
         `M0 0`,
-        `C${width * .09} ${height * .02} ${width * .16} ${height * .12} ${width * .23} ${height * .21}`,
-        `C${width * .29} ${height * .3} ${width * .45} ${height * .33} ${width * .51} ${height * .14}`,
-        `C${width * .58} ${height * -.04} ${width * .77} ${height * .02} ${width * .89} ${height * .2}`,
-        `C${width} ${height * .37} ${width * .91} ${height * .6} ${width * .79} ${height * .72}`,
-        `C${width * .67} ${height * .84} ${width * .5} ${height * .9} ${width * .37} ${height * .78}`,
-        `C${width * .24} ${height * .66} ${width * .12} ${height * .8} 0 ${height}`
+        `C${width * 0.09} ${height * 0.02} ${width * 0.16} ${height * 0.12} ${width * 0.23} ${height * 0.21}`,
+        `C${width * 0.29} ${height * 0.3} ${width * 0.45} ${height * 0.33} ${width * 0.51} ${height * 0.14}`,
+        `C${width * 0.58} ${height * -0.04} ${width * 0.77} ${height * 0.02} ${width * 0.89} ${height * 0.2}`,
+        `C${width} ${height * 0.37} ${width * 0.91} ${height * 0.6} ${width * 0.79} ${height * 0.72}`,
+        `C${width * 0.67} ${height * 0.84} ${width * 0.5} ${height * 0.9} ${width * 0.37} ${height * 0.78}`,
+        `C${width * 0.24} ${height * 0.66} ${width * 0.12} ${height * 0.8} 0 ${height}`,
       ].join("");
 
       interludeRouteSvg.setAttribute("viewBox", `0 0 ${width} ${height}`);
@@ -462,18 +558,19 @@
         end: "+=175%",
         pin: true,
         pinSpacing: true,
-        anticipatePin: 1,
-        scrub: 1,
+        anticipatePin: touchDevice ? 0 : 1,
+        scrub: touchDevice ? true : 1,
         invalidateOnRefresh: true,
-        onRefreshInit: sizeInterludeRoute
-      }
+        onRefreshInit: sizeInterludeRoute,
+        ...stableTouchPin,
+      },
     });
     const interludeSymbols = [
       ".symbol-cube",
       ".symbol-pointer",
       ".symbol-spark",
       ".symbol-squiggle",
-      ".symbol-code"
+      ".symbol-code",
     ];
 
     if (interludeRoute) {
@@ -483,82 +580,106 @@
         const routeLength = interludeRoute.getTotalLength();
         gsap.set(interludeRoute, {
           strokeDasharray: `${routeLength} ${routeLength}`,
-          strokeDashoffset: routeLength
+          strokeDashoffset: routeLength,
         });
       }
     }
     gsap.set(".interlude-symbol", {
-      scale: .42,
-      opacity: .1,
-      transformOrigin: "50% 50%"
+      scale: 0.42,
+      opacity: 0.1,
+      transformOrigin: "50% 50%",
     });
 
     interludeTimeline
-      .fromTo(".interlude-track", {
-        x: 0
-      }, {
-        x: () => -Math.max(0, interludeTrack.scrollWidth - window.innerWidth),
-        duration: 1,
-        ease: "none"
-      }, 0)
-      .fromTo(".interlude-symbol", {
-        xPercent: (index) => index % 2 ? 28 : -28,
-        yPercent: (index) => index % 2 ? -10 : 10,
-        rotation: (index) => index % 2 ? -18 : 18
-      }, {
-        xPercent: (index) => index % 2 ? -34 : 34,
-        yPercent: (index) => index % 2 ? 16 : -16,
-        rotation: (index) => index % 2 ? 42 : -42,
-        duration: 1,
-        ease: "none"
-      }, 0);
+      .fromTo(
+        ".interlude-track",
+        {
+          x: 0,
+        },
+        {
+          x: () => -Math.max(0, interludeTrack.scrollWidth - window.innerWidth),
+          duration: 1,
+          ease: "none",
+        },
+        0,
+      )
+      .fromTo(
+        ".interlude-symbol",
+        {
+          xPercent: (index) => (index % 2 ? 28 : -28),
+          yPercent: (index) => (index % 2 ? -10 : 10),
+          rotation: (index) => (index % 2 ? -18 : 18),
+        },
+        {
+          xPercent: (index) => (index % 2 ? -34 : 34),
+          yPercent: (index) => (index % 2 ? 16 : -16),
+          rotation: (index) => (index % 2 ? 42 : -42),
+          duration: 1,
+          ease: "none",
+        },
+        0,
+      );
 
     if (interludeRoute) {
-      interludeTimeline.to(interludeRoute, typeof DrawSVGPlugin !== "undefined" ? {
-        drawSVG: "100%",
-        duration: 1,
-        ease: "none"
-      } : {
-        strokeDashoffset: 0,
-        duration: 1,
-        ease: "none"
-      }, 0);
+      interludeTimeline.to(
+        interludeRoute,
+        typeof DrawSVGPlugin !== "undefined"
+          ? {
+              drawSVG: "100%",
+              duration: 1,
+              ease: "none",
+            }
+          : {
+              strokeDashoffset: 0,
+              duration: 1,
+              ease: "none",
+            },
+        0,
+      );
     }
 
     interludeSymbols.forEach((selector, index) => {
-      const arrival = [.1, .26, .42, .68, .84][index];
+      const arrival = [0.1, 0.26, 0.42, 0.68, 0.84][index];
       interludeTimeline
-        .to(selector, {
-          scale: 1.18,
-          opacity: 1,
-          filter: "drop-shadow(0 0 1.8rem var(--symbol-glow))",
-          duration: .075,
-          ease: "power3.out"
-        }, arrival)
-        .to(selector, {
-          scale: 1,
-          filter: "drop-shadow(0 0 .8rem var(--symbol-glow-rest))",
-          duration: .08,
-          ease: "power2.inOut"
-        }, arrival + .075);
+        .to(
+          selector,
+          {
+            scale: 1.18,
+            opacity: 1,
+            filter: "drop-shadow(0 0 1.8rem var(--symbol-glow))",
+            duration: 0.075,
+            ease: "power3.out",
+          },
+          arrival,
+        )
+        .to(
+          selector,
+          {
+            scale: 1,
+            filter: "drop-shadow(0 0 .8rem var(--symbol-glow-rest))",
+            duration: 0.08,
+            ease: "power2.inOut",
+          },
+          arrival + 0.075,
+        );
     });
 
     gsap.from(".article-card", {
       y: 90,
       opacity: 0,
-      stagger: .12,
+      stagger: 0.12,
       duration: 1,
       ease: "power3.out",
-      scrollTrigger: { trigger: ".article-grid", start: "top 78%", once: true }
+      scrollTrigger: { trigger: ".article-grid", start: "top 78%", once: true },
     });
 
     gsap.from(".contact-heading span, .contact-heading strong", {
-      xPercent: (i) => i ? 18 : -18,
+      xPercent: (i) => (i ? 18 : -18),
       opacity: 0,
       duration: 1.2,
-      stagger: .1,
+      stagger: 0.1,
       ease: "power4.out",
-      scrollTrigger: { trigger: ".contact", start: "top 55%", once: true }
+      scrollTrigger: { trigger: ".contact", start: "top 55%", once: true },
     });
   }
 
@@ -568,37 +689,49 @@
     const section = document.getElementById("hud-section-value");
     const clock = document.getElementById("hud-clock-value");
     const tick = () => {
-      if (clock) clock.textContent = new Date().toLocaleTimeString("en-GB", { hour12: false });
+      if (clock)
+        clock.textContent = new Date().toLocaleTimeString("en-GB", {
+          hour12: false,
+        });
     };
     tick();
     window.setInterval(tick, 1000);
     ScrollTrigger.create({
       start: 0,
       end: "max",
-      onUpdate: self => {
+      onUpdate: (self) => {
         const value = String(Math.round(self.progress * 100)).padStart(2, "0");
         if (progress) progress.textContent = value;
         if (cardProgress) cardProgress.textContent = value;
-      }
+      },
     });
-    document.querySelectorAll("[data-section]").forEach(el => {
+    document.querySelectorAll("[data-section]").forEach((el) => {
       ScrollTrigger.create({
         trigger: el,
         start: "top 58%",
         end: "bottom 58%",
-        onToggle: self => { if (self.isActive && section) section.textContent = el.dataset.section; }
+        onToggle: (self) => {
+          if (self.isActive && section)
+            section.textContent = el.dataset.section;
+        },
       });
     });
   }
 
   function magnetic() {
     if (!finePointer || reduceMotion) return;
-    document.querySelectorAll(".magnetic").forEach(el => {
-      el.addEventListener("pointermove", e => {
+    document.querySelectorAll(".magnetic").forEach((el) => {
+      el.addEventListener("pointermove", (e) => {
         const r = el.getBoundingClientRect();
-        gsap.to(el, { x: (e.clientX - r.left - r.width / 2) * .12, y: (e.clientY - r.top - r.height / 2) * .12, duration: .35 });
+        gsap.to(el, {
+          x: (e.clientX - r.left - r.width / 2) * 0.12,
+          y: (e.clientY - r.top - r.height / 2) * 0.12,
+          duration: 0.35,
+        });
       });
-      el.addEventListener("pointerleave", () => gsap.to(el, { x: 0, y: 0, duration: .7, ease: "elastic.out(1,.35)" }));
+      el.addEventListener("pointerleave", () =>
+        gsap.to(el, { x: 0, y: 0, duration: 0.7, ease: "elastic.out(1,.35)" }),
+      );
     });
   }
 
@@ -607,7 +740,8 @@
       !finePointer ||
       reduceMotion ||
       !window.matchMedia("(min-width: 901px)").matches
-    ) return;
+    )
+      return;
 
     const canvas = document.querySelector(".cursor-trail");
     const context = canvas?.getContext("2d");
@@ -631,15 +765,15 @@
           visited.add(node);
           if (node.dataset?.cursorContrast === "paper") return true;
           const match = getComputedStyle(node).backgroundColor.match(
-            /rgba?\(([\d.]+),\s*([\d.]+),\s*([\d.]+)(?:,\s*([\d.]+))?/
+            /rgba?\(([\d.]+),\s*([\d.]+),\s*([\d.]+)(?:,\s*([\d.]+))?/,
           );
           if (match) {
             const alpha = match[4] === undefined ? 1 : Number(match[4]);
-            if (alpha > .08) {
+            if (alpha > 0.08) {
               const distance = Math.hypot(
                 Number(match[1]) - coral[0],
                 Number(match[2]) - coral[1],
-                Number(match[3]) - coral[2]
+                Number(match[3]) - coral[2],
               );
               return distance < 45;
             }
@@ -665,9 +799,9 @@
       context.lineCap = "round";
       context.lineJoin = "round";
       trailColour.forEach((value, index) => {
-        trailColour[index] += (trailTarget[index] - value) * .14;
+        trailColour[index] += (trailTarget[index] - value) * 0.14;
       });
-      const colour = trailColour.map(value => Math.round(value)).join(", ");
+      const colour = trailColour.map((value) => Math.round(value)).join(", ");
 
       for (let index = 1; index < points.length; index += 1) {
         const point = points[index];
@@ -677,46 +811,50 @@
         context.beginPath();
         context.moveTo(previous.x, previous.y);
         context.lineTo(point.x, point.y);
-        context.strokeStyle = `rgba(${colour}, ${life * .64})`;
-        context.lineWidth = .5 + life * 1.7;
+        context.strokeStyle = `rgba(${colour}, ${life * 0.64})`;
+        context.lineWidth = 0.5 + life * 1.7;
         context.stroke();
       }
 
       frame = requestAnimationFrame(draw);
     };
 
-    window.addEventListener("pointermove", (event) => {
-      const onCoral = isCoralSurface(event.clientX, event.clientY);
-      trailTarget = onCoral ? paper : coral;
-      document.body.classList.toggle("cursor-on-coral", onCoral);
+    window.addEventListener(
+      "pointermove",
+      (event) => {
+        const onCoral = isCoralSurface(event.clientX, event.clientY);
+        trailTarget = onCoral ? paper : coral;
+        document.body.classList.toggle("cursor-on-coral", onCoral);
 
-      const nextPoint = {
-        x: event.clientX,
-        y: event.clientY,
-        time: performance.now()
-      };
+        const nextPoint = {
+          x: event.clientX,
+          y: event.clientY,
+          time: performance.now(),
+        };
 
-      if (lastPoint) {
-        const distance = Math.hypot(
-          nextPoint.x - lastPoint.x,
-          nextPoint.y - lastPoint.y
-        );
-        const steps = Math.min(5, Math.floor(distance / 12));
+        if (lastPoint) {
+          const distance = Math.hypot(
+            nextPoint.x - lastPoint.x,
+            nextPoint.y - lastPoint.y,
+          );
+          const steps = Math.min(5, Math.floor(distance / 12));
 
-        for (let step = 1; step <= steps; step += 1) {
-          const progress = step / (steps + 1);
-          points.push({
-            x: gsap.utils.interpolate(lastPoint.x, nextPoint.x, progress),
-            y: gsap.utils.interpolate(lastPoint.y, nextPoint.y, progress),
-            time: nextPoint.time
-          });
+          for (let step = 1; step <= steps; step += 1) {
+            const progress = step / (steps + 1);
+            points.push({
+              x: gsap.utils.interpolate(lastPoint.x, nextPoint.x, progress),
+              y: gsap.utils.interpolate(lastPoint.y, nextPoint.y, progress),
+              time: nextPoint.time,
+            });
+          }
         }
-      }
 
-      points.push(nextPoint);
-      if (points.length > 70) points.splice(0, points.length - 70);
-      lastPoint = nextPoint;
-    }, { passive: true });
+        points.push(nextPoint);
+        if (points.length > 70) points.splice(0, points.length - 70);
+        lastPoint = nextPoint;
+      },
+      { passive: true },
+    );
 
     document.addEventListener("mouseleave", () => {
       lastPoint = undefined;
@@ -729,7 +867,7 @@
     frame = requestAnimationFrame(draw);
 
     window.addEventListener("pagehide", () => cancelAnimationFrame(frame), {
-      once: true
+      once: true,
     });
   }
 
@@ -747,27 +885,67 @@
       gsap.set(second, { visibility: "visible" });
 
       link.addEventListener("pointerenter", () => {
-        gsap.to(firstSplit.chars, { yPercent: -145, duration: button ? .55 : .4, stagger: button ? .045 : .025, ease: "power3.inOut" });
-        gsap.to(secondSplit.chars, { yPercent: 0, duration: button ? .55 : .4, stagger: button ? .045 : .025, ease: "power3.inOut" });
+        gsap.to(firstSplit.chars, {
+          yPercent: -145,
+          duration: button ? 0.55 : 0.4,
+          stagger: button ? 0.045 : 0.025,
+          ease: "power3.inOut",
+        });
+        gsap.to(secondSplit.chars, {
+          yPercent: 0,
+          duration: button ? 0.55 : 0.4,
+          stagger: button ? 0.045 : 0.025,
+          ease: "power3.inOut",
+        });
         if (button) {
-          gsap.to(".site-header", { "--cta-inset": "5px", duration: .55, ease: "power3.inOut" });
+          gsap.to(".site-header", {
+            "--cta-inset": "5px",
+            duration: 0.55,
+            ease: "power3.inOut",
+          });
         } else {
-          gsap.to(link, { "--dot-position": "-1rem", "--dot-opacity": 1, duration: .4, ease: "power3.inOut" });
+          gsap.to(link, {
+            "--dot-position": "-1rem",
+            "--dot-opacity": 1,
+            duration: 0.4,
+            ease: "power3.inOut",
+          });
         }
       });
 
       link.addEventListener("pointerleave", () => {
-        gsap.to(firstSplit.chars, { yPercent: 0, duration: button ? .55 : .4, stagger: .02, ease: "power3.inOut" });
-        gsap.to(secondSplit.chars, { yPercent: 145, duration: button ? .55 : .4, stagger: .02, ease: "power3.inOut" });
+        gsap.to(firstSplit.chars, {
+          yPercent: 0,
+          duration: button ? 0.55 : 0.4,
+          stagger: 0.02,
+          ease: "power3.inOut",
+        });
+        gsap.to(secondSplit.chars, {
+          yPercent: 145,
+          duration: button ? 0.55 : 0.4,
+          stagger: 0.02,
+          ease: "power3.inOut",
+        });
         if (button) {
-          gsap.to(".site-header", { "--cta-inset": "0px", duration: .55, ease: "power3.inOut" });
+          gsap.to(".site-header", {
+            "--cta-inset": "0px",
+            duration: 0.55,
+            ease: "power3.inOut",
+          });
         } else {
-          gsap.to(link, { "--dot-position": "-1.4rem", "--dot-opacity": 0, duration: .4, ease: "power3.inOut" });
+          gsap.to(link, {
+            "--dot-position": "-1.4rem",
+            "--dot-opacity": 0,
+            duration: 0.4,
+            ease: "power3.inOut",
+          });
         }
       });
     };
 
-    document.querySelectorAll(".desktop-nav .nav-roll").forEach(link => animateRoll(link));
+    document
+      .querySelectorAll(".desktop-nav .nav-roll")
+      .forEach((link) => animateRoll(link));
     const cta = document.querySelector(".nav-cta");
     if (cta) animateRoll(cta, true);
   }
