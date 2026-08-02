@@ -769,6 +769,10 @@
   overflow: hidden;
 }
 
+.touch-swipe-hint {
+  display: none;
+}
+
 .rf-feature-track {
   width: max-content;
   padding-left: var(--rf-edge);
@@ -1333,6 +1337,43 @@
     display: none;
   }
 
+  .rf-features-header {
+    padding-bottom: 2rem;
+  }
+
+  .touch-swipe-hint {
+    margin: 0 var(--rf-edge) 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1.4rem;
+    color: var(--rf-acid);
+    font: 500 1rem/1.2 var(--ix-mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .touch-swipe-hint i {
+    position: relative;
+    width: 5rem;
+    height: 1px;
+    flex: none;
+    background: currentColor;
+    animation: rf-swipe-cue 1.6s ease-in-out infinite;
+  }
+
+  .touch-swipe-hint i::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 0.8rem;
+    height: 0.8rem;
+    border-top: 1px solid currentColor;
+    border-right: 1px solid currentColor;
+    transform: translateY(-50%) rotate(45deg);
+  }
+
   .rf-feature-viewport {
     overflow-x: auto;
     overscroll-behavior-inline: contain;
@@ -1624,5 +1665,20 @@
 
   .rf-conflict-solution {
     clip-path: none;
+  }
+
+  .touch-swipe-hint i {
+    animation: none;
+  }
+}
+
+@keyframes rf-swipe-cue {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(0.8rem);
   }
 }

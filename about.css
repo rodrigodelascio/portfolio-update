@@ -705,6 +705,10 @@
   gap: 1.5rem;
 }
 
+.touch-swipe-hint {
+  display: none;
+}
+
 .fact-card {
   min-height: 34rem;
   padding: 2.5rem;
@@ -1033,8 +1037,41 @@
     touch-action: pan-y;
     overscroll-behavior-inline: contain;
     -webkit-overflow-scrolling: touch;
-    margin-inline: -2rem;
+    margin: 1.8rem -2rem 0;
     padding: 0 2rem 2rem;
+  }
+
+  .touch-swipe-hint {
+    margin: 4rem 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1.4rem;
+    color: var(--about-acid);
+    font: 500 1rem/1.2 var(--ix-mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .touch-swipe-hint i {
+    position: relative;
+    width: 5rem;
+    height: 1px;
+    flex: none;
+    background: currentColor;
+    animation: about-swipe-cue 1.6s ease-in-out infinite;
+  }
+
+  .touch-swipe-hint i::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 0.8rem;
+    height: 0.8rem;
+    border-top: 1px solid currentColor;
+    border-right: 1px solid currentColor;
+    transform: translateY(-50%) rotate(45deg);
   }
 
   .fact-deck::-webkit-scrollbar {
@@ -1077,5 +1114,22 @@
   .about-final-mark-close {
     right: 0;
     bottom: -0.7em;
+  }
+}
+
+@keyframes about-swipe-cue {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(0.8rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .touch-swipe-hint i {
+    animation: none;
   }
 }
