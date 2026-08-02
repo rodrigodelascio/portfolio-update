@@ -1261,6 +1261,53 @@
     grid-template-columns: 1fr;
   }
 
+  .rf-brief {
+    min-height: auto;
+    padding-block: clamp(8rem, 14vw, 11rem);
+    gap: clamp(4rem, 8vw, 6rem);
+  }
+
+  .rf-brief-heading,
+  .rf-brief-copy,
+  .rf-brief-stats {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .rf-brief-heading h2 {
+    max-width: 100%;
+    font-size: clamp(4.4rem, 9.5vw, 7.2rem);
+    line-height: 0.96;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+
+  .rf-brief-lead {
+    max-width: 100%;
+  }
+
+  .rf-evidence {
+    min-height: auto;
+    padding: clamp(8rem, 14vw, 11rem) var(--rf-edge);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    gap: clamp(4rem, 8vw, 7rem);
+  }
+
+  .rf-evidence-copy {
+    position: relative;
+    inset: auto;
+    max-width: 54rem;
+  }
+
+  .rf-evidence figure {
+    width: min(100%, 72rem);
+    max-width: 100%;
+    align-self: center;
+  }
+
   .rf-system-intro {
     position: relative;
     top: 0;
@@ -1418,6 +1465,12 @@
     font-size: clamp(4.2rem, 13vw, 6rem);
   }
 
+  .rf-brief-heading h2 {
+    font-size: clamp(3.6rem, 10.4vw, 4.6rem);
+    line-height: 1;
+    letter-spacing: -0.035em;
+  }
+
   .rf-brief-copy > div {
     grid-template-columns: 1fr;
   }
@@ -1436,18 +1489,17 @@
   }
 
   .rf-evidence {
-    min-height: 78svh;
+    min-height: auto;
     padding-inline: 2rem;
   }
 
   .rf-evidence-copy {
-    left: 2rem;
-    right: 2rem;
+    width: 100%;
   }
 
   .rf-evidence figure {
-    width: 135%;
-    max-width: none;
+    width: 100%;
+    max-width: 100%;
   }
 
   .rf-stack-board {
