@@ -42,7 +42,7 @@
         <a href="${root}blog.html"><span>02</span>Blog</a>
         <a href="${root}about.html"><span>03</span>About</a>
       </div>
-      <a class="interior-menu-mail" href="mailto:rodrigodelascio@gmail.com">rodrigodelascio@gmail.com ↗</a>
+      <a class="interior-menu-mail" href="mailto:rodrigodelascio@gmail.com">rodrigodelascio@gmail.com ↗︎</a>
     `
 
     const header = document.createElement("header")
@@ -114,15 +114,15 @@
             <span>Available / 2026</span>
           </div>
           <a class="interior-footer-heading" href="mailto:rodrigodelascio@gmail.com">
-            <span>LET’S MAKE</span><strong>SOMETHING</strong><i>↗</i>
+            <span>LET’S MAKE</span><strong>SOMETHING</strong><i>↗︎</i>
           </a>
           <div class="interior-footer-bottom">
             <span>© ${new Date().getFullYear()} Rodrigo De Lascio</span>
             <div>
-              <a href="https://github.com/rodrigodelascio/" target="_blank" rel="noreferrer">GitHub ↗</a>
-              <a href="https://www.linkedin.com/in/rodrigo-de-lascio/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+              <a href="https://github.com/rodrigodelascio/" target="_blank" rel="noreferrer">GitHub ↗︎</a>
+              <a href="https://www.linkedin.com/in/rodrigo-de-lascio/" target="_blank" rel="noreferrer">LinkedIn ↗︎</a>
             </div>
-            <a href="#top">Back to top ↑</a>
+            <a href="#top">Back to top ↑︎</a>
           </div>
         </div>
       `

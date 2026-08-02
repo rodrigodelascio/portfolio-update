@@ -202,7 +202,7 @@ body {
 }
 
 .work-showreel-panel::after {
-  content: "↗";
+  content: "↗︎";
   position: absolute;
   top: 1.6rem;
   right: 1.6rem;

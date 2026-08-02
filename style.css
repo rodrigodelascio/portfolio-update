@@ -1468,7 +1468,7 @@ main {
   .hero-stage {
     --portrait-width: min(76vw, 32rem);
     --portrait-height: 106%;
-    --portrait-bottom: 0rem;
+    --portrait-bottom: clamp(5.5rem, 8svh, 7.2rem);
     min-height: 0;
     height: clamp(34rem, 56svh, 43rem);
     flex: 1 1 auto;
@@ -1478,7 +1478,7 @@ main {
   .hero-ambient {
     width: 146vw;
     height: clamp(38rem, 62svh, 52rem);
-    bottom: -5svh;
+    bottom: calc(var(--portrait-bottom) - 5svh);
   }
   .hero-title,
   .hero-title-outline {
@@ -1488,10 +1488,10 @@ main {
     transform: translateY(clamp(4.5rem, 8svh, 6.5rem));
   }
   .hero-portrait-shell {
-    bottom: 0;
+    bottom: var(--portrait-bottom);
   }
   .hero-role {
-    margin-top: -1.6rem;
+    margin-top: -5rem;
     transform: none;
     font-size: 0.9rem;
     letter-spacing: 0.24em;

@@ -113,7 +113,7 @@
           </div>
           <h3>${escapeHTML(post.title)}</h3>
           <p>${escapeHTML(post.excerpt)}</p>
-          <span class="article-read"><span>Read article</span><i>↗</i></span>
+          <span class="article-read"><span>Read article</span><i>↗︎</i></span>
         </div>
       </a>
     `
@@ -131,7 +131,7 @@
               <span>${String(index + 1).padStart(2, "0")}</span>
               <time>${escapeHTML(formatDate(post.publishedDate))}</time>
               <strong>${escapeHTML(post.title)}</strong>
-              <i>↗</i>
+              <i>↗︎</i>
             </a>
           `).join("")
         : `<span class="writing-index-loading">No dispatches filed yet</span>`
@@ -184,7 +184,7 @@
         class="pagination-direction"
         data-page="${currentPage - 1}"
         ${currentPage === 1 ? "disabled" : ""}
-      >← Previous</button>
+      >←︎ Previous</button>
       <div class="pagination-summary">
         <span>Current page</span>
         <strong>${String(currentPage).padStart(2, "0")} / ${String(totalPages).padStart(2, "0")}</strong>
@@ -196,7 +196,7 @@
         class="pagination-direction"
         data-page="${currentPage + 1}"
         ${currentPage === totalPages ? "disabled" : ""}
-      >Next →</button>
+      >Next →︎</button>
     `
 
     container.querySelectorAll("button[data-page]").forEach(button => {

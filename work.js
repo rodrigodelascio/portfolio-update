@@ -91,7 +91,7 @@
       : ""
     return `
       <a href="${escapeHTML(link.url)}"${external}>
-        <span>${escapeHTML(link.label)}</span><i>↗</i>
+        <span>${escapeHTML(link.label)}</span><i>↗︎</i>
       </a>
     `
   }
@@ -124,7 +124,7 @@
         <div class="work-project-media">
           <span class="work-project-media-label">PROJECT_${String(index + 1).padStart(2, "0")}</span>
           <img src="${escapeHTML(project.image)}" alt="${escapeHTML(project.imageAlt)}">
-          <i class="work-project-arrow">↗</i>
+          <i class="work-project-arrow">↗︎</i>
         </div>
       </article>
     `

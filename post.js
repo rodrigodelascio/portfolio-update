@@ -139,7 +139,7 @@
           <aside class="article-aside">
             <span>ARTICLE NOTES</span>
             ${categoriesMarkup(post.category)}
-            <a href="./blog.html">← All writing</a>
+            <a href="./blog.html">←︎ All writing</a>
           </aside>
           <div class="post-content">${post.content?.html || ""}</div>
         </div>
@@ -147,7 +147,7 @@
         <a class="article-back-strip" href="./blog.html">
           <span>Finished this one?</span>
           <strong>BACK TO THE ARCHIVE</strong>
-          <i>↗</i>
+          <i>↗︎</i>
         </a>
       </article>
     `
@@ -343,7 +343,7 @@
         <span>404 / ISH</span>
         <h1>THIS ARTICLE<br><strong>WANDERED OFF.</strong></h1>
         <p>${escapeHTML(message)}</p>
-        <a href="./blog.html">Back to the archive ↗</a>
+        <a href="./blog.html">Back to the archive ↗︎</a>
       </div>
     `
   }
