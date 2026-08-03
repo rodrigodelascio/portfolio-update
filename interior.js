@@ -1,15 +1,3 @@
-if ("scrollRestoration" in history) history.scrollRestoration = "manual"
-
-function resetPageToTop() {
-  document.documentElement.scrollTop = 0
-  document.body.scrollTop = 0
-  window.scrollTo(0, 0)
-}
-
-resetPageToTop()
-window.addEventListener("pageshow", resetPageToTop)
-window.addEventListener("beforeunload", resetPageToTop)
-
 (function () {
   const nested = window.location.pathname.includes("/work/")
   const root = nested ? "../" : "./"
@@ -40,8 +28,12 @@ window.addEventListener("beforeunload", resetPageToTop)
     document.body.classList.add("interior-page")
     document.body.id = "top"
 
+    if (document.querySelector(".interior-header")) return
+
     const oldMenu = document.querySelector(".off-screen-menu")
     const oldNav = document.querySelector(".nav-container")
+
+    if (!oldNav) return
 
     const menu = document.createElement("div")
     menu.className = "interior-menu"
@@ -245,6 +237,7 @@ window.addEventListener("beforeunload", resetPageToTop)
           duration: 1.2,
           stagger: .1,
           ease: "power4.out",
+          immediateRender: false,
           scrollTrigger: {
             trigger: ".footer-section",
             start: "top 55%",
@@ -426,7 +419,12 @@ window.addEventListener("beforeunload", resetPageToTop)
     })
   }
 
-  document.addEventListener("DOMContentLoaded", () => {
+  let chromeInitialised = false
+
+  function initialiseInteriorChrome() {
+    if (chromeInitialised) return
+    chromeInitialised = true
+
     buildChrome()
     cleanVisibleText()
     initialiseHud()
@@ -442,5 +440,13 @@ window.addEventListener("beforeunload", resetPageToTop)
       })
       observer.observe(target, { childList: true, subtree: true })
     })
-  })
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initialiseInteriorChrome, {
+      once: true
+    })
+  } else {
+    initialiseInteriorChrome()
+  }
 })()
