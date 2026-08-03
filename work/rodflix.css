@@ -783,6 +783,8 @@
 }
 
 .rf-feature-card {
+  position: relative;
+  overflow: hidden;
   width: min(72vw, 105rem);
   height: min(62svh, 66rem);
   padding: clamp(2.4rem, 4vw, 5rem);
@@ -1341,28 +1343,39 @@
     padding-bottom: 2rem;
   }
 
-  .touch-swipe-hint {
+  .rf-features > .touch-swipe-hint {
+    width: fit-content;
+    max-width: calc(100% - var(--rf-edge) - var(--rf-edge));
     margin: 0 var(--rf-edge) 2rem;
+    padding: 1rem 1.2rem;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: flex-start;
     gap: 1.4rem;
+    border: 1px solid rgba(205, 255, 26, 0.48);
+    background: rgba(205, 255, 26, 0.06);
     color: var(--rf-acid);
     font: 500 1rem/1.2 var(--ix-mono);
     letter-spacing: 0.1em;
     text-transform: uppercase;
   }
 
-  .touch-swipe-hint i {
+  .rf-features > .touch-swipe-hint span {
+    color: inherit;
+    font: inherit;
+    letter-spacing: inherit;
+  }
+
+  .rf-features > .touch-swipe-hint i {
     position: relative;
-    width: 5rem;
+    width: 4.2rem;
     height: 1px;
     flex: none;
     background: currentColor;
     animation: rf-swipe-cue 1.6s ease-in-out infinite;
   }
 
-  .touch-swipe-hint i::after {
+  .rf-features > .touch-swipe-hint i::after {
     content: "";
     position: absolute;
     top: 50%;
@@ -1675,10 +1688,12 @@
 @keyframes rf-swipe-cue {
   0%,
   100% {
-    transform: translateX(0);
+    transform: translateX(-0.4rem);
+    opacity: 0.55;
   }
 
   50% {
-    transform: translateX(0.8rem);
+    transform: translateX(0);
+    opacity: 1;
   }
 }

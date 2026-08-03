@@ -1,3 +1,15 @@
+if ("scrollRestoration" in history) history.scrollRestoration = "manual"
+
+function resetPageToTop() {
+  document.documentElement.scrollTop = 0
+  document.body.scrollTop = 0
+  window.scrollTo(0, 0)
+}
+
+resetPageToTop()
+window.addEventListener("pageshow", resetPageToTop)
+window.addEventListener("beforeunload", resetPageToTop)
+
 (function () {
   const nested = window.location.pathname.includes("/work/")
   const root = nested ? "../" : "./"

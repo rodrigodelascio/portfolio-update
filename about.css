@@ -1041,28 +1041,39 @@
     padding: 0 2rem 2rem;
   }
 
-  .touch-swipe-hint {
+  .about-off-duty > .touch-swipe-hint {
+    width: fit-content;
+    max-width: 100%;
     margin: 4rem 0 0;
+    padding: 1rem 1.2rem;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: flex-start;
     gap: 1.4rem;
+    border: 1px solid rgba(205, 255, 26, 0.48);
+    background: rgba(205, 255, 26, 0.06);
     color: var(--about-acid);
     font: 500 1rem/1.2 var(--ix-mono);
     letter-spacing: 0.1em;
     text-transform: uppercase;
   }
 
-  .touch-swipe-hint i {
+  .about-off-duty > .touch-swipe-hint span {
+    color: inherit;
+    font: inherit;
+    letter-spacing: inherit;
+  }
+
+  .about-off-duty > .touch-swipe-hint i {
     position: relative;
-    width: 5rem;
+    width: 4.2rem;
     height: 1px;
     flex: none;
     background: currentColor;
     animation: about-swipe-cue 1.6s ease-in-out infinite;
   }
 
-  .touch-swipe-hint i::after {
+  .about-off-duty > .touch-swipe-hint i::after {
     content: "";
     position: absolute;
     top: 50%;
@@ -1120,11 +1131,13 @@
 @keyframes about-swipe-cue {
   0%,
   100% {
-    transform: translateX(0);
+    transform: translateX(-0.4rem);
+    opacity: 0.55;
   }
 
   50% {
-    transform: translateX(0.8rem);
+    transform: translateX(0);
+    opacity: 1;
   }
 }
 
