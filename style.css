@@ -1101,6 +1101,9 @@ main {
 .article-accent .article-meta {
   color: rgba(8, 9, 11, 0.6);
 }
+.article-accent p {
+  color: var(--ink);
+}
 .read-arrow {
   display: block;
   margin-top: 1.5rem;
